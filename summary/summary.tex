@@ -1,0 +1,50 @@
+\chapter*{Summary}
+\addcontentsline{toc}{chapter}{Summary}
+\label{summary}
+\fancyhead[LO]{\textsc{Summary}}
+\fancyhead[RE]{\textsc{Summary}}
+\fancyhead[RO]{\thepage}
+\fancyhead[LE]{\thepage}
+
+In this thesis research on chemical bonding with Valence Bond (VB) theory is described. In the first chapter a coarse overview of the creation of the chemical discipline by Boyle, Mendeleev and Lewis is presented. Starting in the 1920's quantum chemistry was developed after the introduction of the Schr\"{o}dinger equation. In 1927 Heitler and London introduced the quantum chemical VB theory with which it is possible to express a chemical bond in mathematical terms, based on the vision of Lewis. Lewis states that a chemical bond is composed of an electron pair shared between two atoms. A Lewis structure is equivalent to a Valence Bond structure. 
+
+To enable calculations on larger molecules the VB program TURTLE, developed and maintained by the Theoretical Chemistry group in Utrecht, has already been extended with a perturbation theory (\textit{pert}) scheme in the 1990's. With this scheme or option the time required to optimize the orbitals can be drastically reduced. In Chapter 2 a number of extensions to this option are described. In the renewed version it is possible to specify to optimization method per excitation, per orbital or per orbital class, giving the user more options to steer the optimization process. Another extension is the implementation of a Fock matrix, which is already used in MCSCF, the orthogonal equivalent of VBSCF. The speed-up factors and changes in the optimization process are discussed by comparing different test results. 
+
+The dissociation behavior of molecules is influenced by the surrounding medium. In Chapter 3 this influence is analyzed by comparing the dissociation behavior of four chlorine containing compounds with varying polarity. The molecules are chloromethane, \textit{tert}-butylchloride, chlorosilane and trimethylsilylchloride.  The M-Cl bond, in which M=C or Si,  is stretched and for several bond lengths the total VB energy and the energy of the separate covalent and ionic structures is calculated. At large distances only the covalent structure (two radical fragments) contributes to the wave function. For \textit{tert}-butylchloride the dissociation in radicals is:
+\\
+\\
+C(CH$_3$)$_3$Cl  $\rightarrow$ C(CH$_3$)$_{3}^{\bullet}$ + Cl$^\bullet$
+\\
+\\
+\noindent{}When the solvation effect, Polarizable Continuum Model (PCM) for water in this case, is switched on \textit{tert}-butylchloride, chlorosilane and trimethylsilylchloride dissociate in ions, \textit{i.e.} at large distances only the ionic structure contributes to the wave function. For \textit{tert}-butylchloride the reaction becomes:
+\\
+\\
+C(CH$_3$)$_3$Cl  $\rightarrow$ C(CH$_3$)$_{3}^{+}$ + Cl$^{-}$
+\\
+\\
+\noindent{}Of these four molecules chloromethane is hardly influenced by the solvating medium. At large distances the covalent structure remains the most important for this molecule.  
+
+Quite frequently in VB calculations, orbitals, which are not supposed to influence the active center, are not optimized, but frozen. In earlier VB calculations the researchers assumed that the C-H orbitals, which were separated by two bond lengths from the active center, could be frozen. In the last part of the third chapter it is shown that this assumption is not correct. The orbitals \textit{are} involved in the active center via \textit{hyperconjugation}, which stabilizes the \textit{tert}-butyl cation. The trimethylsilyl cation (Si(CH$_3$)$_{3}^{+}$) is also stabilized, albeit less than the \textit{tert}-butyl cation. 
+
+In organometallic chemistry it is quite common that a chemical bond is shared between more than two  atoms. For bonds between metal atoms and organic rings people are more interested in the bonding of two fragments or ligands than in bonds between separate atoms. In Chapter 4 VB calculations on CpAlH$_2$, CpSiH and CpSiH$_3$ are discussed. For these molecules the most favorable position of the metal hydride moiety above the ring and the Cp-M bond character have been analyzed.
+
+The total energy indicates that the metal hydride moieties in CpSiH and CpAlH$_2$ are situated above a C-C bond ($\eta^2$) and that the SiH$_3$ group in CpSiH$_3$ is positioned above a single C-atom ($\sigma$). For all three molecules the $\eta^5$ position (above the middle of the ring) corresponds to a maximum. Hessian calculations for these geometries indicate that these are higher order saddle points. First order saddle points (transition states) are found on the perimeter of the ring between two minima. For CpAlH$_2$ and CpSiH the transition states are the $\eta^3$ geometries between adjacent $\eta^2$ geometries and for CpSiH$_3$ those are the $\eta^2$ geometries between adjacent $\sigma$ geometries.
+
+The character of the bond between Cp and SiH$_3$ is mainly $\sigma$ and modestly ionic. This is also true for CpAlH$_2$ and CpSiH, although in these molecules the covalent character is a combination of $\sigma$ and $\pi$ character.
+
+The last three chapters have a common theme: \textit{aromaticity}. In Chapter 5 the inorganic benzene borazine (B$_3$N$_3$H$_6$) is compared in three ways with the iso-electronic benzene (C$_6$H$_6$) itself. Additionally, the molecules B$_2$N$_2$H$_4$ and B$_4$N$_4$H$_8$ are compared with their carbon analogues C$_4$H$_4$ and C$_8$H$_8$. 
+
+Firstly, with a simple H\"uckel model the differences between the $\pi$ systems of the azabora compounds are compared with those of their carbon counterparts. In the H\"uckel calculations the Coulomb intergrals used for B and N are $\alpha_B = \alpha - \eta\beta$ and $\alpha_N = \alpha + \eta\beta$, in which $\eta$ is a parameter that can range from 0 to 1. When the $\eta$ parameter equals zero, the resulting H\"uckel $\pi$ orbitals are those normally found for homonuclear cycles. As $\eta$ increases, the bonding orbitals start concentrating onto the electronegative nitrogen atoms, and the anti-bonding orbitals on the electropositive boron atoms: the functions become more ``localized".
+
+For the second comparison ring current-density maps have been generated. In these maps delocalized diatropic currents (counter-clockwise) in the $\pi$ system indicate aromatic character (benzene, $4n+2$). The ring currents in borazine are diatropic, but strongly localized around the nitrogen atoms.
+
+In the third part of this chapter the azabora compounds are compared with the carbon rings via VB calculations, which indicate that structures with lone-pairs on the nitrogen atoms are the most important in the wave function. The delocal VBSCF calculations show that the 6 $\pi$ electrons in borazine form 3 lone-pairs on the nitrogen atoms and that this molecule has a negligibly small resonance energy. With this result the VB calculations confirm the localization of the orbitals around the nitrogen atoms, both in the H\"uckel model as well as in the current-density maps.
+
+In Chapter 6 the aromatic character of a number of inorganic benzene analogues, the previously mentioned borazine amongst them, is analyzed with VB \textit{and} ring current calculations. The ten investigated molecules are divided into two classes, \textit{i.e.} a homonuclear class (X$_6$H$_6$, in which X=C or Si and X$_6$, in which X=N or P) and a heteronuclear class (X$_3$Y$_3$H$_6$, in which (X,Y)=(B,N), (B,P), (Al,N) or (Al,P) and B$_3$Y$_3$H$_3$ (Y=O or S)).
+
+The homonuclear molecules exhibit benzene-like character, like resonance between two Kekul\'e-like structures and induced diatropic ring currents. Almost all heteronuclear compounds show localization of the lone-pairs around the electronegative atoms. Besides, Kekul\'e-like structures do not contribute. Only B$_3$P$_3$H$_6$ has some benzene-like features with a significant contribution of two Kekul\'e-like structures to its VB wave function, an appreciable resonance energy, and a discernible diatropic
+ring current in planar geometry. However, relaxation to the optimal non-planar chair conformation is accompanied by onset of localization of ring current.
+
+In Chapter 7 the famous H\"uckel rule, which is derived for molecules with a single carbon ring, is tested on molecules with multiple carbon rings, like pentalene, indacene and molecules with more six-membered rings. All these molecules have $4n$ $\pi$ electrons and, following the H\"uckel rule, are expected to be anti-aromatic. 
+
+Like in the previous computational experiments, ring current and VB calculations have been performed. The ring current maps show that, with increasing number of six-membered rings, the paratropic ring currents change to diatropic, indicating more aromatic character in the larger molecules. The VBCI calculations indicate that the gain in resonance energy counteracts the energy required to form a bi-radical.

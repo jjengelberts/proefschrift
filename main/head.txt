@@ -1,0 +1,74 @@
+% Handleiding printen manuscript op de HP Laserjet 4050
+%
+%  1. Maak PDF
+%  2. Open deze met Acrobat Reader
+%  3. Kies "Print"
+%  4. Zorg dat "Reverse Pages" aangevinkt staat
+%  5. Kies bij Subset voor "Odd Pages Only"
+%  6. Draai na het printen de stapel om door in leeshouding je armen te kruisen
+%  7. Leg de stapel nu weer in lade 2
+%  8. Kies opnieuw "Print"
+%  9. Zorg dat "Reverse Pages" aangevinkt staat
+% 10. Kies bij Subset voor "Even Pages Only"
+% 
+\documentclass{main/thesis}
+\usepackage{amssymb}
+\usepackage[dutch]{babel}
+\usepackage{datetime}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{epstopdf}
+\DeclareGraphicsRule{.eps}{pdf}{.pdf}{`epstopdf #1}
+\usepackage{chapterbib}
+\usepackage{ifthen}
+\newcommand{\vbbox}[2]
+{
+   \begin{minipage}{\textwidth}
+      \vspace{12pt}
+      \center
+      \colorbox{grey1}{\parbox{\textwidth}{\textbf{Example #2}
+   \texttt{#1}}}
+   \end{minipage}
+   \vspace{1pt}
+}
+
+% Float placement ...
+\renewcommand{\topfraction}{0.8}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.8}
+
+\setcounter{topnumber}{2}       % Maximum # of floats at top of page
+\setcounter{bottomnumber}{2}    % Maximum # of floats at bottom of page
+\setcounter{totalnumber}{3}     % Maximum total # of floats on one page
+\newboolean{wholethesis}
+\setboolean{wholethesis}{false}     % Used for date on separate chapters
+
+%Double line spacing if necessary
+\renewcommand{\baselinestretch}{1.2}
+
+\vfuzz1pc   % Don't bother to report overfull boxes if over-edge is < 1pc
+\hfuzz1pc   % Don't bother to report overfull boxes if over-edge is < 1pc
+
+%Manual commands
+
+%Highlight color \mx{this has been changed}
+\definecolor{orange}{rgb}{1,0.5,0}
+\definecolor{purple}{rgb}{1,0,1}
+\newcommand{\mg}[1]{\color{green}{#1}\normalcolor}
+\newcommand{\mo}[1]{\color{orange}{#1}\normalcolor}
+\newcommand{\my}[1]{\color{yellow}{#1}\normalcolor}
+\newcommand{\mr}[1]{\color{purple}{#1}\normalcolor}
+\newcommand{\mc}[1]{\color{cyan}{#1}\normalcolor}
+%Symbol for degrees (angles and temperature)
+\newcommand{\degrees}{$^{\mathrm{o}}$}
+%Easy reference to chapters
+\newcommand{\chintro}{1}
+\newcommand{\chorbopt}{2}
+\newcommand{\chdissociation}{3}
+\newcommand{\chcyclopentadienyl}{4}
+\newcommand{\chhuckel}{5}
+\newcommand{\chinorganic}{6}
+\newcommand{\chindacene}{7}
+
+\begin{document}

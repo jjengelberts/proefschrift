@@ -1,0 +1,16 @@
+all: cv.tex
+
+temptex:
+	cat ../main/head.txt > ../temp.tex
+	echo '\include{cv/cv}' >> ../temp.tex
+	cat ../main/tail.txt >> ../temp.tex
+
+cv.tex: temptex
+	cd ..; pdflatex temp
+	cd ..; pdflatex temp
+	cd ..; pdflatex temp
+	mv ../temp.pdf cv.pdf
+
+clean:
+	rm -f cv.pdf
+	rm -f ../temp.* temp.* *log *bbl *blg *aux
