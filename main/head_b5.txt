@@ -29,6 +29,7 @@
 \DeclareGraphicsRule{.eps}{pdf}{.pdf}{`epstopdf #1}
 \usepackage{chapterbib}
 \usepackage{ifthen}
+\usepackage[pdftex,bookmarks=true]{hyperref}
 \newcommand{\vbbox}[2]
 {
    \begin{minipage}{\textwidth}
