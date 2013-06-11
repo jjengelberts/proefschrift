@@ -26,3 +26,4 @@ clean:
 	rm -f figures/*.pdf
 	rm -f indacene.pdf
 	rm -f ../temp.* temp.* *log *bbl *blg *aux
+	rm -rf */.DS_Store .DS_Store

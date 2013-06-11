@@ -83,5 +83,5 @@ thesis.tex: makea4 temptex2
 b5: makeb5 temptex2
 
 clean:
-	rm -f $(FIGURES) */*.blg */*.bbl */*.aux */*.log
+	rm -f $(FIGURES) */*.blg */*.bbl */*.aux */*.log */.DS_Store .DS_Store
 	rm -f thesis.* temp.* introduction/introduction.pdf orbopt/orbopt.pdf dissociation/dissociation.pdf cyclopentadienyl/cyclopentadienyl.pdf huckel/huckel.pdf inorganic/inorganic.pdf indacene/indacene.pdf lop/lop.pdf summary/summary.pdf samenvatting/samenvatting.pdf dankwoord/dankwoord.pdf cv/cv.pdf

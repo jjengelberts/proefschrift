@@ -14,3 +14,4 @@ samenvatting.tex: temptex
 clean:
 	rm -f samenvatting.pdf
 	rm -f ../temp.* temp.* *log *bbl *blg *aux
+	rm -rf */.DS_Store .DS_Store
