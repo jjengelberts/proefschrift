@@ -29,7 +29,7 @@
 \DeclareGraphicsRule{.eps}{pdf}{.pdf}{`epstopdf #1}
 \usepackage{chapterbib}
 \usepackage{ifthen}
-\usepackage[pdftex,bookmarks=true]{hyperref}
+\usepackage[pdftex,bookmarks=true,pdfborder={0,0,0},pdfauthor={Jeroen Engelberts},pdftitle={Valence Bond Theory: A Toolkit For The Analysis Of Chemical Bonding},pdfsubject={Valence Bond Theory}]{hyperref}
 \newcommand{\vbbox}[2]
 {
    \begin{minipage}{\textwidth}
