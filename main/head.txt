@@ -22,6 +22,9 @@
 \usepackage{chapterbib}
 \usepackage{ifthen}
 \usepackage[pdftex,bookmarks=true,pdfborder={0,0,0},pdfauthor={Jeroen Engelberts},pdftitle={Valence Bond Theory: A Toolkit For The Analysis Of Chemical Bonding},pdfsubject={Valence Bond Theory}]{hyperref}
+\usepackage{lettrine}
+\usepackage{yfonts}
+\usepackage[T1]{fontenc}
 \newcommand{\vbbox}[2]
 {
    \begin{minipage}{\textwidth}
@@ -71,5 +74,8 @@
 \newcommand{\chhuckel}{5}
 \newcommand{\chinorganic}{6}
 \newcommand{\chindacene}{7}
+%Nice letter in each chapter (see http://www.tug.dk/FontCatalogue/otherfonts.html#initials)
+\input ArtNouv.fd
+\newcommand*\initial{\usefont{U}{ArtNouv}{xl}{n}\fontsize{12mm}{12mm}\selectfont}
 
 \begin{document}

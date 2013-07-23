@@ -20,7 +20,7 @@ orbopt.tex: temptex
 	cd ..; pdflatex temp
 	cd ..; pdflatex temp
 	mv ../temp.pdf orbopt.pdf
-	rm -f natbib.sty
+	rm -f ../natbib.sty
 
 clean:
 	rm -f figures/*.pdf
