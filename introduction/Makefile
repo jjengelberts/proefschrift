@@ -23,6 +23,11 @@ introduction.tex: temptex
 	rm -f ../natbib.sty
 
 clean:
+	rm -f introduction.pdf
+	rm -f ../temp.* temp.* *log *bbl *blg *aux
+	rm -rf */.DS_Store .DS_Store
+
+realclean:
 	rm -f figures/*.pdf
 	rm -f introduction.pdf
 	rm -f ../temp.* temp.* *log *bbl *blg *aux
