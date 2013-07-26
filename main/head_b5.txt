@@ -1,15 +1,6 @@
-% Handleiding printen manuscript op de HP Laserjet 4050
 %
-%  1. Maak PDF
-%  2. Open deze met Acrobat Reader
-%  3. Kies "Print"
-%  4. Zorg dat "Reverse Pages" aangevinkt staat
-%  5. Kies bij Subset voor "Odd Pages Only"
-%  6. Draai na het printen de stapel om door in leeshouding je armen te kruisen
-%  7. Leg de stapel nu weer in lade 2
-%  8. Kies opnieuw "Print"
-%  9. Zorg dat "Reverse Pages" aangevinkt staat
-% 10. Kies bij Subset voor "Even Pages Only"
+% Het bestand thesis.tex wordt iedere keer als make aangeroepen wordt
+% opnieuw opgebouwd. Wijzigingen in thesis.tex zelf zullen verloren gaan!
 % 
 \documentclass{main/thesis}
 %start the 81% scaling trick (comment out for full A4) 

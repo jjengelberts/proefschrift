@@ -70,3 +70,41 @@
 \newcommand*\initial{\usefont{U}{RoyalIn}{xl}{n}\selectfont}
 
 \begin{document}
+\include{main/frontmatter}
+\setcounter{chapter}{0}
+\setcounter{NAT@ctr}{0}
+\include{introduction/introduction}
+ibliography{introduction}
+\setcounter{chapter}{1}
+\setcounter{NAT@ctr}{0}
+\include{orbopt/orbopt}
+\bibliography{orbopt}
+\setcounter{chapter}{2}
+\setcounter{NAT@ctr}{0}
+\include{dissociation/dissociation}
+ibliography{dissociation}
+\setcounter{chapter}{3}
+\setcounter{NAT@ctr}{0}
+\include{cyclopentadienyl/cyclopentadienyl}
+ibliography{cyclopentadienyl}
+\setcounter{chapter}{4}
+\setcounter{NAT@ctr}{0}
+\include{huckel/huckel}
+ibliography{huckel}
+\setcounter{chapter}{5}
+\setcounter{NAT@ctr}{0}
+\include{inorganic/inorganic}
+ibliography{inorganic}
+\setcounter{chapter}{6}
+\setcounter{NAT@ctr}{0}
+\include{indacene/indacene}
+ibliography{indacene}
+\include{lop/lop}
+\include{summary/summary}
+\include{samenvatting/samenvatting}
+\include{cv/cv}
+\include{dankwoord/dankwoord}
+% ------------------------------------------------------------------------ Backmatter
+\typeout{******** Backmatter ********}
+\backmatter
+\end{document}
