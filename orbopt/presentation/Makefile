@@ -1,4 +1,4 @@
-all: formula.tex
+all: presentationtex
 
 formula.tex: formulaeps
 
@@ -7,8 +7,14 @@ formulaeps:
 	dvips -E -Ppdf -x 3600 formula.dvi -o formula.eps
 	epstopdf formula.eps
 
+presentation.tex: presentationtex
+
+presentationtex:
+	pdflatex presentation
+
 clean:
 	rm -f formula.*
+	rm -f *aux *log *nav *out *pdf *snm *toc
 	rm -rf .DS_Store
 	echo '% Convert latex formula to picture' > formula.tex
 	echo '\documentclass{article}' >> formula.tex
