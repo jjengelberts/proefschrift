@@ -8,10 +8,10 @@
 % Other themes include: beamerthemebars, beamerthemelined, 
 %                       beamerthemetree, beamerthemetreebars  
 
-\title{Beamer slide examples}    % Enter your title between curly braces
-\author{My name}                 % Enter your name between curly braces
-\institute{My organization}      % Enter your institute name between curly braces
-\date{\today}                    % Enter the date or \today between curly braces
+\title{Orbital Optimization in VB}    % Enter your title between curly braces
+\author{Jeroen Engelberts}            % Enter your name between curly braces
+%\institute{SURFsara}                 % Enter your institute name between curly braces
+\date{\today}                         % Enter the date or \today between curly braces
 
 \begin{document}
 
@@ -19,8 +19,6 @@
 \begin{frame}
   \titlepage
 \end{frame}
-\note{Talk for 30 minutes} % Add notes to yourself that will be displayed when
-                           % typeset with the notes or notesonly class options
 
 \section[Outline]{}
 
@@ -31,22 +29,42 @@
 \end{frame}
 
 
-\section{Simple slide with three points shown all at once}
+\section{Valence Bond Theory}
+\subsection{Introduction}
+\begin{frame}
+  \frametitle{Goal}   % Insert frame title between curly braces
+  Analyze the orbital optimization process in VB and look for possibilities to improve the performance, \textit{i.e.} decrease the computation time.
+\end{frame}
+
+\subsection{Valence Bond Wave Functions}
+\begin{frame}
+  \frametitle{Structures, Determinants \& Orbitals}
+  \begin{equation*}
+    \Psi = \sum_{i} C_i \Phi_i
+  \end{equation*}
+
+  \begin{equation*}
+    \Phi = \sum_{i} \alpha_i \Delta_i
+  \end{equation*}
+
+  \begin{equation*}
+    \Delta = |ijkl \cdots n|
+  \end{equation*}
+
+  \begin{equation*}
+    i = \sum_{n} c_n \chi_n
+  \end{equation*}
+\end{frame}
 
 \begin{frame}
-  \frametitle{Simple slide with three points shown all at once}   % Insert frame title between curly braces
-
-  \begin{itemize}
-  \item Point 1
-  \item Point 2
-  \item Point 3
-  \end{itemize}
+  \frametitle{Single Structure Wave Function}
+  \begin{center}
+  \includegraphics{../figures/heitler.eps}  
+  \end{center}
+  \begin{equation*}
+    \Psi = |1s_{A}\overline{1s_{B}}| - |\overline{1s_{A}}1s_{B}|
+  \end{equation*}
 \end{frame}
-\note[enumerate]       % Add notes to yourself that will be displayed when
-{                      % typeset with the notes or notesonly class options
-\item Note for Point 1   
-\item Note for Point 2   
-}
 
 \subsection{Simple slide with three points shown in succession}
 
@@ -59,12 +77,8 @@
   \item<3-> Point 3
   \end{itemize}
 \end{frame}
-\note{Speak clearly}  % Add notes to yourself that will be displayed when
-                      % typeset with the notes or notesonly class options
-
 
 \section{Slide with two columns: items and a graphic}
-
 \begin{frame}
   \frametitle{Slide with two columns: items and a graphic}   % Insert frame title between curly braces
   \begin{columns}[c]
@@ -75,11 +89,8 @@
   \item<3-> ...
   \end{itemize}
   \column{2in}
-  \framebox{Insert graphic here % e.g. \includegraphics[height=2.65in]{graphic}
-  }
+  \includegraphics[height=0.5in]{../figures/coulson.eps}
   \end{columns}
 \end{frame}
-\note{The end}       % Add notes to yourself that will be displayed when
-		     % typeset with the notes or notesonly class options
 
 \end{document}

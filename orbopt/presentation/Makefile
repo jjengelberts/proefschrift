@@ -9,7 +9,8 @@ formulaeps:
 
 presentation.tex: presentationtex
 
-presentationtex:
+presentationtex: clean
+	pdflatex presentation
 	pdflatex presentation
 
 clean:
