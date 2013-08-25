@@ -20,6 +20,8 @@ huckel.tex: temptex
 	cd ..; pdflatex temp
 	cd ..; pdflatex temp
 	mv ../temp.pdf huckel.pdf
+	mv ../temp.log huckel.log
+	rm -f ../temp.*
 	rm -f ../natbib.sty
 
 clean:

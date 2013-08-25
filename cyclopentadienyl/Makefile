@@ -20,6 +20,8 @@ cyclopentadienyl.tex: temptex
 	cd ..; pdflatex temp
 	cd ..; pdflatex temp
 	mv ../temp.pdf cyclopentadienyl.pdf
+	mv ../temp.log cyclopentadienyl.log
+	rm -f ../temp.*
 	rm -f ../natbib.sty
 
 clean:

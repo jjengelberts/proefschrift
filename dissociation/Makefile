@@ -20,6 +20,8 @@ dissociation.tex: temptex
 	cd ..; pdflatex temp
 	cd ..; pdflatex temp
 	mv ../temp.pdf dissociation.pdf
+	mv ../temp.log dissociation.log
+	rm -f ../temp.*
 	rm -f ../natbib.sty
 
 clean:

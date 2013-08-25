@@ -1,4 +1,5 @@
 \documentclass[]{beamer}
+\usefonttheme{professionalfonts}
 % Class options include: notes, notesonly, handout, trans,
 %                        hidesubsections, shadesubsections,
 %                        inrow, blue, red, grey, brown
@@ -8,10 +9,10 @@
 % Other themes include: beamerthemebars, beamerthemelined, 
 %                       beamerthemetree, beamerthemetreebars  
 
-\title{Orbital Optimization in VB}    % Enter your title between curly braces
-\author{Jeroen Engelberts}            % Enter your name between curly braces
+\title{Orbital Optimization in Valence Bond Theory}
+\author{Jeroen Engelberts}
 %\institute{SURFsara}                 % Enter your institute name between curly braces
-\date{\today}                         % Enter the date or \today between curly braces
+\date{9 September 2013}
 
 \begin{document}
 
@@ -59,10 +60,20 @@
 \begin{frame}
   \frametitle{Single Structure Wave Function}
   \begin{center}
-  \includegraphics{../figures/heitler.eps}  
+    \includegraphics{../figures/heitler.eps}  
   \end{center}
   \begin{equation*}
     \Psi = |1s_{A}\overline{1s_{B}}| - |\overline{1s_{A}}1s_{B}|
+  \end{equation*}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Multiple Structure Wave Function}
+  \begin{center}
+    \includegraphics{../figures/heitlerplus.eps}
+  \end{center}
+  \begin{equation*}
+    \Psi=a_1(|1s_{A}\overline{1s_{B}}| - |\overline{1s_{A}}1s_{B}|) + a_2 |1s_{A}\overline{1s_{A}}| + a_3 |1s_{B}\overline{1s_{B}}|
   \end{equation*}
 \end{frame}
 

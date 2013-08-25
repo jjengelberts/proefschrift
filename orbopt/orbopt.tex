@@ -20,7 +20,7 @@ In this example structure, there are two $1s$-orbitals both describing a single 
  
 For heteronuclear diatomic molecules, like HF, the equal sharing of electrons amongst atoms is not favorable: for this polar bond the electron contributed by the hydrogen atom will be located more on the fluorine atom, leading to a $\delta^{+}-\delta^{-}$ situation. With the wave function in Figure \ref{ch2.fig.heitler} it is impossible to describe this situation. However, there are two ways to enhance the wave function, so that charge transfer is included.
 
-Firstly, ionic structures can be added to the wave function. The two electrons involved in the bonding can be located both on one hydrogen atom or both on the other in addition to one electron on each hydrogen atom. The VB wave function for H$_2$ then becomes $\Psi=a_1(|1s_{A}\overline{1s_{B}}| - |\overline{1s_{A}}1s_{B}|) + a_2 |1s_{A}\overline{1s_{A}}| + a_3 |1s_{B}\overline{1s_{B}}|$, where $a_1$, $a_2$ and $a_3$ are structure coefficients, which can be variatonally optimized. A pictorial respresentation of this wave function is shown in Figure \ref{ch2.fig.heitlerplus}.
+Firstly, ionic structures can be added to the wave function. The two electrons involved in the bonding can be located both on one hydrogen atom or both on the other in addition to one electron on each hydrogen atom. The VB wave function for H$_2$ then becomes $\Psi=a_1(|1s_{A}\overline{1s_{B}}| - |\overline{1s_{A}}1s_{B}|) + a_2 |1s_{A}\overline{1s_{A}}| + a_3 |1s_{B}\overline{1s_{B}}|$, where $a_1$, $a_2$ and $a_3$ are structure coefficients, which can be variatonally optimized. A pictorial representation of this wave function is shown in Figure \ref{ch2.fig.heitlerplus}.
 \begin{figure}[ht]
 \center
 \includegraphics{orbopt/figures/heitlerplus.eps}
@@ -75,7 +75,7 @@ Such a structure itself is a linear combination of Slater determinants:
 \Phi = \sum_{i} \alpha_i \Delta_i,
 \label{ch2.eq.struct}
 \end{equation}
-which are anti-symmetrized products of orbitals:
+which are antisymmetrized products of orbitals:
 \begin{equation}
 \Delta = |ijkl \cdots n|.
 \label{ch2.eq.determ}
@@ -212,7 +212,7 @@ For the analysis of the applicability of Fock matrix elements, a VBSCF wave func
 \Phi_i = \mathcal{A}(\Phi^{\mathrm{core}} \times \Phi_i^{\mathrm{active}}),
 \label{ch2.eq.wfsplit}
 \end{equation}
-in which $\mathcal{A}$ is the anti-symmetrizer, $\Phi^{\mathrm{core}}$ is the product of all doubly occupied orbitals, which is equal for all structures, and $\Phi_i^{\mathrm{active}}$ is the product of the active (or variably) occupied orbitals in structure $\Phi_i$. Although not necessary, it is convenient to orthogonalize as many orbitals onto each other as possible \cite{vbscf2}. This results in the two occupied orbital subsets mentioned here, the core, or always doubly occupied orbitals and the active orbitals. The remaining unoccupied, or virtual orbitals are mostly chosen orthogonal to all other orbitals. For a detailed description of the construction of the virtual subspace, see the first appendix in reference \cite{koos1}.
+in which $\mathcal{A}$ is the antisymmetrizer, $\Phi^{\mathrm{core}}$ is the product of all doubly occupied orbitals, which is equal for all structures, and $\Phi_i^{\mathrm{active}}$ is the product of the active (or variably) occupied orbitals in structure $\Phi_i$. Although not necessary, it is convenient to orthogonalize as many orbitals onto each other as possible \cite{vbscf2}. This results in the two occupied orbital subsets mentioned here, the core, or always doubly occupied orbitals and the active orbitals. The remaining unoccupied, or virtual orbitals are mostly chosen orthogonal to all other orbitals. For a detailed description of the construction of the virtual subspace, see the first appendix in reference \cite{koos1}.
 
 In the active subspace, the orbitals are not necessarily orthogonal to each other. In principle, however, these orbitals could be transformed in such a way that they become orthogonal to each other. In practice, such transformations are performed by Thorsteinsson \textit{et al.} in their Complete Active Space Valence Bond (CASVB) method \cite{thor1,thor2,thor3,thor4}. In the CASVB method a CASSCF wave function is taken for a start. By orbital transformations, which need not be unitary, an alternative representations of exactly the same wave function is obtained, based instead on non-orthogonal orbitals, such as those that are more characteristic of VB. The initial main motivation behind CASVB was to be able to use modern VB language, whilst avoiding the need to carry out actual VB calculations, which were traditionally perceived to be somewhat more expensive. Here, the transformation will be used in the opposite direction: from a VB wave function to a CASSCF wave function. With such a transformation the wave function becomes:
 \begin{equation}

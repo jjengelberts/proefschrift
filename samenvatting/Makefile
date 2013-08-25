@@ -10,6 +10,8 @@ samenvatting.tex: temptex
 	cd ..; pdflatex temp
 	cd ..; pdflatex temp
 	mv ../temp.pdf samenvatting.pdf
+	mv ../temp.log samenvatting.log
+	rm -f ../temp.*
 
 clean:
 	rm -f samenvatting.pdf

@@ -20,6 +20,8 @@ introduction.tex: temptex
 	cd ..; pdflatex temp
 	cd ..; pdflatex temp
 	mv ../temp.pdf introduction.pdf
+	mv ../temp.log introduction.log
+	rm -f ../temp.*
 	rm -f ../natbib.sty
 
 clean:

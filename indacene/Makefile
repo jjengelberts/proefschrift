@@ -20,6 +20,8 @@ indacene.tex: temptex
 	cd ..; pdflatex temp
 	cd ..; pdflatex temp
 	mv ../temp.pdf indacene.pdf
+	mv ../temp.log indacene.log
+	rm -f ../temp.*
 	rm -f ../natbib.sty
 
 clean:

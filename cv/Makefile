@@ -10,6 +10,8 @@ cv.tex: temptex
 	cd ..; pdflatex temp
 	cd ..; pdflatex temp
 	mv ../temp.pdf cv.pdf
+	mv ../temp.log cv.log
+	rm -f ../temp.*
 
 clean:
 	rm -f cv.pdf

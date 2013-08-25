@@ -10,6 +10,8 @@ summary.tex: temptex
 	cd ..; pdflatex temp
 	cd ..; pdflatex temp
 	mv ../temp.pdf summary.pdf
+	mv ../temp.log summary.log
+	rm -f ../temp.*
 
 clean:
 	rm -f summary.pdf

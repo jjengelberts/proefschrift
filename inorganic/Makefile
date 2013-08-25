@@ -20,6 +20,8 @@ inorganic.tex: temptex
 	cd ..; pdflatex temp
 	cd ..; pdflatex temp
 	mv ../temp.pdf inorganic.pdf
+	mv ../temp.log inorganic.log
+	rm -f ../temp.*
 	rm -f ../natbib.sty
 
 clean:

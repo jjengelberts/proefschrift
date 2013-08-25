@@ -20,6 +20,8 @@ orbopt.tex: temptex
 	cd ..; pdflatex temp
 	cd ..; pdflatex temp
 	mv ../temp.pdf orbopt.pdf
+	mv ../temp.log orbopt.log
+	rm -f ../temp.*
 	rm -f ../natbib.sty
 
 clean:

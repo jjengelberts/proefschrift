@@ -10,6 +10,8 @@ dankwoord.tex: temptex
 	cd ..; pdflatex temp
 	cd ..; pdflatex temp
 	mv ../temp.pdf dankwoord.pdf
+	mv ../temp.log dankwoord.log
+	rm -f ../temp.*
 
 clean:
 	rm -f dankwoord.pdf

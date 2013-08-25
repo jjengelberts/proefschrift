@@ -10,6 +10,8 @@ lop.tex: temptex
 	cd ..; pdflatex temp
 	cd ..; pdflatex temp
 	mv ../temp.pdf lop.pdf
+	mv ../temp.log lop.log
+	rm -f ../temp.*
 
 clean:
 	rm -f lop.pdf
