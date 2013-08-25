@@ -16,7 +16,7 @@ presentationtex: clean
 clean:
 	rm -f formula.*
 	rm -f *aux *log *nav *out *pdf *snm *toc
-	rm -rf .DS_Store
+	rm -rf .DS_Store figures/.DS_Store
 	echo '% Convert latex formula to picture' > formula.tex
 	echo '\documentclass{article}' >> formula.tex
 	echo '\pagestyle{empty}' >> formula.tex
@@ -27,3 +27,6 @@ clean:
 	echo 'a^2 + b^2 = c^2' >> formula.tex
 	echo '\end{equation*}' >> formula.tex
 	echo '\end{document}' >> formula.tex
+
+realclean: clean
+	rm -rf figures/*.pdf
