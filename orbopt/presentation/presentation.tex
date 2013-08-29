@@ -5,39 +5,70 @@
 %                        inrow, blue, red, grey, brown
 
 % Theme for beamer presentation.
-\usepackage{beamerthemesplit} 
+\usepackage{beamerthemetree} 
 % Other themes include: beamerthemebars, beamerthemelined, 
 %                       beamerthemetree, beamerthemetreebars  
 
 \title{Orbital Optimization in Valence Bond Theory}
 \author{Jeroen Engelberts}
-%\institute{SURFsara}                 % Enter your institute name between curly braces
+%\institute{SURFsara}
 \date{9 September 2013}
 
 \begin{document}
 
-% Creates title page of slide show using above information
 \begin{frame}
   \titlepage
 \end{frame}
 
-\section[Outline]{}
+\begin{frame}
+  \frametitle{Goal}
+  Analyze the orbital optimization process in the Valence Bond Self Consistent Field (VBSCF) method and look for possibilities to improve the performance, \textit{i.e.} decrease the computation time.
+\end{frame}
 
-% Creates table of contents slide incorporating
-% all \section and \subsection commands
 \begin{frame}
   \tableofcontents
 \end{frame}
 
-
 \section{Valence Bond Theory}
-\subsection{Introduction}
-\begin{frame}
-  \frametitle{Goal}   % Insert frame title between curly braces
-  Analyze the orbital optimization process in VB and look for possibilities to improve the performance, \textit{i.e.} decrease the computation time.
-\end{frame}
 
 \subsection{Valence Bond Wave Functions}
+
+\begin{frame}
+  \frametitle{Single Structure Wave Function}
+  \begin{center}
+    \includegraphics{figures/heitler.eps}  
+  \end{center}
+  \begin{equation*}
+    \Psi = |1s_{A}\overline{1s_{B}}| - |\overline{1s_{A}}1s_{B}|
+  \end{equation*}
+  \begin{itemize}
+  \item<1-> Introduced by Heitler and London in 1927
+  \item<2-> Describes covalent bond in H$_2$
+  \item<3-> Based on spin-pairing
+  \item<4-> Multi-determinant
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Multiple Structure Wave Function}
+  \begin{center}
+    \includegraphics[scale=0.95]{figures/heitlerplus.eps}
+  \end{center}
+  \begin{equation*}
+    \Psi=a_1(|1s_{A}\overline{1s_{B}}| - |\overline{1s_{A}}1s_{B}|) + a_2 |1s_{A}\overline{1s_{A}}| + a_3 |1s_{B}\overline{1s_{B}}|
+  \end{equation*}
+  \begin{itemize}
+  \item<1-> Versatility is added by expanding with ionic structures
+  \item<2-> 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{CpSiH}
+  \begin{center}
+    \includegraphics[scale=0.5]{figures/sigma_sih.eps}
+  \end{center}
+\end{frame}
 \begin{frame}
   \frametitle{Structures, Determinants \& Orbitals}
   \begin{equation*}
@@ -54,26 +85,6 @@
 
   \begin{equation*}
     i = \sum_{n} c_n \chi_n
-  \end{equation*}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Single Structure Wave Function}
-  \begin{center}
-    \includegraphics{figures/heitler.eps}  
-  \end{center}
-  \begin{equation*}
-    \Psi = |1s_{A}\overline{1s_{B}}| - |\overline{1s_{A}}1s_{B}|
-  \end{equation*}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Multiple Structure Wave Function}
-  \begin{center}
-    \includegraphics{figures/heitlerplus.eps}
-  \end{center}
-  \begin{equation*}
-    \Psi=a_1(|1s_{A}\overline{1s_{B}}| - |\overline{1s_{A}}1s_{B}|) + a_2 |1s_{A}\overline{1s_{A}}| + a_3 |1s_{B}\overline{1s_{B}}|
   \end{equation*}
 \end{frame}
 
