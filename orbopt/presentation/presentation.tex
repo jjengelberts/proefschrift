@@ -39,7 +39,7 @@
     \includegraphics{figures/heitler.eps}  
   \end{center}
   \begin{equation*}
-    \Psi = |1s_{A}\overline{1s_{B}}| - |\overline{1s_{A}}1s_{B}|
+    \Psi = N \{ |1s_{A}\overline{1s_{B}}| - |\overline{1s_{A}}1s_{B}| \}
   \end{equation*}
   \begin{itemize}
   \item<1-> Introduced by Heitler and London in 1927
@@ -55,40 +55,58 @@
     \includegraphics[scale=0.95]{figures/heitlerplus.eps}
   \end{center}
   \begin{equation*}
-    \Psi=a_1(|1s_{A}\overline{1s_{B}}| - |\overline{1s_{A}}1s_{B}|) + a_2 |1s_{A}\overline{1s_{A}}| + a_3 |1s_{B}\overline{1s_{B}}|
+    \Psi= N \{ a_1(|1s_{A}\overline{1s_{B}}| - |\overline{1s_{A}}1s_{B}|) + a_2 |1s_{A}\overline{1s_{A}}| + a_3 |1s_{B}\overline{1s_{B}}| \}
   \end{equation*}
   \begin{itemize}
-  \item<1-> Versatility is added by expanding with ionic structures
-  \item<2-> 
+  \item<1-> Versatility is added by expanding with more structures
+  \item<2-> $a_2 = a_3$, for homonuclear diatomic molecules
+  \item<3-> Heteronuclear - ionic contribution will differ ($a_2 \neq a_3$)
   \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{CpSiH}
-  \begin{center}
-    \includegraphics[scale=0.5]{figures/sigma_sih.eps}
+  \frametitle{Coulson-Fischer Type Wave Function}
+  \begin{center}  
+    \includegraphics{figures/coulson.eps}
   \end{center}
+  \begin{equation*}
+    \Psi = N \{ | \phi_1 \overline{\phi_2} | - | \overline{\phi_1} \phi_2 | \}
+  \end{equation*}
+  \begin{center}
+    where $\phi_1 = 1s_A + \lambda_1 1s_B$ and $\phi_2 = 1s_B + \lambda_2 1s_A$
+  \end{center}  
+  \begin{itemize}
+    \item<1-> Introduced by Coulson and Fischer in 1949
+    \item<2-> CF orbitals are spread over atoms (unless $\lambda$'s are zero)
+    \item<3-> For polar diatomic molecules, the $\lambda$'s will differ
+  \end{itemize}
 \end{frame}
+
 \begin{frame}
-  \frametitle{Structures, Determinants \& Orbitals}
-  \begin{equation*}
-    \Psi = \sum_{i} C_i \Phi_i
-  \end{equation*}
+  \frametitle{Modern Valence Bond Wave Functions}
+  \begin{columns}[c]
+  \column{2in}
+    \begin{equation*}
+      \Psi = \sum_{i} C_i \Phi_i
+    \end{equation*}
 
-  \begin{equation*}
-    \Phi = \sum_{i} \alpha_i \Delta_i
-  \end{equation*}
+    \begin{equation*}
+      \Phi = \sum_{i} \alpha_i \Delta_i
+    \end{equation*}
 
-  \begin{equation*}
-    \Delta = |ijkl \cdots n|
-  \end{equation*}
+    \begin{equation*}
+      \Delta = |ijkl \cdots n|
+    \end{equation*}
 
-  \begin{equation*}
-    i = \sum_{n} c_n \chi_n
-  \end{equation*}
+    \begin{equation*}
+      i = \sum_{n} c_n \chi_n
+    \end{equation*}
+  \column{2in}
+    \includegraphics[scale=0.5]{figures/sigma_sih.eps}
+  \end{columns}
 \end{frame}
 
-\subsection{Simple slide with three points shown in succession}
+\subsection{Super-CI / Orbital Optimization}
 
 \begin{frame}
   \frametitle{Simple slide with three points shown in succession}   % Insert frame title between curly braces
