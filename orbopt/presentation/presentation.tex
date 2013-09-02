@@ -13,6 +13,7 @@
 \author{Jeroen Engelberts}
 %\institute{SURFsara}
 \date{9 September 2013}
+\titlegraphic{\vspace{20px}\includegraphics[scale=0.38]{figures/logos.eps}}
 
 \begin{document}
 
@@ -84,26 +85,44 @@
 
 \begin{frame}
   \frametitle{Modern Valence Bond Wave Functions}
-  \begin{columns}[c]
-  \column{2in}
-    \begin{equation*}
-      \Psi = \sum_{i} C_i \Phi_i
-    \end{equation*}
+  \begin{tabular}{ll}
+    $\Psi = \sum_{i} C_i \Phi_i$ & WF: linear combination of structures \\
+    $\Phi = \sum_{i} \alpha_i \Delta_i$ & Structure: linear combination of determinants \\
+    $\Delta = |ijkl \cdots n|$ & Determinant: subset of molecular orbitals \\
+    $i = \sum_{n} c_n \chi_n$ & MO: linear combination of atomic orbitals
+  \end{tabular}
+  \vspace{15px}
+  \begin{center}
+    The wave function can be modified/enhanced in two spots
+  \end{center}
+\end{frame}
 
-    \begin{equation*}
-      \Phi = \sum_{i} \alpha_i \Delta_i
-    \end{equation*}
+\begin{frame}
+  \frametitle{Modern Valence Bond Wave Functions}
+  \begin{tabular}{ll}
+    \textcolor{red}{$\Psi = \sum_{i} C_i \Phi_i$} & \textcolor{red}{WF: linear combination of structures} \\
+    \textcolor{gray}{$\Phi = \sum_{i} \alpha_i \Delta_i$} & \textcolor{gray}{Structure: linear combination of determinants} \\
+    \textcolor{gray}{$\Delta = |ijkl \cdots n|$} & \textcolor{gray}{Determinant: subset of molecular orbitals} \\
+    \textcolor{gray}{$i = \sum_{n} c_n \chi_n$} & \textcolor{gray}{MO: linear combination of atomic orbitals}
+  \end{tabular}
+  \vspace{15px}
+  \begin{center}
+    The coefficients for the structures $C_i$ can be optimized
+  \end{center}
+\end{frame}
 
-    \begin{equation*}
-      \Delta = |ijkl \cdots n|
-    \end{equation*}
-
-    \begin{equation*}
-      i = \sum_{n} c_n \chi_n
-    \end{equation*}
-  \column{2in}
-    \includegraphics[scale=0.5]{figures/sigma_sih.eps}
-  \end{columns}
+\begin{frame}
+  \frametitle{Modern Valence Bond Wave Functions}
+  \begin{tabular}{ll}
+    \textcolor{gray}{$\Psi = \sum_{i} C_i \Phi_i$} & \textcolor{gray}{WF: linear combination of structures} \\
+    \textcolor{gray}{$\Phi = \sum_{i} \alpha_i \Delta_i$} & \textcolor{gray}{Structure:  linear combination of determinants} \\
+    \textcolor{gray}{$\Delta = |ijkl \cdots n|$} & \textcolor{gray}{Determinant: subset of molecular orbitals} \\
+    \textcolor{red}{$i = \sum_{n} c_n \chi_n$} & \textcolor{red}{MO: linear combination of atomic orbitals}
+  \end{tabular}
+  \vspace{15px}
+  \begin{center}
+    The orbitals can be optimized by modifying $c_n$ in a clever way
+  \end{center}
 \end{frame}
 
 \subsection{Super-CI / Orbital Optimization}
