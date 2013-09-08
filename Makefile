@@ -88,3 +88,4 @@ clean:
 
 realclean: clean
 	rm -f $(FIGURES)
+	cd orbopt/presentation ; make realclean

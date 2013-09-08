@@ -15,7 +15,7 @@ presentationtex: clean
 
 clean:
 	rm -f formula.*
-	rm -f *aux *log *nav *out *pdf *snm *toc
+	rm -f *aux *log *nav *out *pdf *snm *toc *vrb
 	rm -rf .DS_Store figures/.DS_Store
 	echo '% Convert latex formula to picture' > formula.tex
 	echo '\documentclass{article}' >> formula.tex
