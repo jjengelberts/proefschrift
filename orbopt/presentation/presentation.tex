@@ -11,9 +11,8 @@
 
 \title{Orbital Optimization in Valence Bond Theory}
 \author{Jeroen Engelberts}
-%\institute{SURFsara}
+\institute{Universiteit Utrecht}
 \date{9 September 2013}
-\titlegraphic{\vspace{20px}\includegraphics[scale=0.38]{figures/logos.eps}}
 
 \begin{document}
 
@@ -387,6 +386,85 @@ S_{0(i \rightarrow a)}^{(i,k,a,l)}=
 \begin{frame}
   \frametitle{Fock Matrix Elements}
   Would it be possible to calculate $\mathbf{H}$ and $\mathbf{S}$ elements cheaper?
+  \vspace{15px}  
+  \begin{itemize}
+    \item{In MCSCF - the orthogonal ``equivalent'' of VBSCF:}
+    \item{$\left< \Psi_0 | \mathbf{H} | \Psi_{ia} \right> = 2^{\frac{1}{2}}F_{ia}$, where}
+    \item{$F_{ia}=\left< \phi_i | \mathbf{f} | \phi_a \right>$ - an element of an MO-based Fock matrix}
+  \end{itemize}
+  \vspace{15px}
+  But, is this also useful for non-orthogonal VB?
+\end{frame}
+
+\begin{frame}
+  \frametitle{Calculating Fock Matrix Elements}
+  \begin{itemize}
+    \item {For the optimization of doubly occupied orbitals in MCSCF:}
+    \begin{equation*}
+    F_{ia}=h_{ia}+\sum_{\sigma\nu}\left[ \left< \phi_i\phi_\sigma|\phi_a\phi_\nu\right> - \left< \phi_i\phi_\sigma| \phi_\nu\phi_a \right> \right] P^{(\sigma,\nu)}
+    \end{equation*}
+    \item{In VB - use first order cofactors to calculate $P^{(\sigma,\nu)}$}
+    \begin{equation*}
+    P^{(\sigma,\nu)}=\sum_{xy}S^{(\sigma,\nu)}_{xy}\gamma_x\gamma_y
+    \end{equation*}
+    \item{Let's get back to the one determinant example}
+    \begin{equation*}
+    P^{(\sigma,\nu)}=S^{(\sigma,\nu)}_{00}N^2  
+    \end{equation*}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Comparing Fock with L\"owdin}
+  {Is the Fock element equal to the Brillouin element?}
+    \begin{equation*}
+F_{ia} \stackrel {?}{=} \left< \Psi_0 | \mathbf{H} - E_0 | \Psi_{ia} \right>  
+  \end{equation*}
+  \begin{itemize}
+  \item {The one electron integrals}
+  \begin{equation*}
+h_{ia} \stackrel {?}{=} N^2 \sum_{\rho\tau} h_{\rho\tau} S_{0(i\rightarrow a)}^{(\rho,\tau)}
+\end{equation*}
+  \item {The two electron integrals}
+\begin{equation*}
+\sum_{\sigma \nu} [ \left <i \sigma | a \nu \right > - \left < i \sigma | \nu a \right> ]S_{00}^{(\sigma,\nu)} \stackrel {?}{=}  \sum_{\rho<\sigma,\tau<\nu} [\left <\rho\sigma|\tau\nu \right > - \left < \rho\sigma | \nu\tau \right> ]  S_{0(i\rightarrow a)}^{(\rho,\sigma,\tau,\nu)}
+\end{equation*}
+  \item{$E_0$}
+\begin{equation*}
+0 \stackrel {?}{=} E_0 N^2 S_{0(i\rightarrow a)}^{(0)}
+\end{equation*}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Comparing Fock with L\"owdin}
+  The one electron integrals
+  \begin{equation*}
+\begin{split}
+h_{ia} &\stackrel {?}{=} N^2 \sum_{\rho\tau} h_{\rho\tau} S_{0(i\rightarrow a)}^{(\rho,\tau)} \\
+&\stackrel {?}{=} N^2 (h_{ia} S_{0(i\rightarrow a)}^{(i,a)} +\sum_{\rho \ne i} h_{\rho a} S_{0(i\rightarrow a)}^{(\rho,a)} +  \sum_{\tau \ne a} h_{i\tau} S_{0(i\rightarrow a)}^{(i,\tau)} \\
+&\hspace{30px}+\sum_{\rho \ne i, \tau \ne a} h_{\rho\tau} S_{0(i\rightarrow a)}^{(\rho,\tau)})
+\end{split}
+\end{equation*}
+Last three terms only disappear if orbitals $\phi_i$ and $\phi_a$ are chosen orthogonal to each other and the rest of the orbitals
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Approximated Approximated Update Coefficient}
+  \begin{itemize}
+  \item {The diagonal element of the Brillouin Matrix is}
+  \begin{equation*}
+  \left< \Psi_{ia} | \mathbf{H}-E_0 | \Psi_{ia} \right>  =  \left< \Psi_{ia} | \mathbf{H} | \Psi_{ia} \right>  - E_0 \left< \Psi_{ia} | \Psi_{ia} \right>
+  \end{equation*}
+  \item{Approximated by the difference in energy}
+  \begin{equation*}
+  \frac{\left< \Psi_{ia} | \mathbf{H}-E_0 | \Psi_{ia} \right>}{\left< \Psi_{ia} | \Psi_{ia} \right>} \approx (F_{aa}-F_{ii})
+  \end{equation*}
+  \item{$b_{ia}$ constructed from 3 MO-level $F$-elements}
+  \begin{equation*}
+  b_{ia}= - \frac{F_{ia}}{F_{aa}-F_{ii}}
+  \end{equation*}
+  \end{itemize}
 \end{frame}
 
 \subsection{Test Calculations}
@@ -433,14 +511,36 @@ S_{0(i \rightarrow a)}^{(i,k,a,l)}=
   \end{table}
 \end{frame}
 
-
 \section{Final Remarks}
 
 \begin{frame}
-  \frametitle{Remarks}
+  \frametitle{Final Remarks}
+  \setbeamercolor{normal text}{fg=gray,bg=}
+  \setbeamercolor{alerted text}{fg=black,bg=}
+  \usebeamercolor{normal text}
+  \begin{itemize}
+  \item \alert<+> {Convergence can be reached with less $\mathbf{H}$ and $\mathbf{S}$ elements}
+  \item \alert<+> {The active orbitals (HOMO-LUMO region) need to be optimized with Super CI}
+  \item \alert<+> {Applicability of ``cheap'' Fock-matrix elements is limited}
+  \item \alert<+> {Those can only be used for optimizing orthogonal orbitals}
+  \item \alert<+> {``Diagonal'' elements can be approximated, convergence may be faster}
+  \item \alert<+> {Help of Fock matrix not leagues faster than aNR}
+  \end{itemize}
 \end{frame}
 
-\section{Questions And Answers}
+\begin{frame}
+  \frametitle{Acknowledgments}
+  \begin{small}
+  {Dr. J.H. van Lenthe - for my PhD position, introduction to SURFsara} \\
+  {Prof. Dr. L.W. Jenneskens - for adding chemistry to the calculations} \\
+  \vspace{15px}
+  {Dr. R.W.A. Havenith - for assistance through the years} \\
+  {Prof. Dr. H.B. Broer - for my stay as guest here} \\
+  \vspace{15px}
+  {Dr. A. Osseyran, Drs. W.M. Lioen - for letting me leave for 6 weeks} \\
+  \end{small}
+  \vspace{20px}\includegraphics[scale=0.38]{figures/logos.eps}
+\end{frame}
 
 \begin{frame}
   \frametitle{Questions And Answers}
