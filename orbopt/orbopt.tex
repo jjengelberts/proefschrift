@@ -3,68 +3,14 @@
 
 \ifthenelse{\boolean{wholethesis}}{\relax}{\begin{center}\textit{Generated on \today\ at \currenttime}\end{center}}
 
-\noindent\textbf{Abstract:} To enable calculations on larger molecules the general VB program TURTLE  had already been extended with a perturbation theory (\textit{pert}) scheme, referred to as approximated Newton-Raphson (aNR), in the 1990's. In this chapter a number of further extensions to this option is described. With these extensions it is possible to specify a separate optimization method (Super CI, aNR or, in some cases, a Fock matrix element) per excitation, per orbital or per orbital class in the Super CI wave function, giving the user more options to steer the optimization process.
+\noindent\textbf{Abstract:} The most time consuming step in optimizing a Valence Bond (VB) wave function with VBSCF is the construction of the matrix representation of the Hamilton operator ($\mathbf{H}$). In the 1990s a perturbation theory (\textit{pert}) scheme, referred to as approximated Newton-Raphson (aNR), was introduced. For this scheme, less $\mathbf{H}$ matrix elements need to constructed. In this chapter a further approximation is introduced. Instead of calculating $\mathbf{H}$ matrix elements the regular way, they are constructed from Fock matrix elements, taking less time.
 
 \newpage
 
 \section{Introduction}
 
-\lettrine{\initial{A}}{} tool for studying chemical properties of atoms and molecules \textit{in silico} is the Valence Bond (VB) \cite{heitler,weeny1,weeny2,weeny3} method. A VB wave function is expressed in structures, which are closely related to Lewis structures. A pictorial representation of a single structure VB wave function is presented in Figure \ref{ch2.fig.heitler}.  
-\begin{figure}[ht]
-\center
-\includegraphics{orbopt/figures/heitler.eps}
-\caption{Graphical representation of the VB wave function for H$_2$. The electrons in the two $1s$ orbitals form a singlet pair.}
-\label{ch2.fig.heitler}
-\end{figure}
-In this example structure, there are two $1s$-orbitals both describing a single electron. These two electrons together form a singlet pair. Since electrons are indistinguishable both possible arrangements have to be taken into account, \textit{i.e.} the electron on the left having $\alpha$ spin and the electron on the right having $\beta$ spin, denoted as $1s_{A}$ and $\overline{1s_{B}}$ and \textit{vice versa}, denoted as $\overline{1s_{A}}$ and $1s_{B}$. Following the antisymmetry principle, a commonly used postulate in quantum chemistry, electronic wave functions need to be antisymmetric with respect to orbital permutations. This is achieved by writing wave functions as (Slater) determinants \cite{slater}. The single structure VB wave function from Figure \ref{ch2.fig.heitler} written in determinants is: $\Psi = |1s_{A}\overline{1s_{B}}| - |\overline{1s_{A}}1s_{B}|$.
- 
-For heteronuclear diatomic molecules, like HF, the equal sharing of electrons amongst atoms is not favorable: for this polar bond the electron contributed by the hydrogen atom will be located more on the fluorine atom, leading to a $\delta^{+}-\delta^{-}$ situation. With the wave function in Figure \ref{ch2.fig.heitler} it is impossible to describe this situation. However, there are two ways to enhance the wave function, so that charge transfer is included.
+\lettrine{\initial{I}}{}n 1916 Lewis suggested atoms share electrons to form chemical bonds \cite{lewis}. Heitler and London incorporated this view a decade later into the quantum chemical description for the covalent bond in H$_2$ \cite{heitler}. In the 1930s Pauling used this description in a series of famous articles and a book titled ``The Nature Of The Chemical Bond'' \cite{pauling1,pauling2,pauling3,pauling4,pauling5,pauling6,pauling7,paulingbook}, that earned him the Nobel prize in 1954. Nowadays, this way of mathematically describing chemical bonds is known as the Valence Bond theory.
 
-Firstly, ionic structures can be added to the wave function. The two electrons involved in the bonding can be located both on one hydrogen atom or both on the other in addition to one electron on each hydrogen atom. The VB wave function for H$_2$ then becomes $\Psi=a_1(|1s_{A}\overline{1s_{B}}| - |\overline{1s_{A}}1s_{B}|) + a_2 |1s_{A}\overline{1s_{A}}| + a_3 |1s_{B}\overline{1s_{B}}|$, where $a_1$, $a_2$ and $a_3$ are structure coefficients, which can be variatonally optimized. A pictorial representation of this wave function is shown in Figure \ref{ch2.fig.heitlerplus}.
-\begin{figure}[ht]
-\center
-\includegraphics{orbopt/figures/heitlerplus.eps}
-\caption{Graphical representation of the VB wave function for H$_2$ with a covalent and two ionic structures. The two bonding electrons are equally shared in the first structure. They are both on one hydrogen in the second and both on the other hydrogen in the third.}
-\label{ch2.fig.heitlerplus}
-\end{figure}
-For any homonuclear diatomic molecule, like H$_2$, the coefficients $a_2$ and $a_3$ in wave function $\Psi$ (Figure \ref{ch2.fig.heitlerplus}) will be equal. For a heteronuclear diatomic molecule, like HF, these coefficients will be different to account for the charge transfer: the ionic structure with both electrons on fluorine will be more important than the ionic structure with both electrons on hydrogen. 
-
-A second way to account for the polarity in bonds is to optimize the orbitals. Coulson and Fischer described the optimization of the orbitals in a wave function for H$_2$, in which the orbitals were allowed to extend to the other hydrogen atom (Figure \ref{ch2.fig.coulson}) \cite{coulson}. In that case the orbitals are no longer atomic in nature, but are linear combinations of the atomic orbitals on both hydrogen atoms.
-\begin{figure}[ht]
-\center
-\includegraphics{orbopt/figures/coulson.eps}
-\caption{Graphical representation of the Coulson-Fischer VB wave function for H$_2$.}
-\label{ch2.fig.coulson}
-\end{figure}
-In the case of H$_2$, both orbitals will slightly extend towards each other in a symmetrical way. For HF, however, the $1s$-orbital on the hydrogen atom will partly be extended to the fluorine atom while the other orbital will mainly remain on the fluorine atom. These two extended wave functions (Figures \ref{ch2.fig.heitlerplus} and \ref{ch2.fig.coulson}) for H$_2$ in a minimal basis are equal. An important difference is that the Coulson-Fischer wave function is compact, \textit{i.e.} it only contains a single structure, while the wave function in Figure \ref{ch2.fig.heitlerplus} contains three. A compact VB wave function can be chosen in such a way that it only contains a few VB structures representing the Lewis structures of interest to the researcher. 
-
-Both the expansion of the wave function in multiple structures and orbital optimization are present in the VB program TURTLE \cite{turtle} as implemented in GAMESS-UK \cite{gamess}. The focus of this chapter will be on orbital optimization (VBSCF \cite{vbscf1,vbscf2}) in TURTLE, which is based on Super CI \cite{superci1,superci2} and the Brillouin theorem, which states that for optimal orbitals the singly excited Brillouin states do not interact or mix with the ground (or reference) state \cite{brillouin}.
-
-In the past TURTLE has been extended with several options to speed-up the calculations \cite{diis1,diis2,level1,level2}. One of these options is a perturbation scheme, referred to as approximated Newton-Raphson \cite{koos1}. Its implementation was quite limited in the sense that it could only be switched on and off, which made it quite unusable. In this chapter, extensions to this option, will be presented.
-
-Another way to speed-up VBSCF calculations might be the use of a Fock matrix. In other methods, like Multi Configuration Self-Consistent Field (MCSCF) \cite{wahldasbook,daswahl} a Fock matrix is used \cite{roos1,roos2}. An MCSCF wave function is constructed from a set of chosen configurations, which are spin-eigenfunctions. These configurations can be compared to structures in VB. In MCSCF the orbitals in the configurations are chosen to be orthogonal. In that sense, VBSCF is a generalization of MCSCF, because the orbitals do not have this orthogonality restriction. The Fock matrix is a matrix representation of the Fock operator, which is an effective one electron operator with which the complicated many electron problem is reduced to a one electron problem in which electron-electron repulsion is treated in an average way. In MCSCF elements of Fock matrices can be used to speed-up orbital optimizations.
-
-At first, it will be shown that, in analogy with MCSCF, Fock matrix elements can also be used in VBSCF when the doubly occupied orbitals in a VB wave function are orthogonal to all other orbitals. Subsequently, the applicability of Fock matrix elements for the optimization of non-orthogonal orbitals will be analyzed. 
-
-Following the theoretical section, the implementation of extensions to the perturbation theory (\textit{pert} option) and the new \textit{fock} option in TURTLE will be discussed. After the implementation details, speed-up factors of some test calculations with the \textit{pert} and \textit{fock} options will be presented and compared. Finally, this chapter is concluded with some conclusions and an outlook on future enhancements for the \textit{pert} and \textit{fock} options.  
-
-\section{Theory}
-
-A VBSCF wave function is constructed from guess orbitals, which are mostly taken from a Hartree-Fock calculation or are entered manually, \textit{i.e.} the orbitals, which are vectors with coefficients for each basis function, are keyed in by hand. The expectation value of the energy ($E$) for a wave function ($\Psi$) constructed with these orbitals is not necessarily the lowest possible. The expression for the expectation value of the energy is:
-\begin{equation}
-E = \left < \Psi | \mathbf{H} | \Psi \right >,
-\label{ch2.eq.expenerg}
-\end{equation}
-for a normalized wave function, \textit{i.e.} $\left < \Psi | \Psi \right > = 1$. To lower this value, the orbitals need to be modified, or rather \textit{optimized}. The goal of this optimization is to obtain the orbitals for which $E$ is as low as possible. In that minimum the energy no longer decreases with respect to orbital changes. There are several numerical methods which can be used for finding minima, or roots, of mathematical functions. One of the most popular methods is the Newton-Raphson method \cite{numerical}. A drawback of this method is that its convergence is quadratic. In VBSCF the Super CI approach is used \cite{superci1,superci2}, which, compared to Newton-Raphson, is slightly simpler and has a linear convergence \cite{koos1}. Super CI is explained in the next section.
-
-\subsection{Super CI}
-
-The working of Super CI will be described here in more detail, because the explanations of the approximations in Sections \ref{ch2.sec.anr} and \ref{ch2.sec.fock} are simplified with the definition of the \textit{Brillouin matrix} at hand. In Super CI, the elements in the first column of this Brillouin matrix can be used to check for convergence, as will be made clear hereafter. 
-
-Before modifications in orbitals are discussed, the building blocks of a Valence Bond wave function will be reviewed. Then it will be shown that with clever modifications of the orbitals a minimum in the energy can be found and that then the wave function will fulfill the Brillouin theorem, which states that for optimal orbitals the singly excited Brillouin states do not interact or mix with the ground (or reference) state \cite{brillouin}.
-
-\subsubsection{A Valence Bond Wave Function}
- 
 A Valence Bond wave function is constructed from a linear combination of structures:
 \begin{equation}
 \Psi = \sum_{i} C_i \Phi_i.
@@ -77,15 +23,73 @@ Such a structure itself is a linear combination of Slater determinants:
 \end{equation}
 which are antisymmetrized products of orbitals:
 \begin{equation}
-\Delta = |ijkl \cdots n|.
+\Delta = |\phi_i\phi_j\phi_k\phi_l \cdots \phi_n|.
 \label{ch2.eq.determ}
 \end{equation}
 These orbitals are linear combinations of one electron basis functions,
 \begin{equation}
-i = \sum_{n} c_n \chi_n,
+\phi_i = \sum_{n} c_n \chi_n,
 \label{ch2.eq.basis}
 \end{equation}
-in which the $c_n$ are orbital coefficients and $\chi_n$ one electron basis functions. The coefficients $C_i$ of $\Psi$ in equation \ref{ch2.eq.vbwf} are variatonally determined, \textit{i.e.} the $C_i$ coefficients are chosen in such a way that the expectation value of the energy, with respect to the structure basis ($\Phi_i$), is as low as possible.
+in which the $c_n$ are orbital coefficients and $\chi_n$ one electron basis functions. The coefficients $C_i$ of the wave function $\Psi$ in equation \ref{ch2.eq.vbwf} and the coefficients $c_n$ of the molecular orbitals $\phi$ in equation \ref{ch2.eq.basis} are variationally determined. 
+
+The work described in this chapter has been carried out with TURTLE \cite{turtle}, the VB module in GAMESS-UK \cite{gamess}. For the optimization of the wave function, the Valence Bond Self Consistent Field (VBSCF) method is used \cite{vbscf1,vbscf2}. 
+
+
+
+%\lettrine{\initial{A}}{} tool for studying chemical properties of atoms and molecules \textit{in silico} is the Valence Bond (VB) \cite{heitler,weeny1,weeny2,weeny3} method. A VB wave function is expressed in structures, which are closely related to Lewis structures. A pictorial representation of a single structure VB wave function is presented in Figure \ref{ch2.fig.heitler}.  
+%\begin{figure}[ht]
+%\center
+%\includegraphics{orbopt/figures/heitler.eps}
+%\caption{Graphical representation of the VB wave function for H$_2$. The electrons in the two $1s$ orbitals form a singlet pair.}
+%\label{ch2.fig.heitler}
+%\end{figure}
+%In this example structure, there are two $1s$-orbitals both describing a single electron. These two electrons together form a singlet pair. Since electrons are indistinguishable both possible arrangements have to be taken into account, \textit{i.e.} the electron on the left having $\alpha$ spin and the electron on the right having $\beta$ spin, denoted as $1s_{A}$ and $\overline{1s_{B}}$ and \textit{vice versa}, denoted as $\overline{1s_{A}}$ and $1s_{B}$. Following the antisymmetry principle, a commonly used postulate in quantum chemistry, electronic wave functions need to be antisymmetric with respect to orbital permutations. This is achieved by writing wave functions as (Slater) determinants \cite{slater}. The single structure VB wave function from Figure \ref{ch2.fig.heitler} written in determinants is: $\Psi = |1s_{A}\overline{1s_{B}}| - |\overline{1s_{A}}1s_{B}|$.
+% 
+%For heteronuclear diatomic molecules, like HF, the equal sharing of electrons amongst atoms is not favorable: for this polar bond the electron contributed by the hydrogen atom will be located more on the fluorine atom, leading to a $\delta^{+}-\delta^{-}$ situation. With the wave function in Figure \ref{ch2.fig.heitler} it is impossible to describe this situation. However, there are two ways to enhance the wave function, so that charge transfer is included.
+%
+%Firstly, ionic structures can be added to the wave function. The two electrons involved in the bonding can be located both on one hydrogen atom or both on the other in addition to one electron on each hydrogen atom. The VB wave function for H$_2$ then becomes $\Psi=a_1(|1s_{A}\overline{1s_{B}}| - |\overline{1s_{A}}1s_{B}|) + a_2 |1s_{A}\overline{1s_{A}}| + a_3 |1s_{B}\overline{1s_{B}}|$, where $a_1$, $a_2$ and $a_3$ are structure coefficients, which can be variatonally optimized. A pictorial representation of this wave function is shown in Figure \ref{ch2.fig.heitlerplus}.
+%\begin{figure}[ht]
+%\center
+%\includegraphics{orbopt/figures/heitlerplus.eps}
+%\caption{Graphical representation of the VB wave function for H$_2$ with a covalent and two ionic structures. The two bonding electrons are equally shared in the first structure. They are both on one hydrogen in the second and both on the other hydrogen in the third.}
+%\label{ch2.fig.heitlerplus}
+%\end{figure}
+%For any homonuclear diatomic molecule, like H$_2$, the coefficients $a_2$ and $a_3$ in wave function $\Psi$ (Figure \ref{ch2.fig.heitlerplus}) will be equal. For a heteronuclear diatomic molecule, like HF, these coefficients will be different to account for the charge transfer: the ionic structure with both electrons on fluorine will be more important than the ionic structure with both electrons on hydrogen. 
+%
+%A second way to account for the polarity in bonds is to optimize the orbitals. Coulson and Fischer described the optimization of the orbitals in a wave function for H$_2$, in which the orbitals were allowed to extend to the other hydrogen atom (Figure \ref{ch2.fig.coulson}) \cite{coulson}. In that case the orbitals are no longer atomic in nature, but are linear combinations of the atomic orbitals on both hydrogen atoms.
+%\begin{figure}[ht]
+%\center
+%\includegraphics{orbopt/figures/coulson.eps}
+%\caption{Graphical representation of the Coulson-Fischer VB wave function for H$_2$.}
+%\label{ch2.fig.coulson}
+%\end{figure}
+%In the case of H$_2$, both orbitals will slightly extend towards each other in a symmetrical way. For HF, however, the $1s$-orbital on the hydrogen atom will partly be extended to the fluorine atom while the other orbital will mainly remain on the fluorine atom. These two extended wave functions (Figures \ref{ch2.fig.heitlerplus} and \ref{ch2.fig.coulson}) for H$_2$ in a minimal basis are equal. An important difference is that the Coulson-Fischer wave function is compact, \textit{i.e.} it only contains a single structure, while the wave function in Figure \ref{ch2.fig.heitlerplus} contains three. A compact VB wave function can be chosen in such a way that it only contains a few VB structures representing the Lewis structures of interest to the researcher. 
+%
+%Both the expansion of the wave function in multiple structures and orbital optimization are present in the VB program TURTLE \cite{turtle} as implemented in GAMESS-UK \cite{gamess}. The focus of this chapter will be on orbital optimization (VBSCF \cite{vbscf1,vbscf2}) in TURTLE, which is based on Super CI \cite{superci1,superci2} and the Brillouin theorem, which states that for optimal orbitals the singly excited Brillouin states do not interact or mix with the ground (or reference) state \cite{brillouin}.
+%
+%In the past TURTLE has been extended with several options to speed-up the calculations \cite{diis1,diis2,level1,level2}. One of these options is a perturbation scheme, referred to as approximated Newton-Raphson \cite{koos1}. Its implementation was quite limited in the sense that it could only be switched on and off, which made it quite unusable. In this chapter, extensions to this option, will be presented.
+%
+%Another way to speed-up VBSCF calculations might be the use of a Fock matrix. In other methods, like Multi Configuration Self-Consistent Field (MCSCF) \cite{wahldasbook,daswahl} a Fock matrix is used \cite{roos1,roos2}. An MCSCF wave function is constructed from a set of chosen configurations, which are spin-eigenfunctions. These configurations can be compared to structures in VB. In MCSCF the orbitals in the configurations are chosen to be orthogonal. In that sense, VBSCF is a generalization of MCSCF, because the orbitals do not have this orthogonality restriction. The Fock matrix is a matrix representation of the Fock operator, which is an effective one electron operator with which the complicated many electron problem is reduced to a one electron problem in which electron-electron repulsion is treated in an average way. In MCSCF elements of Fock matrices can be used to speed-up orbital optimizations.
+%
+%At first, it will be shown that, in analogy with MCSCF, Fock matrix elements can also be used in VBSCF when the doubly occupied orbitals in a VB wave function are orthogonal to all other orbitals. Subsequently, the applicability of Fock matrix elements for the optimization of non-orthogonal orbitals will be analyzed. 
+%
+%Following the theoretical section, the implementation of extensions to the perturbation theory (\textit{pert} option) and the new \textit{fock} option in TURTLE will be discussed. After the implementation details, speed-up factors of some test calculations with the \textit{pert} and \textit{fock} options will be presented and compared. Finally, this chapter is concluded with some conclusions and an outlook on future enhancements for the \textit{pert} and \textit{fock} options.  
+
+\section{Theory}
+
+A VBSCF wave function is constructed from guess orbitals, which are mostly taken from a Hartree-Fock calculation or are entered manually, \textit{i.e.} the orbitals, which are vectors with coefficients for each basis function, are keyed in by hand. The expectation value of the energy ($E$) for a wave function ($\Psi$) constructed with these orbitals is not necessarily the lowest possible. The expression for the expectation value of the energy is:
+\begin{equation}
+E = \left < \Psi | \mathbf{H} | \Psi \right >,
+\label{ch2.eq.expenerg}
+\end{equation}
+for a normalized wave function, \textit{i.e.} $\left < \Psi | \Psi \right > = 1$. To lower this value, the orbitals need to be modified, or rather \textit{optimized}. The goal of this optimization is to obtain the orbitals for which $E$ is as low as possible. In that minimum the energy no longer decreases with respect to orbital changes. There are several numerical methods which can be used for finding minima, or roots, of mathematical functions. One of the most popular methods is the Newton-Raphson method \cite{zahid}. A drawback of this method is that its convergence is quadratic. In VBSCF the Super CI approach is used \cite{superci1,superci2}, which, compared to Newton-Raphson, is slightly simpler and has a linear convergence \cite{koos1}. Super CI is explained in the next section.
+
+\subsection{Super CI}
+
+The working of Super CI will be described here in more detail, because the explanations of the approximations in Sections \ref{ch2.sec.anr} and \ref{ch2.sec.fock} are simplified with the definition of the \textit{Brillouin matrix} at hand. In Super CI, the elements in the first column of this Brillouin matrix can be used to check for convergence, as will be made clear hereafter. 
+
+Before modifications in orbitals are discussed, the building blocks of a Valence Bond wave function will be reviewed. Then it will be shown that with clever modifications of the orbitals a minimum in the energy can be found and that then the wave function will fulfill the Brillouin theorem, which states that for optimal orbitals the singly excited Brillouin states do not interact or mix with the ground (or reference) state \cite{brillouin}. 
 
 \subsubsection{Adapting Orbitals}
 
@@ -163,7 +167,6 @@ Up till here, $\Psi_0$ was constructed of a single determinant, \textit{i.e.} $|
 
 An example of a Brillouin matrix, which contains elements resulting from two excitations: an excitation from $i$ to $a$ ($\Psi_{ia}$) and one from $i$ to $b$ ($\Psi_{ib}$), is shown below\footnote{Note that only the lower triangle of this Hermitian matrix is shown.}:
 \begin{equation}
-\small
 \left[\begin{array}{ccc}
 \left< \Psi_{0} | \mathbf{H}-E_0 | \Psi_{0} \right> & & \\
 \left< \Psi_{0} | \mathbf{H}-E_0 | \Psi_{ia} \right> & \left< \Psi_{ia} | \mathbf{H}-E_0 | \Psi_{ia} \right> &\\
