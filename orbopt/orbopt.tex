@@ -3,13 +3,13 @@
 
 \ifthenelse{\boolean{wholethesis}}{\relax}{\begin{center}\textit{Generated on \today\ at \currenttime}\end{center}}
 
-\noindent\textbf{Abstract:} The most time consuming step in optimizing a Valence Bond (VB) wave function with VBSCF is the construction of the matrix representation of the Hamilton operator ($\mathbf{H}$). In the 1990s a perturbation theory (\textit{pert}) scheme, referred to as approximated Newton-Raphson (aNR), was introduced. For this scheme, less $\mathbf{H}$ matrix elements need to constructed. In this chapter a further approximation is introduced. Instead of calculating $\mathbf{H}$ matrix elements the regular way, they are constructed from Fock matrix elements, taking less time.
+\noindent\textbf{Abstract:} The most time consuming step in optimizing a Valence Bond (VB) wave function with VBSCF is the construction of the matrix representation of the Hamilton operator ($\mathbf{H}$) and the corresponding overlap matrix ($\mathbf{S}$). In the 1990s a perturbation theory (\textit{pert}) scheme, referred to as approximated Newton-Raphson (aNR), was introduced. For this scheme, less $\mathbf{H}$ matrix elements need to constructed. In this chapter a further approximation is introduced. Instead of calculating $\mathbf{H}$ matrix elements the regular way, they are constructed from Fock matrix elements, taking less time.
 
 \newpage
 
 \section{Introduction}
 
-\lettrine{\initial{I}}{}n 1916 Lewis suggested atoms share electrons to form chemical bonds \cite{lewis}. Heitler and London incorporated this view a decade later into the quantum chemical description for the covalent bond in H$_2$ \cite{heitler}. In the 1930s Pauling used this description in a series of famous articles and a book titled ``The Nature Of The Chemical Bond'' \cite{pauling1,pauling2,pauling3,pauling4,pauling5,pauling6,pauling7,paulingbook}, that earned him the Nobel prize in 1954. Nowadays, this way of mathematically describing chemical bonds is known as the Valence Bond theory.
+\lettrine{\initial{I}}{}n 1916 Lewis suggested that atoms share electrons to form chemical bonds \cite{lewis}. Heitler and London incorporated this view a decade later into the quantum chemical description of the covalent bond in H$_2$ \cite{heitler}. In the 1930s Pauling used this description in his famous series of articles on ``The Nature Of The Chemical Bond'' \cite{pauling1,pauling2,pauling3,pauling4,pauling5,pauling6,pauling7,paulingbook}, which earned him the Nobel prize in 1954. Nowadays, this mathematical description of chemical bonds is known as the Valence Bond theory.
 
 A Valence Bond wave function is constructed from a linear combination of structures:
 \begin{equation}
@@ -35,7 +35,20 @@ in which the $c_n$ are orbital coefficients and $\chi_n$ one electron basis func
 
 The work described in this chapter has been carried out with TURTLE \cite{turtle}, the VB module in GAMESS-UK \cite{gamess}. For the optimization of the wave function, the Valence Bond Self Consistent Field (VBSCF) method is used \cite{vbscf1,vbscf2}. 
 
+Recently, a Newton-Raphson scheme has been implemented in TURTLE \cite{zahid}. The advantage of this method is that it will converge quadratically to a minimum, because the Hessian is also calculated. However, because both the gradient and the Hessian are calculated, each step in the iteration takes a lot of time.
 
+Another method that has been around in TURTLE for years is Super CI \cite{superci1,superci2}, a method for which the gradient and only a part of the Hessian are calculated. It was shown that a combination of Super CI (for the first few iterations) and Newton-Raphson (for the latter part of the optimization) proved to be an efficient way to optimize the wave function \cite{zahid}.
+
+For the optimization of the orbitals the Hamiltonian ($\mathbf{H}$) and overlap matrix ($\mathbf{S}$) are needed. Because of the complexity of the wave function (equations \ref{ch2.eq.vbwf}-\ref{ch2.eq.basis}) and the non-orthogonality of the orbitals, the calculation of these elements is time consuming. To alleviate this issue, a perturbation theory scheme, referred to as approximated Newton-Raphson (aNR), has been implemented in the 1990s \cite{koos1}. For aNR less matrix elements need to be calculated.
+
+In other methods, like Multi Configuration Self-Consistent Field (MCSCF) \cite{wahldasbook,daswahl} a Fock matrix is used \cite{roos1,roos2} to optimize the orbitals. Taking into account the resemblance of MCSCF and VB wave functions, it is justified to analyze whether it is possible to use Fock matrix elements ($F_{ia}$) on molecular orbital basis for optimizing VB wave functions as well:
+\begin{equation}
+F_{ia} = \left< \phi_i | \mathbf{h}| \phi_a \right> + \sum_{\sigma \nu} [ \left <\phi_i \phi_\sigma | \phi_a \phi_\nu \right > - \left < \phi_i \phi_\sigma | \phi_\nu \phi_a \right> ]P^{(\sigma,\nu)},
+\label{ch2.eq.fock}
+\end{equation}
+in which $i$ and $a$ are molecular orbital indices, $h_{ia}$ is a one electron integral. On the right there is a sum over two electron integrals (Coulomb and exchange) times an element of the density matrix $P^{(\sigma,\nu)}$. 
+
+In this chapter the possibilities to use Fock matrix elements in VBSCF is analyzed. Furthermore, an extension to the aNR implementation is discussed.
 
 %\lettrine{\initial{A}}{} tool for studying chemical properties of atoms and molecules \textit{in silico} is the Valence Bond (VB) \cite{heitler,weeny1,weeny2,weeny3} method. A VB wave function is expressed in structures, which are closely related to Lewis structures. A pictorial representation of a single structure VB wave function is presented in Figure \ref{ch2.fig.heitler}.  
 %\begin{figure}[ht]
