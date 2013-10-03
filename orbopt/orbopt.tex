@@ -37,16 +37,18 @@ Following the theoretical section, the implementation of these Fock matrix eleme
 
 \section{Theory}
 
+\subsection{\label{ch2.sec.vbsci}Valence Bond theory and Super CI}
+
 To calculate the total energy of a molecular system, the time-independent Schr\"{o}dinger equation needs to be solved:
 \begin{equation}
 \mathbf{H}\Psi = E\Psi,
 \end{equation}
-in which $\mathbf{H}$ is the Hamilton operator, $\Psi$ is the wave function and $E$ is the total energy of the system. A wave function is said to be optimized once the lowest possible value $E$ has been found. A Valence Bond wave function is constructed from a linear combination of structures:
+in which $\mathbf{H}$ is the Hamilton operator, $\Psi$ is the wave function and $E$ is the total energy of the system. A wave function is said to be optimized once the lowest possible value $E$ has been found. For Valence Bond theory, such a wave function $\Psi$ is constructed from a linear combination of structures:
 \begin{equation}
 \Psi = \sum_{i} C_i \Phi_i.
 \label{ch2.eq.vbwf}
 \end{equation}
-Such a structure itself is a linear combination of Slater determinants:
+These structures are linear combinations of Slater determinants:
 \begin{equation}
 \Phi = \sum_{i} \alpha_i \Delta_i,
 \label{ch2.eq.struct}
@@ -56,8 +58,8 @@ which are antisymmetrized products of spin-orbitals:
 \Delta = |\chi_i\chi_j\chi_k\chi_l \cdots \chi_n|,
 \label{ch2.eq.determ}
 \end{equation}
-where the spin-orbitals have a spatial part and a spin part which can be $\alpha$ or $\beta$. Two examples are  $\chi_i(\mathbf{x})=\psi_i(\mathbf{r})\alpha(\omega)\equiv\psi_i$ and $\chi_j(\mathbf{x})=\psi_i(\mathbf{r})\beta(\omega)\equiv\overline{\psi_i}$.
-Orbitals $\psi$ are linear combinations of one electron basis functions,
+where the spin-orbitals $\chi$ have a spatial part and a spin part which can be $\alpha$ or $\beta$. Two examples are  $\chi_i(\mathbf{x})=\psi_i(\mathbf{r})\alpha(\omega)\equiv\psi_i$ and $\chi_j(\mathbf{x})=\psi_i(\mathbf{r})\beta(\omega)\equiv\overline{\psi_i}$.
+Orbitals $\psi$ are linear combinations of one electron basis functions:
 \begin{equation}
 \psi = \sum_{n} c_n \phi_n,
 \label{ch2.eq.basis}
@@ -76,7 +78,7 @@ Orbitals can be changed by adding a small amount of an other orbital. For instan
 \psi_i' = \psi_i + \delta b_{ia} \psi_a.
 \label{ch2.eq.orbchange}
 \end{equation}
-As a simple example, a one determinant wave function $\Psi_0=|\psi_i\overline{\psi_i}\psi_j\psi_k|$ with four orbitals is chosen. The orbitals $\psi_i$, $\psi_j$ and $\psi_k$ have $\alpha$ spin, while only $\overline{\psi_i}$ has $\beta$ spin. The orbital change of equation \ref{ch2.eq.orbchange} will result in:
+As a simple example, a single determinant wave function $\Psi_0=|\psi_i\overline{\psi_i}\psi_j\psi_k|$ with four orbitals is chosen. The orbitals $\psi_i$, $\psi_j$ and $\psi_k$ have $\alpha$ spin, while only $\overline{\psi_i}$ has $\beta$ spin. The orbital change of equation \ref{ch2.eq.orbchange} will result in:
 \begin{equation}    
 \begin{split}
 |\psi_i'\overline{\psi_i'}\psi_j\psi_k | & = |(\psi_i + \delta b_{ia} \psi_a)\overline{(\psi_i + \delta b_{ia}\psi_a)}\psi_j\psi_k |\\
@@ -97,87 +99,69 @@ With this mechanism orbital $\psi_i$ could be changed in such a way that the exp
 \frac{\partial E}{\partial b_{ia}}=\frac{\partial \frac{\left < \Psi_0 | \mathbf{H} | \Psi_0 \right >}{\left < \Psi_0 | \Psi_0 \right >}}{\partial b_{ia}}=0.
 \label{ch2.eq.foderiv}
 \end{equation}
-Making use of the fact that the Hamiltonian and the metric are Hermitian and that the first order derivative with respect to the orbital change of $\Psi_0$ in equation \ref{ch2.eq.wfchange} equals $\Psi_{ia}$ \cite{vbscf2}, the first order derivative of the energy with respect to the orbital change becomes: 
+Using the quotient rule, using the fact that $\left < \Psi_0 | \mathbf{H} | \Psi_0 \right >$ and $\left < \Psi_0 | \Psi_0 \right >$ are Hermitian and using that the first order derivative with respect to the orbital change of $\Psi_0$ in equation \ref{ch2.eq.wfchange} equals $\Psi_{ia}$ \cite{vbscf2}, the first order derivative of the energy with respect to the orbital change can be written as: 
 \begin{equation}
 \begin{split}
 \frac{\partial E}{\partial b_{ia}} & = \frac{2 \cdot \left < \Psi_0 | \mathbf{H} | \Psi_{ia} \right > \left< \Psi_0 | \Psi_0 \right > - 2 \cdot \left < \Psi_0 | \mathbf{H} | \Psi_0  \right > \left< \Psi_0 | \Psi_{ia}\right>}{\left < \Psi_0 | \Psi_0 \right > ^2 }\\
 & = \frac{ 2 \cdot \left < \Psi_0 | \mathbf{H} | \Psi_{ia} \right > - 2 \cdot E_0 \left< \Psi_0 | \Psi_{ia} \right >}{\left < \Psi_0 | \Psi_0 \right >}\\
-& = \frac{ 2 \cdot \left < \Psi_0 | \mathbf{H} -E_0 | \Psi_{ia} \right >}{\left < \Psi_0 | \Psi_0 \right >}\\
-& = 0,
+& = \frac{ 2 \cdot \left < \Psi_0 | \mathbf{H} - E_0 | \Psi_{ia} \right >}{\left < \Psi_0 | \Psi_0 \right >}.
 \end{split}
 \label{ch2.eq.foderiv2}
 \end{equation}
-in which $E_0 = \left < \Psi_0 | \mathbf{H} | \Psi_0 \right > / \left < \Psi_0 | \Psi_0 \right >$. Equation \ref{ch2.eq.foderiv2} can be further reduced to:
+For optimal orbitals, this first order derivative is equal to zero and hence equation \ref{ch2.eq.foderiv2} reduces to:
 \begin{equation}
 \left < \Psi_0 | \mathbf{H} - E_0 | \Psi_{ia} \right > = 0,
 \label{ch2.eq.brillouin}
 \end{equation}
-which is the Brillouin theorem: with optimal orbitals the singly excited Brillouin state ($\Psi_{ia}$) does not interact or mix with the reference or ground state ($\Psi_0$). 
+which is the Brillouin theorem \cite{brillouin,genbrill}. This theorem states that with optimal orbitals singly excited states ($\Psi_{ia}$) do not interact or mix with the reference or ground state ($\Psi_0$). 
 
-In equations \ref{ch2.eq.orbchange}-\ref{ch2.eq.brillouin} the effect of a single orbital change has been shown. When all possible excitations from all occupied to all unoccupied orbitals are taken into account, the wave function of equation \ref{ch2.eq.wfchange} becomes:
+In equations \ref{ch2.eq.orbchange}-\ref{ch2.eq.brillouin} the effect of a single orbital change has been shown. When all possible single excitations are taken into account, the wave function of equation \ref{ch2.eq.wfchange} can be written as:
 \begin{equation}
 \Psi_{superci} = \Psi_0 + \sum_{ia} b_{ia} \Psi_{ia},
 \label{ch2.eq.superci}
 \end{equation}
-in which $\Psi_{superci}$ is the Super CI wave function, $i$ runs over all occupied orbitals and $a$ runs over all vacant (or virtual) orbitals. Values for $b_{ia}$ can be found by solving the generalized eigenvalue problem:
+in which $\Psi_{superci}$ is the Super CI wave function, $i$ runs all orbitals from which an excitation can be performed and $a$ runs over all orbitals to which excitations can take place. Values for $b_{ia}$ can be found by solving the generalized eigenvalue problem:
 \begin{equation}
 [\mathbf{H}-E_b\mathbf{S}] \cdot \mathbf{b} = 0,
 \label{ch2.eq.geig}
 \end{equation}
 in which $\mathbf{H}$ and $\mathbf{S}$ are the Hamiltonian and metric in the basis of singly excited states ($\Psi_0$ and the $\Psi_{ia}$'s). $E_b$ is the lowest eigenvalue and $\mathbf{b}$ is the corresponding eigenvector. With the elements of $\mathbf{b}$ the orbitals are updated to make $\Psi_0$ equal to $\Psi_{superci}$ to first order:
 \begin{equation}
-i' = i + \sum_{a} b_{ia} a.
+\psi_i' = \psi_i + \sum_{a} b_{ia} \psi_a.
 \label{ch2.eq.orbupd}
 \end{equation}
-With the modification of the orbitals the Super CI wave function is contracted or condensed into $\Psi_0$. This is exemplified for the change in orbital $i$ in the simple one determinant wave function in equation \ref{ch2.eq.detchange}. Orbital $i$ in $\Psi_0$ is modified with $\delta b_{ia}$ times orbital $a$, which results in determinant $|i'\overline{i'}jk |$:
+With the modification of the orbitals the Super CI wave function is contracted or condensed into $\Psi_0$. This is exemplified for the change in orbital $\psi_i$ in the simple one determinant wave function in equation \ref{ch2.eq.detchange}. Orbital $\psi_i$ in $\Psi_0$ is modified with $\delta b_{ia}$ times orbital $\psi_a$, which results in determinant $|\psi_i'\overline{\psi_i'}\psi_j\psi_k |$:
 \begin{equation}
 \begin{split}
 \Psi_{0} \leftarrow & \Psi_{0} + \delta b_{ia} \Psi_{ia} = \\
-&|i\overline{i}jk| + \delta b_{ia}(|a\overline{i}jk| + |i\overline{a}jk|) = \\
-&|(i + \delta b_{ia}a)\overline{(i + \delta b_{ia}a)}jk| = \\
-&|i'\overline{i'}jk |.\\
+&|\psi_i\overline{\psi_i}\psi_j\psi_k| + \delta b_{ia}(|\psi_a\overline{\psi_i}\psi_j\psi_k| + |\psi_i\overline{\psi_a}\psi_j\psi_k|) = \\
+&|(\psi_i + \delta b_{ia}\psi_a)\overline{(\psi_i + \delta b_{ia}\psi_a)}\psi_j\psi_k| = \\
+&|\psi_i'\overline{\psi_i'}\psi_j\psi_k |.\\
 \end{split}
 \label{ch2.eq.condense}
 \end{equation}
-So, $\Psi_0$ will contain the updated orbital $i'$ which will be denoted $i$ in the next step (iteration). This procedure for a single orbital update is performed for all combinations in the summation in the Super CI wave function. Since the orbital changes are performed independently, they may be counteracting and therefore the Brillouin condition may not be fulfilled in a single step. Therefore, a new excitation pattern for a new $\Psi_{superci}$ is created. The eigenvalue problem is solved again and the orbitals are updated once more. It is expected that the orbital updates become smaller with each step. This procedure is repeated until all Brillouin elements, $\left < \Psi_0 | \mathbf{H} - E_0 | \Psi_{ia} \right >$, have become zero. At that point the expectation value of the energy ($E_0$) is stationary with respect to orbital changes (equation \ref{ch2.eq.foderiv2}).
+So, $\Psi_0$ will contain the updated orbital $\psi_i'$ which will be denoted $\psi_i$ in the next step (iteration). This procedure for a single orbital update is performed for all combinations in the summation in the Super CI wave function. Since the orbital changes are performed independently, they may be counteracting and therefore the Brillouin condition may not be fulfilled in a single step. Therefore, a new excitation pattern for a new $\Psi_{superci}$ is created. The eigenvalue problem is solved again and the orbitals are updated once more. It is expected that the orbital updates become smaller with each step. This procedure is repeated until all Brillouin elements, $\left < \Psi_0 | \mathbf{H} - E_0 | \Psi_{ia} \right >$, have become zero. At that point the expectation value of the energy ($E_0$) is stationary with respect to orbital changes (equation \ref{ch2.eq.foderiv2}).
 
----hier zijn we---
+Up till here, $\Psi_0$ was constructed of a single determinant, \textit{i.e.} $|\psi_i\overline{\psi_i}\psi_j\psi_k|$. A regular VB wave function consists of multiple structures, and hence multiple determinants (see equations \ref{ch2.eq.vbwf} and \ref{ch2.eq.struct}). In that case, the contraction of equation \ref{ch2.eq.condense} will contain more determinants, all in which orbital $\psi_i$ has been replaced by $\psi_a$.
 
-At the beginning of a VBSCF calculation, initial values for $C_i$ and $c_n$ have to be chosen. Initial orbitals ($c_n$) are often taken from a Hartree-Fock calculation, or created manually. The coefficients for the structures ($C_i$) are obtained by solving the associated eigenvalue problem:
+With the expansion into multiple determinants, three orbital classes can be distinguished. Firstly, orbitals that occur in all determinants, which will be denoted with subscripts $i$, $j$, $k$ and $l$. The second class contains orbitals that occur in some determinants, denoted with $t$, $u$, $v$ and $x$. The last class contains those orbitals that do not occur in the ground state wave function $\Psi_0$ and hence are virtual unoccupied orbitals $a$, $b$, $c$ and $d$.
 
-VBSCF is based on Super CI \cite{superci1,superci2}, which uses the generalized Brillouin theorem \cite{brillouin,genbrill} as convergence criterium.
+To solve the generalized eigenvalue problem of equation \ref{ch2.eq.geig}, both the Hamiltonian ($\mathbf{H}$) and the overlap matrix ($\mathbf{S}$) are expressed in determinant form.  The Brillouin matrix is defined as the $\mathbf{H}$ matrix minus $E_0$ \cite{koos1}. Please note that for optimal orbitals, the Brillouin energy ($E_b$) in equation \ref{ch2.eq.geig} is equal to the energy of the ground state ($E_0$), because the singly exited states do no longer mix in with the ground state. 
 
-A VBSCF wave function is constructed from guess orbitals, which are mostly taken from a Hartree-Fock calculation or are entered manually, \textit{i.e.} the orbitals, which are vectors with coefficients for each basis function, are keyed in by hand. The expectation value of the energy ($E$) for a wave function ($\Psi$) constructed with these orbitals is not necessarily the lowest possible. The expression for the expectation value of the energy is:
-\begin{equation}
-E = \left < \Psi | \mathbf{H} | \Psi \right >,
-\label{ch2.eq.expenerg}
-\end{equation}
-for a normalized wave function, \textit{i.e.} $\left < \Psi | \Psi \right > = 1$. To lower this value, the orbitals need to be modified, or rather \textit{optimized}. The goal of this optimization is to obtain the orbitals for which $E$ is as low as possible. In that minimum the energy no longer decreases with respect to orbital changes. There are several numerical methods which can be used for finding minima, or roots, of mathematical functions. One of the most popular methods is the Newton-Raphson method \cite{zahid}. A drawback of this method is that its convergence is quadratic. In VBSCF the Super CI approach is used \cite{superci1,superci2}, which, compared to Newton-Raphson, is slightly simpler and has a linear convergence \cite{koos1}. Super CI is explained in the next section.
-
-\subsection{Super CI}
-
-The working of Super CI will be described here in more detail, because the explanations of the approximations in Sections \ref{ch2.sec.anr} and \ref{ch2.sec.fock} are simplified with the definition of the \textit{Brillouin matrix} at hand. In Super CI, the elements in the first column of this Brillouin matrix can be used to check for convergence, as will be made clear hereafter. 
-
-Before modifications in orbitals are discussed, the building blocks of a Valence Bond wave function will be reviewed. Then it will be shown that with clever modifications of the orbitals a minimum in the energy can be found and that then the wave function will fulfill the Brillouin theorem, which states that for optimal orbitals the singly excited Brillouin states do not interact or mix with the ground (or reference) state \cite{brillouin}. 
-
-\subsubsection{Adapting Orbitals}
-
-Up till here, $\Psi_0$ was constructed of a single determinant, \textit{i.e.} $|i\overline{i}jk|$. A regular VB wave function consists of multiple structures, and hence multiple determinants (see equations \ref{ch2.eq.vbwf} and \ref{ch2.eq.struct}). In that case, the contraction of equation \ref{ch2.eq.condense} will contain more determinants, all in which orbital $i$ has been replaced by $a$. With the expansion of the wave function into multiple structures/determinants, there are two points to consider. Firstly, besides the occupied and virtual orbital classes, a third class occurs: one with partly occupied orbitals. This class comprises orbitals which occur in some determinants, but not in all. Secondly, after each orbital optimization step, the structure coefficients $C_i$ (equation \ref{ch2.eq.vbwf}) should be recalculated with the newly optimized orbitals. With these new structure coefficients, a new orbital optimization procedure should be performed. Ultimately, convergence is reached when both orbitals \textit{and} structure coefficients no longer change.
-
-An example of a Brillouin matrix, which contains elements resulting from two excitations: an excitation from $i$ to $a$ ($\Psi_{ia}$) and one from $i$ to $b$ ($\Psi_{ib}$), is shown below\footnote{Note that only the lower triangle of this Hermitian matrix is shown.}:
+An example of a Brillouin matrix, which contains elements resulting from two excitations: an excitation from $\psi_i$ to $\psi_a$ ($\Psi_{ia}$) and one from $\psi_i$ to $\psi_b$ ($\Psi_{ib}$), is shown below:
 \begin{equation}
 \left[\begin{array}{ccc}
-\left< \Psi_{0} | \mathbf{H}-E_0 | \Psi_{0} \right> & & \\
-\left< \Psi_{0} | \mathbf{H}-E_0 | \Psi_{ia} \right> & \left< \Psi_{ia} | \mathbf{H}-E_0 | \Psi_{ia} \right> &\\
+\left< \Psi_{0} | \mathbf{H}-E_0 | \Psi_{0} \right> & \left< \Psi_{ia} | \mathbf{H}-E_0 | \Psi_{0} \right> & \left< \Psi_{ib} | \mathbf{H}-E_0 | \Psi_{0} \right> \\
+\left< \Psi_{0} | \mathbf{H}-E_0 | \Psi_{ia} \right> & \left< \Psi_{ia} | \mathbf{H}-E_0 | \Psi_{ia} \right> & \left< \Psi_{ib} | \mathbf{H}-E_0 | \Psi_{ia} \right> \\
 \left< \Psi_{0} | \mathbf{H}-E_0 | \Psi_{ib} \right> & \left< \Psi_{ia} | \mathbf{H}-E_0 | \Psi_{ib} \right> & \left< \Psi_{ib} | \mathbf{H}-E_0 | \Psi_{ib} \right> \\
 \end{array}\right].
 \label{ch2.eq.hamilt}
 \end{equation}
-The Brillouin matrix is the $\mathbf{H}$ matrix minus $E_0$ \cite{koos1} and hence has the same dimension as the $\mathbf{H}$ and $\mathbf{S}$ matrices in equation \ref{ch2.eq.geig}. For each extra excitation the $\mathbf{H}$, $\mathbf{S}$ and Brillouin matrices are extended with one extra row and column. Hence, the number of elements increases roughly quadratic with the number of excitations. A nice side effect of constructing the Brillouin matrix with $E_0$ present is that with it, it is rather easy to check for convergence: the elements in the first column are zero when convergence is reached.
+The Brillouin matrix has the same dimension as the $\mathbf{H}$ and $\mathbf{S}$ matrices in equation \ref{ch2.eq.geig}. For each extra excitation the $\mathbf{H}$, $\mathbf{S}$ and Brillouin matrices are extended with one extra row and column. Hence, the number of elements increases roughly quadratic with the number of excitations.
 
-The calculation of the elements in $\mathbf{H}$ is expensive because of the large number of determinants, caused by the expansion into the Super CI wave function: for each excitation a Brillouin state, containing 1 to 2 times the number of determinants of $\Psi_0$, is added. For each determinant combination the evaluation of (large amounts of) subdeterminants \cite{koos2}, or cofactors\footnote{Cofactors are described in detail in Appendix A.} are required. Considering this, van Lenthe \textit{et al.} asked themselves whether all the elements in the $\mathbf{H}$ matrix, like $\left < \Psi_{ia} | \mathbf{H} - E_0 | \Psi_{ib} \right >$ for example, would be required for convergence to the Brillouin condition, or that less elements would suffice \cite{koos1}. They presented a new method, referred to as approximated Newton-Raphson (Section \ref{ch2.sec.anr}), which requires less $\mathbf{H}$ and $\mathbf{S}$ matrix elements than regular Super CI.
+The calculation of the elements in $\mathbf{H}$ is expensive because of the large number of determinants, caused by the expansion into the Super CI wave function: for each excitation a Brillouin state, containing 1 to 2 times the number of determinants of $\Psi_0$, is added. For each determinant combination the evaluation of (large amounts of) subdeterminants \cite{koos2}, or cofactors\footnote{Cofactors are described in detail in Appendix A.} are required.
 
-Another question, which will be discussed after the description of approximated New{-}ton-Raphson method, is whether it would be possible to calculate certain $\mathbf{H}$ matrix elements, \textit{i.e.} the first column element and the diagonal element, in a cheaper or faster way. 
+To overcome this, van Lenthe \textit{et al.} presented a new method, referred to as approximated Newton-Raphson (Section \ref{ch2.sec.anr}), which requires less $\mathbf{H}$ and $\mathbf{S}$ matrix elements than regular Super CI \cite{koos1}, because elements of the type $\left < \Psi_{ia} | \mathbf{H} - E_0 | \Psi_{ib} \right >$ are not needed.
 
 \subsection{\label{ch2.sec.anr}The Approximated Newton-Raphson Method}
 
@@ -188,188 +172,62 @@ b_{ia}= - \frac{\left< \Psi_{0} | \mathbf{H}-E_0 | \Psi_{ia} \right>}{\left< \Ps
 \end{equation}
 This means that elements of the type $\left< \Psi_{ia} | \mathbf{H}-E_0 | \Psi_{ib} \right>$ are not used. In that way, only two matrix elements need to be calculated for such an excitation, instead of $m$, where $m$ equals the total number of excitations. This reduces the quadratic increase in number of matrix elements to linear.
 
-When the orbitals are optimal the numerator in equation \ref{ch2.eq.anr} becomes zero (Brillouin condition). In that case the orbital updates ($b_{ia}$) become zero and the orbitals no longer change. It is stressed that the approximation in aNR is in the calculation of the update coefficients, rather than in the total energy $E$. Therefore the total energy for an aNR calculation should not differ from a regular Super CI calculation.
+Although the update coefficients $b_{ia}$ are calculated in a different way, the total energy $E_0$ will be the same. Once the orbitals are optimal the numerator in equation \ref{ch2.eq.anr} becomes zero and hence the Brillouin condition is fulfilled. 
 
-A further reduction of the calculation time can be achieved, when both the numerator and the denominator in equation \ref{ch2.eq.anr} could be calculated faster, given that the number of iterations does not explode. The numerator, though, can not be approximated, since it is used as convergence criterion (equation \ref{ch2.eq.brillouin}). So the ``faster'' method must result in exactly the same value as for the regular Brillouin matrix element. The denominator in equation \ref{ch2.eq.anr} is used as a weighting factor and therefore it may be approximated. Rough approximations, however, may lead to very slow convergence, or even divergence. 
-
-Using a Fock matrix the numerator may be calculated faster in some cases. In the next section the applicability of Fock matrix elements will be analyzed: in which situations are they equal to the elements in the first column of the Brillouin matrix and can they be used?
+A further reduction of the calculation time can be achieved when the numerator and the denominator in equation \ref{ch2.eq.anr} could be calculated, or approximated, faster. As indicated in the introduction, the creation of a Fock matrix does not depend on the number of determinants in the wave function, while the Brillouin matrix elements in equation \ref{ch2.eq.anr} do. In the next section, the applicability of Fock matrix elements for the numerator and denominator in equation \ref{ch2.eq.anr} will be investigated.
 
 \subsection{\label{ch2.sec.fock}Fock Matrix Elements} 
 
-A Multi Configuration Self-Consistent Field (MCSCF) \cite{wahldasbook,daswahl} wave function is expressed in Configuration State Functions (CSF's). This structure is comparable with the expression of a VB wave function in structures: the CSF's are comparable to VB structures in the sense that both are constructed from fixed combinations of determinants. Two major differences are that both bonding \textit{and} anti-bonding orbitals occur in CSF's and that the molecular orbitals are chosen orthogonal in MCSCF. A special case of an MCSCF wave function is the Complete Active Space Self-Consistent Field (CASSCF) wave function. A CASSCF wave function contains all distinctive configurations that can be created from the total number of electrons in all molecular orbitals, while in MCSCF only a subset of these configurations is used. Here, the terms MCSCF and CASSCF are intermixed, because only the general form of this type of wave function is important. The similarity in structure justifies a closer look at the orbital optimization techniques in MCSCF, which might also be applicable to VBSCF.
+Roos \textit{et al.} showed that Brillouin matrix elements could be replaced by elements of the Fock matrix, based on the density matrix, for Complete Active Space Self-Consistent Field (CASSCF) wave functions \cite{roos1}. They derived three different formulas for three types of excitations:
+\begin{itemize}
+\item{$i \rightarrow a$ from (always) doubly occupied to virtual orbitals}
+\item{$t \rightarrow a$ from variably occupied to virtual orbitals}
+\item{$i \rightarrow t$ from (always) doubly to variably occupied orbitals}
+\end{itemize}
+There is a fourth type of excitation, $t \rightarrow t$ from variably to variably occupied orbitals. This is not needed for CASSCF, because all possible electron distributions in the variably occupied orbital space are already included in $\Psi_0$ and hence no extra excited structures, or CSFs, can be formed.
 
-For the optimization of doubly occupied orbitals in MCSCF wave functions Fock matrix elements can be used, since those are, except for a constant factor, equal to Brillouin matrix elements of the type $\left < \Psi_0 | \mathbf{H} | \Psi_{ia} \right >$ \cite{roos1,roos2}:
+In this section all four types of excitations will be analyzed in L\"{o}wdins formula. Although not necessary, it is convenient to orthogonalize as many orbitals onto each other as possible \cite{vbscf2}. This results in the two occupied orbital subsets mentioned earlier, the always doubly occupied orbitals and the variably occupied orbitals. The remaining unoccupied orbitals are mostly chosen orthogonal to all other orbitals. For a detailed description of the construction of the virtual subspace, see the first appendix in reference \cite{koos1}.
+
+To analyze all four excitation types, a single determinant wave function is constructed from one doubly occupied orbital, $\phi_i$, which results in the two spin-orbitals $\chi_i \equiv \phi_i$ and $\chi_j \equiv \overline{\phi_i}$. Furthermore, there are three variably occupied orbitals $\chi_t$, $\chi_u$ and $\chi_v$. Spin for these orbitals is not specified and hence no attention needs to be paid to the spin integration in the overlap matrices that follow. The ground state wave function $\Psi_0$ is then:
 \begin{equation}
-%roos1 - equation 23a - page 163
-\left < \Psi_0 | \mathbf{H} | \Psi_{ia} \right > = 2^{\frac{1}{2}}F_{ia},
-\label{ch2.eq.mcscffock}
+\Psi_0 = |\chi_i\chi_j\chi_t\chi_u\chi_v|.
+\label{ch2.eq.wfexamp}
 \end{equation}
-in which $F_{ia}$ is equal to $\left < i | \mathbf{f} | a \right > $, which is an element of a Fock matrix on MO basis. Such a Fock matrix element is calculated by transforming the Fock matrix on AO basis, constructed from the one and two electron integrals and the one electron density matrix, to MO basis. This means that for this transformation the number of structures and determinants, \textit{i.e.} the complexity of the wave function, is irrelevant because they are not needed. The possible application of this method could lead to a decrease in calculation time for VBSCF as well. Besides, the fact that the Fock matrix element is \textit{equal} to the Brillouin matrix element, at least in MCSCF, makes it in principle applicable as numerator in equation \ref{ch2.eq.anr}.  
-
-\subsubsection{Doubly Occupied Orthogonal Orbitals}
-
-For the analysis of the applicability of Fock matrix elements, a VBSCF wave function with orthogonal doubly occupied orbitals, which occur in every structure, is chosen. In analogy with MCSCF, any structure ($\Phi_i$) in a VB wave function can be written as:
+The overlap $\left < \Psi_0 | \Psi_0 \right>$ is the determinant of the overlap matrix:
 \begin{equation}
-%thor4 - equation 2 - page 69
-\Phi_i = \mathcal{A}(\Phi^{\mathrm{core}} \times \Phi_i^{\mathrm{active}}),
-\label{ch2.eq.wfsplit}
-\end{equation}
-in which $\mathcal{A}$ is the antisymmetrizer, $\Phi^{\mathrm{core}}$ is the product of all doubly occupied orbitals, which is equal for all structures, and $\Phi_i^{\mathrm{active}}$ is the product of the active (or variably) occupied orbitals in structure $\Phi_i$. Although not necessary, it is convenient to orthogonalize as many orbitals onto each other as possible \cite{vbscf2}. This results in the two occupied orbital subsets mentioned here, the core, or always doubly occupied orbitals and the active orbitals. The remaining unoccupied, or virtual orbitals are mostly chosen orthogonal to all other orbitals. For a detailed description of the construction of the virtual subspace, see the first appendix in reference \cite{koos1}.
-
-In the active subspace, the orbitals are not necessarily orthogonal to each other. In principle, however, these orbitals could be transformed in such a way that they become orthogonal to each other. In practice, such transformations are performed by Thorsteinsson \textit{et al.} in their Complete Active Space Valence Bond (CASVB) method \cite{thor1,thor2,thor3,thor4}. In the CASVB method a CASSCF wave function is taken for a start. By orbital transformations, which need not be unitary, an alternative representations of exactly the same wave function is obtained, based instead on non-orthogonal orbitals, such as those that are more characteristic of VB. The initial main motivation behind CASVB was to be able to use modern VB language, whilst avoiding the need to carry out actual VB calculations, which were traditionally perceived to be somewhat more expensive. Here, the transformation will be used in the opposite direction: from a VB wave function to a CASSCF wave function. With such a transformation the wave function becomes:
-\begin{equation}
-%thor4 - equation 1 - page 68
-\Psi_0 = \sum_{i}^{n} C_i \Phi_i = \sum_{j}^{m} D_j \Phi^{\mathrm{\bot }}_j,
-\label{ch2.eq.vbtrans}
-\end{equation}
-in which the $\Phi^{\mathrm{\bot }}_j$'s are structures containing orthogonal orbitals and the $D_j$'s are the corresponding structure coefficients. With this transformation a CASSCF wave function with orthogonal orbitals is created without changing neither the expectation value of the energy, nor the one electron density matrix (and hence the Fock matrix) on AO basis. Because the orbitals in the core and virtual subspace are already orthogonal, members of these subspaces can be kept constant during the transformation. This means that the Fock matrix elements of the type $F_{ia}$ remain unmodified, because the one and two electron integrals and the one electron density matrix on AO basis \textit{and} the orbitals $i$ and $a$ remain the same.
-
-So, without performing any transformation $F_{ia}$-type Fock matrix elements can be used in VBSCF for the optimization of doubly occupied \textit{orthogonal} orbitals, because the rules derived for MCSCF can be applied. This means that instead of calculating Brillouin matrix elements of the type $\left < \Psi_0 | \mathbf{H} | \Psi_{ia} \right >$, Fock matrix elements of the type $\left < i | \mathbf{f} | a \right > $ taken from Fock matrix on MO basis, can be used (equation \ref{ch2.eq.mcscffock}).
-
-Up till here, the doubly occupied orbitals in the VB wave function were chosen (or made) orthogonal to each other. This is not always possible, or even desirable. Quite often a VB wave function is constructed to investigate the bonding between two molecular fragments. In that case doubly occupied orbitals on one fragment are generally not orthogonal to the orbitals on the other fragment, because they are only expressed in a local subset of AO's, \textit{i.e.} those on its own fragment. This method, with orbitals on fragments, is denoted as \textit{local} VBSCF, while the method in which the orbitals are allowed to spread over the whole molecule is referred to as \textit{delocal} VBSCF.
-
-\subsubsection{Non-Orthogonal Orbitals}
-
-To analyze the impact of the non-orthogonal orbitals in a VB wave function on the applicability of a Fock operator a simple single determinant wave function $\Psi_0 = N |ijkl \cdots n|$, in which $N$ is the normalization coefficient,  is selected. With the $\mathbf{C}_{i \rightarrow a}$ operator $\Psi_{ia} = N |ajkl \cdots n|$,  the singly excited determinant, is generated.
-
-In this chapter overlaps between Slater determinants, like those in $\Psi_0$ and $\Psi_{ia}$, are written in terms of cofactors, which are determinants of orbital overlaps. The overlap of wave function $\Psi_0$ with $\Psi_{ia}$ can be expressed in the cofactor $S_{0(i\rightarrow a)}^{(0)}$ (equation \ref{ch2.eq.s0ia}). The superscript $(0)$ indicates that this is a zeroth order cofactor. The subscript $0(i\rightarrow a)$ indicates that this determinant contains overlaps of orbitals in $\Psi_0$ $(0)$ with the orbitals of $\Psi_{ia}$ ($(i\rightarrow a)$). In the cofactor the rows and columns are labeled: the columns are labeled with the orbitals of $\Psi_0$ and the rows with the orbitals of $\Psi_{ia}$: 
-\begin{equation}
-\left < \Psi_0 | \Psi_{ia} \right> = N^2 \cdot S_{0(i\rightarrow a)}^{(0)} = N^2 \cdot
-\begin{array}{lllllll}
- &  i & j & k & l & \cdots & n \\
- a &  \multicolumn{1}{|l}{ s_{ia} } & s_{ja} & s_{ka} & s_{la} & & \multicolumn{1}{l|}{ s_{na} } \\
- j & \multicolumn{1}{|l}{ s_{ij} } & 1 & s_{kj} & s_{lj} & & \multicolumn{1}{l|}{s_{nj}} \\
- k & \multicolumn{1}{|l}{ s_{ik} } & s_{jk} & 1 & s_{lk} & & \multicolumn{1}{l|}{s_{nk}} \\
- l & \multicolumn{1}{|l}{ s_{il} } & s_{jl} & s_{kl} & 1 & & \multicolumn{1}{l|}{s_{nl}} \\
- \vdots & \multicolumn{1}{|l}{ } &   &   & & \ddots & \multicolumn{1}{l|}{\vdots} \\
- n & \multicolumn{1}{|l}{ s_{in} } & s_{jn} & s_{kn} & s_{ln} & \cdots & \multicolumn{1}{l|}{1}
+\left < \Psi_0 | \Psi_0 \right> = | \mathbf{S} | =
+\begin{array}{llllll}
+ &  \chi_i & \chi_j & \chi_t & \chi_u & \chi_v \\
+ \chi_i & \multicolumn{1}{|l}{ 1 } & 0 & 0 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_j & \multicolumn{1}{|l}{ 0 } & 1 & 0 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_t & \multicolumn{1}{|l}{ 0 } & 0 & 1 & s_{ut} & \multicolumn{1}{l|}{s_{vt}} \\
+ \chi_u & \multicolumn{1}{|l}{ 0 } & 0 & s_{tu} & 1 & \multicolumn{1}{l|}{s_{vu}} \\
+ \chi_v & \multicolumn{1}{|l}{ 0 } & 0 & s_{tv} & s_{uv} & \multicolumn{1}{l|}{1}
 \end{array}.
-\label{ch2.eq.s0ia}
-\end{equation}
-In the cofactor above the element $s_{ij}$, for example, is the overlap between orbital $i$ and $j$.
-
-The Brillouin matrix element for the two determinants in $\Psi_0$ and $\Psi_{ia}$ can be expressed in three parts, using L\"{o}wdin's formula \cite{lowdin}, in which first order cofactors have a superscript with two indexes, while second order cofactors have four indexes in their superscripts:
-\begin{equation}
-\begin{split}
-\left < \Psi_0 | \mathbf{H} - E_0 | \Psi_{ia} \right>= & + N^2 \sum_{\rho\tau} h_{\rho\tau} S_{0(i\rightarrow a)}^{(\rho,\tau)} \\
-& + N^2 \sum_{\rho<\sigma,\tau<\nu} [\left <\rho\sigma|\tau\nu \right > - \left < \rho\sigma | \nu\tau \right> ]  S_{0(i\rightarrow a)}^{(\rho,\sigma,\tau,\nu)} \\
-&  - E_0 N^2 S_{0(i\rightarrow a)}^{(0)}.\\
-\end{split}
-\label{ch2.eq.lowdin}
-\end{equation}
-In this formula the summation indexes $\rho$, $\sigma$, $\tau$ and $\nu$ run over all orbitals in the determinants of $\Psi_0$ and $\Psi_{ia}$. Firstly, there is a series of one electron integrals $h_{\rho\tau}$ multiplied by first order cofactors $S_{0(i\rightarrow a)}^{(\rho,\tau)}$. One of these cofactors is $S_{0(i\rightarrow a)}^{(i,a)}$:
-\begin{equation}
-S_{0(i\rightarrow a)}^{(i,a)} =
-\begin{array}{lllllll}
- &  \hskip 2.0 pt \hbox{\lower 120pt\hbox{\vrule height128pt width 1.0pt}}\hskip-3.0pt i & j & k & l & \cdots & n \\
-\noalign{\vskip-115pt}
- a &  \multicolumn{1}{|l}{s_{ia}} & s_{ja}  & s_{ka} & s_{la} & & \multicolumn{1}{l|}{ s_{na} } \\
-\noalign{\vskip-8pt}
-\multispan7\hbox{\vrule  height 1.0 pt width164pt}\cr
-\noalign{\vskip 7pt}
-  j & \multicolumn{1}{|l}{s_{ij}} & 1 & s_{kj} & s_{lj} & & \multicolumn{1}{l|}{s_{nj}} \\
- k & \multicolumn{1}{|l}{s_{ik}} & s_{jk} & 1 & s_{lk} & & \multicolumn{1}{l|}{s_{nk}} \\
- l & \multicolumn{1}{|l}{s_{il}} & s_{jl} & s_{kl} & 1 & & \multicolumn{1}{l|}{s_{nl}} \\
- \vdots & \multicolumn{1}{|l}{ } &   &   & & \ddots & \multicolumn{1}{l|}{\vdots} \\
- n & \multicolumn{1}{|l}{ s_{in}} & s_{jn} & s_{kn} & s_{ln} & \cdots & \multicolumn{1}{l|}{1}
-\end{array}.\\
-\label{ch2.eq.examfoco}
-\end{equation}
-Compared to the zeroth order cofactor in equation \ref{ch2.eq.s0ia}, the dimension of this determinant is one row and column smaller. 
-
-The second part in equation \ref{ch2.eq.lowdin} consists of Coulomb and exchange integrals, $\left <\rho\sigma|\tau\nu \right >$ and $\left < \rho\sigma | \nu\tau \right>$ respectively, multiplied by second order cofactors $S_{0(i\rightarrow a)}^{(\rho,\sigma,\tau,\nu)}$. An example of such a second order cofactor is:
-\begin{equation}
-S_{0(i\rightarrow a)}^{(i,k,a,l)} =
-\begin{array}{lllllll}
- &  \hskip 2.0 pt \hbox{\lower 120pt\hbox{\vrule height128pt width 1.0pt}}\hskip-3.0pt i & j & \hskip 2.0 pt \hbox{\lower 120pt\hbox{\vrule height128pt width 1.0pt}}\hskip-3.0pt k & l & \cdots & n \\
-\noalign{\vskip-115pt}
- a &  \multicolumn{1}{|l}{s_{ia}} & s_{ja}  & s_{ka} & s_{la} & & \multicolumn{1}{l|}{ s_{na} } \\
- \noalign{\vskip-8pt}
-\multispan7\hbox{\vrule  height 1.0 pt width164pt}\cr
-\noalign{\vskip 7pt}
- j & \multicolumn{1}{|l}{s_{ij}} & 1 & s_{kj} & s_{lj} & & \multicolumn{1}{l|}{s_{nj}} \\
- k & \multicolumn{1}{|l}{s_{ik}} & s_{jk} & 1 & s_{lk} & & \multicolumn{1}{l|}{s_{nk}} \\
- l & \multicolumn{1}{|l}{s_{il}} & s_{jl} & s_{kl} & 1 & & \multicolumn{1}{l|}{s_{nl}} \\
- \noalign{\vskip-8pt}
-\multispan7\hbox{\vrule  height 1.0 pt width164pt}\cr
-\noalign{\vskip 7pt}
- \vdots & \multicolumn{1}{|l}{ } &   &   & & \ddots & \multicolumn{1}{l|}{\vdots} \\
- n & \multicolumn{1}{|l}{ s_{in}} & s_{jn} & s_{kn} & s_{ln} & \cdots & \multicolumn{1}{l|}{1}
-\end{array}.\\
-\label{ch2.eq.examsoco}
-\end{equation}
-Compared to the first order cofactor in equation \ref{ch2.eq.examfoco}, this determinant has one row and column less. For more information on cofactors, the reader is referred to Appendix A. 
-
-The last part in equation \ref{ch2.eq.lowdin} is the ground state energy $E_0$ multiplied by the zeroth order cofactor $S_{0(i\rightarrow a)}^{(0)}$, which has already been shown in equation \ref{ch2.eq.s0ia}.
-
-Compared with the complexity of the expression of a matrix element in L\"{o}wdin's formula (equation \ref{ch2.eq.lowdin}), the expression for a Fock matrix element as used for the optimization of doubly occupied orbitals in MCSCF, is relatively simple \cite{roos1}:
-\begin{equation}
-F_{ia} = h_{ia} + \sum_{\sigma \nu} [ \left <i \sigma | a \nu \right > - \left < i \sigma | \nu a \right> ]P^{(\sigma,\nu)},
-\label{ch2.eq.fockgen}
-\end{equation}
-in which $h_{ia}$ is a one electron integral of the type $\left < i | \mathbf{h} | a \right> $ followed by the sum over orbital indexes $\sigma$ and $\nu$ of differences between Coulomb and exchange integrals, multiplied by elements of a first order density matrix $P^{(\sigma,\nu)}$. To analyze whether Fock matrix elements are equal to Brillouin matrix elements in VBSCF, the constituents, \textit{i.e.} the one and two electron integrals and the density matrix, are taken from VB and used in equation \ref{ch2.eq.fockgen}, in anology with MCSCF. The elements of a VB density matrix can be expressed in first order cofactors \cite{joopboek}:
-\begin{equation}
-P^{(\sigma,\nu)} = \sum_{pq}  C_p C_q S_{pq}^{(\sigma,\nu)},
-\label{ch2.eq.densmat1}
-\end{equation}
-in which $C_p$ and $C_q$ are determinant coefficients that are multiplied with the first order cofactor belonging to the determinant combination $p$ with $q$.  The summation indicates that the total one electron density matrix is constructed from contributions of determinant combinations. For the single determinant wave function $\Psi_0 = N |ijkl \cdots n|$, which is being examined here, this then reduces to a single cofactor:
-\begin{equation}
-P^{(\sigma,\nu)} = N^2 S_{00}^{(\sigma,\nu)}.
-\label{ch2.eq.densmat2}
-\end{equation}
-  
-For $\left < \Psi_0 | \mathbf{H} - E_0 | \Psi_{ia} \right >$ to be equal to $F_{ia}$ the separate parts, \textit{i.e.} the one electron integral part, the two electron integral part and the $E_0$ part, have to be equal, which leads to the following set of equations\footnote{The "$\stackrel{?}{=}$" symbol means that the conditions for equality will be investigated.}:
-\begin{equation}
-h_{ia} \stackrel {?}{=} N^2 \sum_{\rho\tau} h_{\rho\tau} S_{0(i\rightarrow a)}^{(\rho,\tau)},
-\label{ch2.eq.oneelpart}
-\end{equation}
-\begin{equation}
-\sum_{\sigma \nu} [ \left <i \sigma | a \nu \right > - \left < i \sigma | \nu a \right> ]S_{00}^{(\sigma,\nu)} \stackrel {?}{=}  \sum_{\rho<\sigma,\tau<\nu} [\left <\rho\sigma|\tau\nu \right > - \left < \rho\sigma | \nu\tau \right> ]  S_{0(i\rightarrow a)}^{(\rho,\sigma,\tau,\nu)},
-\label{ch2.eq.twoelpart}
-\end{equation}
-\begin{equation}
-0 \stackrel {?}{=} E_0 N^2 S_{0(i\rightarrow a)}^{(0)}.
-\label{ch2.eq.e0part}
+\label{ch2.eq.s0}
 \end{equation}
 
-The difference between the one electron integral part of the Fock matrix element and the Brillouin matrix element is that the Fock matrix element only contains a single one electron integral, while the Brillouin matrix element contains a whole series. This series can be split up in four terms, of which the first is $h_{ia}$ multiplied with the first order cofactor $S_{0(i\rightarrow a)}^{(i,a)}$: 
 \begin{equation}
-\begin{split}
-h_{ia} &\stackrel {?}{=} N^2 \sum_{\rho\tau} h_{\rho\tau} S_{0(i\rightarrow a)}^{(\rho,\tau)}\\
-&\stackrel {?}{=} N^2 (h_{ia} S_{0(i\rightarrow a)}^{(i,a)} + \sum_{\rho \ne i} h_{\rho a} S_{0(i\rightarrow a)}^{(\rho,a)} +  \sum_{\tau \ne a} h_{i\tau} S_{0(i\rightarrow a)}^{(i,\tau)} + \sum_{\rho \ne i, \tau \ne a} h_{\rho\tau} S_{0(i\rightarrow a)}^{(\rho,\tau)}).
-\end{split}
-\label{ch2.eq.oneelpart2}
+\left < \Psi_0 | \Psi_{ia} \right > = 
+\begin{array}{llllll}
+ &  \chi_i & \chi_j & \chi_t & \chi_u & \chi_v \\
+ \chi_a & \multicolumn{1}{|l}{ 0 } & 0 & 0 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_j & \multicolumn{1}{|l}{ 0 } & 1 & 0 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_t & \multicolumn{1}{|l}{ 0 } & 0 & 1 & s_{ut} & \multicolumn{1}{l|}{s_{vt}} \\
+ \chi_u & \multicolumn{1}{|l}{ 0 } & 0 & s_{tu} & 1 & \multicolumn{1}{l|}{s_{vu}} \\
+ \chi_v & \multicolumn{1}{|l}{ 0 } & 0 & s_{tv} & s_{uv} & \multicolumn{1}{l|}{1}
+\end{array} +
+\begin{array}{llllll}
+ &  \chi_i & \chi_j & \chi_t & \chi_u & \chi_v \\
+ \chi_i & \multicolumn{1}{|l}{ 1 } & 0 & 0 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_b & \multicolumn{1}{|l}{ 0 } & 0 & 0 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_t & \multicolumn{1}{|l}{ 0 } & 0 & 1 & s_{ut} & \multicolumn{1}{l|}{s_{vt}} \\
+ \chi_u & \multicolumn{1}{|l}{ 0 } & 0 & s_{tu} & 1 & \multicolumn{1}{l|}{s_{vu}} \\
+ \chi_v & \multicolumn{1}{|l}{ 0 } & 0 & s_{tv} & s_{uv} & \multicolumn{1}{l|}{1}
+\end{array}.
+\label{ch2.eq.psi_ia}
 \end{equation}
 
-The last three summations on the right hand side, \textit{viz} the first order cofactors in which the combination of orbital $i$ and $a$ has not been removed, are not present in the Fock matrix element and should therefore vanish in the Brillouin matrix element. An example from the second term of a one electron integral contribution to the Brillouin matrix element and not to the Fock matrix element is $h_{ja} \cdot S_{0(i\rightarrow a)}^{(j,a)}$:
-\begin{equation}
-h_{ja}\cdot S_{0(i\rightarrow a)}^{(j,a)} = h_{ja} \cdot
-\begin{array}{lllllll}
- & i & \hskip 2.0 pt \hbox{\lower 120pt\hbox{\vrule height128pt width 1.0pt}}\hskip-3.0 pt j & k & l & \cdots & n \\
-\noalign{\vskip-115pt}
- a &  \multicolumn{1}{|l}{ s_{ia} } & s_{ja} & s_{ka} & s_{la} & & \multicolumn{1}{l|}{ s_{na} } \\
-\noalign{\vskip-8pt}
-\multispan7\hbox{\vrule  height 1.0 pt width164pt}\cr
-\noalign{\vskip 7pt}
- j & \multicolumn{1}{|l}{ s_{ij}} & 1 & s_{kj} & s_{lj} & & \multicolumn{1}{l|}{s_{nj}} \\
- k & \multicolumn{1}{|l}{ s_{ik}} & s_{jk} & 1 & s_{lk} & & \multicolumn{1}{l|}{s_{nk}} \\
- l & \multicolumn{1}{|l}{ s_{il}} & s_{jl} & s_{kl} & 1 & & \multicolumn{1}{l|}{s_{nl}} \\
- \vdots & \multicolumn{1}{|l}{ } &   &   & & \ddots & \multicolumn{1}{l|}{\vdots} \\
- n & \multicolumn{1}{|l}{ s_{in}} & s_{jn} & s_{kn} & s_{ln} & \cdots & \multicolumn{1}{l|}{1}
-\end{array}.\\
-\label{ch2.eq.case2}
-\end{equation}
-This contribution can only vanish when the cofactor is zero, which means that a row or a column needs to be zero. This cofactor is zero only when the elements in the first column ($s_{ij}$, $s_{ik}$, $s_{il} ... s_{in}$) are zero; other columns contain a "1" on the diagonal positions and therefore not all elements can be ``nilled''. This also guarantees that other cofactors in this second term are then also zero, which can be seen by moving the vertical line through column $j$ to column $k$, $l \cdots n$. 
-
-In analogy, the cofactors in the third term ($S_{0(i\rightarrow a)}^{(i,\tau)}$) are only zero when the elements in the first row ($s_{ja}$, $s_{ka}$, $s_{la} \cdots s_{na}$) are zero (moving the horizontal line from row $j \cdots n$ with the vertical line through column $i$). 
-
-Finally, the cofactors in the fourth term only become zero when $s_{ia}$ is also zero (horizontal and vertical lines through rows and columns from $j \cdots n$ in equation \ref{ch2.eq.case2}). 
-
-The restriction that the elements in the first row and column of $S_{0(i\rightarrow a)}^{(j,a)}$ ($s_{ia}$, $s_{ij}$, $s_{ik}$, $s_{il}$, $s_{in}$, $s_{ja}$, $s_{ka}$, $s_{la}$ and $s_{na}$) need to be zero indicates that orbital $i$ and $a$ must be chosen orthogonal to each other and to all other orbitals, which rules out the use of Fock matrix elements as aids for the optimization of non-orthogonal orbitals. 
-
-Furthermore, there is no restriction for the orthogonality amongst virtual orbitals, because the Brillouin matrix elements in the first column, except $\left< \Psi_0 | \mathbf{H} - E_0 | \Psi_0 \right>$, only contain a singly excited structure, \textit{viz.} $\Psi_{ia}$. Therefore, only one virtual orbital will be present in \textit{all} determinants.
-
-Because of the orthogonality restrictions which follow from the analysis of equation \ref{ch2.eq.oneelpart}, the other comparisons in equations \ref{ch2.eq.twoelpart} and \ref{ch2.eq.e0part} will not be discussed here, because with orthogonal orbitals $i$ and $a$ the situation explained in Section \ref{ch2.sec.fock} - \textbf{Doubly Occupied Orthogonal Orbitals} is obtained.
 
 \subsubsection{\label{ch2.sec.denominator}Approximation Of The Denominator}
 
