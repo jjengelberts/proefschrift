@@ -13,17 +13,17 @@
 
 In Valence Bond theory the wave function is more complex than in many other methods, like the Molecular Orbital theory \cite{hartree1,hartree2,hartree3,fock}. The VB orbitals have no orthogonality restriction and the wave function consists of multiple structures, consisting of one or more Slater determinants. Despite these computational hurdles, Valence Bond theory has kept a decent following through the years \cite{vboverv1,vboverv2,vboverv3}. One of the reasons is the development of powerful computers. On the other hand several efficient methods to optimize Valence Bond wave functions, Spin-Coupled Valence Bond (SCVB) \cite{scvb1,scvb2,scvb3}, Valence Bond Self-Consistent Field (VBSCF) \cite{vbscf1,vbscf2,koos1,zahid} and an algorithm that uses transition density matrices \cite{song}, have been developed.
 
-Like a Valence Bond wave function, a Multi Configurational Self-Consistent Field (MCSCF) \cite{joop,mcscf,roos1,roos2} wave function is expressed in multiple structures, called Configuration State Functions (CSFs), comparable to VB structures. A peculiar difference, though, is the use of orthogonal orbitals in MCSCF. For the optimization of the orbitals in MCSCF, elements from a single Fock matrix are used to construct  elements of the Hamiltonian matrix \cite{roos1}. The Fock matrix elements have the form:
+Like a Valence Bond wave function, a Multi Configurational Self-Consistent Field (MCSCF) \cite{joop,mcscf,roos1,roos2} wave function is expressed in multiple structures, called Configuration State Functions (CSFs), comparable to VB structures. A peculiar difference, though, is the use of orthogonal orbitals in MCSCF. For the optimization of the orbitals in MCSCF, elements from a single Fock matrix are used to construct elements of the Hamiltonian matrix \cite{roos1}. The Fock matrix elements have the form:
 \begin{equation}
 F_{ia} = h_{ia} + \sum_{\sigma\nu} \left\{ \left[ \chi_i \chi_a | \chi_\sigma \chi_\nu \right] - \left[ \chi_i \chi_\nu | \chi_\sigma \chi_a \right] \right\} P^{(\sigma,\nu)},
 \label{ch2.eq.fock}
 \end{equation}
 in which $F_{ia}$ is the Fock matrix element, $\chi_i$ and $\chi_a$ are spin-orbitals, $h_{ia}$ is the one electron integral $\left< \chi_i | \mathbf{h}| \chi_a \right>$. The double sum on the right hand side is over two electron integrals (Coulomb and exchange) times elements of the density matrix $P^{(\sigma,\nu)}$. 
 
-This saves a substantial amount of computation time, because the Fock matrix elements do not depend on the number of determinants in the wave function, while the Hamiltonian matrix elements do. The central question for this chapter is whether it is also possible to use a single Fock matrix for the optimization of the orbitals in VBSCF, although those are non-orthogonal.
+This saves a substantial amount of computation time, because the Fock matrix needs does not depend on the expansion of the ground state wave function into the Super CI wave function \cite{superci1,superci2}. The central question for this chapter is whether it is also possible to use a single Fock matrix for the optimization of the orbitals in VBSCF, although those are non-orthogonal.
 
-Song \textit{et al.} have shown that a VB wave function can be optimized with the help of transition density matrices from which multiple Fock matrices are constructed \cite{song}. The difference with the approach presented in this chapter is that here only a single Fock matrix is used that does not depend on the number of determinants.
- 
+Song \textit{et al.} have shown that a VB wave function can be optimized with the help of transition density matrices from which multiple Fock matrices are constructed \cite{song}. The difference with the approach presented in this chapter is that here only a single Fock matrix is used that only depends on the number of determinants in the ground state wave function.
+
 At first, the usability of Fock matrix elements in the Hamiltonian matrix is analyzed by comparing the expression for Fock matrix elements, equation \ref{ch2.eq.fock}, with the expression for Hamiltonian matrix elements by L\"{o}wdin \cite{lowdin}:
 \begin{equation}
 \left< \Delta_p | \hat{H} | \Delta_q \right> = \sum_{ik} h_{ik}S^{(i,k)} + \sum_{i<j,k<l} \left\{ \left[ \chi_i \chi_k | \chi_j \chi_l \right] - \left[ \chi_i \chi_l | \chi_j \chi_k \right] \right\}S^{(i,j,k,l)},
@@ -50,7 +50,7 @@ in which $\mathbf{H}$ is the Hamilton operator, $\Psi$ is the wave function and 
 \end{equation}
 These structures are linear combinations of Slater determinants:
 \begin{equation}
-\Phi = \sum_{i} \alpha_i \Delta_i,
+\Phi = \sum_{i} \gamma_i \Delta_i,
 \label{ch2.eq.struct}
 \end{equation}
 which are antisymmetrized products of spin-orbitals:
@@ -178,22 +178,24 @@ A further reduction of the calculation time can be achieved when the numerator a
 
 \subsection{\label{ch2.sec.fock}Fock Matrix Elements} 
 
-Roos \textit{et al.} showed that Brillouin matrix elements could be replaced by elements of the Fock matrix, based on the density matrix, for Complete Active Space Self-Consistent Field (CASSCF) wave functions \cite{roos1}. They derived three different formulas for three types of excitations:
+Roos \textit{et al.} showed that Brillouin matrix elements could be replaced by elements of the Fock matrix, based on the density matrix, for Complete Active Space Self-Consistent Field (CASSCF) wave functions \cite{roos1}. A CASSCF wave function is an MCSCF wave function for which all possible electron distributions in the variably occupied orbital space are included. They derived three different expressions with Fock matrix elements for three types of excitations:
 \begin{itemize}
 \item{$i \rightarrow a$ from (always) doubly occupied to virtual orbitals}
 \item{$t \rightarrow a$ from variably occupied to virtual orbitals}
 \item{$i \rightarrow t$ from (always) doubly to variably occupied orbitals}
 \end{itemize}
-There is a fourth type of excitation, $t \rightarrow t$ from variably to variably occupied orbitals. This is not needed for CASSCF, because all possible electron distributions in the variably occupied orbital space are already included in $\Psi_0$ and hence no extra excited structures, or CSFs, can be formed.
+The fourth type of excitation, $t \rightarrow t$ from variably to variably occupied orbitals, is not needed in CASSCF, because all possible electron distributions in the variably occupied orbital space are already included in $\Psi_0$. In this section all four types of excitations will be analyzed with L\"{o}wdins equation.
 
-In this section all four types of excitations will be analyzed in L\"{o}wdins formula. Although not necessary, it is convenient to orthogonalize as many orbitals onto each other as possible \cite{vbscf2}. This results in the two occupied orbital subsets mentioned earlier, the always doubly occupied orbitals and the variably occupied orbitals. The remaining unoccupied orbitals are mostly chosen orthogonal to all other orbitals. For a detailed description of the construction of the virtual subspace, see the first appendix in reference \cite{koos1}.
+\subsubsection{\label{ch2.sec.i-a}$i \rightarrow a$ from (always) doubly to virtual orbitals}
 
-To analyze all four excitation types, a single determinant wave function is constructed from one doubly occupied orbital, $\phi_i$, which results in the two spin-orbitals $\chi_i \equiv \phi_i$ and $\chi_j \equiv \overline{\phi_i}$. Furthermore, there are three variably occupied orbitals $\chi_t$, $\chi_u$ and $\chi_v$. Spin for these orbitals is not specified and hence no attention needs to be paid to the spin integration in the overlap matrices that follow. The ground state wave function $\Psi_0$ is then:
+The analysis of excitations of the type $i \rightarrow a$ is split into two parts. Firstly, the equality of the Brillouin matrix element with the Fock matrix is investigated for a single determinant wave function. After that, a wave function with multiple determinants is defined and analyzed.
+
+The single determinant wave function has one doubly occupied orbital, $\phi_i$, being two spin-orbitals $\chi_i \equiv \phi_i$ and $\chi_j \equiv \overline{\phi_i}$. Furthermore, it has three variably occupied orbitals $\chi_t$, $\chi_u$ and $\chi_v$. Spin for these orbitals is not specified and hence no attention needs to be paid to the spin integration in the overlap matrices that follow. The ground state wave function $\Psi_0$ is then:
 \begin{equation}
 \Psi_0 = |\chi_i\chi_j\chi_t\chi_u\chi_v|.
 \label{ch2.eq.wfexamp}
 \end{equation}
-The overlap $\left < \Psi_0 | \Psi_0 \right>$ is the determinant of the overlap matrix:
+Although not necessary, it is convenient to orthogonalize as many orbitals onto each other as possible \cite{vbscf2}. This results in the two occupied orbital subsets mentioned earlier, the always doubly occupied orbitals and the variably occupied orbitals. The remaining unoccupied orbitals are mostly chosen orthogonal to all other orbitals. For a detailed description of the construction of the virtual subspace, see the first appendix in reference \cite{koos1}. The overlap $\left < \Psi_0 | \Psi_0 \right>$ is the determinant of the overlap matrix:
 \begin{equation}
 \left < \Psi_0 | \Psi_0 \right> = | \mathbf{S} | =
 \begin{array}{llllll}
@@ -207,8 +209,35 @@ The overlap $\left < \Psi_0 | \Psi_0 \right>$ is the determinant of the overlap 
 \label{ch2.eq.s0}
 \end{equation}
 
+The density matrix, needed for the Fock matrix, is constructed from first order cofactors. An example of a density matrix element is $P^{(t,u)}$:
 \begin{equation}
-\left < \Psi_0 | \Psi_{ia} \right > = 
+P^{(t,u)}=
+\begin{array}{llllll}
+ & \hskip 46.0 pt \hbox{\lower 93pt\hbox{\vrule height100pt width 1.0pt}}\hskip-47.0pt \chi_i & \chi_j & \chi_t & \chi_u & \chi_v \\
+ \noalign{\vskip-91pt}
+ \chi_i &  \multicolumn{1}{|l}{ 1 } & 0 & 0 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_j & \multicolumn{1}{|l}{ 0 } & 1 & 0 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_t & \multicolumn{1}{|l}{ 0 } & 0 & 1 & s_{ut} & \multicolumn{1}{l|}{s_{vt}} \\
+ \chi_u & \multicolumn{1}{|l}{ 0 } & 0 & s_{tu} & 1 & \multicolumn{1}{l|}{s_{vu}} \\
+ \noalign{\vskip-8pt}
+ \multispan6\hbox{\vrule  height 1.0 pt width130pt}\cr
+ \noalign{\vskip 7pt}
+ \chi_v & \multicolumn{1}{|l}{ 0 } & 0 & s_{tv} & s_{uv} & \multicolumn{1}{l|}{ 1 }
+\end{array} =
+\begin{array}{lllll}
+ &  \chi_i & \chi_j & \chi_u & \chi_v \\
+ \chi_i & \multicolumn{1}{|l}{ 1 } & 0 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_j & \multicolumn{1}{|l}{ 0 } & 1 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_t & \multicolumn{1}{|l}{ 0 } & 0 & s_{ut} & \multicolumn{1}{l|}{s_{vt}} \\
+ \chi_v & \multicolumn{1}{|l}{ 0 } & 0 & s_{uv} & \multicolumn{1}{l|}{1}
+\end{array},
+\label{ch2.eq.p0examp}
+\end{equation}
+which is a cofactor, or subdeterminant of the overlap matrix.
+
+Since $\psi_i$ is doubly occupied, in $\chi_i$ and $\chi_j$, there are also two virtual orbitals for $\psi_a$, being $\chi_a \equiv \psi_a$ and $\chi_b \equiv \overline{\psi_a}$. The singly excited state wave function is $\Psi_{ia} = |\chi_a\chi_j\chi_t\chi_u\chi_v| + |\chi_i\chi_b\chi_t\chi_u\chi_v|$. These determinants will be referred to as $\Delta_{ia}$ and $\Delta_{jb}$, respectively. The overlap between $\Psi_0$, denoted here as $\Delta_0$, and both these determinants is:
+\begin{equation}
+\left < \Delta_0 | \Delta_{ia} \right > = 
 \begin{array}{llllll}
  &  \chi_i & \chi_j & \chi_t & \chi_u & \chi_v \\
  \chi_a & \multicolumn{1}{|l}{ 0 } & 0 & 0 & 0 & \multicolumn{1}{l|}{ 0 } \\
@@ -216,7 +245,12 @@ The overlap $\left < \Psi_0 | \Psi_0 \right>$ is the determinant of the overlap 
  \chi_t & \multicolumn{1}{|l}{ 0 } & 0 & 1 & s_{ut} & \multicolumn{1}{l|}{s_{vt}} \\
  \chi_u & \multicolumn{1}{|l}{ 0 } & 0 & s_{tu} & 1 & \multicolumn{1}{l|}{s_{vu}} \\
  \chi_v & \multicolumn{1}{|l}{ 0 } & 0 & s_{tv} & s_{uv} & \multicolumn{1}{l|}{1}
-\end{array} +
+\end{array}
+\label{ch2.eq.psi0_ia}
+\end{equation}
+and
+\begin{equation}
+\left < \Delta_0 | \Delta_{jb} \right > = 
 \begin{array}{llllll}
  &  \chi_i & \chi_j & \chi_t & \chi_u & \chi_v \\
  \chi_i & \multicolumn{1}{|l}{ 1 } & 0 & 0 & 0 & \multicolumn{1}{l|}{ 0 } \\
@@ -224,9 +258,210 @@ The overlap $\left < \Psi_0 | \Psi_0 \right>$ is the determinant of the overlap 
  \chi_t & \multicolumn{1}{|l}{ 0 } & 0 & 1 & s_{ut} & \multicolumn{1}{l|}{s_{vt}} \\
  \chi_u & \multicolumn{1}{|l}{ 0 } & 0 & s_{tu} & 1 & \multicolumn{1}{l|}{s_{vu}} \\
  \chi_v & \multicolumn{1}{|l}{ 0 } & 0 & s_{tv} & s_{uv} & \multicolumn{1}{l|}{1}
-\end{array}.
-\label{ch2.eq.psi_ia}
+\end{array},
+\label{ch2.eq.psi0_jb}
 \end{equation}
+which are both zero, because they contain a row and a column with zeroes.
+
+To construct the Brillouin matrix element (equation \ref{ch2.eq.lowdindeterminants}), first and second order cofactors from the determinants in equations \ref{ch2.eq.psi0_ia} and \ref{ch2.eq.psi0_jb} are needed. Only two first order cofactors have a non zero value, $S^{(i,a)}$ created by removing column $\chi_i$ and row $\chi_a$ from the determinant in equation \ref{ch2.eq.psi0_ia} and $S^{(j,b)}$ created by removing column $\chi_j$ and row $\chi_b$ from the determinant in equation \ref{ch2.eq.psi0_jb}. Other first order cofactors will be zero, because removing any other row or column will lead to a row or column with zeroes.
+
+This means that per determinant combination only a single one electron integral contributes to the Brillouin matrix element, \textit{i.e.} $h_{ia} \cdot S^{(i,a)}$ and $h_{jb} \cdot S^{(j,b)}$. While the spin parts in $h_{ia}$ and $h_{jb}$ differ, $\chi_i$ and $\chi_a$ have $\alpha$ spin and $\chi_j$ and $\chi_b$ have $\beta$ spin, their spatial parts are equal. Furthermore, the first order cofactors, $S^{(i,a)}$ and $S^{(j,b)}$, and the overlap determinant (equation \ref{ch2.eq.s0}) differ one unit in rank. The overlap determinant has a single ``1'' on the diagonal of the extra row and column and hence these cofactors are equal to the overlap:
+\begin{equation}
+|\mathbf{S}| =
+\begin{array}{llllll}
+ &  \chi_i & \chi_j & \chi_t & \chi_u & \chi_v \\
+ \chi_i & \multicolumn{1}{|l}{ 1 } & 0 & 0 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_j & \multicolumn{1}{|l}{ 0 } & 1 & 0 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_t & \multicolumn{1}{|l}{ 0 } & 0 & 1 & s_{ut} & \multicolumn{1}{l|}{s_{vt}} \\
+ \chi_u & \multicolumn{1}{|l}{ 0 } & 0 & s_{tu} & 1 & \multicolumn{1}{l|}{s_{vu}} \\
+ \chi_v & \multicolumn{1}{|l}{ 0 } & 0 & s_{tv} & s_{uv} & \multicolumn{1}{l|}{1}
+\end{array}=
+\begin{array}{lllll}
+ &  \chi_j & \chi_t & \chi_u & \chi_v \\
+ \chi_j & \multicolumn{1}{|l}{ 1 } & 0 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_t & \multicolumn{1}{|l}{ 0 } & 1 & s_{ut} & \multicolumn{1}{l|}{ s_{vt} } \\
+ \chi_u & \multicolumn{1}{|l}{ 0 } & s_{tu} & 1 & \multicolumn{1}{l|}{s_{vu}} \\
+ \chi_v & \multicolumn{1}{|l}{ 0 } & s_{tv} & s_{uv} & \multicolumn{1}{l|}{1}
+\end{array}=
+S^{(i,a)},
+\label{ch2.eq.sissia}
+\end{equation}
+and
+\begin{equation}
+S^{(i,a)}=
+\begin{array}{lllll}
+ &  \chi_j & \chi_t & \chi_u & \chi_v \\
+ \chi_j & \multicolumn{1}{|l}{ 1 } & 0 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_t & \multicolumn{1}{|l}{ 0 } & 1 & s_{ut} & \multicolumn{1}{l|}{ s_{vt} } \\
+ \chi_u & \multicolumn{1}{|l}{ 0 } & s_{tu} & 1 & \multicolumn{1}{l|}{s_{vu}} \\
+ \chi_v & \multicolumn{1}{|l}{ 0 } & s_{tv} & s_{uv} & \multicolumn{1}{l|}{1}
+\end{array}=
+\begin{array}{lllll}
+ &  \chi_i & \chi_t & \chi_u & \chi_v \\
+ \chi_i & \multicolumn{1}{|l}{ 1 } & 0 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_t & \multicolumn{1}{|l}{ 0 } & 1 & s_{ut} & \multicolumn{1}{l|}{ s_{vt} } \\
+ \chi_u & \multicolumn{1}{|l}{ 0 } & s_{tu} & 1 & \multicolumn{1}{l|}{s_{vu}} \\
+ \chi_v & \multicolumn{1}{|l}{ 0 } & s_{tv} & s_{uv} & \multicolumn{1}{l|}{1}
+\end{array}=
+S^{(j,b)}.
+\end{equation}
+Since the wave function $\Psi_0$ is normalized, its overlap is one. Therefore, $S^{(i,a)}$ and $S^{(j,b)}$ are also one and with it the one electron contribution to the Brillouin matrix element reduces to $2 \cdot h_{ia}$.
+
+The two electron integrals in equation \ref{ch2.eq.lowdindeterminants} are multiplied by second order cofactors. This means that besides removing column $\chi_i$ and row $\chi_a$ from the determinant in equation \ref{ch2.eq.psi0_ia} and column $\chi_j$ and row $\chi_b$ from the determinant in equation \ref{ch2.eq.psi0_jb}, another row and column need to be removed to create these second order cofactors. Since index $i$ and $a$ (equation \ref{ch2.eq.psi0_ia}) and $j$ and $b$ (equation \ref{ch2.eq.psi0_jb}) are fixed, the summation in the two electron integral part of equation \ref{ch2.eq.lowdindeterminants} will only run over the other two indexes $\sigma$ and $\nu$:
+\begin{equation}
+\sum_{\sigma\nu} \left\{ [\chi_i\chi_a|\chi_\sigma\chi_\nu] - [\chi_i\chi_\nu|\chi_\sigma\chi_a] \right\} S^{(i,\sigma,a,\nu)}
+\label{ch2.eq.twoel_ia}
+\end{equation}
+and
+\begin{equation}
+\sum_{\sigma\nu} \left\{ [\chi_j\chi_b|\chi_\sigma\chi_\nu] - [\chi_j\chi_\nu|\chi_\sigma\chi_b] \right\} S^{(j,\sigma,b,\nu)}
+\label{ch2.eq.twoel_jb}
+\end{equation}
+Because the operator in the two electron integral part, $\frac{1}{r_{12}}$, only operates on the spatial coordinates, the expressions in equations \ref{ch2.eq.twoel_ia} and \ref{ch2.eq.twoel_jb} are the same. Furthermore, second order cofactors $S^{(i,\sigma,a,\nu)}$ are equal to density matrix elements $P^{(\sigma,\nu)}$ (equation \ref{ch2.eq.p0examp}). The rank of a density matrix element is one higher than that of a second order cofactor. Like in the one electron part case, this extra rank has a ``1'' on the diagonal, while the rest of its column and row are zero. An example is the previously mentioned $P^{(t,u)}$ (equation \ref{ch2.eq.p0examp}) which is equal to $S^{(i,t,a,u)}$:
+\begin{equation}
+P^{(t,u)}=
+\begin{array}{lllll}
+ &  \chi_i & \chi_j & \chi_u & \chi_v \\
+ \chi_i & \multicolumn{1}{|l}{ 1 } & 0 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_j & \multicolumn{1}{|l}{ 0 } & 1 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_t & \multicolumn{1}{|l}{ 0 } & 0 & s_{ut} & \multicolumn{1}{l|}{s_{vt}} \\
+ \chi_v & \multicolumn{1}{|l}{ 0 } & 0 & s_{uv} & \multicolumn{1}{l|}{1}
+\end{array}=
+\begin{array}{llll}
+ & \chi_j & \chi_u & \chi_v \\
+ \chi_j & \multicolumn{1}{|l}{ 1 } & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_t & \multicolumn{1}{|l}{ 0 } & s_{ut} & \multicolumn{1}{l|}{s_{vt}} \\
+ \chi_v & \multicolumn{1}{|l}{ 0 } & s_{uv} & \multicolumn{1}{l|}{1}
+\end{array}=S^{(i,t,a,u)}.
+\end{equation}
+With this, the total two electron integral contribution reduces to:
+\begin{equation}
+2 \cdot \sum_{\sigma\nu} \left\{ [\chi_i\chi_a|\chi_\sigma\chi_\nu] - [\chi_i\chi_\nu|\chi_\sigma\chi_a] \right\} P^{(\sigma,\nu)}.
+\label{ch2.eq.twoel_ia_tot}
+\end{equation}
+Therefore, the total Brillouin matrix element is:
+\begin{equation}
+\begin{split}
+\left < \Psi_0 | \hat{H} | \Psi_{ia} \right > & = 2 \cdot ( h_{ia} + \sum_{\sigma\nu} \left\{ [\chi_i\chi_a|\chi_\sigma\chi_\nu] - [\chi_i\chi_\nu|\chi_\sigma\chi_a] \right\} P^{(\sigma,\nu)}) \\
+& = 2 \cdot F_{ia}.
+\end{split}
+\end{equation}
+
+Up till here only a single determinant wave function was used. A VB wave function consists of any number of determinants and therefore the derivation above will be expanded to multiple determinants. A new VB wave function, consisting of one doubly occupied orbital $\psi_i$, expressed in spin-orbitals $\chi_i$ and $\chi_j$, and four partly occupied orbital, $\chi_t$, $\chi_u$, $\chi_v$ and $\chi_x$, is defined:
+\begin{equation}
+\Psi_0 = |\chi_i\chi_j\chi_t\chi_u|+|\chi_i\chi_j\chi_v\chi_x|.
+\label{ch2.eq.wfexamp2}
+\end{equation}
+The corresponding overlap determinant $|\mathbf{S}| = \left< \Psi_0 | \Psi_0 \right>$ is:
+\begin{equation}
+\begin{split}
+|\mathbf{S}|=&
+\begin{array}{lllll}
+ &  \chi_i & \chi_j & \chi_t & \chi_u \\
+ \chi_i & \multicolumn{1}{|l}{ 1 } & 0 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_j & \multicolumn{1}{|l}{ 0 } & 1 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_t & \multicolumn{1}{|l}{ 0 } & 0 & 1 & \multicolumn{1}{l|}{s_{ut}} \\
+ \chi_u & \multicolumn{1}{|l}{ 0 } & 0 & s_{tu} & \multicolumn{1}{l|}{1}
+\end{array}+
+\begin{array}{lllll}
+ &  \chi_i & \chi_j & \chi_t & \chi_u \\
+ \chi_i & \multicolumn{1}{|l}{ 1 } & 0 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_j & \multicolumn{1}{|l}{ 0 } & 1 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_v & \multicolumn{1}{|l}{ 0 } & 0 & s_{tv} & \multicolumn{1}{l|}{s_{uv}} \\
+ \chi_x & \multicolumn{1}{|l}{ 0 } & 0 & s_{tx} & \multicolumn{1}{l|}{s_{ux}}
+\end{array} \\
+& + \begin{array}{lllll}
+ &  \chi_i & \chi_j & \chi_v & \chi_x \\
+ \chi_i & \multicolumn{1}{|l}{ 1 } & 0 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_j & \multicolumn{1}{|l}{ 0 } & 1 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_t & \multicolumn{1}{|l}{ 0 } & 0 & s_{vt} & \multicolumn{1}{l|}{s_{xt}} \\
+ \chi_u & \multicolumn{1}{|l}{ 0 } & 0 & s_{vu} & \multicolumn{1}{l|}{s_{xu}}
+\end{array}+
+\begin{array}{lllll}
+ &  \chi_i & \chi_j & \chi_v & \chi_x \\
+ \chi_i & \multicolumn{1}{|l}{ 1 } & 0 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_j & \multicolumn{1}{|l}{ 0 } & 1 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_v & \multicolumn{1}{|l}{ 0 } & 0 & 1 & \multicolumn{1}{l|}{s_{xv}} \\
+ \chi_x & \multicolumn{1}{|l}{ 0 } & 0 & s_{vx} & \multicolumn{1}{l|}{ 1 }
+\end{array}.
+\end{split}
+\label{ch2.eq.s02}
+\end{equation}
+
+The density matrix is constructed by looping through the determinants in equation \ref{ch2.eq.s02} and if the row and column index of the density matrix element are present in the determinant, a cofactor is created and added to the density matrix element. Since orbitals $\chi_i$ and $\chi_j$ occur in all determinants, density matrix elements $P^{(i,i)}$ and $P^{(j,j)}$ get a contribution from cofactors of all these determinants. Other elements get a contribution from less determinants, a single one in this case. For example, $P^{(t,x)}$ is:
+\begin{equation}
+P^{(t,x)}=
+\begin{array}{llll}
+ &  \chi_i & \chi_j & \chi_u \\
+ \chi_i & \multicolumn{1}{|l}{ 1 } & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_j & \multicolumn{1}{|l}{ 0 } & 1 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_v & \multicolumn{1}{|l}{ 0 } & 0 & \multicolumn{1}{l|}{ s_{uv} }
+\end{array}.
+\label{ch2.eq.p0examp2}
+\end{equation} 
+
+In the one determinant case it has been shown that the procedure for $\alpha$ and $\beta$ spin is the same. Therefore, only the excitation for the $\alpha$ spin electron will be analyzed. The overlap of $\Psi_0$ with $\Psi_{ia}$ is:
+\begin{equation}
+\begin{split}
+\left<\Psi_0|\Psi_{ia} \right> =&
+\begin{array}{lllll}
+ &  \chi_i & \chi_j & \chi_t & \chi_u \\
+ \chi_a & \multicolumn{1}{|l}{ 0 } & 0 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_j & \multicolumn{1}{|l}{ 0 } & 1 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_t & \multicolumn{1}{|l}{ 0 } & 0 & 1 & \multicolumn{1}{l|}{s_{ut}} \\
+ \chi_u & \multicolumn{1}{|l}{ 0 } & 0 & s_{tu} & \multicolumn{1}{l|}{1}
+\end{array}+
+\begin{array}{lllll}
+ &  \chi_i & \chi_j & \chi_t & \chi_u \\
+ \chi_a & \multicolumn{1}{|l}{ 0 } & 0 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_j & \multicolumn{1}{|l}{ 0 } & 1 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_v & \multicolumn{1}{|l}{ 0 } & 0 & s_{tv} & \multicolumn{1}{l|}{s_{uv}} \\
+ \chi_x & \multicolumn{1}{|l}{ 0 } & 0 & s_{tx} & \multicolumn{1}{l|}{s_{ux}}
+\end{array} \\
+& +\begin{array}{lllll}
+ &  \chi_i & \chi_j & \chi_v & \chi_x \\
+ \chi_a & \multicolumn{1}{|l}{ 0 } & 0 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_j & \multicolumn{1}{|l}{ 0 } & 1 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_t & \multicolumn{1}{|l}{ 0 } & 0 & s_{vt} & \multicolumn{1}{l|}{s_{xt}} \\
+ \chi_u & \multicolumn{1}{|l}{ 0 } & 0 & s_{vu} & \multicolumn{1}{l|}{s_{xu}}
+\end{array}+
+\begin{array}{lllll}
+ &  \chi_i & \chi_j & \chi_v & \chi_x \\
+ \chi_a & \multicolumn{1}{|l}{ 0 } & 0 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_j & \multicolumn{1}{|l}{ 0 } & 1 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_v & \multicolumn{1}{|l}{ 0 } & 0 & 1 & \multicolumn{1}{l|}{s_{xv}} \\
+ \chi_x & \multicolumn{1}{|l}{ 0 } & 0 & s_{vx} & \multicolumn{1}{l|}{ 1 }
+\end{array}.
+\end{split}
+\label{ch2.eq.psi0_ia2}
+\end{equation}
+The only one electron contribution that adds to the Brillouin matrix element is $h_{ia}$, because it is multiplied by non zero  cofactors created by removing column $\chi_i$ and row $\chi_a$ from all four determinants in equation \ref{ch2.eq.psi0_ia2}. The sum of these four cofactors is equal to the sum in equation \ref{ch2.eq.s02}. Since $\Psi_0$ is normalized, this is equal to one. The contribution is then, like for the one determinant case, $h_{ia}$ for $\alpha$ spin.
+
+Only those two electron integrals that contain second order cofactors in which column $\chi_i$ and row $\chi_a$ are removed occur. One such a two electron integral that contributes is: 
+\begin{equation}
+\left\{ [\chi_i\chi_a|\chi_t\chi_x] - [\chi_i\chi_x|\chi_t\chi_a] \right\} S^{(i,t,a,x)},
+\label{ch2.eq.twoelexamp2}
+\end{equation}
+in which
+\begin{equation}
+S^{(i,t,a,x)}= 
+\begin{array}{lll}
+ &  \chi_j & \chi_u \\
+ \chi_j & \multicolumn{1}{|l}{ 1 } & \multicolumn{1}{l|}{ 0 } \\
+ \chi_v & \multicolumn{1}{|l}{ 0 } & \multicolumn{1}{l|}{ s_{uv} }
+\end{array}=
+\begin{array}{llll}
+ &  \chi_i & \chi_j & \chi_u \\
+ \chi_i & \multicolumn{1}{|l}{ 1 } & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_j & \multicolumn{1}{|l}{ 0 } & 1 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_v & \multicolumn{1}{|l}{ 0 } & 0 & \multicolumn{1}{l|}{ s_{uv} }
+\end{array}=
+P^{(t,x)}
+\label{ch2.eq.cofac2isp2}
+\end{equation}
+
+\subsubsection{\label{ch2.sec.t-a}$t \rightarrow a$ from variably occupied to virtual orbitals}
+
 
 
 \subsubsection{\label{ch2.sec.denominator}Approximation Of The Denominator}
