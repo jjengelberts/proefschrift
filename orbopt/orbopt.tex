@@ -184,7 +184,7 @@ Roos \textit{et al.} showed that Brillouin matrix elements of the type $\left< \
 \item{$t \rightarrow a$ from variably occupied to virtual orbitals}
 \item{$i \rightarrow t$ from (always) doubly to variably occupied orbitals}
 \end{itemize}
-The fourth type of excitation, $t \rightarrow t$ from variably to variably occupied orbitals, is not needed in CASSCF, because all possible electron distributions in the variably occupied orbital space are already included in $\Psi_0$. In this section all four types of excitations will be analyzed with L\"{o}wdins equation.
+The fourth type of excitation, $t \rightarrow t$ from variably to variably occupied orbitals, is not needed in CASSCF, because all possible electron distributions in the variably occupied orbital space are already included in $\Psi_0$. In this section Brillouin matrix elements of the type $\left< \Psi_0 | \mathbf{H} | \Psi_{ia} \right>$ will be analyzed for all four types of excitations (L\"{o}wdins equation \ref{ch2.eq.lowdindeterminants}).
 
 \subsubsection{\label{ch2.sec.i-a}$i \rightarrow a$ from (always) doubly to virtual orbitals}
 
@@ -307,14 +307,14 @@ S^{(j,b)}.
 \end{equation}
 Since the wave function $\Psi_0$ is normalized, its overlap is one. Therefore, $S^{(i,a)}$ and $S^{(j,b)}$ are also one and with it the one electron contribution to the Brillouin matrix element reduces to $2 \cdot h_{ia}$.
 
-The two electron integrals in equation \ref{ch2.eq.lowdindeterminants} are multiplied by second order cofactors. This means that besides removing column $\chi_i$ and row $\chi_a$ from the determinant in equation \ref{ch2.eq.psi0_ia} and column $\chi_j$ and row $\chi_b$ from the determinant in equation \ref{ch2.eq.psi0_jb}, another row and column need to be removed to create these second order cofactors. Since index $i$ and $a$ (equation \ref{ch2.eq.psi0_ia}) and $j$ and $b$ (equation \ref{ch2.eq.psi0_jb}) are fixed, the summation in the two electron integral part of equation \ref{ch2.eq.lowdindeterminants} will only run over the other two indexes $\sigma$ and $\nu$:
+The two electron integrals in equation \ref{ch2.eq.lowdindeterminants} are multiplied by second order cofactors. This means that besides removing column $\chi_i$ and row $\chi_a$ from the determinant in equation \ref{ch2.eq.psi0_ia} and column $\chi_j$ and row $\chi_b$ from the determinant in equation \ref{ch2.eq.psi0_jb}, another row and column need to be removed. Since index $i$ and $a$ (equation \ref{ch2.eq.psi0_ia}) and $j$ and $b$ (equation \ref{ch2.eq.psi0_jb}) are fixed, the summation in the two electron integral part of equation \ref{ch2.eq.lowdindeterminants} will only run over the other two indexes $\sigma$ and $\nu$:
 \begin{equation}
-\sum_{\sigma\nu} \left\{ [\chi_i\chi_a|\chi_\sigma\chi_\nu] - [\chi_i\chi_\nu|\chi_\sigma\chi_a] \right\} \cdot S^{(i,\sigma,a,\nu)}
+\sum_{\sigma\nu} \left\{ [\chi_i\chi_a|\chi_\sigma\chi_\nu] - [\chi_i\chi_\nu|\chi_\sigma\chi_a] \right\} \cdot S^{(i,\sigma,a,\nu)},
 \label{ch2.eq.twoel_ia}
 \end{equation}
 and
 \begin{equation}
-\sum_{\sigma\nu} \left\{ [\chi_j\chi_b|\chi_\sigma\chi_\nu] - [\chi_j\chi_\nu|\chi_\sigma\chi_b] \right\} \cdot S^{(j,\sigma,b,\nu)}
+\sum_{\sigma\nu} \left\{ [\chi_j\chi_b|\chi_\sigma\chi_\nu] - [\chi_j\chi_\nu|\chi_\sigma\chi_b] \right\} \cdot S^{(j,\sigma,b,\nu)}.
 \label{ch2.eq.twoel_jb}
 \end{equation}
 Because the operator in the two electron integral part, $\frac{1}{r_{12}}$, only operates on the spatial coordinates, the expressions in equations \ref{ch2.eq.twoel_ia} and \ref{ch2.eq.twoel_jb} are the same. Furthermore, second order cofactors $S^{(i,\sigma,a,\nu)}$ are equal to density matrix elements $P^{(\sigma,\nu)}$ (equation \ref{ch2.eq.p0examp}). The rank of a density matrix element is one higher than that of a second order cofactor. Like in the one electron part case, this extra rank has a ``1'' on the diagonal, while the rest of its column and row are zero. An example is the previously mentioned $P^{(t,u)}$ (equation \ref{ch2.eq.p0examp}) which is equal to $S^{(i,t,a,u)}$:
@@ -479,6 +479,7 @@ So, for the case with multiple determinants, the equality of equation \ref{ch2.e
 The next type of excitation that will be investigated is from variably occupied to virtual orbitals ($t \rightarrow a$). For the analyses a two determinant wave function is defined from the variably occupied orbitals $\chi_t$, $\chi_u$, $\chi_v$, $\chi_x$, $\chi_y$ and $\chi_z$: 
 \begin{equation}
 \Psi_0=|\chi_t\chi_u\chi_v|+|\chi_x\chi_y\chi_z|.
+\label{ch2.eq.wfexamp3}
 \end{equation}
 The corresponding overlap determinant $|\mathbf{S}| = \left< \Psi_0 | \Psi_0 \right>$ is:
 \begin{equation}
@@ -545,13 +546,13 @@ The structure of the density matrix elements, created from the determinants in e
 
 \subsubsection{\label{ch2.sec.i-t}$i \rightarrow t$ from (always) doubly to variably occupied orbitals}
 
-For the examination of the case where an excitation takes place from the doubly occupied orbitals, a two determinant wave function is constructed. This wave function contains $\chi_i \equiv \psi_i$, $\chi_j \equiv \overline{\psi_i}$, $\chi_t$, $\chi_u$, $\chi_v$ and $\chi_x$:
+For the examination of the case where an excitation takes place from the doubly occupied orbitals, a two determinant wave function is constructed containing $\chi_i \equiv \psi_i$, $\chi_j \equiv \overline{\psi_i}$, $\chi_t$, $\chi_u$, $\chi_v$ and $\chi_x$:
 \begin{equation}
 \Psi_0 = |\chi_i\chi_j\chi_t\chi_u| + |\chi_i\chi_j\chi_v\chi_x|.
 \end{equation}
 The overlap for this wave function has already been used before (equation \ref{ch2.eq.s02}).
 
-The excitation that will be examined is from $\chi_i$ to $\chi_t$. Since $\chi_t$ is already occupied in the first determinant of $\Psi_0$, only the second determinant, with $\chi_i$ replaced by $\chi_t$ will be present in $\Psi_{it}$:
+The excitation that will be examined is from $\chi_i$ to $\chi_t$. Since $\chi_t$ is already occupied in the first determinant of $\Psi_0$, only the second determinant, with $\chi_i$ replaced by $\chi_t$, will be present in $\Psi_{it}$:
 \begin{equation}
 \Psi_{it} = |\chi_t\chi_j\chi_v\chi_x|.
 \end{equation}
@@ -595,17 +596,11 @@ Both cofactors are no subdeterminants of the determinants in equation \ref{ch2.e
 
 \subsubsection{\label{ch2.sec.t-t}$t \rightarrow t$ from variably to variably occupied orbitals}
 
-For the last type of excitation, the wave function construc
-\begin{equation}
-\Psi_0 = |\chi_t\chi_u\chi_v|+|\chi_x\chi_y\chi_z|.
-\end{equation}
-
-Overlap in equation \ref{ch2.eq.s03}
-
+For the last type of excitation, the wave function and corresponding overlap in equations \ref{ch2.eq.wfexamp3} and \ref{ch2.eq.s03}, respectively, are used. From this wave function orbital $\chi_t$ is excited to orbital $\chi_y$. Since $\chi_y$ is already present in the second Slater determinant of $\Psi_0$, only the first determinant, with $\chi_t$ replaced by $\chi_y$, is present in the singly excited state wave function $\Psi_{ty}$:
 \begin{equation}
 \Psi_{ty} = |\chi_y\chi_u\chi_v|.
 \end{equation}
-
+The overlap matrix of $\Psi_0$ with $\Psi_{ty}$ is:
 \begin{equation}
 \left< \Psi_0 | \Psi_{ty} \right> =
 \begin{array}{llll}
@@ -623,9 +618,24 @@ Overlap in equation \ref{ch2.eq.s03}
 \label{ch2.eq.psi0_tt}
 \end{equation}
 
+One of the one electron integrals that contributes to the Brillouin matrix element is $h_{xu} \cdot S^{(x,u)}$:
+\begin{equation}
+h_{xu} \cdot S^{(x,u)} = h_{xu} \cdot 
+\begin{array}{lll}
+ & \chi_y & \chi_z \\
+ \chi_y & \multicolumn{1}{|l}{ 1 } & \multicolumn{1}{l|}{ s_{zy} } \\
+ \chi_v & \multicolumn{1}{|l}{ s_{yv} } & \multicolumn{1}{l|}{ s_{zv} }
+\end{array}.
+\end{equation} 
+Like in the previous case, there is no element in the density matrix that is equal to this cofactor. Therefore, also in this last case a normal Brillouin matrix element needs to be constructed.
+
+\subsubsection{\label{ch2.sec.delocal}Localized VB wave functions}
+In TURTLE it is possible to restrict orbitals to certain atoms, or fragments of the molecule. This type of wave function is called localized. Within each fragment, the doubly occupied and virtual orbitals are orthogonal to each other. However, between set, overlap of orbitals can occur. This means that doubly occupied orbitals are no longer necessarily orthogonal. In that case the needed single ``1'' on the diagonal of the determinant from which the density matrix element is constructed will not be present. Due to non-orthogonality non-zero elements will show up on the row and column. 
+
+Sometimes, however, spatially orthogonal.
+
 \subsubsection{\label{ch2.sec.denominator}Approximation Of The Denominator}
 
-As stated before, the numerator in equation \ref{ch2.eq.anr} is needed to check whether the minimum in the energy is reached and therefore the Fock matrix element has got to be equal to the Brillouin matrix element. For the denominator, there is no such hard condition, since it is only used as weighting factor. 
 
 The diagonal element in the Brillouin matrix is:
 \begin{equation}
