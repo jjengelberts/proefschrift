@@ -161,7 +161,7 @@ The Brillouin matrix has the same dimension as the $\mathbf{H}$ and $\mathbf{S}$
 
 The calculation of the elements in $\mathbf{H}$ is expensive because of the large number of determinants, caused by the expansion into the Super CI wave function: for each excitation a Brillouin state, containing 1 to 2 times the number of determinants of $\Psi_0$, is added. For each determinant combination the evaluation of (large amounts of) subdeterminants \cite{koos2}, or cofactors\footnote{Cofactors are described in detail in Appendix A.} are required.
 
-To overcome this, van Lenthe \textit{et al.} presented a new method, referred to as approximated Newton-Raphson (Section \ref{ch2.sec.anr}), which requires less $\mathbf{H}$ and $\mathbf{S}$ matrix elements than regular Super CI \cite{koos1}, because elements of the type $\left < \Psi_{ia} | \mathbf{H} - E_0 | \Psi_{ib} \right >$ are not needed.
+Van Lenthe \textit{et al.} presented a new method, referred to as approximated Newton-Raphson (Section \ref{ch2.sec.anr}), which requires less $\mathbf{H}$ and $\mathbf{S}$ matrix elements than regular Super CI \cite{koos1}, because elements of the type $\left < \Psi_{ia} | \mathbf{H} - E_0 | \Psi_{ib} \right >$ are not needed.
 
 \subsection{\label{ch2.sec.anr}The Approximated Newton-Raphson Method}
 
@@ -174,7 +174,7 @@ This means that elements of the type $\left< \Psi_{ia} | \mathbf{H}-E_0 | \Psi_{
 
 Although the update coefficients $b_{ia}$ are calculated in a different way, the total energy $E_0$ will be the same. Once the orbitals are optimal the numerator in equation \ref{ch2.eq.anr} becomes zero and hence the Brillouin condition is fulfilled. 
 
-A further reduction of the calculation time can be achieved when the numerator and the denominator in equation \ref{ch2.eq.anr} could be calculated, or approximated, faster. As indicated in the introduction, the creation of a Fock matrix depends on the number of determinants in the reference wave function, while the Brillouin matrix elements in equation \ref{ch2.eq.anr} depend on all determinants in the expanded Super CI wave function. In the next section, the applicability of Fock matrix elements for the numerator and denominator in equation \ref{ch2.eq.anr} will be investigated.
+A further reduction of the calculation time can be achieved when the numerator and the denominator in equation \ref{ch2.eq.anr} could be calculated, or approximated, faster. As indicated in the introduction, the creation of a Fock matrix depends on the number of determinants in the reference wave function, while the Brillouin matrix elements in equation \ref{ch2.eq.anr} depend on all determinants in the expanded Super CI wave function. Furthermore, multiple Brillouin matrix elements can be replaced by elements of a single Fock matrix. In the next section, the applicability of Fock matrix elements for the numerator and denominator in equation \ref{ch2.eq.anr} will be investigated.
 
 \subsection{\label{ch2.sec.fock}Fock Matrix Elements} 
 
@@ -466,7 +466,7 @@ S^{(i,t,a,x)}=
 P^{(t,x)}.
 \label{ch2.eq.cofac2isp2}
 \end{equation}
-With looping through all contributing second order cofactors, equation \ref{ch2.eq.twoelexamp2}, with the equality of second order cofactors to density matrix elements (equation \ref{ch2.eq.cofac2isp2}), becomes:
+If all contributing second order cofactors are taking into account, a double summation appears. Furthermore, the second order cofactors can be replaced by density matrix elements (equation \ref{ch2.eq.cofac2isp2}):
 \begin{equation}
 \sum_{\sigma\nu} \left\{ [\chi_i\chi_a|\chi_\sigma\chi_\nu] - [\chi_i\chi_\nu|\chi_\sigma\chi_a] \right\} \cdot P^{(\sigma,\nu)}.
 \label{ch2.eq.twoel_ia_tot2}
@@ -536,11 +536,11 @@ The overlap of $\Psi_0$ with this $\Psi_{ta}$ is:
 
 After analysis of the overlap determinants in equation \ref{ch2.eq.psi0_ta}, it is clear that two one electron integrals will add to the Brillouin matrix element, $h_{ta}\cdot S^{(t,a)}$ and $h_{xa}\cdot S^{(x,a)}$. Two sets of two electron integrals contribute to the Brillouin matrix element:
 \begin{equation}
-\sum_{\sigma\nu} \left\{ [\chi_t\chi_a | \chi_\sigma\chi_\nu] - [\chi_t\chi_\nu | \chi_\sigma\chi_a ] \right\} \cdot S^{(t,\sigma,a,\nu)}
+\sum_{\sigma\nu} \left\{ [\chi_t\chi_a | \chi_\sigma\chi_\nu] - [\chi_t\chi_\nu | \chi_\sigma\chi_a ] \right\} \cdot S^{(t,\sigma,a,\nu)},
 \end{equation}
 and
 \begin{equation}
-\sum_{\sigma\nu} \left\{ [\chi_x\chi_a | \chi_\sigma\chi_\nu] - [\chi_x\chi_\nu | \chi_\sigma\chi_a ] \right\} \cdot S^{(x,\sigma,a,\nu)}
+\sum_{\sigma\nu} \left\{ [\chi_x\chi_a | \chi_\sigma\chi_\nu] - [\chi_x\chi_\nu | \chi_\sigma\chi_a ] \right\} \cdot S^{(x,\sigma,a,\nu)}.
 \end{equation}
 The structure of the density matrix elements, created from the determinants in equation \ref{ch2.eq.s03}, is different from the ones in the $i \rightarrow a$ case. The determinants here do not have a single ``1'' on the diagonal and are therefore not equal to the second order cofactors. This means that the second order cofactors need to be calculated and that the Brillouin matrix element is created in the regular way.
 
@@ -630,14 +630,13 @@ h_{xu} \cdot S^{(x,u)} = h_{xu} \cdot
 Like in the previous case, there is no element in the density matrix that is equal to this cofactor. Therefore, also in this last case a normal Brillouin matrix element needs to be constructed.
 
 \subsubsection{\label{ch2.sec.delocal}Localized VB wave functions}
-In TURTLE it is possible to restrict orbitals to certain atoms, or fragments of the molecule. This type of wave function is called localized. Within each fragment, the doubly occupied and virtual orbitals are orthogonal to each other. However, between set, overlap of orbitals can occur. This means that doubly occupied orbitals are no longer necessarily orthogonal. In that case the needed single ``1'' on the diagonal of the determinant from which the density matrix element is constructed will not be present. Due to non-orthogonality non-zero elements will show up on the row and column. 
+In TURTLE it is possible to restrict orbitals to certain atoms, or fragments of the molecule. This type of wave function is called localized. Within each fragment, the doubly occupied and virtual orbitals are orthogonal to each other. However, between set, overlap of orbitals can occur. This means that doubly occupied orbitals from one fragment are no longer necessarily orthogonal to the orbitals in another fragment. In that case the needed single ``1'' on the diagonal of the determinant from which the density matrix element is constructed will not be present. Due to non-orthogonality non-zero elements will show up on the row and column. 
 
-Sometimes, however, spatially orthogonal.
+Sometimes, however, orbitals from different fragments can still be orthogonal due to the symmetry in the molecule (see the example in Section \ref{ch2.sec.aromat}). In that case the elements of the Fock matrix can be used instead of calculating the Brillouin matrix elements.
 
 \subsubsection{\label{ch2.sec.denominator}Approximation Of The Denominator}
 
-
-The diagonal element in the Brillouin matrix is:
+Up till here, the numerator of equation \ref{ch2.eq.anr} has been analyzed. In this section an approximation of the denominator, or the the diagonal element in the Brillouin matrix, will be presented:
 \begin{equation}
 \left< \Psi_{ia} | \mathbf{H}-E_0 | \Psi_{ia} \right>  =  \left< \Psi_{ia} | \mathbf{H} | \Psi_{ia} \right>  - E_0 \left< \Psi_{ia} | \Psi_{ia} \right>.
 \label{ch2.eq.brildiag}
@@ -648,7 +647,7 @@ the expectation value of the energy of the excited state ($\left< \Psi_{ia} | \m
 \frac{\left< \Psi_{ia} | \mathbf{H}-E_0 | \Psi_{ia} \right>}{\left< \Psi_{ia} | \Psi_{ia} \right>} \approx (F_{aa}-F_{ii}).
 \label{ch2.eq.cheapdiag}
 \end{equation}
-This is an approximation, since removing an orbital will influence other orbitals, which is not taken into account here. This approximation may or may not work. An advantage of approximating the diagonal Brillouin matrix element with the difference of two Fock matrix elements is that it saves time, especially when the wave function consists of a lot of determinants. On the other hand, since it is an approximation it might result in more iterations. This means that in some situations/calculations it will speed up, while in others it won't.
+This is an approximation, since removing an orbital will influence other orbitals, which is not taken into account here. This approximation may or may not work. An advantage of approximating the diagonal Brillouin matrix element with the difference of two Fock matrix elements is that it saves time, especially when the wave function consists of a lot of determinants. On the other hand, since it is an approximation it might result in more iterations. This means that in some situations/calculations it will speed up, while in others it may not.
 
 \section{\label{ch2.sec.implementation}Implementation}
 
