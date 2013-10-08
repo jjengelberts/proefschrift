@@ -30,7 +30,7 @@ Furthermore, Lewis introduced a new way of representing chemical bonds in this a
 
 \section{Quantum Mechanics in Chemistry}
 
-In the 1920's the physicists Heisenberg and Schr\"{o}dinger, amongst others, devised the quantum mechanics. Heisenberg formulated his theory in terms of matrices \cite{heisenberg}, while Schr\"{o}dinger used wave functions \cite{schrodinger1,schrodinger2}. Both formulations are equivalent \cite{schrodinger3}. For the work described in this thesis, only the so-called time independent, non-relativistic Schr\"{o}dinger equation is used:
+In the 1920s the physicists Heisenberg and Schr\"{o}dinger, amongst others, devised the quantum mechanics. Heisenberg formulated his theory in terms of matrices \cite{heisenberg}, while Schr\"{o}dinger used wave functions \cite{schrodinger1,schrodinger2}. Both formulations are equivalent \cite{schrodinger3}. For the work described in this thesis, only the so-called time independent, non-relativistic Schr\"{o}dinger equation is used:
 \begin{equation}
 \mathbf{H} \Psi=E \Psi.
 \label{ch1.eq.hpsi}
@@ -45,44 +45,44 @@ By solving equation \ref{ch1.eq.hpsi} all information about the system is access
 \mathbf{H} = \mathbf{H}_n + \mathbf{H}_e = (\mathbf{T}_n + \mathbf{V}_{nn}) + (\mathbf{T}_e + \mathbf{V}_{ee} + \mathbf{V}_{en}).
 \label{ch1.eq.hsplit}
 \end{equation}
-$\Psi$ can then be written as a product of a wave function for the nuclei and one for the electrons. Because of the term $\mathbf{V}_{en}$ $\psi_{e}$ also depends on the coordinates of the nuclei:
+$\Psi$ can then be written as a product of a wave function for the nuclei and one for the electrons. Because of the term $\mathbf{V}_{en}$ $\Psi_{e}$ also depends on the coordinates of the nuclei:
 \begin{equation}
-\Psi = \psi_{n}(\mathrm{X}) \psi_{e}(\mathrm{q,X}).
+\Psi = \Psi_{n}(\mathrm{X}) \Psi_{e}(\mathrm{q,X}).
 \end{equation}
-One assumption in the Born-Oppenheimer approximation is that the electronic wave function $\psi_{e}$ does not change much for small variations in the positions of the nuclei ($\mathrm{X}$). On the other hand, it is assumed that the motion of the nuclei, which are much heavier than the electrons, does depend on the electron density, rather than on the positions of the individual electrons. With those approximations, the total energy can be written as the sum of a contribution of the nuclei and one of the electrons:
+One assumption in the Born-Oppenheimer approximation is that the electronic wave function $\Psi_{e}$ does not change much for small variations in the positions of the nuclei ($\mathrm{X}$). On the other hand, it is assumed that the motion of the nuclei, which are much heavier than the electrons, does depend on the electron density, rather than on the positions of the individual electrons. With those approximations, the total energy can be written as the sum of a contribution of the nuclei and one of the electrons:
 \begin{equation}
-E = \frac{\mathbf{H}_n \psi_n(\mathrm{X})}{\psi_n(\mathrm{X})} + \frac{\mathbf{H}_e \psi_e(\mathrm{q,X})}{\psi_e(\mathrm{q,X})} = E_{n} + E_{e}.
+E = \frac{\mathbf{H}_n \Psi_n(\mathrm{X})}{\Psi_n(\mathrm{X})} + \frac{\mathbf{H}_e \Psi_e(\mathrm{q,X})}{\Psi_e(\mathrm{q,X})} = E_{n} + E_{e}.
 \end{equation}
 
-Several types of approximations for the wave functions ($\Psi$) have been defined to describe chemical systems (\textit{cf.} Section \ref{ch1.sec.wavefunctions}). All these wave functions have in common that they are expressed in molecular orbitals ($\phi$), which are linear combinations of atomic orbitals ($\chi$), or basis functions (LCAO MO's):
+Several types of approximations for the wave functions ($\Psi$) have been defined to describe chemical systems (\textit{cf.} Section \ref{ch1.sec.wavefunctions}). All these wave functions have in common that they are expressed in molecular orbitals ($\psi$), which are linear combinations of atomic orbitals ($\phi$), or basis functions (LCAO MO's):
 \begin{equation}
-\phi = c_1 \chi_1 + c_2 \chi_2 + \cdots + c_n \chi_n = \sum_n c_n \chi_n.
+\psi = c_1 \phi_1 + c_2 \phi_2 + \cdots + c_n \phi_n = \sum_n c_n \phi_n.
 \end{equation}
 The molecular orbitals are functions of the coordinates of the electrons (spatial orbitals), or of the coordinates \textit{and} the spins of the electrons (spin orbitals). The spin of an electron can be one of two states. Commonly, these states are referred to as $\alpha$ and $\beta$ spin. The term ``doubly occupied molecular orbital'' indicates that there are two electrons with the same spatial orbital, but with opposite spins.
 
 Multi-electron wave functions are written as Hartree products \cite{hartree1,hartree2,hartree3} or as Slater determinants \cite{slater}. In a Hartree product the wave function is written as a product:
 \begin{equation}
-\Psi=\prod_i \phi_i(\mathbf{\tau_i}),
+\Psi=\prod_i \psi_i(\mathbf{\tau_i}),
 \end{equation}
 in which the parameters $\mathbf{\tau_i}$ contain the spatial and spin coordinates of the electrons. This type of wave function is used in the H\"uckel method \cite{huckel1,huckel2,huckel3}, with which the energy levels (and hence the relative position) of molecular orbitals of $\pi$ electrons in conjugated molecules, such as benzene, can be obtained (\textit{cf.} Chapter \chhuckel). A shortcoming of the H\"uckel method is that the wave function does not fulfil the antisymmetry principle, a commonly used postulate in quantum chemistry. The antisymmetry principle states that the total wave function must change sign when the spatial and spin coordinates of two electrons are interchanged, which is the case when the wave function is written as a determinant. For example, in this two electron Hartree product the sign of the wave function does not change when the two molecular orbitals are interchanged:
 \begin{equation}
-\Psi=\phi_1(\mathbf{\tau_1})\phi_2(\mathbf{\tau_2}) = \phi_2(\mathbf{\tau_2})\phi_1(\mathbf{\tau_1}),
+\Psi=\psi_1(\mathbf{\tau_1})\psi_2(\mathbf{\tau_2}) = \psi_2(\mathbf{\tau_2})\psi_1(\mathbf{\tau_1}),
 \end{equation}
 while in a determinant, referred to as Slater determinant in quantum chemistry, the sign of the wave function does change:
 \begin{equation}
 \begin{split}
 \Psi_1 &=
 \begin{array}{|cc|}
-\phi_1(\mathbf{\tau_1}) & \phi_2(\mathbf{\tau_1}) \\
-\phi_1(\mathbf{\tau_2}) & \phi_2(\mathbf{\tau_2}) \\
+\psi_1(\mathbf{\tau_1}) & \psi_2(\mathbf{\tau_1}) \\
+\psi_1(\mathbf{\tau_2}) & \psi_2(\mathbf{\tau_2}) \\
 \end{array}
-= \phi_1(\mathbf{\tau_1})\phi_2(\mathbf{\tau_2}) - \phi_1(\mathbf{\tau_2})\phi_2(\mathbf{\tau_1}), \\
+= \psi_1(\mathbf{\tau_1})\psi_2(\mathbf{\tau_2}) - \psi_1(\mathbf{\tau_2})\psi_2(\mathbf{\tau_1}), \\
 \Psi_2 &=
 \begin{array}{|cc|}
-\phi_2(\mathbf{\tau_1}) & \phi_1(\mathbf{\tau_1}) \\
-\phi_2(\mathbf{\tau_2}) & \phi_1(\mathbf{\tau_2}) \\
+\psi_2(\mathbf{\tau_1}) & \psi_1(\mathbf{\tau_1}) \\
+\psi_2(\mathbf{\tau_2}) & \psi_1(\mathbf{\tau_2}) \\
 \end{array}
-= \phi_2(\mathbf{\tau_1})\phi_1(\mathbf{\tau_2}) - \phi_2(\mathbf{\tau_2})\phi_1(\mathbf{\tau_1}), \\
+= \psi_2(\mathbf{\tau_1})\psi_1(\mathbf{\tau_2}) - \psi_2(\mathbf{\tau_2})\psi_1(\mathbf{\tau_1}), \\
 \Psi_1 &= - \Psi_2
 \end{split}
 \end{equation}
@@ -90,11 +90,11 @@ Another nice aspect of writing the wave function as a determinant is that it aut
 
 Shortly after the birth of quantum mechanics the idea that a chemical bond is made up of a pair of shared electrons between two atoms, as proposed by Lewis, was substantiated. In 1927, Heitler and London wrote that a system containing two neutrally charged hydrogen atoms at close distance is more stable (has a lower energy $E$ (equation \ref{ch1.eq.hpsi})) than a system built from two atoms at infinite distance \cite{heitler}. Later, this mathematical representation of the chemical bond by Heitler and London became known as the Valence Bond (VB) theory. 
 
-In the following years Linus Pauling incorporated both the postulates of Lewis and VB theory into his view on the nature of the chemical bond \cite{pauling1,pauling2,pauling3,pauling4,pauling5,pauling6,pauling7,paulingbook}, which earned him the Nobel prize in 1954. In the 1950's a lot of dispute arose about the VB theory, because of the numerical sluggishness, mainly caused by the use of non-orthogonal orbitals, and apparent failures like the wrong prediction of the ground state of the oxygen molecule (O$_2$ singlet instead of triplet), the ``wrong'' prediction of (anti-)aromatic character in cyclobutadiene (C$_4$H$_4$), C$_5$H$_{5}^{+}$, C$_5$H$_{5}^{-}$, C$_3$H$_{3}^{+}$, C$_3$H$_{3}^{-}$, C$_7$H$_{7}^{+}$, C$_7$H$_{7}^{-}$, \textit{etc.} and the ``failure'' to predict two different ionization potentials for CH$_4$ \cite{brush2}. Shaik and Hiberty showed that these iconic VB ``failures'' are caused by the use of oversimplified VB models \cite{antibrush}. The correct prediction of the ground state of O$_2$ has been the subject of much discussion since the 1930's \cite{o2_1,o2_2,o2_3,o2_4,o2_5,o2_6,o2_7,o2_8,o2_9,carsten}. Calculations performed by Byrman \textit{et al.}, for example, indicate that the correct triplet ground state is found when the bond between the atoms is considered to be a combination of one $\sigma$ bond and two three electron $\pi$ bonds \cite{carsten}. The singlet ground state will be found when the bond is considered to be a combination of one $\sigma$ and one $\pi$ bond.
+In the following years Linus Pauling incorporated both the postulates of Lewis and VB theory into his view on the nature of the chemical bond \cite{pauling1,pauling2,pauling3,pauling4,pauling5,pauling6,pauling7,paulingbook}, which earned him the Nobel prize in 1954. In the 1950s a lot of dispute arose about the VB theory, because of the numerical sluggishness, mainly caused by the use of non-orthogonal orbitals, and apparent failures like the wrong prediction of the ground state of the oxygen molecule (O$_2$ singlet instead of triplet), the ``wrong'' prediction of (anti-)aromatic character in cyclobutadiene (C$_4$H$_4$), C$_5$H$_{5}^{+}$, C$_5$H$_{5}^{-}$, C$_3$H$_{3}^{+}$, C$_3$H$_{3}^{-}$, C$_7$H$_{7}^{+}$, C$_7$H$_{7}^{-}$, \textit{etc.} and the ``failure'' to predict two different ionization potentials for CH$_4$ \cite{brush2}. Shaik and Hiberty showed that these iconic VB ``failures'' are caused by the use of oversimplified VB models \cite{antibrush}. The correct prediction of the ground state of O$_2$ has been the subject of much discussion since the 1930s \cite{o2_1,o2_2,o2_3,o2_4,o2_5,o2_6,o2_7,o2_8,o2_9,carsten}. Calculations performed by Byrman \textit{et al.}, for example, indicate that the correct triplet ground state is found when the bond between the atoms is considered to be a combination of one $\sigma$ bond and two three electron $\pi$ bonds \cite{carsten}. The singlet ground state will be found when the bond is considered to be a combination of one $\sigma$ and one $\pi$ bond.
 
 A short time after Heitler and London, Hund and Mulliken, amongst others, developed a new method, which is now known as the Molecular Orbital theory \cite{hund,mulliken}. A difference with the VB theory is that the molecular orbitals are commonly chosen to be orthogonal. The most simple MO wave function consists of a single determinant describing a closed-shell molecule. In such a wave function each molecular orbital is doubly occupied, which is a so-called Restricted Hartree-Fock \cite{fock} wave function. Because of the relative easiness to implement the HF model (lower mathematical complexity due to a single determinant wave function with orthogonal molecular orbitals/vectors) and the lower computational efforts compared to VB, the MO method became very popular in the computer era.
 
-Although the interest in VB theory diminished, it was not completely abandoned. A recently published book, entitled ``Valence Bond Theory'' shows that several groups around the globe are actively using VB theory \cite{cooperbook}. In the following sections it will be made clear that Valence Bond theory must be applied to areas, where it is suited for: the understanding of molecules and chemical behavior in terms of Lewis, or resonance structures, \textit{e.g.} the description of (complex) bond situations.
+Although the interest in VB theory diminished, it was not completely abandoned \cite{vboverv1,vboverv2,vboverv3}. In the following sections it will be made clear that Valence Bond theory must be applied to areas, where it is suited for: the understanding of molecules and chemical behavior in terms of Lewis, or resonance structures, \textit{e.g.} the description of (complex) bond situations.
 
 \section{Applications of the Valence Bond Method}
 
@@ -103,14 +103,28 @@ As mentioned earlier, the first application of the VB method was for the descrip
 \Psi = |1s_{A}\overline{1s_{B}}| - |\overline{1s_{A}}1s_{B}|,
 \label{ch1.eq.hl}
 \end{equation}
-in which $1s_{A}$ and $1s_{B}$ are atomic orbitals centered on the two hydrogen atoms, referred to as $A$ and $B$. The two determinants together form the VB structure in which the two electrons are spin-coupled into a pair. This VB structure represents the Lewis structure $\mathrm{[H^\bullet H^\bullet]}$ for H$_2$, as stressed by Pauling \cite{hllewis}. 
+in which $1s_{A}$ and $1s_{B}$ are atomic orbitals centered on the two hydrogen atoms, referred to as $A$ and $B$.
+\begin{figure}[htdp]
+\center
+\includegraphics[scale=1]{introduction/figures/heitler.eps}
+\caption{Graphical representation of the VB wave function for $\mathrm{H_2}$. The electrons in the two 1$s$ orbitals form a singlet pair.}
+\label{ch1.fig.heitler}
+\end{figure}
+The two determinants together form the VB structure in which the two electrons are spin-coupled into a pair. A graphical representation is shown in Figure \ref{ch1.fig.heitler}. This VB structure represents the Lewis structure $\mathrm{[H^\bullet H^\bullet]}$ for H$_2$, as stressed by Pauling \cite{hllewis}. 
 
 In the years following the introduction of VB, extra versatility was acquired by the expansion of the Valence Bond wave function into multiple structures. For H$_2$ this expansion corresponds to the addition of two ionic structures:
 \begin{equation}
 \Psi = c_1 (|1s_{A}\overline{1s_{B}}| - |\overline{1s_{A}}1s_{B}|) + c_2 |1s_{A}\overline{1s_{A}}| + c_3 |1s_{B}\overline{1s_{B}}|,
 \label{ch1.eq.hlplus}
 \end{equation}
-in which the third determinant corresponds to the Lewis structure $\mathrm{[H^{+} H^{-}]}$ and the fourth determinant to $\mathrm{[H^{-} H^{+}]}$. The coefficients $c_1$, $c_2$ and $c_3$ are variationally determined. The total energy ($E$) calculated with equation \ref{ch1.eq.hlplus} proved to be lower than the energy calculated with equation \ref{ch1.eq.hl}. In general, for covalent bonds, like H--H, the coefficients $c_2$ and $c_3$ will be non-zero, indicating that they are not merely covalent in nature, but that they also contain some ionic character. This ionic character is caused by the freedom for the electrons to move towards the other atom. For the bond description in VB it is vital that the orbitals are non-orthogonal. The overlap of two singly occupied orbitals on separate atoms or fragments, like the hydrogen atoms mentioned above, can be used as measure for the bond strength. When the two atoms are brought together from infinity to equilibrium distance, the total energy of the molecule decreases as the orbital overlap increases. This suggests that for bonds with ``high overlap'' more energy is required to break it than for bonds with ``low overlap''. This has to be used with caution, though, because at distances below the equilibrium distance, the nuclear repulsion increases so rapidly that this effect overshadows the still increasing orbital overlap.
+in which the third determinant corresponds to the Lewis structure $\mathrm{[H^{+} H^{-}]}$ and the fourth determinant to $\mathrm{[H^{-} H^{+}]}$. A graphical representation is shown in Figure \ref{ch1.fig.heitlerplus}.
+\begin{figure}[htdp]
+\center
+\includegraphics[scale=1]{introduction/figures/heitlerplus.eps}
+\caption{Graphical representation of the VB wave function for $\mathrm{H_2}$ with a covalent and two ionic structures. The two bonding electrons are equally shared in the first structure. Both electrons are on the left hydrogen in the second structure and on the right hydrogen in the third structure.}
+\label{ch1.fig.heitlerplus}   
+\end{figure}
+The coefficients $c_1$, $c_2$ and $c_3$ are variationally determined. The total energy ($E$) calculated with equation \ref{ch1.eq.hlplus} proved to be lower than the energy calculated with equation \ref{ch1.eq.hl}. In general, for covalent bonds, like H--H, the coefficients $c_2$ and $c_3$ will be non-zero, indicating that they are not merely covalent in nature, but that they also contain some ionic character. This ionic character is caused by the freedom for the electrons to move towards the other atom. For the bond description in VB it is vital that the orbitals are non-orthogonal. The overlap of two singly occupied orbitals on separate atoms or fragments, like the hydrogen atoms mentioned above, can be used as measure for the bond strength. When the two atoms are brought together from infinity to equilibrium distance, the total energy of the molecule decreases as the orbital overlap increases. This suggests that for bonds with ``high overlap'' more energy is required to break it than for bonds with ``low overlap''. This has to be used with caution, though, because at distances below the equilibrium distance, the nuclear repulsion increases so rapidly that this effect overshadows the still increasing orbital overlap.
 
 The importance (or contribution) of each VB structure to the wave function can be obtained by using the formula of Chirgwin and Coulson \cite{chirgwin}. With their formula weights ($W_j$) can be assigned to the VB structures:
 \begin{equation}
@@ -237,13 +251,13 @@ A drawback of local VBSCF, however, is that it is not very suitable as a quantit
 \end{figure}
 From H\"{u}ckel's rule \cite{huckel2,huckel4}, it is expected that planar hydrocarbons ((CH)$_n$) with $4n+2$ $\pi$ electrons are aromatic, while molecules with $4n$ $\pi$ electrons are anti-aromatic. One of the properties of aromatic molecules is their bond length equilibration, like in benzene (Figure \ref{ch1.fig.benzene}). For anti-aromatic molecules the double bonds are shorter than the single bonds. The reason for the bond length equilibration for C$_4$H$_4$ in the local VBSCF model is that the $\pi$ bonds are weaker because they have less overlap due to the localization \cite{cyclobutt}. A calculation with the delocal model results in the rectangular geometry \cite{cyclobutt}. Furthermore, in this delocal wave function only one Kekul\'{e}-like structure contributed mainly to the wave function (Figure \ref{ch1.fig.butadiene}, left), resulting in a negligible resonance energy.
 
-In the VB wave functions described so far there is only \textit{one} set of orbitals. In the previous benzene examples (Figure \ref{ch1.fig.structures2}) all structures used the same 6 $2p_z$ orbitals. In the 1990's Hiberty \textit{et al.} introduced the Breathing Orbital Valence Bond method (BOVB). In a BOVB wave function \textit{each structure} has its \textit{own set of orbitals}. For F$_2$, with the structures $\mathrm{[F^\bullet F^\bullet]}$, $\mathrm{[F^{+} F^{-}]}$ and $\mathrm{[F^{-} F^{+}]}$, this means that F$^\bullet$, F$^{-}$ and F$^{+}$ have different orbitals. So, the covalent structure has orbitals optimized for neutral atoms, while the ionic structure has orbitals optimized for charged atoms, which, from an electrostatic point of view, corresponds more to reality than both structures having the same, mostly an average between the two extremes, set of orbitals. In this sense the BOVB method has a higher versatility than plain VBSCF which is reflected in the lower expectation values of the energy, although at cost. Because orbitals in different structures might resemble each other much, \textit{i.e.} have a large overlap, dependencies in the orbital basis can occur, which leads to difficult convergence or no convergence at all.
+In the VB wave functions described so far there is only \textit{one} set of orbitals. In the previous benzene examples (Figure \ref{ch1.fig.structures2}) all structures used the same 6 $2p_z$ orbitals. In the 1990s Hiberty \textit{et al.} introduced the Breathing Orbital Valence Bond method (BOVB). In a BOVB wave function \textit{each structure} has its \textit{own set of orbitals}. For F$_2$, with the structures $\mathrm{[F^\bullet F^\bullet]}$, $\mathrm{[F^{+} F^{-}]}$ and $\mathrm{[F^{-} F^{+}]}$, this means that F$^\bullet$, F$^{-}$ and F$^{+}$ have different orbitals. So, the covalent structure has orbitals optimized for neutral atoms, while the ionic structure has orbitals optimized for charged atoms, which, from an electrostatic point of view, corresponds more to reality than both structures having the same, mostly an average between the two extremes, set of orbitals. In this sense the BOVB method has a higher versatility than plain VBSCF which is reflected in the lower expectation values of the energy, although at cost. Because orbitals in different structures might resemble each other much, \textit{i.e.} have a large overlap, dependencies in the orbital basis can occur, which leads to difficult convergence or no convergence at all.
 
 \section{Overview of this Thesis}
 
 This thesis consists of three parts: methodology (Chapter \chorbopt), assessment of complex chemical bonding, such as bond making and breaking of dative bonds and bonds with different $\eta$-hapticities (Chapters \chdissociation\ and \chcyclopentadienyl), and aromaticity (Chapters \chhuckel, \chinorganic\ and~\chindacene).
 
-As mentioned earlier, the orbitals in a VB wave function can be optimized with VBSCF. For this optimization a Super CI wave function, containing all possible singly excited structures,  needs to be created. These singly excited structures contain 1-2 times the number of determinants in the ground state wave function. Besides, due to the non-orthogonality, first and second order cofactors, which are determinants with orbitals overlaps, need to be evaluated. In Chapter \chorbopt\ the possibilities to bypass these singly excited structures and cofactors are analyzed. In the Multi Configuration Self Consistent Field method (MCSCF) \cite{wahldasbook,daswahl} Fock matrices, \textit{i.e.} the matrix representations of the Fock operator on MO basis, have been used for the optimization of doubly occupied orbitals \cite{roos1,roos2}. An MCSCF wave function is expressed in Configuration State Functions (CSF's). This structure is comparable with the expression of a VB wave function in structures: the CSF's are comparable to VB structures in the sense that both are constructed from fixed combinations of determinants. Two major differences are that both bonding \textit{and} anti-bonding orbitals occur in CSF's and that the molecular orbitals are chosen orthogonal in MCSCF. In this chapter the applicability of Fock matrices for the optimization of (non-orthogonal) doubly occupied orbitals in VBSCF is analyzed. Besides, several improvements on the earlier implemented approximated Newton-Raphson technique \cite{koos1} will be presented. The chapter is concluded with some test calculations for which the speed-up factors are compared.
+As mentioned earlier, the orbitals in a VB wave function can be optimized with VBSCF. For this optimization a Super CI wave function, containing all possible singly excited structures,  needs to be created. These singly excited structures contain 1-2 times the number of determinants in the ground state wave function. Besides, due to the non-orthogonality, first and second order cofactors, which are determinants with orbitals overlaps, need to be evaluated. In Chapter \chorbopt\ the possibilities to bypass these singly excited structures and cofactors are analyzed. In the Multi Configuration Self Consistent Field method (MCSCF) \cite{wahldasbook,daswahl} Fock matrices, \textit{i.e.} the matrix representations of the Fock operator on MO basis, have been used for the optimization of doubly occupied orbitals \cite{roos1,roos2}. An MCSCF wave function is expressed in Configuration State Functions (CSFs). This structure is comparable with the expression of a VB wave function in structures: the CSFs are comparable to VB structures in the sense that both are constructed from fixed combinations of determinants. Two major differences are that both bonding \textit{and} anti-bonding orbitals occur in CSFs and that the molecular orbitals are chosen orthogonal in MCSCF. In this chapter the applicability of Fock matrices for the optimization of (non-orthogonal) doubly occupied orbitals in VBSCF is analyzed. Besides, several improvements on the earlier implemented approximated Newton-Raphson technique \cite{koos1} will be presented. The chapter is concluded with some test calculations for which the speed-up factors are compared.
 
 The dissociation behavior of molecules is influenced by the surrounding medium. In Chapter \chdissociation\ this influence is analyzed by comparing the dissociation behavior of four chlorine containing compounds in the gas-phase with in solution. The molecules are chloromethane, \textit{tert}-butylchloride, chlorosilane and trimethylsilylchloride (Figure \ref{ch1.fig.structures1} in which M=C or Si and R=H or CH$_3$).
 \begin{figure}[htbp]

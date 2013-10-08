@@ -524,14 +524,14 @@ The overlap of $\Psi_0$ with this $\Psi_{ta}$ is:
 \begin{array}{llll}
  & \chi_t & \chi_u & \chi_v \\
  \chi_a & \multicolumn{1}{|l}{ 0 } & 0 & \multicolumn{1}{l|}{ 0 } \\
- \chi_u & \multicolumn{1}{|l}{ 0 } & 1 & \multicolumn{1}{l|}{ s_{vu} } \\
- \chi_v & \multicolumn{1}{|l}{ 0 } & s_{uv} & \multicolumn{1}{l|}{ 1 }
+ \chi_u & \multicolumn{1}{|l}{ s_{tu} } & 1 & \multicolumn{1}{l|}{ s_{vu} } \\
+ \chi_v & \multicolumn{1}{|l}{ s_{tv} } & s_{uv} & \multicolumn{1}{l|}{ 1 }
 \end{array}+
 \begin{array}{llll}
  & \chi_x & \chi_y & \chi_z \\
  \chi_a & \multicolumn{1}{|l}{ 0 } & 0 & \multicolumn{1}{l|}{ 0 } \\
- \chi_u & \multicolumn{1}{|l}{ 0 } & s_{yu} & \multicolumn{1}{l|}{ s_{zu} } \\
- \chi_v & \multicolumn{1}{|l}{ 0 } & s_{yv} & \multicolumn{1}{l|}{ s_{zv} }
+ \chi_u & \multicolumn{1}{|l}{ s_{xu} } & s_{yu} & \multicolumn{1}{l|}{ s_{zu} } \\
+ \chi_v & \multicolumn{1}{|l}{ s_{xv} } & s_{yv} & \multicolumn{1}{l|}{ s_{zv} }
 \end{array}.
 \label{ch2.eq.psi0_ta}
 \end{equation}
@@ -604,14 +604,14 @@ The overlap matrix of $\Psi_0$ with $\Psi_{ty}$ is:
 \begin{array}{llll}
  & \chi_t & \chi_u & \chi_v \\
  \chi_y & \multicolumn{1}{|l}{ s_{ty} } & s_{uy} & \multicolumn{1}{l|}{ s_{vy} } \\
- \chi_u & \multicolumn{1}{|l}{ 0 } & 1 & \multicolumn{1}{l|}{ s_{vu} } \\
- \chi_v & \multicolumn{1}{|l}{ 0 } & s_{uv} & \multicolumn{1}{l|}{ 1 }
+ \chi_u & \multicolumn{1}{|l}{ s_{tu} } & 1 & \multicolumn{1}{l|}{ s_{vu} } \\
+ \chi_v & \multicolumn{1}{|l}{ s_{tv} } & s_{uv} & \multicolumn{1}{l|}{ 1 }
 \end{array}+
 \begin{array}{llll}
  & \chi_x & \chi_y & \chi_z \\
  \chi_y & \multicolumn{1}{|l}{ s_{xy} } & 1 & \multicolumn{1}{l|}{ s_{zy} } \\
- \chi_u & \multicolumn{1}{|l}{ 0 } & s_{yu} & \multicolumn{1}{l|}{ s_{zu} } \\
- \chi_v & \multicolumn{1}{|l}{ 0 } & s_{yv} & \multicolumn{1}{l|}{ s_{zv} }
+ \chi_u & \multicolumn{1}{|l}{ s_{xu} } & s_{yu} & \multicolumn{1}{l|}{ s_{zu} } \\
+ \chi_v & \multicolumn{1}{|l}{ s_{xv} } & s_{yv} & \multicolumn{1}{l|}{ s_{zv} }
 \end{array}.
 \label{ch2.eq.psi0_tt}
 \end{equation}
@@ -663,7 +663,7 @@ b_{ia}= - \frac{F_{ia}}{F_{aa}-F_{ii}}.
 \label{ch2.eq.fockapprox}
 \end{equation}
 
-For excitations treated with regular Super CI, the $\mathbf{b}$ vector is calculated by solving the generalized eigenvalue problem (equation \ref{ch2.eq.geig}). This eigenvector is then padded with the separately calculated update coefficients of equations \ref{ch2.eq.anr} and \ref{ch2.eq.fockapprox}. With the elements from of this $\mathbf{b}$ vector the orbitals are updated, like in equation \ref{ch2.eq.condense}.
+For excitations treated with regular Super CI, the $\mathbf{b}$ vector is calculated by solving the generalized eigenvalue problem (equation \ref{ch2.eq.geig}). This eigenvector is then padded with the separately calculated update coefficients of equations \ref{ch2.eq.anr} and \ref{ch2.eq.fockapprox}. With the elements of this $\mathbf{b}$ vector the orbitals are updated, like in equation \ref{ch2.eq.condense}.
 
 The three options above suggest that the user needs to specify beforehand which Brillouin matrix rows (or excitations) should be treated with which option. Since the virtual space is not yet created at the beginning of the calculation it is not very practical to specify the optimization method per excitation. Therefore, two additional specification options have been added: the specification per occupied orbital and the specification per orbital class. All excitations for either a certain orbital or all orbitals in a class are treated with the same option, be-it \textit{superci}, \textit{pert} or \textit{fock}. There are three orbital classes: doubly occupied (doc), variably occupied (voc) and unoccupied (uoc). The doubly occupied class contains orbitals that occur twice in each determinant, once with $\alpha$ and once with $\beta$ spin. The variably occupied class contains orbitals which occur in some determinants and the unoccupied orbital class contains orbitals which only occur in excited state structures. It should be noted that the \textit{fock} option can only be used for the optimization of orbitals which are orthogonal to all other orbitals. The most commonly used specification option, at least for the calculations reported in this thesis, is the specification per orbital class. 
 
