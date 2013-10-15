@@ -9,31 +9,23 @@
 
 \section{Introduction}
 
-\lettrine{\initial{I}}{}n 1916 Lewis suggested that atoms share electrons to form chemical bonds \cite{lewis}. Heitler and London incorporated this view a decade later into the quantum chemical description of the covalent bond in H$_2$ \cite{heitler}. In the 1930s Pauling used this description in his famous series of articles on ``The Nature Of The Chemical Bond'' \cite{pauling1,pauling2,pauling3,pauling4,pauling5,pauling6,pauling7,paulingbook}, which earned him the Nobel prize in 1954. This quantum chemical method is nowadays known as the Valence Bond theory.
+\lettrine{\initial{I}}{}n 1916 Lewis suggested that atoms share electrons to form chemical bonds \cite{lewis}. Heitler and London incorporated this view a decade later into the quantum chemical description of the covalent bond in H$_2$ \cite{heitler}. In the 1930s Pauling used this description in his famous series of articles on ``The Nature Of The Chemical Bond'' \cite{pauling1,pauling2,pauling3,pauling4,pauling5,pauling6,pauling7,paulingbook}. This quantum chemical method is nowadays known as the Valence Bond theory.
 
-In Valence Bond theory the wave function is more complex than in many other methods, like the Molecular Orbital theory \cite{hartree1,hartree2,hartree3,fock}. The VB orbitals have no orthogonality restriction and the wave function consists of multiple structures, consisting of one or more Slater determinants. Despite these computational hurdles, Valence Bond theory has kept a decent following through the years \cite{vboverv1,vboverv2,vboverv3}. One of the reasons is the development of powerful computers. On the other hand several efficient methods to optimize Valence Bond wave functions, Spin-Coupled Valence Bond (SCVB) \cite{scvb1,scvb2,scvb3}, Valence Bond Self-Consistent Field (VBSCF) \cite{vbscf1,vbscf2,koos1,zahid} and an algorithm that uses transition density matrices \cite{song}, have been developed.
+The essential idea in Valence Bond theory is that atoms share electrons to form bonds. This is achieved by spin-pairing singly occupied orbitals on different atoms, or molecular fragments. In other methods, like the Molecular Orbital theory \cite{hartree1,hartree2,hartree3,fock}, orbitals are not specifically bound to atoms or molecular fragments. In VB, the bond in H$_2$ can be described by the spin-coupling of the atomic $1s$ orbitals on both hydrogen atoms [H$\bullet$H$\bullet$]. The corresponding wave function consists of two determinants: $\Psi = |1s_{A}\overline{1s_{B}}| - |\overline{1s_{A}}1s_{B}|$. This determinant combination is called a structure. Ionic structures could be added to extend, or enhance the wave function: $|1s_{A}\overline{1s_{A}}|$ and $
+|1s_{B}\overline{1s_{B}}|$ (see Chapter \chintro). Besides the use of multiple determinants in VB, non-orthogonal and localized orbitals are used explicitly. 
 
-Like a Valence Bond wave function, a Multi Configurational Self-Consistent Field (MCSCF) \cite{joop,mcscf,roos1,roos2} wave function is expressed in multiple structures, called Configuration State Functions (CSFs), comparable to VB structures. A peculiar difference, though, is the use of orthogonal orbitals in MCSCF. For the optimization of the orbitals in MCSCF, elements from a single Fock matrix are used to construct elements of the Hamiltonian matrix \cite{roos1}. The Fock matrix elements have the form:
+Since the orbitals in MO theory can be chosen orthogonal, this method attracted more attention. Its implementation in computer programs is more straight forward and computations on larger molecular systems are possible. Despite its computational hurdles, Valence Bond theory has kept a decent following through the years \cite{vboverv1,vboverv2,vboverv3}. One of the reasons is the development of powerful computers. On the other hand several efficient methods to optimize Valence Bond wave functions, like Spin-Coupled Valence Bond (SCVB) \cite{scvb1,scvb2,scvb3} and Valence Bond Self-Consistent Field (VBSCF) \cite{vbscf1,vbscf2,koos1,zahid}, have been developed.
+
+Like VBSCF, Multi Configurational Self-Consistent Field (MCSCF) \cite{joop,mcscf,roos1,roos2}, is based on the Super CI method \cite{superci1,superci2} for the optimization of the wave function. In Super CI the wave function is expanded with singly excited structures, increasing the computational challenge even more. The size of the Hamiltonian matrix on structure basis will increase quadratically for the addition of each excitation. For MCSCF, Roos \textit{et al.} have shown that for certain single excitations it is possible to use elements of a single Fock matrix instead of computing the corresponding Hamiltonian matrix elements \cite{roos1}. The Fock matrix elements have the form:
 \begin{equation}
 F_{ia} = h_{ia} + \sum_{\sigma\nu} \left\{ \left[ \chi_i \chi_a | \chi_\sigma \chi_\nu \right] - \left[ \chi_i \chi_\nu | \chi_\sigma \chi_a \right] \right\} \cdot P^{(\sigma,\nu)},
 \label{ch2.eq.fock}
 \end{equation}
-in which $F_{ia}$ is the Fock matrix element, $\chi_i$, $\chi_a$, $\chi_\sigma$ and $\chi_\nu$ are spin-orbitals, $h_{ia}$ is the one electron integral $\left< \chi_i | \mathbf{h}| \chi_a \right>$. The double sum on the right hand side is over two electron integrals (Coulomb and exchange) times elements of the density matrix $P^{(\sigma,\nu)}$. 
-
-Compared to Hamiltonian matrix elements, the construction of a Fock matrix saves a substantial amount of computation time. Firstly, only a single Fock matrix is used to construct multiple Hamiltonian matrix elements. Secondly, the Fock matrix is based on the density matrix. This density matrix is constructed by looping through each determinant combination in the wave function. The Hamiltonian matrix element is computed for the Super CI \cite{superci1,superci2} wave function, an expansion of the wave function with all singly excited structures and hence (much) more determinants. The central question for this chapter is whether it is also possible to use a single Fock matrix for the optimization of the orbitals in VBSCF, although those are non-orthogonal.
+in which $F_{ia}$ is the Fock matrix element of spin-orbitals $\chi_i$ and $\chi_a$, $h_{ia}$ is the one electron integral $\left< \chi_i | \mathbf{h}| \chi_a \right>$. The double sum on the right hand side is over two electron integrals (Coulomb and exchange) times elements of the density matrix $P^{(\sigma,\nu)}$. The central question for this chapter is whether it is also possible to use a single Fock matrix for the optimization of the orbitals in VBSCF, although those are non-orthogonal. If multiple Hamiltonian matrix elements would be equal to elements from a single Fock matrix, it would not be necessary to construct these Hamiltonian matrix elements. This could save a considerable amount of computation time.
 
 Song \textit{et al.} have shown that a VB wave function can be optimized with the help of transition density matrices from which multiple Fock matrices are constructed \cite{song}. The difference with the approach presented in this chapter is that here only a single Fock matrix is used.
 
-At first, the usability of Fock matrix elements instead of Hamiltonian matrix is analyzed by comparing the expression for Fock matrix elements, equation \ref{ch2.eq.fock}, with the expression for Hamiltonian matrix elements by L\"{o}wdin \cite{lowdin}:
-\begin{equation}
-\left< \Delta_p | \hat{H} | \Delta_q \right> = \sum_{ik} h_{ik} \cdot S^{(i,k)} + \sum_{i<j,k<l} \left\{ \left[ \chi_i \chi_k | \chi_j \chi_l \right] - \left[ \chi_i \chi_l | \chi_j \chi_k \right] \right\} \cdot S^{(i,j,k,l)},
-\label{ch2.eq.lowdindeterminants}
-\end{equation}
-where $\Delta_p$ and $\Delta_q$ are Slater determinants, $S^{(i,k)}$ and $S^{(i,j,k,l)}$ are first and second order cofactors and $h_{ik}$ and the term between curly brackets are one and two electron integrals, respectively.
-
-The differences between equations \ref{ch2.eq.fock} and \ref{ch2.eq.lowdindeterminants} are in the summations. In the Fock matrix element, only a single one electron integral is present, while in L\"{o}wdins formula a double summation is found. For the two electron integrals, there is a double summation in the Fock matrix element, while  a quadruple summation appears in the formula of L\"{o}wdin. Besides, the Hamiltonian matrix element in equation \ref{ch2.eq.lowdindeterminants} is between two Slater determinants $\Delta_p$ and $\Delta_q$. Since VB wave functions consist of multiple determinants, a double summation over indexes $p$ and $q$ will be needed to compute a complete Hamiltonian matrix element. This double summation is absent in equation \ref{ch2.eq.fock}. 
-
-Following the theoretical section, the implementation of these Fock matrix elements in TURTLE \cite{turtle}, the VB module in GAMESS-UK \cite{gamess}, will be presented. After the implementation details, speed-up factors of some test calculations will be discussed and compared. The chapter is concluded with an outlook on future enhancements.  
+At first, the usability of Fock matrix elements instead of Hamiltonian matrix is analyzed by comparing the expression for Fock matrix elements, equation \ref{ch2.eq.fock}, with the expression for Hamiltonian matrix elements by L\"{o}wdin \cite{lowdin}. Following this analysis, the implementation of these Fock matrix elements in TURTLE \cite{turtle}, the VB module in GAMESS-UK \cite{gamess}, will be presented. After the implementation details, speed-up factors of some test calculations will be discussed and compared. The chapter is concluded with an outlook on future enhancements.  
 
 \section{Theory}
 
@@ -41,7 +33,7 @@ Following the theoretical section, the implementation of these Fock matrix eleme
 
 To calculate the total energy of a molecular system, the time-independent Schr\"{o}dinger equation needs to be solved:
 \begin{equation}
-\mathbf{H}\Psi = E\Psi,
+E = \left< \Psi | \mathbf{H} | \Psi \right>,
 \end{equation}
 in which $\mathbf{H}$ is the Hamilton operator, $\Psi$ is the wave function and $E$ is the total energy of the system. A wave function is said to be optimized once the lowest possible value $E$ has been found. For Valence Bond theory, such a wave function $\Psi$ is constructed from a linear combination of structures:
 \begin{equation}
@@ -72,6 +64,20 @@ A Valence Bond wave function can be optimized by modifying the structure coeffic
 \label{ch2.eq.eig}
 \end{equation}
 in which $\mathbf{H}$ and $\mathbf{S}$ are the Hamiltonian and overlap matrix in structure basis, respectively. Secondly, the orbitals are optimized, as will be explained below. After the orbital optimization the secular equation \ref{ch2.eq.eig} is solved again with the new orbitals until both sets of coefficients no longer change.
+
+The $\mathbf{H}$-matrix elements in equation \ref{ch2.eq.eig} are computed with L\"{o}wdins formula for each determinant combination in $\Psi$:
+\begin{equation}
+\begin{split}
+\left< \Psi | \mathbf{H} | \Psi \right> &= \sum_{pq} C_p C_q \left< \Delta_p | \mathbf{H} | \Delta_q \right> \\ 
+&= \sum_{pq} C_p C_q \left(\sum_{ik} h_{ik} \cdot S^{(i,k)} + \sum_{i<j,k<l} \left\{ \left[ \chi_i \chi_k | \chi_j \chi_l \right] - \left[ \chi_i \chi_l | \chi_j \chi_k \right] \right\} \cdot S^{(i,j,k,l)}\right),
+\end{split}
+\label{ch2.eq.lowdindeterminants}
+\end{equation}
+where $C_p$ and $C_q$ are determinant coefficients, $\Delta_p$ and $\Delta_q$ are determinants, $S^{(i,k)}$ and $S^{(i,j,k,l)}$ are first and second order cofactors and $h_{ik}$ and the term between curly brackets are one and two electron integrals, respectively.
+
+%The differences between equations \ref{ch2.eq.fock} and \ref{ch2.eq.lowdindeterminants} are in the summations. In the Fock matrix element, only a single one electron integral is present, while in L\"{o}wdins formula a double summation is found. For the two electron integrals, there is a double summation in the Fock matrix element, while  a quadruple summation appears in the formula of L\"{o}wdin. Besides, the Hamiltonian matrix element in equation \ref{ch2.eq.lowdindeterminants} is between two Slater determinants $\Delta_p$ and $\Delta_q$. Since VB wave functions consist of multiple determinants, a double summation over indexes $p$ and $q$ will be needed to compute a complete Hamiltonian matrix element. This double summation is absent in equation \ref{ch2.eq.fock}. 
+
+\subsubsection{Optimization of orbitals}
 
 Orbitals can be changed by adding a small amount of an other orbital. For instance, orbital $\psi_i$ can be changed by adding a small amount $\delta b_{ia}$ times $\psi_a$:
 \begin{equation}
@@ -110,10 +116,10 @@ Using the quotient rule, using the fact that $\left < \Psi_0 | \mathbf{H} | \Psi
 \end{equation}
 For optimal orbitals, this first order derivative is equal to zero and hence equation \ref{ch2.eq.foderiv2} reduces to:
 \begin{equation}
-\left < \Psi_0 | \mathbf{H} - E_0 | \Psi_{ia} \right > = 0,
+\left < \Psi_0 | \mathbf{H} - E_0 | \Psi_{ia} \right > = 0.
 \label{ch2.eq.brillouin}
 \end{equation}
-which is the Brillouin theorem \cite{brillouin,genbrill}. This theorem states that with optimal orbitals singly excited states ($\Psi_{ia}$) do not interact or mix with the reference or ground state ($\Psi_0$). 
+This is the Brillouin theorem, which states that with optimal orbitals singly excited states ($\Psi_{ia}$) do not interact or mix with the reference or ground state ($\Psi_0$) \cite{brillouin,genbrill}. 
 
 In equations \ref{ch2.eq.orbchange}-\ref{ch2.eq.brillouin} the effect of a single orbital change has been shown. When all possible single excitations are taken into account, the wave function of equation \ref{ch2.eq.wfchange} can be written as:
 \begin{equation}
