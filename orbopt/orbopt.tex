@@ -16,9 +16,9 @@ The essential idea in Valence Bond theory is that atoms share electrons to form 
 
 Since the orbitals in MO theory can be chosen orthogonal, this method attracted more attention. Its implementation in computer programs is more straightforward and computations on larger molecular systems are possible. Despite its computational hurdles, progress in Valence Bond theory continued \cite{vboverv1,vboverv2,vboverv3}. One of the reasons is the development of powerful computers. On the other hand several efficient methods to optimize Valence Bond wave functions, like Spin-Coupled Valence Bond (SCVB) \cite{scvb1,scvb2,scvb3} and Valence Bond Self-Consistent Field (VBSCF) \cite{vbscf1,vbscf2,koos1,zahid}, have been developed.
 
-The most time consuming step in the optimization of the wave function is the optimization of the orbitals. Several methods to compute the gradient of the total energy with respect to orbital rotations have been developed. The most common one and widely applicable method is based the evaluation of Hamiltonian matrix elements between Slater determinants, as introduced by L\"{o}wdin \cite{lowdin}.
+The most time consuming step in the optimization of the wave function is the optimization of the orbitals. Several optimization methods that compute the gradient of the total energy with respect to orbital rotations have been developed. The most common and widely applicable method is based on the evaluation of Hamiltonian matrix elements between Slater determinants, as introduced by L\"{o}wdin \cite{lowdin}. Despite it common applicability, this method is time consuming.
 
-In another method, coined by Song \textit{et. al}, multiple Fock matrices are computed, one for each Slater determinant combination in the wave function \cite{song}. This approach is efficient for wave functions with a small number of Slater determinants. However, it is not as generally applicable as L\"{o}wdins method, because it can only be applied to wave functions without orthogonal orbitals \cite{xmvb}. Although in VB non-orthogonal orbitals are used explicitly, orthogonality can occur. For example, orbitals in the $\sigma$ system of benzene are, by molecular symmetry, orthogonal to the orbitals in the $\pi$ system.
+In another method, coined by Song \textit{et. al}, multiple Fock matrices are computed, one for each Slater determinant combination in the wave function \cite{song}. This approach is efficient and works fast for wave functions with a small number of Slater determinants. However, it is not as generally applicable as L\"{o}wdins method, because it can only be applied to wave functions without orthogonal orbitals \cite{xmvb}. Although in VB non-orthogonal orbitals are used explicitly, orthogonality can occur. For example, orbitals in the $\sigma$ system of benzene are, by molecular symmetry, orthogonal to the orbitals in the $\pi$ system.
 
 In Multi Configurational Self-Consistent Field (MCSCF) \cite{joop,mcscf,roos1,roos2}, a method with similarities to VBSCF, elements of a common Fock matrix are used instead of Hamiltonian matrix elements computed via L\"{o}wdins formula \cite{roos1}. The central question for this chapter is whether it is also possible to use a single Fock matrix for the optimization of the orbitals in VBSCF, although those can be non-orthogonal. If multiple Hamiltonian matrix elements would be equal to elements from a single Fock matrix, it would not be necessary to construct these Hamiltonian matrix elements. This could save a considerable amount of computation time.
 
@@ -32,7 +32,7 @@ To calculate the total energy of a molecular system, the time-independent Schr\"
 \begin{equation}
 E = \left< \Psi | \mathbf{H} | \Psi \right>,
 \end{equation}
-in which $\mathbf{H}$ is the Hamilton operator and $\Psi$ is the wave function. A wave function is said to be optimized once the lowest possible value $E$ has been found. For Valence Bond theory, such a wave function $\Psi$ is constructed from a linear combination of structures:
+in which $\mathbf{H}$ is the Hamilton operator and $\Psi$ is the normalized wave function. A wave function is said to be optimized once the lowest possible value $E$ has been found. For Valence Bond theory, such a wave function $\Psi$ is constructed from a linear combination of structures:
 \begin{equation}
 \Psi = \sum_{i} C_i \Phi_i.
 \label{ch2.eq.vbwf}
@@ -178,7 +178,7 @@ Roos \textit{et al.} showed that Brillouin matrix elements of the type $\left< \
 F_{ia} = h_{ia} + \sum_{\sigma\nu} \left\{ \left[ \chi_i \chi_a | \chi_\sigma \chi_\nu \right] - \left[ \chi_i \chi_\nu | \chi_\sigma \chi_a \right] \right\} \cdot P^{(\sigma,\nu)},
 \label{ch2.eq.fock}
 \end{equation}
-in which $F_{ia}$ is the Fock matrix element of spin-orbitals $\chi_i$ and $\chi_a$, $h_{ia}$ is the one electron integral $\left< \chi_i | \mathbf{h}| \chi_a \right>$. The double sum on the right hand side is over two electron integrals (Coulomb and exchange) times elements of the density matrix $P^{(\sigma,\nu)}$. The density matrix is constructed from first order cofactors of the norm of the wave function, $\left< \Psi_0 | \Psi_0 \right>$. Each cofactor that contains the column labeled $\sigma$ and row labeled $\nu$ is added to the density matrix element $P^{(\sigma,\nu)}$. For a one determinant wave function, each density matrix element is equal to a single cofactor (\textit{vide infra}).
+in which $F_{ia}$ is the Fock matrix element of spin-orbitals $\chi_i$ and $\chi_a$, $h_{ia}$ is the one electron integral $\left< \chi_i | \mathbf{h}| \chi_a \right>$. The double sum on the right hand side is over two electron integrals (Coulomb and exchange) times elements of the density matrix $P^{(\sigma,\nu)}$. The density matrix is constructed from first order cofactors of the norm of the wave function, $\left< \Psi_0 | \Psi_0 \right>$. Each cofactor that contains the column labeled $\sigma$ and row labeled $\nu$ is added to density matrix element $P^{(\sigma,\nu)}$. For a single determinant wave function, each density matrix element is equal to a single cofactor (\textit{vide infra}).
 
 In multideterminant wave functions, three orbital classes can be distinguished. The first class contains those orbitals that occur in all determinants. These be denoted with labels $i$, $j$, $k$ and $l$. The second class contains orbitals that occur in some determinants, denoted with $t$, $u$, $v$ and $x$. The last class contains those orbitals that do not occur in the ground state wave function $\Psi_0$ and hence are virtual unoccupied orbitals, labeled $a$, $b$, $c$ and $d$. With those classes in mind, Roos \textit{et al.} published three expressions with Fock matrix elements for three types of excitations:
 \begin{itemize}
@@ -680,32 +680,26 @@ in which $C_p$ and $C_q$ are the determinant coefficients in $\Psi_0$ and $\Psi_
 
 Comparing equation \ref{ch2.eq.fiafinal} for $i \rightarrow a$ with equation \ref{ch2.eq.ta_i7} for $t \rightarrow a$, one immediately sees the big difference in complexity. Using equation \ref{ch2.eq.fiafinal}, only a single Fock matrix element can be used instead of the Brillouin matrix element. Unfortunately, using equation \ref{ch2.eq.ta_i7} it becomes clear that the Fock matrix needs to be split into an inactive and an active part, a series of inactive Fock matrix elements is needed and a sum over two electron integrals multiplied with second order cofactors are necessary.
 
-As indicated before, Brillouin matrix elements of the type $i \rightarrow t$ and $t \rightarrow t$ are constructed with first order cofactors that contain overlaps that do not occur in the norm $\left< \Psi_0 | \Psi_0 \right>$. Hence, these elements are constructed with L\"{o}wdins formula (equation \ref{ch2.eq.lowdindeterminants}).
+As indicated before, Brillouin matrix elements of the type $i \rightarrow t$ and $t \rightarrow t$ are constructed with cofactors that contain overlaps that do not occur in the norm $\left< \Psi_0 | \Psi_0 \right>$. Hence, these elements are constructed with L\"{o}wdins formula (equation \ref{ch2.eq.lowdindeterminants}).
 
 \subsubsection{\label{ch2.sec.delocal}Localized VB wave functions}
 
-In TURTLE, it is possible to restrict orbitals to certain atoms, or fragments of the molecule. This type of wave function is called localized. Within each fragment, the doubly occupied and virtual orbitals are orthogonal to all other orbitals on the same fragment. However, between fragments, overlap of orbitals can occur. This means that doubly occupied orbitals from one fragment are no longer necessarily orthogonal to the orbitals in another fragment. In that case the needed single ``1'' on the diagonal of the overlap determinant from which the density matrix element is constructed will not be present. Due to non-orthogonality non-zero elements will show up on the row and column. In principle, the reasoning above for $i \rightarrow a$ and $t \rightarrow a$ does not apply. 
+In TURTLE, it is possible to restrict orbitals to certain atoms, or fragments of the molecule. This type of wave function is called localized. Within each fragment, the doubly occupied and virtual orbitals are orthogonal to all other orbitals. However, between fragments, overlap of orbitals can occur. This means that doubly occupied orbitals from one fragment are no longer necessarily orthogonal to the orbitals in another fragment. Overlaps between orbitals on different fragments will not be zero and hence density matrix elements in the Fock matrix elements (equation \ref{ch2.eq.fock}) are not equal to the second order cofactors in L\"{o}wdins formula (equation \ref{ch2.eq.lowdindeterminants}): the required single ``1'' on the extra row and column of the density matrix is not present. Therefore, the reasoning in the previous section for excitations of the types $i \rightarrow a$ and $t \rightarrow a$ does not apply for localized VB wave functions. 
 
 Sometimes, however, orbitals from different fragments can still be orthogonal due to the symmetry in the molecule (see the examples in Section \ref{ch2.sec.aromat}). In that case the elements of the Fock matrix can be used instead of calculating the Brillouin matrix elements.
 
 \subsubsection{\label{ch2.sec.denominator}Approximation Of The Denominator}
 
-So far, the numerator of equation \ref{ch2.eq.anr} has been analyzed. In this section an approximation of the denominator, or the diagonal element in the Brillouin matrix, will be presented:
+So far, the numerator of equation \ref{ch2.eq.anr} has been analyzed. The denomator contains elements of the type $\left< \Psi_{ia} | \mathbf{H}-E_0 | \Psi_{ia} \right>$. These correspond to the energy of the singly excited states. This energy can be approximated as the ground state energy ($E_0$) minus the energy of the orbital from which the excitation takes place ($F_{ii}$) plus the energy of the orbital to which the excitation takes place ($F_{aa}$):
 \begin{equation}
-\left< \Psi_{ia} | \mathbf{H}-E_0 | \Psi_{ia} \right>  =  \left< \Psi_{ia} | \mathbf{H} | \Psi_{ia} \right>  - E_0 \left< \Psi_{ia} | \Psi_{ia} \right>.
-\label{ch2.eq.brildiag}
-\end{equation}
-The difference between $\left < \Psi_{ia} | \mathbf{H} | \Psi_{ia} \right >$ and $E_0 \left< \Psi_{ia} | \Psi_{ia} \right>$ can be approximated with the help of Fock matrix elements on the diagonal:
-the expectation value of the energy of the excited state ($\left< \Psi_{ia} | \mathbf{H} | \Psi_{ia} \right>$) is roughly the ground state energy ($E_0$, $\Psi_{ia}$ is not normalized: part of the approximation) minus the energy of the no longer occupied orbital $i$ (roughly $F_{ii}$) plus the energy of the newly occupied $a$ (roughly $F_{aa}$). The denominator then becomes:
-\begin{equation}
-\frac{\left< \Psi_{ia} | \mathbf{H}-E_0 | \Psi_{ia} \right>}{\left< \Psi_{ia} | \Psi_{ia} \right>} \approx (F_{aa}-F_{ii}).
+\left< \Psi_{ia} | \mathbf{H}-E_0 | \Psi_{ia} \right> \approx (E_0 - F_{ii} + F_{aa})\left< \Psi_{ia} | \Psi_{ia} \right>.
 \label{ch2.eq.cheapdiag}
 \end{equation}
-This is an approximation, since removing an orbital will influence other orbitals, which is not taken into account here. This approximation may or may not work. An advantage of approximating the diagonal Brillouin matrix element with the difference of two Fock matrix elements is that it saves time, especially when the wave function consists of a lot of determinants. On the other hand, since it is an approximation it might result in more iterations. This means that in some situations/calculations it will speed up, while in others it may not.
+This is an approximation, since removing an orbital will influence other orbitals, which is not taken into account here. An advantage of approximating the diagonal Brillouin matrix element with the difference of two Fock matrix elements is that it saves time, especially when the wave function consists of a lot of determinants. On the other hand, the orbital update coefficients will be less accurate because of this approximation. It can therefore not be predicted how this approximation will affect the optimization process and the computation time.
 
 \section{\label{ch2.sec.implementation}Implementation}
 
-The implementation of the approximations described in the previous section consists of two parts. Firstly, the approximated Newton-Raphson method, which was already implemented in TURTLE, has been extended with extra options. Secondly, the use of a Fock matrix for excitations from doubly occupied orbitals to virtuals (equation \ref{ch2.eq.fiafinal}) has been implemented from scratch. It was decided not to implement equation \ref{ch2.eq.ta_i7} for excitations from variably occupied to virtuals, because the number of excitations from $t$ to $a$ is in most cases much lower than the number of excitations from $i$ to $a$. Secondly, the implementation of equation \ref{ch2.eq.ta_i7} is not as straightforward as equation \ref{ch2.eq.fiafinal}.
+The implementation of the approximations described in the previous section consists of two parts. Firstly, the approximated Newton-Raphson method, which was already implemented in TURTLE, has been extended with extra options. Secondly, the use of a Fock matrix for excitations from doubly occupied orbitals to virtuals (equation \ref{ch2.eq.fiafinal}) has been implemented from scratch. It was decided not to implement equation \ref{ch2.eq.ta_i7} for excitations from variably occupied to virtuals, because the number of excitations from $t$ to $a$ is in most cases much lower than the number of excitations from $i$ to $a$. Moreover, Brillouin matrix elements for $t \rightarrow a$ with their series of inactive Fock matrix elements and second order cofactors are much more time consuming to construct than Brillouin matrix elements for $i \rightarrow a$, which consist only of the single Fock matrix element $F_{ia}$.
 
 In the original aNR implementation the perturbation (equation \ref{ch2.eq.anr}) was used for excitations from the always and partly occupied orbitals to the virtuals. For all other excitations, \textit{i.e.} those from the always occupied orbitals to the partly occupied orbitals and from partly occupied to other partly occupied orbitals, an $\mathbf{H}$ and $\mathbf{S}$ matrix were constructed, for which the update coefficients were retrieved by solving the generalized eigenvalue problem (equation \ref{ch2.eq.geig}). 
 
@@ -715,7 +709,7 @@ The second option is that the excitation is treated with approximated Newton-Rap
 
 In the third option the excitation is treated with the Fock operator. In that case the orbital update coefficient $b_{ia}$ is calculated by dividing the Fock matrix element of the type $F_{ia}$ by the difference between $F_{ii}$ and $F_{aa}$ (Section \ref{ch2.sec.denominator}):
 \begin{equation}
-b_{ia}= - \frac{F_{ia}}{F_{aa}-F_{ii}}.
+b_{ia}= - \frac{2 \cdot F_{ia}}{E_0 - F_{ii} + F_{aa}}.
 \label{ch2.eq.fockapprox}
 \end{equation}
 
@@ -827,23 +821,9 @@ When Fock matrix elements can be used, the calculation takes less time with the 
 
 \section{Outlook}
 
-A drawback of the current implementation of the \textit{pert} and \textit{fock} options is that they are not automatic. A first extension would be the implementation of an automatic \textit{pert}/\textit{fock} option. For each excitation only the first column element and the diagonal element, \textit{e.g.} $\left < \Psi_{0} | \mathbf{H} - E_0 | \Psi_{ia} \right >$ and $\left < \Psi_{ia} | \mathbf{H} - E_0 | \Psi_{ia} \right >$, are calculated. With these two elements the orbital update coefficient $b_{ia}$ is calculated. Only when its absolute value is above a predefined threshold the other Brillouin matrix elements for the excitation are calculated. For small update coefficients the \textit{pert} (or \textit{fock} if the situation permits it) option is then automatically used, since no other Brillouin matrix elements are calculated. 
+In the theory section it has been shown that Brillouin matrix elements of the type $t \rightarrow a$ can be calculated from a series of inactive Fock matrix elements $F^{I}_{ta}$ and a set of second order cofactors (equation \ref{ch2.eq.ta_i7}). Although not implemented yet, computation time could be saved once it would be available in TURTLE. In that case, the construction of two separate Fock matrices is needed, $F^{I}_{ta}$ (for the inactive, or doubly occupied orbitals) and $F^{A}_{ta}$ (for the active, or variably occupied orbitals).
 
-Another step towards an automatic \textit{pert}/\textit{fock} option would be the use of orbital energies. Orbitals, like core $\sigma$ orbitals have a low energy ($i$ in Figure \ref{ch2.fig.energy}). %
-% Helaas een newpage, want anders komt plaatje tussen referenties.
-% (toch weer niet)
-%\clearpage
-%\newpage
-%
-\begin{figure}[ht]
-\center
-\includegraphics[width=2.8in]{orbopt/figures/orbitals.eps}
-\caption{A wave function ($\Psi_0$), with two doubly occupied orbitals, one low lying ($i$) and one high lying ($j$). There are two virtual orbitals, one low lying ($k$) and one high lying ($l$). The excitation from $i$ to $l$ should be treated with the \textit{pert} option, while the excitation from $j$ to $k$ should be treated with regular Super CI.}
-\label{ch2.fig.energy}
-\end{figure} 
-Excitations from these low lying orbitals to high lying virtuals ($l$) will only slightly change the wave function. Therefore, these orbitals  could easily be optimized by \textit{pert} or \textit{fock}. The HOMO-LUMO range ($j$, $k$), can be optimized by Super CI, since these orbitals are expected to change more than core orbitals. For the orbital energies the eigenvalues of a one electron operator on MO basis could be used.  Although these values are  estimates (interaction between orbitals is not taken into account), they can probably be used to separate between the excitations to be treated with the \textit{superci} and the \textit{pert} or \textit{fock} option. 
-
-The use of the \textit{fock} option in combination with the \textit{hybrid} option may be used at this moment. However, it is assumed that the user will only use this combination when the doubly occupied orbitals in different \textit{hybrids} are orthogonal. An automatic orthogonality check for doubly occupied orbitals from different \textit{hybrids} would be desirable. In case of non-orthogonality, TURTLE should automatically use \textit{pert} instead of \textit{fock}. 
+Secondly, as indicated in the introduction, the Fock matrix approach of Song \textit{et al.} has the drawback that it can not be used for wave functions with orthogonal orbitals \cite{song,xmvb}. With the Fock matrix approach presented in this chapter, only orthogonal orbitals can be optimized with a cheap Fock matrix. So, combining the two methods seems to be a logical choice. The optimization algorithm in TURTLE could be modified in such a way that it consists of two separate steps for the orbital optimization, one for the orthogonal orbitals (with the Fock method presented here) and one for the non-orthogonal orbitals (with the Fock method as introduced by Song). Since orthogonal orbitals prevent the use of Songs Fock method, they could be frozen during the optimization step for the non-orthogonal orbitals.
 
 \section*{Appendix A: Cofactors}
 

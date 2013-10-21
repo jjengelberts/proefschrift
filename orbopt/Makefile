@@ -1,4 +1,4 @@
-FIGURES=figures/compounds-eps-converted-to.pdf figures/orbitals-eps-converted-to.pdf figures/sigma_sih-eps-converted-to.pdf
+FIGURES=figures/compounds-eps-converted-to.pdf figures/sigma_sih-eps-converted-to.pdf
 
 all: orbopt.tex
 
