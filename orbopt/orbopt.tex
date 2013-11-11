@@ -189,9 +189,9 @@ The fourth type of excitation, $t \rightarrow t$ from variably to variably occup
 
 For this comparison the single determinant wave function $\Psi_0 = |\chi_1\chi_2\chi_3\chi_4\chi_5|$ is chosen. The excitation that will be examined for this wave function is from $\chi_1$ to $\chi_6$. Hence, $\Psi_{16}$ is equal to $|\chi_6\chi_2\chi_3\chi_4\chi_5|$. Numerals have been chosen as subscripts, rather than the previously specified letters: the classification of orbitals should not blur this comparison. 
 
-The norm of this wave function $\left < \Psi_0 | \Psi_0 \right>$ is:
+The orbitals $\chi$ are normalized, \textit{i.e.} $\left< \chi_1 | \chi_1 \right> = 1$. Throughout this chapter, normalized wave functions are used. This means that the determinants are multiplied by normalization constants in such a way that $\left< \Psi_0 |  \Psi_0 \right> = 1$:
 \begin{equation}
-\left < \Psi_0 | \Psi_0 \right> = | \mathbf{S} | =
+\left < \Psi_0 | \Psi_0 \right> = | \mathbf{S} | = \frac{1}{N} \cdot
 \begin{array}{llllll}
  &  \chi_1 & \chi_2 & \chi_3 & \chi_4 & \chi_5 \\
  \chi_1 & \multicolumn{1}{|l}{ 1 } & s_{21} & s_{31} & s_{41} & \multicolumn{1}{l|}{ s_{51} } \\
@@ -202,9 +202,7 @@ The norm of this wave function $\left < \Psi_0 | \Psi_0 \right>$ is:
 \end{array} = 1,
 \label{ch2.eq.s0g}
 \end{equation}
-in which the $s$ elements are overlaps between orbitals. For example, $s_{34} = \left< \chi_3 | \chi_4 \right>$. For normalized wave functions, used in this chapter, the norm equals ``1''.
-
-The density matrix, needed for the Fock matrix, is constructed from subdeterminants of the determinant in equation \ref{ch2.eq.s0g}. An example of a density matrix element is $P^{(3,4)}$:
+in which the $s$ elements are overlaps between orbitals and $\frac{1}{N}$ is the normalization constant\footnote{Throughout this chapter normalized wave functions are used. Therefore, the normalization constant $\frac{1}{N}$ is implicitly included.}. For example, $s_{34} = \left< \chi_3 | \chi_4 \right>$. The density matrix, needed for the Fock matrix, is constructed from subdeterminants of this determinant. An example of a density matrix element is $P^{(3,4)}$:
 \begin{equation}
 P^{(3,4)}=
 \begin{array}{llllll}
@@ -225,9 +223,10 @@ P^{(3,4)}=
  \chi_2 & \multicolumn{1}{|l}{ s_{12} } & 1 & s_{42} & \multicolumn{1}{l|}{ s_{52} } \\
  \chi_3 & \multicolumn{1}{|l}{ s_{13} } & s_{23} & s_{43} & \multicolumn{1}{l|}{s_{53}} \\
  \chi_5 & \multicolumn{1}{|l}{ s_{15} } & s_{25} & s_{45} & \multicolumn{1}{l|}{1}
-\end{array}.
+\end{array},
 \label{ch2.eq.p0exampg}
 \end{equation}
+which is the subdeterminant of $|\mathbf{S}|$ (equation \ref{ch2.eq.s0g}), from which the third column and the fourth row are removed.
 
 First and second order cofactors that occur in equation \ref{ch2.eq.lowdindeterminants} are subdeterminants of the overlap determinant of $\Psi_0$ with $\Psi_{16}$:
 \begin{equation}
@@ -267,7 +266,7 @@ S^{(3,4)}=
 \label{ch2.eq.s16g}
 \end{equation}
 
-On the first row in both determinants of equation \ref{ch2.eq.s16g} there are orbital overlaps, like $s_{26}$, which do not occur in the overlap determinant $\left< \Psi_0 | \Psi_0 \right>$. However, there are 5 out of 25 first order cofactors which have a corresponding $P$-matrix element, \textit{i.e} the cofactors $S^{(n,6)}$ are equal to $P^{(n,1)}$, for $n$ in \{1,2,3,4,5\}. In general, $m$ out of $m^2$ first order cofactors have a corresponding value in the $P$-matrix, where $m$ is the number of electrons. Without further restrictions on the wave function, the usability of the Fock matrix built from the density matrix is small, since it is only suitable for a small part of the Brillouin matrix element. 
+On the first row in both determinants of equation \ref{ch2.eq.s16g} there are orbital overlaps, like $s_{26}$, which do not occur in the overlap determinant $\left< \Psi_0 | \Psi_0 \right>$. However, there are 5 out of 25 first order cofactors which have a corresponding $P$-matrix element, \textit{i.e} the cofactors $S^{(n,6)}$ are equal to $P^{(n,1)}$, for $n$ in \{1,2,3,4,5\}. In general, $m$ out of $m^2$ first order cofactors have a corresponding value in the $P$-matrix, where $m$ is the number of electrons. Hence, without any orthogonality present in the wave function and/or its singly excited states, the usability of the Fock matrix built from the density matrix is only useful for $\frac{m}{m^2}$ elements of the Brillouin matrix. 
 
 In TURTLE, the virtual orbitals are chosen orthogonal to all other orbitals (see the Appendix of reference \cite{koos1}). If $\chi_6$ would be such a virtual orbital, the overlap of $\Psi_0$ with $\Psi_{16}$ becomes:
 \begin{equation}
@@ -282,9 +281,9 @@ In TURTLE, the virtual orbitals are chosen orthogonal to all other orbitals (see
 \end{array}.
 \label{ch2.eq.s016go}
 \end{equation}
-In that case, there are only 5 first order cofactors, $S^{(n,6)}$ ($n$ in \{1,2,3,4,5\}), because the other first order cofactors are zero: there will be zeroes on the first row, making these determinants zero. As seen before, these 5 cofactors all have a corresponding $P$-matrix element. Whether it is possible to use these to construct Fock matrix elements for use in Brillouin matrix elements will be investigated for the excitation types $i \rightarrow a$ and $t \rightarrow a$. In those excitations, an orthogonal virtual is used.
+In that case, there are only 5 first order cofactors, $S^{(n,6)}$ ($n$ in \{1,2,3,4,5\}), because the other first order cofactors are zero: there will be zeroes on the first row, making these determinants zero. As seen before, these 5 cofactors all have a corresponding $P$-matrix element, $P^{(n,1)}$. Whether it is possible to use these to construct Fock matrix elements for use in Brillouin matrix elements will be investigated for the excitation types $i \rightarrow a$ and $t \rightarrow a$. In those excitations, an orthogonal virtual is used.
 
-Brillouin matrix elements of the type $i \rightarrow t$ and $t \rightarrow t$ have first order cofactors like in equation \ref{ch2.eq.s016g}. Because these contain overlaps that do not occur in the norm $\left< \Psi_0 | \Psi_0 \right>$, they are not equal to density matrix elements. Therefore, Brillouin matrix elements of the type $i \rightarrow t$ and $t \rightarrow t$ will be constructed the usual way via L\"{o}wdins formula (equation \ref{ch2.eq.lowdindeterminants}).
+Brillouin matrix elements of the type $i \rightarrow t$ and $t \rightarrow t$ have first order cofactors like in equation \ref{ch2.eq.s016g}. Because these contain overlaps that do not occur in $\left< \Psi_0 | \Psi_0 \right>$, they are not equal to density matrix elements. This means that Fock matrix elements could only be used for $m$ out of $m^2$ Brillouin matrix elements. In every day Valence Bond wave functions, multiple orbitals occur and so $m^2$ will be much larger than $m$. Therefore, Brillouin matrix elements of the type $i \rightarrow t$ and $t \rightarrow t$ will be constructed the usual way via L\"{o}wdins formula (equation \ref{ch2.eq.lowdindeterminants}).
 
 \subsubsection{\label{ch2.sec.i-a}$i \rightarrow a$ from (always) doubly occupied to virtual orbitals}
 
@@ -483,7 +482,7 @@ The corresponding norm $\left< \Psi_0 | \Psi_0 \right>$ is:
 \label{ch2.eq.s02}
 \end{equation}
 
-The density matrix is constructed by summing the contribution of the Slater determinant combinations in equation \ref{ch2.eq.s02}. If the row and column labels of the density matrix element are present in the Slater determinant combination, a cofactor is created and added to the density matrix element. Since orbitals $\chi_i$ and $\chi_j$ occur in all determinants, density matrix elements $P^{(i,i)}$ and $P^{(j,j)}$ get a contribution from cofactors of all these determinants. Other elements get a contribution from less determinants, a single one in this case. For example $P^{(t,x)}$, which gets a single cofactor from the second determinant in equation \ref{ch2.eq.s02}:
+The density matrix is constructed by summing the contribution of the Slater determinant combinations in equation \ref{ch2.eq.s02}. If the row and column labels of the density matrix element are present in the Slater determinant combination, the corresponding is  added to the density matrix element. Since orbitals $\chi_i$ and $\chi_j$ occur in all determinants, density matrix elements $P^{(i,i)}$ and $P^{(j,j)}$ get a contribution from cofactors of all these determinants. Other elements get a contribution from less determinants, a single one in this case. For example $P^{(t,x)}$, which gets a single cofactor from the second determinant in equation \ref{ch2.eq.s02}:
 \begin{equation}
 P^{(t,x)}=
 \begin{array}{llll}
@@ -536,7 +535,7 @@ The overlap of $\Psi_0$ with $\Psi_{ia}$ is:
 \end{split}
 \label{ch2.eq.psi0_ia2}
 \end{equation}
-The only one electron contribution that adds to the Brillouin matrix element is $h_{ia}$, because it is multiplied by nonzero  cofactors created by removing column $\chi_i$ and row $\chi_a$ from all four determinants in equation \ref{ch2.eq.psi0_ia2}. The sum of these four cofactors is equal to the sum in equation \ref{ch2.eq.s02}. Since $\Psi_0$ is normalized, this is equal to one. The contribution is then, like for the one determinant case, $h_{ia}$ for $\alpha$ spin.
+The only one electron contribution that adds to the Brillouin matrix element is $h_{ia}$, because it is multiplied by nonzero  cofactors created by removing column $\chi_i$ and row $\chi_a$ from all four determinants in equation \ref{ch2.eq.psi0_ia2}. The sum of these four cofactors is equal to $\left< \Psi_0 | \Psi_0 \right>$ (equation \ref{ch2.eq.s02}). Since $\Psi_0$ is normalized, this is equal to one. The contribution is then, like for the one determinant case, $h_{ia}$ for $\alpha$ spin.
 
 Only those two electron integrals that contain second order cofactors in which column $\chi_i$ and row $\chi_a$ are removed occur. One such combination of a Coulomb and exchange integral that contributes is: 
 \begin{equation}
@@ -821,8 +820,6 @@ When Fock matrix elements can be used, the calculation takes less time with the 
 \section{Outlook}
 
 In the theory section it has been shown that Brillouin matrix elements of the type $t \rightarrow a$ can be calculated from a series of inactive Fock matrix elements $F^{I}_{ta}$ and a set of second order cofactors (equation \ref{ch2.eq.ta_i7}). Although not implemented yet, computation time could be saved once it would be available in TURTLE. In that case, the construction of two separate Fock matrices is needed, $F^{I}_{ta}$ (for the inactive, or doubly occupied orbitals) and $F^{A}_{ta}$ (for the active, or variably occupied orbitals).
-
-Secondly, as indicated in the introduction, the Fock matrix approach of Song \textit{et al.} has the drawback that it can not be used for wave functions with orthogonal orbitals \cite{song,xmvb}. With the Fock matrix approach presented in this chapter, only orthogonal orbitals can be optimized with a cheap Fock matrix. So, combining the two methods seems to be a logical choice. The optimization algorithm in TURTLE could be modified in such a way that it consists of two separate steps for the orbital optimization, one for the orthogonal orbitals (with the Fock method presented here) and one for the non-orthogonal orbitals (with the Fock method as introduced by Song). Since orthogonal orbitals prevent the use of Songs Fock method, they could be frozen during the optimization step for the non-orthogonal orbitals.
 
 \section*{Appendix A: Cofactors}
 
