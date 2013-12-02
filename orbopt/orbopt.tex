@@ -395,7 +395,7 @@ S^{(i,a)}=
 \end{array}=
 S^{(j,b)}=1.
 \end{equation}
-Since the wave function $\Psi_0$ is normalized, $|\mathbf{S}|$ (its norm) is equal to ``1''. Since  $S^{(i,a)}$ and $S^{(j,b)}$ are subdeterminants of $|\mathbf{S}|$ from which only a single ``1'' on the diagonal has been removed, these elements are also ``1''. The one electron contribution to the Brillouin matrix element is then: $h_{ia}\cdot S^{(i,a)} + h_{jb}\cdot S^{(j,b)} = 2 \cdot h_{ia}$.
+Since the wave function $\Psi_0$ is normalized, $|\mathbf{S}|$ (its norm) is equal to ``1''. Since  $S^{(i,a)}$ and $S^{(j,b)}$ are subdeterminants of $|\mathbf{S}|$ from which only a single ``1'' on the diagonal has been removed, these cofactors are also ``1''. The one electron contribution to the Brillouin matrix element is then: $h_{ia}\cdot S^{(i,a)} + h_{jb}\cdot S^{(j,b)} = 2 \cdot h_{ia}$.
 
 The two electron integrals in equation \ref{ch2.eq.lowdindeterminants} are multiplied by second order cofactors. This means that besides removing column $\chi_i$ and row $\chi_a$ from the determinant in equation \ref{ch2.eq.psi0_ia} and column $\chi_j$ and row $\chi_b$ from the determinant in equation \ref{ch2.eq.psi0_jb}, another row and column need to be removed. Since index $i$ and $a$ (equation \ref{ch2.eq.psi0_ia}) and $j$ and $b$ (equation \ref{ch2.eq.psi0_jb}) are fixed, the summation in the two electron integral part of equation \ref{ch2.eq.lowdindeterminants} will only run over the other two indexes $\sigma$ and $\nu$:
 \begin{equation}
@@ -575,19 +575,19 @@ Only a single one electron integral contributes to the Brillouin matrix element 
 
 For excitations of type $t \rightarrow a$, Roos \textit{et al.} have split the Fock matrix into an active and an inactive part \cite{roos1}. The total Fock matrix (equation \ref{ch2.eq.fock}) is the sum of these two parts:
 \begin{equation}
-F_{ia}=F^{I}_{ia} + F^{A}_{ia}.
+F_{ta}=F^{I}_{ta} + F^{A}_{ta}.
 \label{ch2.eq.focksum}
 \end{equation}
-In the inactive part the one electron contribution ($h_{ia}$) is present. Furthermore, the sum over the two electron integral runs over the inactive, or always occupied, orbitals:
+In the inactive part the one electron contribution ($h_{ia}$) is present. Furthermore, the sum over the two electron integral runs over the inactive, or always occupied, orbitals (index $\lambda$):
 \begin{equation}
-F^{I}_{ia} = h_{ia} + \sum_{\lambda} \left\{ \left[ \chi_i \chi_a | \chi_\lambda \chi_\lambda \right] - \left[ \chi_i \chi_\lambda | \chi_\lambda \chi_a \right] \right\}.
+F^{I}_{ta} = h_{ta} + \sum_{\lambda} \left\{ \left[ \chi_t \chi_a | \chi_\lambda \chi_\lambda \right] - \left[ \chi_t \chi_\lambda | \chi_\lambda \chi_a \right] \right\}.
 \label{ch2.eq.focki}
 \end{equation}
 The two electron integral part is multiplied with $P^{(\lambda,\lambda)}$, which is equal to $\left<\Psi_0 | \Psi_0 \right> = 1$ (analogously to equation \ref{ch2.eq.sissia}: $P^{(i,i)}=S^{(i,a)}$). Therefore, these $P$-matrix elements are not shown in equation \ref{ch2.eq.focki}. 
 
-The active part of the Fock matrix is constructed by summing over the two electron integral contribution for the variably occupied orbitals:
+The active part of the Fock matrix is constructed by summing over the two electron integral contribution for the variably occupied orbitals (indexes $\sigma$ and $\nu$):
 \begin{equation}
-F^{A}_{ia} = \sum_{\sigma\nu} \left\{ \left[ \chi_i \chi_a | \chi_\sigma \chi_\nu \right] - \left[ \chi_i \chi_\nu | \chi_\sigma \chi_a \right] \right\} \cdot P^{(\sigma,\nu)}.
+F^{A}_{ta} = \sum_{\sigma\nu} \left\{ \left[ \chi_t \chi_a | \chi_\sigma \chi_\nu \right] - \left[ \chi_t \chi_\nu | \chi_\sigma \chi_a \right] \right\} \cdot P^{(\sigma,\nu)}.
 \label{ch2.eq.focka}
 \end{equation}
 It will be shown that the inactive part can be used in the construction of the Brillouin matrix element, while the active part cannot.
@@ -612,7 +612,7 @@ h_{ta} \cdot S^{(t,a)} + h_{ua} \cdot S^{(u,a)} + h_{va} \cdot S^{(v,a)} = h_{ta
 \end{equation}
 using the fact that $P^{(\sigma,t)} = S^{(\sigma,a)}$, for $\sigma$ is $t$, $u$ and $v$.
 
-The two electron contribution can be split into two parts. The first part contains the second order cofactors for which the first index $\sigma$ runs over the variably occupied orbitals and the second and fourth index run over $\lambda$, the doubly occupied space. The third index is $a$, because second order cofactors without $a$ will be zero, because those are determinants with a row of zeroes. With the selection of an orthogonal occupied orbital for the second index, like $i$, only the selection of $i$ as fourth index will result in a non-zero second order cofactor. An example is $S^{(t,i,a,i)}$. Removing the column and row labeled $i$ results in removing a single ``1'' from the diagonal of the determinant and hence $S^{(t,i,a,i)}=S^{(t,a)}=P^{(t,t)}$:
+Because for this type of excitation the contribution to the Fock matrix element is split into an inactive ($F^I_{ta}$) and an active ($F^A_{ta}$) contribution, the two electron integral part is also split into two contributions. The first part contains the second order cofactors for which the first index $\sigma$ runs over the variably occupied orbitals and the second and fourth index run over $\lambda$, the index that runs over the doubly occupied space (equation \ref{ch2.eq.focki}). The third index is $a$, because second order cofactors without $a$ will be zero, because those are determinants with a row of zeroes. With the selection of an orthogonal occupied orbital for the second index, like $i$, only the selection of $i$ as fourth index will result in a non-zero second order cofactor. An example is $S^{(t,i,a,i)}$. Removing the column and row labeled $i$ results in removing a single ``1'' from the diagonal of the determinant and hence $S^{(t,i,a,i)}=S^{(t,a)}=P^{(t,t)}$:
 \begin{equation}
 S^{(t,i,a,i)}=
 \begin{array}{llll}
@@ -655,7 +655,7 @@ F^{I}_{ta} \cdot P^{(t,t)} + F^{I}_{ua} \cdot P^{(u,t)} + F^{I}_{va} \cdot P^{(v
 \label{ch2.eq.ta_i4}
 \end{equation}
 
-The second part of the two electron integrals contains the second order cofactors of the type $S^{(\sigma,\mu,a,\nu)}$, with $\sigma$, $\mu$ and $\nu$ being $t$, $u$ or $v$. For these second order cofactors no equivalent $P$-matrix element is present. Therefore, the contribution to the Brillouin matrix element from this second part of the two electron integrals is:
+The second contribution to the two electron integral part contains the second order cofactors of the type $S^{(\sigma,\mu,a,\nu)}$, with $\sigma$, $\mu$ and $\nu$ being $t$, $u$ or $v$. For these second order cofactors no equivalent $P$-matrix element is present. Therefore, the contribution to the Brillouin matrix element from this second part of the two electron integrals is:
 \begin{equation}
 \sum_{\sigma,\mu,\nu} \left\{ \left[ \chi_\sigma \chi_a | \chi_\mu \chi_\nu \right] - \left[ \chi_\sigma \chi_\nu | \chi_\mu \chi_a \right] \right\} \cdot S^{(\sigma,a,\mu,\nu)},
 \label{ch2.eq.ta_i5}
@@ -664,13 +664,13 @@ in which $\sigma$, $\mu$ and $\nu$ only run over the variably occupied, or activ
 
 The Brillouin matrix element $\left< \Psi_0 | \mathbf{H} | \Psi_{ta} \right>$ is the sum of the contributions in equations \ref{ch2.eq.ta_i4} and \ref{ch2.eq.ta_i5}:
 \begin{equation}
-\left< \Psi_0 | \mathbf{H} | \Psi_{ta} \right> = \sum_{\sigma} F^{I}_{t\sigma} \cdot P^{(\sigma,t)} + \sum_{\sigma,\mu,\nu} \left\{ \left[ \chi_\sigma \chi_a | \chi_\mu \chi_\nu \right] - \left[ \chi_\sigma \chi_\nu | \chi_\mu \chi_a \right] \right\} \cdot S^{(\sigma,a,\mu,\nu)}.
+\left< \Psi_0 | \mathbf{H} | \Psi_{ta} \right> = \sum_{\sigma} F^{I}_{\sigma a} \cdot P^{(\sigma,t)} + \sum_{\sigma,\mu,\nu} \left\{ \left[ \chi_\sigma \chi_a | \chi_\mu \chi_\nu \right] - \left[ \chi_\sigma \chi_\nu | \chi_\mu \chi_a \right] \right\} \cdot S^{(\sigma,a,\mu,\nu)}.
 \label{ch2.eq.ta_i6}
 \end{equation}
 
 Up till here, only a single determinant wave function has been used for showing the usability of multiple Fock matrix elements for a single Brillouin matrix element of the type $t \rightarrow a$. If multiple determinants would be used, it will become clear that the density matrix elements become sums of contributions for each determinant combination, analogously to equations \ref{ch2.eq.wfexamp2} to \ref{ch2.eq.psi0_ia2}. Since the $P$-matrix element already contains the sums over the determinants, only the second part in equation \ref{ch2.eq.ta_i6} get an extra summation over the Slater determinants in $\Psi_0$ and $\Psi_{ta}$:
 \begin{equation}
-\left< \Psi_0 | \mathbf{H} | \Psi_{ta} \right> = \sum_{\sigma} F^{I}_{t\sigma} \cdot P^{(\sigma,t)} + \sum_{pq} C_p C_q\sum_{\sigma,\mu,\nu} \left\{ \left[ \chi_\sigma \chi_a | \chi_\mu \chi_\nu \right] - \left[ \chi_\sigma \chi_\nu | \chi_\mu \chi_a \right] \right\} \cdot S_{pq}^{(\sigma,a,\mu,\nu)},
+\left< \Psi_0 | \mathbf{H} | \Psi_{ta} \right> = \sum_{\sigma} F^{I}_{\sigma a} \cdot P^{(\sigma,t)} + \sum_{pq} C_p C_q\sum_{\sigma,\mu,\nu} \left\{ \left[ \chi_\sigma \chi_a | \chi_\mu \chi_\nu \right] - \left[ \chi_\sigma \chi_\nu | \chi_\mu \chi_a \right] \right\} \cdot S_{pq}^{(\sigma,a,\mu,\nu)},
 \label{ch2.eq.ta_i7}
 \end{equation}
 in which $C_p$ and $C_q$ are the determinant coefficients in $\Psi_0$ and $\Psi_{ta}$, respectively. 
