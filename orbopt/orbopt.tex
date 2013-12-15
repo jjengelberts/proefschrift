@@ -573,7 +573,7 @@ Only a single one electron integral contributes to the Brillouin matrix element 
 
 \subsubsection{\label{ch2.sec.t-a}$t \rightarrow a$ from variably occupied to virtual orbitals}
 
-For excitations of type $t \rightarrow a$, Roos \textit{et al.} have split the Fock matrix into an active and an inactive part \cite{roos1}. The total Fock matrix (equation \ref{ch2.eq.fock}) is the sum of these two parts:
+For excitations of type $t \rightarrow a$, Roos \textit{et al.} have split the Fock matrix in CASSCF into an active and an inactive part \cite{roos1}. The total Fock matrix (equation \ref{ch2.eq.fock}) is the sum of these two parts:
 \begin{equation}
 F_{ta}=F^{I}_{ta} + F^{A}_{ta}.
 \label{ch2.eq.focksum}
@@ -590,9 +590,14 @@ The active part of the Fock matrix is constructed by summing over the two electr
 F^{A}_{ta} = \sum_{\sigma\nu} \left\{ \left[ \chi_t \chi_a | \chi_\sigma \chi_\nu \right] - \left[ \chi_t \chi_\nu | \chi_\sigma \chi_a \right] \right\} \cdot P^{(\sigma,\nu)}.
 \label{ch2.eq.focka}
 \end{equation}
-It will be shown that the inactive part can be used in the construction of the Brillouin matrix element, while the active part cannot.
+In analogy with the method of Roos \textit{et al.} for CASSCF, it will be shown that the Fock matrix in VBSCF also needs to be split up into an active and inactive part as well.
 
-The wave function from the previous example $\Psi_0 = |\chi_i\chi_j\chi_t\chi_u\chi_v|$ is used here again, but this time the excitation is from orbital $\chi_t$ to $\chi_a$. In that case, $\left< \Psi_0 | \Psi_0 \right>$ will be the same as in equation \ref{ch2.eq.s0}, $\Psi_{ta}$ will be $|\chi_i\chi_j\chi_a\chi_u\chi_v|$ and the overlap of $\Psi_0$ with $\Psi_{ta}$ is:
+The contribution to the Brillouin matrix element, equation \ref{ch2.eq.lowdindeterminants}, is investigated in two steps. In the first step, the one electron integral contribution is analyzed, while the focus in the second step rests on the two electron integral part. This one electron integral contribution, for single determinants, is:
+\begin{equation}
+\sum_{ik} h_{ik} \cdot S^{(i,k)},
+\label{ch2.eq.ta_1el1}
+\end{equation}
+in which index $i$ runs over the orbitals in the left determinant and index $k$ over the orbitals in the determinant on the right hand side \footnote{See equation \ref{ch2.eq.lowdindeterminants} for the complete Brillouin matrix element.}. The (single determinant) wave function from the previous example $\Psi_0 = |\chi_i\chi_j\chi_t\chi_u\chi_v|$ is used here again, but this time the excitation is from orbital $\chi_t$ to $\chi_a$. In that case, $\left< \Psi_0 | \Psi_0 \right>$ will be the same as in equation \ref{ch2.eq.s0}, $\Psi_{ta}$ will be $|\chi_i\chi_j\chi_a\chi_u\chi_v|$ and the overlap of $\Psi_0$ with $\Psi_{ta}$ is:
 \begin{equation}
 \left < \Psi_0 | \Psi_{ta} \right > = 
 \begin{array}{llllll}
@@ -605,14 +610,24 @@ The wave function from the previous example $\Psi_0 = |\chi_i\chi_j\chi_t\chi_u\
 \end{array}.
 \label{ch2.eq.psi0_ta}
 \end{equation}
-Only those first order cofactors of the type $S^{(\sigma,a)}$ (with $\sigma$ being $t$, $u$, or $v$) contribute to the one electron contribution, other first order cofactors have a row with zeroes (labeled $\chi_a$). The total one electron contribution in L\"{o}wdins formula is:
+From this determinant, 25 first order cofactors could be taken, since there are 5 rows and 5 columns. However, many of these are zero. Only first cofactors for which the row labeled $\chi_a$ is removed are non-zero. Furthermore, first order cofactors where columns labeled $\chi_i$ or $\chi_j$ are removed will be zero. This means that only first order cofactors of the type $S^{(\sigma,a)}$ (with $\sigma$ being $t$, $u$, or $v$) contribute to the one electron contribution. The total one electron contribution in L\"{o}wdins formula is:
+\begin{equation}
+h_{ta} \cdot S^{(t,a)} + h_{ua} \cdot S^{(u,a)} + h_{va} \cdot S^{(v,a)}.
+\label{ch2.eq.ta_1el2}
+\end{equation}
+Because the only first order cofactors that contribute to the Brillouin matrix elements are those that only contain orbital overlaps present in $\left< \Psi_0 | \Psi_0 \right>$ (no occurences of overlaps which involve orbital $\chi_a$), these first order cofactors are equal to density matrix elements:
 \begin{equation}
 h_{ta} \cdot S^{(t,a)} + h_{ua} \cdot S^{(u,a)} + h_{va} \cdot S^{(v,a)} = h_{ta} \cdot P^{(t,t)} + h_{ua} \cdot P^{(u,t)} + h_{va} \cdot P^{(v,t)},
 \label{ch2.eq.ta_i1}
 \end{equation}
 using the fact that $P^{(\sigma,t)} = S^{(\sigma,a)}$, for $\sigma$ is $t$, $u$ and $v$.
 
-Because for this type of excitation the contribution to the Fock matrix element is split into an inactive ($F^I_{ta}$) and an active ($F^A_{ta}$) contribution, the two electron integral part is also split into two contributions. The first part contains the second order cofactors for which the first index $\sigma$ runs over the variably occupied orbitals and the second and fourth index run over $\lambda$, the index that runs over the doubly occupied space (equation \ref{ch2.eq.focki}). The third index is $a$, because second order cofactors without $a$ will be zero, because those are determinants with a row of zeroes. With the selection of an orthogonal occupied orbital for the second index, like $i$, only the selection of $i$ as fourth index will result in a non-zero second order cofactor. An example is $S^{(t,i,a,i)}$. Removing the column and row labeled $i$ results in removing a single ``1'' from the diagonal of the determinant and hence $S^{(t,i,a,i)}=S^{(t,a)}=P^{(t,t)}$:
+For the analysis of the two electron part, the two electron integral contribution to the Brillouin matrix element is taken from equation \ref{ch2.eq.lowdindeterminants}:
+\begin{equation}
+\sum_{i<j,k<l} \left\{ \left[ \chi_i \chi_k | \chi_j \chi_l \right] - \left[ \chi_i \chi_l | \chi_j \chi_k \right] \right\} \cdot S^{(i,j,k,l)}.
+\label{ch2.eq.ta_1el3}
+\end{equation}
+This contribution is split into an inactive and an active part, in analogy with the split for the Fock matrix element in CASSCF. The first part contains the second order cofactors for which the first index $\sigma$ runs over the variably occupied orbitals and the second and fourth index run over $\lambda$, the index that runs over the doubly occupied space (equation \ref{ch2.eq.focki}). The third index is $a$, because second order cofactors without $a$ will be zero, because those are determinants with a row of zeroes. With the selection of an orthogonal occupied orbital for the second index, like $i$, only the selection of $i$ as fourth index will result in a non-zero second order cofactor. An example is $S^{(t,i,a,i)}$. Removing the column and row labeled $i$ results in removing a single ``1'' from the diagonal of the determinant and hence $S^{(t,i,a,i)}=S^{(t,a)}=P^{(t,t)}$:
 \begin{equation}
 S^{(t,i,a,i)}=
 \begin{array}{llll}
@@ -655,7 +670,7 @@ F^{I}_{ta} \cdot P^{(t,t)} + F^{I}_{ua} \cdot P^{(u,t)} + F^{I}_{va} \cdot P^{(v
 \label{ch2.eq.ta_i4}
 \end{equation}
 
-The second contribution to the two electron integral part contains the second order cofactors of the type $S^{(\sigma,\mu,a,\nu)}$, with $\sigma$, $\mu$ and $\nu$ being $t$, $u$ or $v$. For these second order cofactors no equivalent $P$-matrix element is present. Therefore, the contribution to the Brillouin matrix element from this second part of the two electron integrals is:
+The second contribution to the two electron integral part contains the second order cofactors of the type $S^{(\sigma,\mu,a,\nu)}$, with $\sigma$, $\mu$ and $\nu$ being $t$, $u$ or $v$. Since these second order cofactors are generated by the removing rows and columns from the active orbital part, they are not equal to (first order) density matrix elements. To obtain those, a single ``1'' should be removed. This is only possible by removal of rows and colums from the inactive orbital part. Therefore, the contribution to the Brillouin matrix element from this second part of the two electron integrals will always contain second order cofactors:
 \begin{equation}
 \sum_{\sigma,\mu,\nu} \left\{ \left[ \chi_\sigma \chi_a | \chi_\mu \chi_\nu \right] - \left[ \chi_\sigma \chi_\nu | \chi_\mu \chi_a \right] \right\} \cdot S^{(\sigma,a,\mu,\nu)},
 \label{ch2.eq.ta_i5}
