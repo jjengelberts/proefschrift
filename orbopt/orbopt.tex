@@ -3,7 +3,7 @@
 
 \ifthenelse{\boolean{wholethesis}}{\relax}{\begin{center}\textit{Generated on \today\ at \currenttime}\end{center}}
 
-\noindent\textbf{Abstract:} The most time consuming step in optimizing a Valence Bond (VB) wave function is the construction of the matrix representation of the Hamilton operator ($\mathbf{H}$) and the corresponding overlap matrix ($\mathbf{S}$) for the wave function and the Brillouin states. In the 1990s a perturbation theory scheme, referred to as approximated Newton-Raphson (aNR), was introduced. For this scheme, not all $\mathbf{H}$ matrix elements need to be constructed. In this chapter an alternative, less time consuming method  to construct $\mathbf{H}$ matrix elements is introduced. In this method $\mathbf{H}$ matrix elements are replaced by elements of a Fock matrix.
+\noindent\textbf{Abstract:} The most time consuming step in optimizing a Valence Bond (VB) wave function using the Valence Bond Self-Consistent Field (VBSCF) method is the construction of the matrix representation of the Hamilton operator ($\mathbf{H}$) and the corresponding overlap matrix ($\mathbf{S}$) for the wave function and the Brillouin states. In the 1990s a perturbation theory scheme, referred to as approximated Newton-Raphson (aNR), was introduced. For this scheme, not all $\mathbf{H}$ matrix elements need to be constructed. In this chapter an alternative, less time consuming method  to construct $\mathbf{H}$ matrix elements is introduced. In this method, $\mathbf{H}$ matrix elements are replaced by elements of a Fock matrix.
 
 \newpage
 
@@ -14,7 +14,7 @@
 In contrast to other methods, like the Molecular Orbital theory \cite{hartree1,hartree2,hartree3,fock} which uses delocalized doubly occupied orbitals by default, 
 VB uses the spin-pairing of singly occupied non-orthogonal orbitals on different atoms, or molecular fragments to describe chemical bonds. The bond in H$_2$ can be described by the spin-coupling of the atomic $1s$ orbitals on both hydrogen atoms [H$\bullet$H$\bullet$]. The corresponding wave function consists of two determinants: $\Psi = |1s_{A}\overline{1s_{B}}| - |\overline{1s_{A}}1s_{B}|$. This determinant combination is called a structure. Since it describes the covalent character of the bond, it is referred to as the covalent structure. Ionic structures could be added to extend, or enhance the wave function: $|1s_{A}\overline{1s_{A}}|$ and $|1s_{B}\overline{1s_{B}}|$ (see Chapter \chintro). A VB wave function can be improved in two ways. Firstly, more structures can be added. A disadvantage in that case is that, when many structures are added, the interpretation of $\Psi$ becomes difficult. The second way to improve the wave function is the optimization of the orbitals. To maintain the interpretability, only a limited number of structures could be chosen of which the orbitals are optimized. 
 
-Besides the use of multiple determinants in VB, non-orthogonal and localized orbitals are used explicitly. Since the orbitals in MO theory can be chosen to be orthogonal, this method attracted more attention. Its implementation in computer programs is more straightforward and computations on larger molecular systems are possible. Despite its computational hurdles, progress in Valence Bond theory continued \cite{vboverv1,vboverv2,vboverv3}. The main reason is the chemical interpretation of Valence Bond wave functions in term of structures. On the other hand several efficient methods to optimize Valence Bond wave functions, like Spin-Coupled Valence Bond (SCVB) \cite{scvb1,scvb2,scvb3} and Valence Bond Self-Consistent Field (VBSCF) \cite{vbscf1,vbscf2,koos1,zahid}, have been developed.
+Besides the use of multiple determinants in VB, non-orthogonal and localized orbitals are used explicitly. Since the orbitals in MO theory can be chosen to be orthogonal, this method attracted more attention. Its implementation in computer programs is more straightforward and computations on larger molecular systems are possible. Despite its computational hurdles, progress in Valence Bond theory continued \cite{vboverv1,vboverv2,vboverv3}. The main reason is the chemical interpretation of Valence Bond wave functions in terms of structures. On the other hand several efficient methods to optimize Valence Bond wave functions, like Spin-Coupled Valence Bond (SCVB) \cite{scvb1,scvb2,scvb3} and Valence Bond Self-Consistent Field (VBSCF) \cite{vbscf1,vbscf2,koos1,zahid}, have been developed.
 
 The most time consuming step in the optimization of the wave function is the optimization of the orbitals. Several optimization methods that compute the gradient of the total energy with respect to orbital rotations have been developed. The most common and widely applicable method is based on the evaluation of Hamiltonian matrix elements between Slater determinants, as introduced by L\"{o}wdin \cite{lowdin}. Despite its common applicability, this method is time consuming.
 
@@ -66,7 +66,7 @@ The $\mathbf{H}$-matrix elements in equation \ref{ch2.eq.eig} are computed with 
 \begin{equation}
 \begin{split}
 \left< \Psi | \mathbf{H} | \Psi \right> &= \sum_{pq} C_p C_q \left< \Delta_p | \mathbf{H} | \Delta_q \right> \\ 
-&= \sum_{pq} C_p C_q \left(\sum_{ik} h_{ik} \cdot S^{(i,k)} + \sum_{i<j,k<l} \left\{ \left[ \chi_i \chi_k | \chi_j \chi_l \right] - \left[ \chi_i \chi_l | \chi_j \chi_k \right] \right\} \cdot S^{(i,j,k,l)}\right),
+&= \sum_{pq} C_p C_q \left(\sum_{ik} h_{ik} \cdot S^{(i,k)}_{pq} + \sum_{i<j,k<l} \left\{ \left[ \chi_i \chi_k | \chi_j \chi_l \right] - \left[ \chi_i \chi_l | \chi_j \chi_k \right] \right\} \cdot S^{(i,j,k,l)}_{pq}\right),
 \end{split}
 \label{ch2.eq.lowdindeterminants}
 \end{equation}
@@ -112,7 +112,7 @@ For optimal orbitals, this first order derivative is equal to zero and hence:
 \left < \Psi_0 | \mathbf{H} - E_0 | \Psi_{ia} \right > = 0.
 \label{ch2.eq.brillouin}
 \end{equation}
-This is the Brillouin theorem, which states that with optimal orbitals singly excited states ($\Psi_{ia}$) do not interact or mix with the reference or ground state ($\Psi_0$) \cite{brillouin,genbrill}. 
+This is the Brillouin theorem, which states that with optimal orbitals singly excited structures ($\Psi_{ia}$) do not interact or mix with the reference or ground state ($\Psi_0$) \cite{brillouin,genbrill}. 
 
 In equations \ref{ch2.eq.orbchange}-\ref{ch2.eq.brillouin} the effect of a single orbital change has been shown. When all possible single excitations are taken into account, the wave function of equation \ref{ch2.eq.wfchange} can be written as:
 \begin{equation}
@@ -124,7 +124,7 @@ in which $\Psi_{superci}$ is the Super CI wave function, $i$ runs over all orbit
 [\mathbf{H}-E_b\mathbf{S}] \cdot \mathbf{b} = 0,
 \label{ch2.eq.geig}
 \end{equation}
-in which $\mathbf{H}$ and $\mathbf{S}$ are the Hamiltonian and metric in the basis of $\Psi_0$ and the singly excited states. $E_b$ is the lowest eigenvalue and $\mathbf{b}$ is the corresponding eigenvector. With the elements of $\mathbf{b}$ the orbitals are updated to make $\Psi_0$ equal to $\Psi_{superci}$ to first order:
+in which $\mathbf{H}$ and $\mathbf{S}$ are the Hamiltonian and metric in the basis of $\Psi_0$ and the singly excited structures. $E_b$ is the lowest eigenvalue and $\mathbf{b}$ is the corresponding eigenvector. With the elements of $\mathbf{b}$ the orbitals are updated to make $\Psi_0$ equal to $\Psi_{superci}$ to first order:
 \begin{equation}
 \psi_i' = \psi_i + \sum_{a} b_{ia} \psi_a.
 \label{ch2.eq.orbupd}
@@ -143,7 +143,7 @@ So, $\Psi_0$ will contain the updated orbital $\psi_i'$ which will be denoted $\
 
 Up till here, $\Psi_0$ was constructed of a single determinant, \textit{i.e.}, $|\psi_i\overline{\psi_i}\psi_j\psi_k|$. A regular VB wave function consists of multiple structures, and hence multiple determinants (see equations \ref{ch2.eq.vbwf} and \ref{ch2.eq.struct}). In that case, the contraction of equation \ref{ch2.eq.condense} will contain more determinants, all in which orbital $\psi_i$ has been replaced by $\psi_a$.
 
-To solve the generalized eigenvalue problem of equation \ref{ch2.eq.geig}, both the Hamiltonian ($\mathbf{H}$) and the overlap ($\mathbf{S}$) are expressed in matrix form.  The Brillouin matrix is defined as the $\mathbf{H}$ matrix minus $E_0$ \cite{koos1}. Please note that for optimal orbitals, the Brillouin energy ($E_b$) in equation \ref{ch2.eq.geig} is equal to the energy of the ground state ($E_0$), because the singly exited states do no longer mix in with the ground state. 
+To solve the generalized eigenvalue problem of equation \ref{ch2.eq.geig}, both the Hamiltonian ($\mathbf{H}$) and the overlap ($\mathbf{S}$) are expressed in matrix form.  The Brillouin matrix is defined as the $\mathbf{H}$ matrix minus $E_0$ \cite{koos1}. Please note that for optimal orbitals, the Brillouin energy ($E_b$) in equation \ref{ch2.eq.geig} is equal to the energy of the ground state ($E_0$), because the singly exited structures do no longer mix in with the ground state. 
 
 An example of a Brillouin matrix is:
 \begin{equation}
@@ -154,7 +154,7 @@ An example of a Brillouin matrix is:
 \end{array}\right].
 \label{ch2.eq.hamilt}
 \end{equation}
-This Brillouin matrix is constructed for a Super CI wave function that has two singly excitated states: $\Psi_{ia}$, for the excitation from orbital $\psi_i$ to $\psi_a$ and $\Psi_{ib}$, for the excitation from orbital $\psi_i$ to $\psi_b$. Brillouin matrices have the same dimension as the $\mathbf{H}$ and $\mathbf{S}$ matrices in equation \ref{ch2.eq.geig}. The calculation of the elements in $\mathbf{H}$ is expensive because of the large number of determinants, caused by the expansion into the Super CI wave function: for each excitation a Brillouin state, containing 1 to 2 times the number of determinants of $\Psi_0$, is added. For each determinant combination the evaluation of (large amounts of) subdeterminants \cite{koos2}, or cofactors are required.
+This Brillouin matrix is constructed for a Super CI wave function that has two singly excitated structures: $\Psi_{ia}$, for the excitation from orbital $\psi_i$ to $\psi_a$ and $\Psi_{ib}$, for the excitation from orbital $\psi_i$ to $\psi_b$. Brillouin matrices have the same dimension as the $\mathbf{H}$ and $\mathbf{S}$ matrices in equation \ref{ch2.eq.geig}. The calculation of the elements in $\mathbf{H}$ is expensive because of the large number of determinants, caused by the expansion into the Super CI wave function: for each excitation a Brillouin state, containing 1 to 2 times the number of determinants of $\Psi_0$, is added. For each determinant combination the evaluation of (large amounts of) subdeterminants \cite{koos2}, or cofactors are required.
 
 To lower the computation time, Van Lenthe \textit{et al.} introduced a method, referred to as approximated Newton-Raphson (Section \ref{ch2.sec.anr}) \cite{koos1}, which requires less $\mathbf{H}$ and $\mathbf{S}$ matrix elements than regular Super CI \cite{koos1}, because elements of the type $\left < \Psi_{ia} | \mathbf{H} - E_0 | \Psi_{ib} \right >$ are not needed. This method will be explained in the next section.
 
@@ -178,7 +178,21 @@ Roos \textit{et al.} showed that Brillouin matrix elements of the type $\left< \
 F_{ia} = h_{ia} + \sum_{\sigma\nu} \left\{ \left[ \chi_i \chi_a | \chi_\sigma \chi_\nu \right] - \left[ \chi_i \chi_\nu | \chi_\sigma \chi_a \right] \right\} \cdot P^{(\sigma,\nu)},
 \label{ch2.eq.fock}
 \end{equation}
-in which $F_{ia}$ is the Fock matrix element of spin-orbitals $\chi_i$ and $\chi_a$, $h_{ia}$ is the one electron integral $\left< \chi_i | \mathbf{h}| \chi_a \right>$. The double sum (over $\sigma$ and $\nu$) on the right hand side is over two electron integrals (Coulomb and exchange) times elements of the density matrix $P^{(\sigma,\nu)}$. This density matrix is constructed by adding up all contributions from first order reduced density matrices. Reduced density matrices are first order cofactors from the overlap determinants constructed for each determinant combination in $\Psi_0$. Examples to clarify the construction of the density matrix are given in equations \ref{ch2.eq.p0exampg}, \ref{ch2.eq.p0examp} and \ref{ch2.eq.p0examp2}.
+in which $F_{ia}$ is the Fock matrix element of spin-orbitals $\chi_i$ and $\chi_a$, $h_{ia}$ is the one electron integral $\left< \chi_i | \mathbf{h}| \chi_a \right>$. The double sum (over $\sigma$ and $\nu$) on the right hand side is over two electron integrals (Coulomb and exchange) times elements of the density matrix $P^{(\sigma,\nu)}$. 
+
+The density matrix is the matrix expression for the density operator. The density operator depends on the probability of finding an electron in the occupied orbitals $\chi_i$, where $i$ runs over all ($n$) occupied orbitals. The expression for the density operator is:
+\begin{equation}
+\hat{\rho}=\sum_i^n p_i \left| \chi_i \right> \left< \chi_i \right|,
+\end{equation}
+in which $p_i$ is the probability of finding an electron in the orbital $\chi_i$. Since each orbital contains an electron, the probability $p_i = 1$. The density matrix, expressed in atomic orbital basis, is:
+\begin{equation}
+P^{(k,l)}=\sum_i^n \left< \phi_k | \chi_i \right> \left< \chi_i | \phi_l \right>,
+\end{equation}
+in which $k$ and $l$ run over all basis functions. In equation \ref{ch2.eq.fock} a density matrix element on molecular obital basis ($P^{(\sigma,\nu)}$) is shown. With the expression of the wave function in determinants, the density matrix on atomic orbital basis could be transformed to the molecular orbital basis and \textit{vice versa}. A density matrix element on molecular orbital basis ($P^{(\sigma,\nu)}$) can be expressed in first order cofactors: 
+\begin{equation}
+P^{(\sigma,\nu)} = \sum_{pq} C_p C_q \cdot S^{(\sigma,\nu)}_{pq},
+\end{equation}
+in which $C_p$ and $C_q$ are the determinant coefficients. In equations \ref{ch2.eq.p0exampg}, \ref{ch2.eq.p0examp} and \ref{ch2.eq.p0examp2}, density matrix elements for single determinant wave functions will be used.
 
 In multideterminant wave functions, three orbital classes can be distinguished. The first class contains those orbitals that occur in all determinants. These will be denoted with labels $i$, $j$, $k$ and $l$. The second class contains orbitals that occur in some determinants, denoted with $t$, $u$, $v$ and $x$. The last class contains those orbitals that do not occur in the ground state wave function $\Psi_0$ and hence are virtual unoccupied orbitals, labeled $a$, $b$, $c$ and $d$. With those classes in mind, Roos \textit{et al.} published three expressions with Fock matrix elements for three types of excitations:
 \begin{itemize}
@@ -218,7 +232,7 @@ P^{(3,4)}=
  \noalign{\vskip 7pt}
  \chi_5 & \multicolumn{1}{|l}{ s_{15} } & s_{25} & s_{35} & s_{45} & \multicolumn{1}{l|}{ 1 }
 \end{array} =
-\begin{array}{lllll}
+- \begin{array}{lllll}
  &  \chi_1 & \chi_2 & \chi_4 & \chi_5 \\
  \chi_1 & \multicolumn{1}{|l}{ 1 } & s_{21} & s_{41} & \multicolumn{1}{l|}{ s_{51} } \\
  \chi_2 & \multicolumn{1}{|l}{ s_{12} } & 1 & s_{42} & \multicolumn{1}{l|}{ s_{52} } \\
@@ -257,7 +271,7 @@ S^{(3,4)}=
  \noalign{\vskip 7pt}
  \chi_5 & \multicolumn{1}{|l}{ s_{15} } & s_{25} & s_{35} & s_{45} & \multicolumn{1}{l|}{ 1 }
 \end{array} =
-\begin{array}{lllll}
+- \begin{array}{lllll}
  &  \chi_1 & \chi_2 & \chi_4 & \chi_5 \\
  \chi_6 & \multicolumn{1}{|l}{ s_{16} } & s_{26} & s_{46} & \multicolumn{1}{l|}{ s_{56} } \\
  \chi_2 & \multicolumn{1}{|l}{ s_{12} } & 1 & s_{42} & \multicolumn{1}{l|}{ s_{52} } \\
@@ -267,9 +281,7 @@ S^{(3,4)}=
 \label{ch2.eq.s16g}
 \end{equation}
 
-On the first row in both determinants of equation \ref{ch2.eq.s16g} there are orbital overlaps, like $s_{26}$, which do not occur in the overlap determinant $\left< \Psi_0 | \Psi_0 \right>$. Brillouin matrix elements of the type $i \rightarrow t$ and $t \rightarrow u$ have first order cofactors like in equation \ref{ch2.eq.s016g}. Because these contain overlaps that do not occur in $\left< \Psi_0 | \Psi_0 \right>$, they are not equal to density matrix elements. Therefore, Brillouin matrix elements of the type $i \rightarrow t$ and $t \rightarrow u$ will be constructed the usual way via L\"{o}wdins formula (equation \ref{ch2.eq.lowdindeterminants}).
-
-For the other types of excitations, $i \rightarrow a$ and $t \rightarrow a$, an electron is excited to a virtual orbital. In TURTLE, the virtual orbitals are chosen orthogonal to all other orbitals (see the Appendix of reference \cite{koos1}). If $\chi_6$ would be such a virtual orbital, the overlap of $\Psi_0$ with $\Psi_{16}$ becomes:
+On the first row in both determinants of equation \ref{ch2.eq.s16g} there are orbital overlaps, like $s_{26}$, which are different from those on the first row in the overlap determinant $\left< \Psi_0 | \Psi_0 \right>$. If orbital $\chi_6$ is chosen orthogonal to all other orbitals, overlaps like $s_{36}$ will be zero. Orthogonality of both the orbital from which the excitation takes place \textit{and} the orbital which an electron is excited to is very important (\textit{vide infra}). In the cases of $i \rightarrow a$ and $t \rightarrow a$, an electron is excited to a virtual orbital. In TURTLE, the virtual orbitals are chosen orthogonal to all other orbitals (see the Appendix of reference \cite{koos1}). If $\chi_6$ would be such a virtual orbital, the overlap of $\Psi_0$ with $\Psi_{16}$ becomes:
 \begin{equation}
 \left < \Psi_0 | \Psi_{16} \right> =
 \begin{array}{llllll}
@@ -286,7 +298,7 @@ With this orthogonality restriction, only 5 out of 25 possible cofactors would b
 
 \subsubsection{\label{ch2.sec.i-a}$i \rightarrow a$ from (always) doubly occupied to virtual orbitals}
 
-To investigate the excitation type $i \rightarrow a$, the 5 electron wave function $|\chi_1\chi_2\chi_3\chi_4\chi_5|$ is changed into $|\chi_i\chi_j\chi_t\chi_u\chi_v|$, in which $\chi_i$ is $\psi_i$, $\chi_j$ is $\overline{\psi_i}$ and $\chi_t$, $\chi_u$ and $\chi_v$ are singly occupied orbitals. Spin for these orbitals is not specified and hence no attention needs to be paid to the spin integration in the overlap matrices that follow. Doubly occupied orbitals occur in all determinants and can be chosen orthogonal to all other orbitals \cite{koos1}. Although the 5 spin orbitals occur in ``all'' determinants in this single determinant wave function, $\chi_i$ and $\chi_j$ are chosen orthogonal to all other orbitals, while $\chi_t$, $\chi_u$ and $\chi_v$ are non-orthogonal to each other. Later on, the derivation for this single determinant wave function will be expanded for a multideterminant wave function in which orbitals $\chi_t$, $\chi_u$ and $\chi_v$ are variably occupied. The norm $\left < \Psi_0 | \Psi_0 \right>$ is the determinant of the overlap matrix, which will then have the following layout:
+To investigate the excitation type $i \rightarrow a$, the 5 electron wave function $|\chi_1\chi_2\chi_3\chi_4\chi_5|$ is changed into $|\chi_i\chi_j\chi_t\chi_u\chi_v|$, in which $\chi_i$ is $\psi_i$, $\chi_j$ is $\overline{\psi_i}$ and $\chi_t$, $\chi_u$ and $\chi_v$ are singly occupied orbitals. Spin for these orbitals is not specified and hence no attention needs to be paid to the spin integration in the overlap matrices that follow. Doubly occupied orbitals occur in all determinants and can usually be chosen orthogonal to all other orbitals \cite{koos1}. Although the 5 spin orbitals occur in ``all'' determinants in this single determinant wave function, $\chi_i$ and $\chi_j$ are chosen orthogonal to all other orbitals, while $\chi_t$, $\chi_u$ and $\chi_v$ are non-orthogonal to each other. Later on, the derivation for this single determinant wave function will be expanded for a multideterminant wave function in which orbitals $\chi_t$, $\chi_u$ and $\chi_v$ are variably occupied. The norm $\left < \Psi_0 | \Psi_0 \right>$ is the determinant of the overlap matrix, which will then have the following layout:
 \begin{equation}
 \left < \Psi_0 | \Psi_0 \right> = | \mathbf{S} | =
 \begin{array}{llllll}
@@ -315,7 +327,7 @@ P^{(t,u)}=
  \noalign{\vskip 7pt}
  \chi_v & \multicolumn{1}{|l}{ 0 } & 0 & s_{tv} & s_{uv} & \multicolumn{1}{l|}{ 1 }
 \end{array} =
-\begin{array}{lllll}
+- \begin{array}{lllll}
  &  \chi_i & \chi_j & \chi_u & \chi_v \\
  \chi_i & \multicolumn{1}{|l}{ 1 } & 0 & 0 & \multicolumn{1}{l|}{ 0 } \\
  \chi_j & \multicolumn{1}{|l}{ 0 } & 1 & 0 & \multicolumn{1}{l|}{ 0 } \\
@@ -620,7 +632,36 @@ Because the only first order cofactors that contribute to the Brillouin matrix e
 h_{ta} \cdot S^{(t,a)} + h_{ua} \cdot S^{(u,a)} + h_{va} \cdot S^{(v,a)} = h_{ta} \cdot P^{(t,t)} + h_{ua} \cdot P^{(u,t)} + h_{va} \cdot P^{(v,t)},
 \label{ch2.eq.ta_i1}
 \end{equation}
-using the fact that $P^{(\sigma,t)} = S^{(\sigma,a)}$, for $\sigma$ is $t$, $u$ and $v$.
+using the fact that $P^{(\sigma,t)} = S^{(\sigma,a)}$, for $\sigma$ is $t$, $u$ and $v$. The equality of $P^{(t,t)}$ with $S ^{(t,a)}$ is:
+\begin{equation}
+P^{(t,t)}=
+\begin{array}{llllll}
+ & \hskip 46.0 pt \hbox{\lower 93pt\hbox{\vrule height100pt width 1.0pt}}\hskip-47.0pt \chi_i & \chi_j & \chi_t & \chi_u & \chi_v \\
+ \noalign{\vskip-91pt}
+ \chi_i &  \multicolumn{1}{|l}{ 1 } & 0 & 0 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_j & \multicolumn{1}{|l}{ 0 } & 1 & 0 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_t & \multicolumn{1}{|l}{ 0 } & 0 & 1 & s_{ut} & \multicolumn{1}{l|}{s_{vt}} \\
+ \noalign{\vskip-8pt}
+ \multispan6\hbox{\vrule  height 1.0 pt width130pt}\cr
+ \noalign{\vskip 7pt}
+ \chi_u & \multicolumn{1}{|l}{ 0 } & 0 & s_{tu} & 1 & \multicolumn{1}{l|}{s_{vu}} \\
+ \chi_v & \multicolumn{1}{|l}{ 0 } & 0 & s_{tv} & s_{uv} & \multicolumn{1}{l|}{ 1 }
+\end{array} =
+\begin{array}{llllll}
+ & \hskip 46.0 pt \hbox{\lower 93pt\hbox{\vrule height100pt width 1.0pt}}\hskip-47.0pt \chi_i & \chi_j & \chi_t & \chi_u & \chi_v \\
+ \noalign{\vskip-91pt}
+ \chi_i &  \multicolumn{1}{|l}{ 1 } & 0 & 0 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_j & \multicolumn{1}{|l}{ 0 } & 1 & 0 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_a & \multicolumn{1}{|l}{ 0 } & 0 & 0 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \noalign{\vskip-8pt}
+ \multispan6\hbox{\vrule  height 1.0 pt width130pt}\cr
+ \noalign{\vskip 7pt}
+ \chi_u & \multicolumn{1}{|l}{ 0 } & 0 & s_{tu} & 1 & \multicolumn{1}{l|}{s_{vu}} \\
+ \chi_v & \multicolumn{1}{|l}{ 0 } & 0 & s_{tv} & s_{uv} & \multicolumn{1}{l|}{ 1 }
+\end{array}=S^{(t,a)}.
+\label{ch2.eq.p_is_s}
+\end{equation}
+In analogy with this, it can be seen that $P^{(u,t)}=S^{(u,a)}$ and $P^{(v,t)}=S^{(v,a)}$ by moving the vertical cross through line to the fourth and fifth column, respectively. 
 
 For the analysis of the two electron part, the two electron integral contribution to the Brillouin matrix element is taken from equation \ref{ch2.eq.lowdindeterminants}:
 \begin{equation}
@@ -692,9 +733,13 @@ in which $C_p$ and $C_q$ are the determinant coefficients in $\Psi_0$ and $\Psi_
 
 Comparing equation \ref{ch2.eq.fiafinal} for $i \rightarrow a$ with equation \ref{ch2.eq.ta_i7} for $t \rightarrow a$, one immediately sees the big difference in complexity. Using equation \ref{ch2.eq.fiafinal}, only a single Fock matrix element can be used instead of the Brillouin matrix element. Unfortunately, using equation \ref{ch2.eq.ta_i7} it becomes clear that the Fock matrix needs to be split into an inactive and an active part, a series of inactive Fock matrix elements is needed and a sum over two electron integrals multiplied with second order cofactors are necessary.
 
+Hier nog een alinea over de andere twee excitatie types.
+Therefore, Brillouin matrix elements of the type $i \rightarrow t$ and $t \rightarrow u$ will be constructed the usual way via L\"{o}wdins formula (equation \ref{ch2.eq.lowdindeterminants}).
+
+
 \subsubsection{\label{ch2.sec.delocal}Localized VB wave functions}
 
-In TURTLE, it is possible to restrict orbitals to certain atoms, or fragments of the molecule. This type of wave function is called localized. Within each fragment, the doubly occupied and virtual orbitals are orthogonal to all other orbitals. However, between fragments, overlap of orbitals can occur. This means that doubly occupied orbitals from one fragment are no longer necessarily orthogonal to the orbitals in another fragment. Overlaps between orbitals on different fragments will not be zero and hence density matrix elements in the Fock matrix elements (equation \ref{ch2.eq.fock}) are not equal to the second order cofactors in L\"{o}wdins formula (equation \ref{ch2.eq.lowdindeterminants}): the required single ``1'' on the extra row and column of the density matrix is not present. Therefore, the reasoning in the previous section for excitations of the types $i \rightarrow a$ and $t \rightarrow a$ does not apply for localized VB wave functions. 
+In TURTLE, it is possible to restrict orbitals to certain atoms, or fragments of the molecule. This type of wave function is called localized. Within each fragment, the doubly occupied and virtual orbitals are orthogonal to all other orbitals. However, between fragments, overlap of orbitals can occur. This means that doubly occupied orbitals from one fragment are no longer necessarily orthogonal to the orbitals in another fragment. Overlaps between orbitals on different fragments will not be zero and hence density matrix elements in the Fock matrix elements (equation \ref{ch2.eq.fock}) are not equal to the second order cofactors in L\"{o}wdins formula (equation \ref{ch2.eq.lowdindeterminants}): the required single ``1'' on the extra row and column of the density matrix is not present. Therefore, the derivation in the previous section for excitations of the types $i \rightarrow a$ and $t \rightarrow a$ cannot be used for localized VB wave functions. 
 
 Sometimes, however, orbitals from different fragments can still be orthogonal due to the symmetry in the molecule (see the examples in Section \ref{ch2.sec.aromat}). In that case the elements of the Fock matrix can be used instead of calculating the Brillouin matrix elements.
 
