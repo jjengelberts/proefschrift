@@ -281,9 +281,9 @@ S^{(3,4)}=
 \label{ch2.eq.s16g}
 \end{equation}
 
-On the first row in both determinants of equation \ref{ch2.eq.s16g} there are orbital overlaps, like $s_{26}$, which do not occur in the overlap determinant $\left< \Psi_0 | \Psi_0 \right>$. Please note that these will be zero when orbital $\chi_6$ is chosen to be orthogonal to all other orbitals. 
+On the first row in both determinants of equation \ref{ch2.eq.s16g} there are orbital overlaps, like $s_{26}$, that do not occur in the overlap determinant $\left< \Psi_0 | \Psi_0 \right>$ (equation \ref{ch2.eq.s0g}) and hence do not occur in the forthcoming density matrix elements, like $P^{(3,4)}$ (equation \ref{ch2.eq.p0examp}). Therefore, equation \ref{ch2.eq.fock} \textit{cannot} be used instead of L\"{o}wdins formula, unless cofactors with orbital overlaps involving excited orbitals, like $\chi_6$, are zero. This is the case when the orbital to which the excitation takes place is orthogonal to \textit{all} occupied orbitals.
 
-If $\chi_6$ would be a virtual orbital, like in the case of excitation types $i \rightarrow a$ and $t \rightarrow a$, it can be chosen orthogonal (see the Appendix of reference \cite{koos1}). If that case, the overlap of $\Psi_0$ with $\Psi_{16}$ becomes:
+Virtual orbitals are examples of orbitals for which it could work, because these can be chosen orthogonal to the occupied orbitals (see the Appendix of reference \cite{koos1}). In that case, the overlap of $\Psi_0$ with $\Psi_{16}$ becomes:
 \begin{equation}
 \left < \Psi_0 | \Psi_{16} \right> =
 \begin{array}{llllll}
@@ -296,9 +296,31 @@ If $\chi_6$ would be a virtual orbital, like in the case of excitation types $i 
 \end{array}.
 \label{ch2.eq.s016go}
 \end{equation}
-With this orthogonality restriction, only 5 out of 25 possible cofactors would be non-zero. These 5 cofactors all have a corresponding $P$-matrix element, $P^{(n,1)}$. Whether it is possible to use these to construct Fock matrix elements for use in Brillouin matrix elements will be investigated.
+With this orthogonality restriction, only 5 out of 25 possible cofactors would be non-zero. The one electron integral contribution in the expression for a Fock matrix element (equation \ref{ch2.eq.lowdindeterminants}) then becomes:
+\begin{equation}
+\sum_{i} h_{i1} \cdot S^{(i,1)},
+\label{ch2.eq.lowdinwithorth}
+\end{equation}
+in which $i$ is the column index in the first order cofactors. Other one electron integral contributions, like $h_{23} \cdot S^{(2,3)}$, are zero because the first order cofactors are zero:
+\begin{equation}
+h_{23} \cdot S^{(2,3)} = h_{23} \cdot
+\begin{array}{llllll}
+ & \hskip 28.0 pt \hbox{\lower 93pt\hbox{\vrule height100pt width 1.0pt}}\hskip-29.0pt \chi_1 & \chi_2 & \chi_3 & \chi_4 & \chi_5 \\
+ \noalign{\vskip-91pt}
+ \chi_6 & \multicolumn{1}{|l}{ 0 } & 0 & 0 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_2 & \multicolumn{1}{|l}{ s_{12} } & 1 & s_{32} & s_{42} & \multicolumn{1}{l|}{ s_{52} } \\
+ \chi_3 & \multicolumn{1}{|l}{ s_{13} } & s_{23} & 1 & s_{43} & \multicolumn{1}{l|}{ s_{53} } \\
+ \noalign{\vskip-8pt}
+ \multispan6\hbox{\vrule  height 1.0 pt width140pt}\cr
+ \noalign{\vskip 7pt}
+ \chi_4 & \multicolumn{1}{|l}{ s_{14} } & s_{24} & s_{34} & 1 & \multicolumn{1}{l|}{ s_{54} } \\
+ \chi_5 & \multicolumn{1}{|l}{ s_{15} } & s_{25} & s_{35} & s_{45} & \multicolumn{1}{l|}{ 1 }
+\end{array} = 0.
+\label{ch2.eq.h23}
+\end{equation}
+The two electron integral part has been left out here for compactness, but, in analogy to the first electron integral part, also in that part no (second order) cofactors occur that have non-zero orbital overlaps with excited orbitals. One striking difference in the one electron integral contribution between the Fock matrix element (equation \ref{ch2.eq.fock}) and the one electron integral part in equation \ref{ch2.eq.lowdinwithorth} is that in the former only a single one electron integral contributes, while in the latter a series of one electron integrals, multiplied by first order cofactors, contribute. In the following subsections, the impact of this difference on the usability of Fock matrix elements will be analyzed.
 
-For the other two excitation types, $i \rightarrow t$ and $t \rightarrow u$, orbital $\chi_6$ is not necessarily orthogonal to the other orbitals. In that case the first order cofactors contain overlaps that do not occur in $\left< \Psi_0 | \Psi_0 \right>$, and hence are not equal to density matrix elements. Therefore, Brillouin matrix elements of the type $i \rightarrow t$ and $t \rightarrow u$ will be constructed the usual way via L\"{o}wdins formula (equation \ref{ch2.eq.lowdindeterminants}).
+Since the use of non-orthogonal orbitals is the central philosophy in Valence Bond theory, excitation types $i \rightarrow t$ and $t \rightarrow u$ will not be investigated, because the orbital to which the excitation takes place will, in many cases, be non-orthogonal to the other occupied orbitals. For the other two types of excitation, $i \rightarrow a$ and $t \rightarrow a$, the excited orbital $\chi_a$ is a virtual orbital, chosen orthogonal to the occupied ones. Hence, those excitation types will be investigated below.
 
 \subsubsection{\label{ch2.sec.i-a}$i \rightarrow a$ from (always) doubly occupied to virtual orbitals}
 
@@ -665,7 +687,7 @@ P^{(t,t)}=
 \end{array}=S^{(t,a)}.
 \label{ch2.eq.p_is_s}
 \end{equation}
-In analogy with this, $P^{(u,t)}=S^{(u,a)}$ and $P^{(v,t)}=S^{(v,a)}$ by removing the fourth and fifth column, respectively, instead of the third. 
+In analogy with this, $P^{(u,t)}=S^{(u,a)}$ and $P^{(v,t)}=S^{(v,a)}$. 
 
 For the analysis of the two electron part, the two electron integral contribution to the Brillouin matrix element is taken from equation \ref{ch2.eq.lowdindeterminants}:
 \begin{equation}
@@ -739,9 +761,9 @@ Comparing equation \ref{ch2.eq.fiafinal} for $i \rightarrow a$ with equation \re
 
 \subsubsection{\label{ch2.sec.delocal}Localized VB wave functions}
 
-In TURTLE, it is possible to restrict orbitals to certain atoms, or fragments of the molecule. This type of wave function is called localized. Within each fragment, the doubly occupied and virtual orbitals are orthogonal to all other orbitals. However, between fragments, overlap of orbitals can occur. This means that doubly occupied orbitals from one fragment are no longer necessarily orthogonal to the orbitals in another fragment. Overlaps between orbitals on different fragments will not be zero and hence density matrix elements in the Fock matrix elements (equation \ref{ch2.eq.fock}) are not equal to the second order cofactors in L\"{o}wdins formula (equation \ref{ch2.eq.lowdindeterminants}): the required single ``1'' on the extra row and column of the density matrix is not present. Therefore, the derivation in the previous section for excitations of the type $i \rightarrow a$ cannot be used for localized VB wave functions. For excitations of the type $t \rightarrow a$, which do not require orbital $\chi_t$ to be orthogonal to the other orbitals, Fock matrix elements could be used. In that case, the complexity is comparable to that of equation \ref{ch2.eq.ta_i7}.
+In TURTLE, it is possible to restrict orbitals to certain atoms, or fragments of the molecule. This type of wave function is called localized. Within each fragment, the doubly occupied and virtual orbitals are orthogonal to all other orbitals. However, between fragments, overlap of orbitals can occur. This means that doubly occupied orbitals from one fragment are no longer necessarily orthogonal to the orbitals in another fragment. Overlaps between orbitals on different fragments will not be zero and hence density matrix elements in the Fock matrix elements (equation \ref{ch2.eq.fock}) are not equal to the second order cofactors in L\"{o}wdins formula (equation \ref{ch2.eq.lowdindeterminants}): the required single ``1'' on the extra row and column of the density matrix is not present. Therefore, the derivation in the previous section for excitations of the type $i \rightarrow a$ cannot be used for localized VB wave functions. In that case, all occupied orbitals could be considered non-orthogonal and variably occupied like $\chi_t$. For excitations of the type $t \rightarrow a$ Fock matrix elements could be used, in analogy with the derivation in the previous subsection. However, it is questionable whether implementing the formula for this type of excitations (equation \ref{ch2.eq.ta_i7}) is worth the effort, because of the   small gain in computing time compared to type $i \rightarrow a$.
 
-Sometimes, however, orbitals from different fragments can still be orthogonal due to the symmetry in the molecule (see the examples in Section \ref{ch2.sec.aromat}). In that case, the elements of the Fock matrix can be used instead of calculating the Brillouin matrix elements.
+Sometimes, however, orbitals from different fragments can still be orthogonal due to the symmetry in the molecule (see the examples in Section \ref{ch2.sec.aromat}). In that case, the elements of the Fock matrix for type $i \rightarrow a$ can still be used instead of Brillouin matrix elements calculated via L\"{o}wdins formula.
 
 \subsubsection{\label{ch2.sec.denominator}Approximation Of The Denominator}
 
