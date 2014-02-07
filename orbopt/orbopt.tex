@@ -3,7 +3,7 @@
 
 \ifthenelse{\boolean{wholethesis}}{\relax}{\begin{center}\textit{Generated on \today\ at \currenttime}\end{center}}
 
-\noindent\textbf{Abstract:} The most time consuming step in optimizing a Valence Bond (VB) wave function using the Valence Bond Self-Consistent Field (VBSCF) method is the construction of the matrix representation of the Hamilton operator ($\mathbf{H}$) and the corresponding overlap matrix ($\mathbf{S}$) for the wave function and the Brillouin states. In the 1990s a perturbation theory scheme, referred to as approximated Newton-Raphson (aNR), was introduced. For this scheme, not all $\mathbf{H}$ matrix elements need to be constructed. In this chapter an alternative, less time consuming method  to construct $\mathbf{H}$ matrix elements is introduced. In this method, $\mathbf{H}$ matrix elements are replaced by elements of a Fock matrix.
+\noindent\textbf{Abstract:} The most time consuming step in optimizing a Valence Bond (VB) wave function using the Super CI method is the construction of the matrix representation of the Hamilton operator ($\mathbf{H}$) and the corresponding overlap matrix ($\mathbf{S}$) for the wave function and the Brillouin states. In the 1990s a perturbation theory scheme, referred to as approximated Newton-Raphson (aNR), was introduced. For this scheme, not all $\mathbf{H}$ matrix elements need to be constructed. In this chapter an alternative, less time consuming method  to construct $\mathbf{H}$ matrix elements is introduced. In this method, $\mathbf{H}$ matrix elements are replaced by elements of a Fock matrix.
 
 \newpage
 
@@ -18,9 +18,9 @@ Besides the use of multiple determinants in VB, non-orthogonal and localized orb
 
 The most time consuming step in the optimization of the wave function is the optimization of the orbitals. Several optimization methods that compute the gradient of the total energy with respect to orbital rotations have been developed. The most common and widely applicable method is based on the evaluation of Hamiltonian matrix elements between Slater determinants, as introduced by L\"{o}wdin \cite{lowdin}. Despite its common applicability, this method is time consuming.
 
-In another method, coined by Song \textit{et. al}, multiple Fock matrices are computed, one for each Slater determinant combination in the wave function \cite{song}. This approach is efficient and works fast for wave functions with a small number of Slater determinants. However, it is not as generally applicable as L\"{o}wdins method, because it cannot be used for wave functions containing orthogonal orbitals that are variably occupied, \textit{i.e.}, occur in some determinants, but not in all \cite{xmvb}. Although in VB non-orthogonal orbitals are used explicitly, orthogonality between the orbitals can occur.
+In another method, coined by Song \textit{et al.}, multiple Fock matrices are computed, one for each Slater determinant combination in the wave function \cite{song}. This approach is efficient and works fast for wave functions with a small number of Slater determinants. However, it is not as generally applicable as L\"{o}wdins method, because it cannot be used for wave functions containing orthogonal orbitals that are variably occupied, \textit{i.e.}, occur in some determinants, but not in all \cite{xmvb}. Although in VB non-orthogonal orbitals are used explicitly, orthogonality between the orbitals can occur.
 
-In Multi Configurational Self-Consistent Field (MCSCF) \cite{joop,mcscf,roos1,roos2}, a method with similarities to VBSCF, elements of a common Fock matrix are used instead of Hamiltonian matrix elements computed via L\"{o}wdins formula \cite{roos1}. The central question for this chapter is whether it is also possible to use a single Fock matrix for the optimization of the orbitals in VBSCF, although those can be non-orthogonal. Rather than computing Hamiltonian matrix elements via the regular Slater-Condon rules \cite{koos3}, these elements might be, under conditions to be analyzed here, replaced by multiple elements from a single Fock matrix. This could save a considerable amount of computation time.
+In Multi Configurational Self-Consistent Field (MCSCF) \cite{joop,mcscf,roos1,roos2}, a method with similarities to VBSCF, elements of a common Fock matrix are used instead of Hamiltonian matrix elements computed via L\"{o}wdins formula \cite{roos1}. The central question for this chapter is whether it is also possible to use a single Fock matrix for the optimization of the orbitals in VBSCF, although those can be non-orthogonal. Rather than computing Hamiltonian matrix elements via L\"{o}wdins formula \cite{koos3}, these elements might be, under conditions to be analyzed here, replaced by multiple elements from a single Fock matrix. This could save a considerable amount of computation time.
 
 At first, the usability of Fock matrix elements instead of Hamiltonian matrix is analyzed by comparing the expression for Fock matrix elements with the expression for Hamiltonian matrix elements by L\"{o}wdin. Following this analysis, the implementation of these Fock matrix elements in TURTLE \cite{turtle}, the VB module in GAMESS-UK \cite{gamess}, will be presented. After the implementation details, speed-up factors of some test calculations will be discussed and compared. The chapter is concluded with an outlook on future enhancements.  
 
@@ -143,7 +143,7 @@ So, $\Psi_0$ will contain the updated orbital $\psi_i'$ which will be denoted $\
 
 Up till here, $\Psi_0$ was constructed of a single determinant, \textit{i.e.}, $|\psi_i\overline{\psi_i}\psi_j\psi_k|$. A regular VB wave function consists of multiple structures, and hence multiple determinants (see equations \ref{ch2.eq.vbwf} and \ref{ch2.eq.struct}). In that case, the contraction of equation \ref{ch2.eq.condense} will contain more determinants, all in which orbital $\psi_i$ has been replaced by $\psi_a$.
 
-To solve the generalized eigenvalue problem of equation \ref{ch2.eq.geig}, both the Hamiltonian ($\mathbf{H}$) and the overlap ($\mathbf{S}$) are expressed in matrix form.  The Brillouin matrix is defined as the $\mathbf{H}$ matrix minus $E_0$ \cite{koos1}. Please note that for optimal orbitals, the Brillouin energy ($E_b$) in equation \ref{ch2.eq.geig} is equal to the energy of the ground state ($E_0$), because the singly exited structures do no longer mix in with the ground state. 
+To solve the generalized eigenvalue problem of equation \ref{ch2.eq.geig}, both the Hamiltonian ($\mathbf{H}$) and the overlap ($\mathbf{S}$) are expressed in matrix form.  The Brillouin matrix is defined as the $\mathbf{H}$ matrix minus $E_0$ \cite{koos1}. Please note that for optimal orbitals, the Brillouin energy ($E_b$) in equation \ref{ch2.eq.geig} is equal to the energy of the ground state ($E_0$), because the singly excited structures do no longer mix in with the ground state. 
 
 An example of a Brillouin matrix is:
 \begin{equation}
@@ -154,7 +154,7 @@ An example of a Brillouin matrix is:
 \end{array}\right].
 \label{ch2.eq.hamilt}
 \end{equation}
-This Brillouin matrix is constructed for a Super CI wave function that has two singly excitated structures: $\Psi_{ia}$, for the excitation from orbital $\psi_i$ to $\psi_a$ and $\Psi_{ib}$, for the excitation from orbital $\psi_i$ to $\psi_b$. Brillouin matrices have the same dimension as the $\mathbf{H}$ and $\mathbf{S}$ matrices in equation \ref{ch2.eq.geig}. The calculation of the elements in $\mathbf{H}$ is expensive because of the large number of determinants, caused by the expansion into the Super CI wave function: for each excitation a Brillouin state, containing 1 to 2 times the number of determinants of $\Psi_0$, is added. For each determinant combination the evaluation of (large amounts of) subdeterminants \cite{koos2}, or cofactors are required.
+This Brillouin matrix is constructed for a Super CI wave function that has two singly excited structures: $\Psi_{ia}$, for the excitation from orbital $\psi_i$ to $\psi_a$ and $\Psi_{ib}$, for the excitation from orbital $\psi_i$ to $\psi_b$. Brillouin matrices have the same dimension as the $\mathbf{H}$ and $\mathbf{S}$ matrices in equation \ref{ch2.eq.geig}. The calculation of the elements in $\mathbf{H}$ is expensive because of the large number of determinants, caused by the expansion into the Super CI wave function: for each excitation a Brillouin state, containing 1 to 2 times the number of determinants of $\Psi_0$, is added. For each determinant combination the evaluation of (large amounts of) subdeterminants \cite{koos2}, or cofactors are required.
 
 To lower the computation time, Van Lenthe \textit{et al.} introduced a method, referred to as approximated Newton-Raphson (Section \ref{ch2.sec.anr}) \cite{koos1}, which requires less $\mathbf{H}$ and $\mathbf{S}$ matrix elements than regular Super CI \cite{koos1}, because elements of the type $\left < \Psi_{ia} | \mathbf{H} - E_0 | \Psi_{ib} \right >$ are not needed. This method will be explained in the next section.
 
@@ -173,7 +173,7 @@ A further reduction of the calculation time can be achieved if the numerator and
 
 \subsection{\label{ch2.sec.fock}Fock Matrix Elements} 
 
-Roos \textit{et al.} showed that Brillouin matrix elements of the type $\left< \Psi_0 | \mathbf{H} | \Psi_{ia} \right>$ (the numerator in equation \ref{ch2.eq.anr}) could be replaced by elements of the Fock matrix ($F_{ia}$) for Complete Active Space Self-Consistent Field (CASSCF) wave functions \cite{roos1}. A CASSCF wave function is an MCSCF wave function for which all possible electron distributions in the variably occupied orbital space are included. The Fock matrix elements have the form:
+Roos \textit{et al.} showed that Brillouin matrix elements of the type $\left< \Psi_0 | \mathbf{H} | \Psi_{ia} \right>$ (the numerator in equation \ref{ch2.eq.anr}) can be replaced by elements of the Fock matrix ($F_{ia}$) for Complete Active Space Self-Consistent Field (CASSCF) wave functions \cite{roos1}. A CASSCF wave function is an MCSCF wave function for which all possible electron distributions in the variably occupied orbital space are included. The Fock matrix elements have the form:
 \begin{equation}
 F_{ia} = h_{ia} + \sum_{\sigma\nu} \left\{ \left[ \chi_i \chi_a | \chi_\sigma \chi_\nu \right] - \left[ \chi_i \chi_\nu | \chi_\sigma \chi_a \right] \right\} \cdot P^{(\sigma,\nu)},
 \label{ch2.eq.fock}
@@ -188,7 +188,7 @@ in which $p_i$ is the probability of finding an electron in the orbital $\chi_i$
 \begin{equation}
 P^{(k,l)}=\sum_i^n \left< \phi_k | \chi_i \right> \left< \chi_i | \phi_l \right>,
 \end{equation}
-in which $k$ and $l$ run over all basis functions. In equation \ref{ch2.eq.fock} a density matrix element on molecular obital basis ($P^{(\sigma,\nu)}$) is shown. With the expression of the wave function in determinants, the density matrix on atomic orbital basis could be transformed to the molecular orbital basis and \textit{vice versa}. A density matrix element on molecular orbital basis ($P^{(\sigma,\nu)}$) can be expressed in first order cofactors: 
+in which $k$ and $l$ run over all basis functions. In equation \ref{ch2.eq.fock} a density matrix element on molecular orbital basis ($P^{(\sigma,\nu)}$) is shown. With the expression of the wave function in determinants, the density matrix on atomic orbital basis could be transformed to the molecular orbital basis and \textit{vice versa}. A density matrix element on molecular orbital basis ($P^{(\sigma,\nu)}$) can be expressed in first order cofactors: 
 \begin{equation}
 P^{(\sigma,\nu)} = \sum_{pq} C_p C_q \cdot S^{(\sigma,\nu)}_{pq},
 \end{equation}
@@ -281,7 +281,9 @@ S^{(3,4)}=
 \label{ch2.eq.s16g}
 \end{equation}
 
-On the first row in both determinants of equation \ref{ch2.eq.s16g} there are orbital overlaps, like $s_{26}$, which are different from those on the first row in the overlap determinant $\left< \Psi_0 | \Psi_0 \right>$. If orbital $\chi_6$ is chosen orthogonal to all other orbitals, overlaps like $s_{36}$ will be zero. Orthogonality of both the orbital from which the excitation takes place \textit{and} the orbital which an electron is excited to is very important (\textit{vide infra}). In the cases of $i \rightarrow a$ and $t \rightarrow a$, an electron is excited to a virtual orbital. In TURTLE, the virtual orbitals are chosen orthogonal to all other orbitals (see the Appendix of reference \cite{koos1}). If $\chi_6$ would be such a virtual orbital, the overlap of $\Psi_0$ with $\Psi_{16}$ becomes:
+On the first row in both determinants of equation \ref{ch2.eq.s16g} there are orbital overlaps, like $s_{26}$, which do not occur in the overlap determinant $\left< \Psi_0 | \Psi_0 \right>$. Please note that these will be zero when orbital $\chi_6$ is chosen to be orthogonal to all other orbitals. 
+
+If $\chi_6$ would be a virtual orbital, like in the case of excitation types $i \rightarrow a$ and $t \rightarrow a$, it can be chosen orthogonal (see the Appendix of reference \cite{koos1}). If that case, the overlap of $\Psi_0$ with $\Psi_{16}$ becomes:
 \begin{equation}
 \left < \Psi_0 | \Psi_{16} \right> =
 \begin{array}{llllll}
@@ -295,6 +297,8 @@ On the first row in both determinants of equation \ref{ch2.eq.s16g} there are or
 \label{ch2.eq.s016go}
 \end{equation}
 With this orthogonality restriction, only 5 out of 25 possible cofactors would be non-zero. These 5 cofactors all have a corresponding $P$-matrix element, $P^{(n,1)}$. Whether it is possible to use these to construct Fock matrix elements for use in Brillouin matrix elements will be investigated.
+
+For the other two excitation types, $i \rightarrow t$ and $t \rightarrow u$, orbital $\chi_6$ is not necessarily orthogonal to the other orbitals. In that case the first order cofactors contain overlaps that do not occur in $\left< \Psi_0 | \Psi_0 \right>$, and hence are not equal to density matrix elements. Therefore, Brillouin matrix elements of the type $i \rightarrow t$ and $t \rightarrow u$ will be constructed the usual way via L\"{o}wdins formula (equation \ref{ch2.eq.lowdindeterminants}).
 
 \subsubsection{\label{ch2.sec.i-a}$i \rightarrow a$ from (always) doubly occupied to virtual orbitals}
 
@@ -661,7 +665,7 @@ P^{(t,t)}=
 \end{array}=S^{(t,a)}.
 \label{ch2.eq.p_is_s}
 \end{equation}
-In analogy with this, it can be seen that $P^{(u,t)}=S^{(u,a)}$ and $P^{(v,t)}=S^{(v,a)}$ by moving the vertical cross through line to the fourth and fifth column, respectively. 
+In analogy with this, $P^{(u,t)}=S^{(u,a)}$ and $P^{(v,t)}=S^{(v,a)}$ by removing the fourth and fifth column, respectively, instead of the third. 
 
 For the analysis of the two electron part, the two electron integral contribution to the Brillouin matrix element is taken from equation \ref{ch2.eq.lowdindeterminants}:
 \begin{equation}
@@ -733,15 +737,11 @@ in which $C_p$ and $C_q$ are the determinant coefficients in $\Psi_0$ and $\Psi_
 
 Comparing equation \ref{ch2.eq.fiafinal} for $i \rightarrow a$ with equation \ref{ch2.eq.ta_i7} for $t \rightarrow a$, one immediately sees the big difference in complexity. Using equation \ref{ch2.eq.fiafinal}, only a single Fock matrix element can be used instead of the Brillouin matrix element. Unfortunately, using equation \ref{ch2.eq.ta_i7} it becomes clear that the Fock matrix needs to be split into an inactive and an active part, a series of inactive Fock matrix elements is needed and a sum over two electron integrals multiplied with second order cofactors are necessary.
 
-Hier nog een alinea over de andere twee excitatie types.
-Therefore, Brillouin matrix elements of the type $i \rightarrow t$ and $t \rightarrow u$ will be constructed the usual way via L\"{o}wdins formula (equation \ref{ch2.eq.lowdindeterminants}).
-
-
 \subsubsection{\label{ch2.sec.delocal}Localized VB wave functions}
 
-In TURTLE, it is possible to restrict orbitals to certain atoms, or fragments of the molecule. This type of wave function is called localized. Within each fragment, the doubly occupied and virtual orbitals are orthogonal to all other orbitals. However, between fragments, overlap of orbitals can occur. This means that doubly occupied orbitals from one fragment are no longer necessarily orthogonal to the orbitals in another fragment. Overlaps between orbitals on different fragments will not be zero and hence density matrix elements in the Fock matrix elements (equation \ref{ch2.eq.fock}) are not equal to the second order cofactors in L\"{o}wdins formula (equation \ref{ch2.eq.lowdindeterminants}): the required single ``1'' on the extra row and column of the density matrix is not present. Therefore, the derivation in the previous section for excitations of the types $i \rightarrow a$ and $t \rightarrow a$ cannot be used for localized VB wave functions. 
+In TURTLE, it is possible to restrict orbitals to certain atoms, or fragments of the molecule. This type of wave function is called localized. Within each fragment, the doubly occupied and virtual orbitals are orthogonal to all other orbitals. However, between fragments, overlap of orbitals can occur. This means that doubly occupied orbitals from one fragment are no longer necessarily orthogonal to the orbitals in another fragment. Overlaps between orbitals on different fragments will not be zero and hence density matrix elements in the Fock matrix elements (equation \ref{ch2.eq.fock}) are not equal to the second order cofactors in L\"{o}wdins formula (equation \ref{ch2.eq.lowdindeterminants}): the required single ``1'' on the extra row and column of the density matrix is not present. Therefore, the derivation in the previous section for excitations of the type $i \rightarrow a$ cannot be used for localized VB wave functions. For excitations of the type $t \rightarrow a$, which do not require orbital $\chi_t$ to be orthogonal to the other orbitals, Fock matrix elements could be used. In that case, the complexity is comparable to that of equation \ref{ch2.eq.ta_i7}.
 
-Sometimes, however, orbitals from different fragments can still be orthogonal due to the symmetry in the molecule (see the examples in Section \ref{ch2.sec.aromat}). In that case the elements of the Fock matrix can be used instead of calculating the Brillouin matrix elements.
+Sometimes, however, orbitals from different fragments can still be orthogonal due to the symmetry in the molecule (see the examples in Section \ref{ch2.sec.aromat}). In that case, the elements of the Fock matrix can be used instead of calculating the Brillouin matrix elements.
 
 \subsubsection{\label{ch2.sec.denominator}Approximation Of The Denominator}
 
