@@ -281,12 +281,31 @@ S^{(3,4)}=
 \label{ch2.eq.s16g}
 \end{equation}
 
-According to L\"{o}wdins formula, the one electron integral expression for the Brillouin matrix element becomes:
+According to L\"{o}wdins formula (equation \ref{ch2.eq.lowdindeterminants}), the one electron integral expression for the Brillouin matrix element is:
 \begin{equation}
-\left< \Psi_0 | \mathbf{h} | \Psi_{16} \right> = \sum_{ik} h_{ik} \cdot S^{(i,k)}.
+\left< \Psi_0 | \mathbf{h} | \Psi_{16} \right> = \sum_{ik} h_{ik} \cdot S^{(i,k)} = \sum_{i} h_{i6} \cdot S^{(i,6)} + \sum_{i, k=2,3,4,5} h_{ik} \cdot S^{(i,k)}. 
 \label{ch2.eq.lowdinsingdet}
 \end{equation}
-In this expression, one electron integrals between occupied orbitals occur multiplied by first order cofactors, which do not occur in the expression for a Fock matrix element. Therefore, equation \ref{ch2.eq.fock} \textit{cannot} be used instead of L\"{o}wdins formula, unless cofactors with orbital overlaps involving virtual orbitals, like $\chi_6$, are zero. This is only the case when the orbital to which the excitation takes place is orthogonal to \textit{all} occupied orbitals.
+In this expression, one electron integrals between occupied orbitals occur multiplied by first order cofactors, which do not occur in the expression for a Fock matrix element (the term on the utmost right, for orbitals labeled $2,3,4,5$). Therefore, equation \ref{ch2.eq.fock} \textit{cannot} be used instead of L\"{o}wdins formula, unless cofactors with orbital overlaps involving virtual orbitals, like $\chi_6$, are zero. This is only the case when the orbital to which the excitation takes place is orthogonal to \textit{all} occupied orbitals.
+
+In that case, the overlap of $\Psi_0$ with $\Psi_{16}$ becomes:
+\begin{equation}
+\left < \Psi_0 | \Psi_{16} \right> =
+\begin{array}{llllll}
+ &  \chi_1 & \chi_2 & \chi_3 & \chi_4 & \chi_5 \\
+ \chi_6 & \multicolumn{1}{|l}{ 0 } & 0 & 0 & 0 & \multicolumn{1}{l|}{ 0 } \\
+ \chi_2 & \multicolumn{1}{|l}{ s_{12} } & 1 & s_{32} & s_{42} & \multicolumn{1}{l|}{ s_{52} } \\
+ \chi_3 & \multicolumn{1}{|l}{ s_{13} } & s_{23} & 1 & s_{43} & \multicolumn{1}{l|}{ s_{53} } \\
+ \chi_4 & \multicolumn{1}{|l}{ s_{14} } & s_{24} & s_{34} & 1 & \multicolumn{1}{l|}{ s_{54} } \\
+ \chi_5 & \multicolumn{1}{|l}{ s_{15} } & s_{25} & s_{35} & s_{45} & \multicolumn{1}{l|}{ 1 }
+\end{array}.
+\label{ch2.eq.s016go}
+\end{equation}
+With this orthogonality restriction, only 5 out of 25 possible cofactors would be non-zero. The one electron integral contribution in the expression for a Fock matrix element (equation \ref{ch2.eq.lowdindeterminants}) then reduces to:
+\begin{equation}
+\left< \Psi_0 | \mathbf{h} | \Psi_{16} \right> = \sum_{i} h_{i6} \cdot S^{(i,6)}.
+\label{ch2.eq.lowdinwithorth}
+\end{equation}
 
 Other one electron integral contributions, like $h_{23} \cdot S^{(2,3)}$, in equation \ref{ch2.eq.lowdinsingdet} are zero because the first order cofactors are zero:
 \begin{equation}
@@ -306,27 +325,9 @@ h_{23} \cdot S^{(2,3)} = h_{23} \cdot
 \label{ch2.eq.h23}
 \end{equation}
 
-Hence, the Fock matrix is not suitable for the one electron integral part and so there is no need to consider the two electron integral part. Since the use of non-orthogonal orbitals is the central philosophy in Valence Bond theory, the Fock matrix is not applicable for the calculation of Brillouin matrix elements involving excitation types  $i \rightarrow t$ and $t \rightarrow u$, because the orbital to which the excitation takes place will, in many cases, be non-orthogonal to the other occupied orbitals. 
+Hence, the Fock matrix is not suitable for the one electron integral part and so there is no need to consider the two electron integral part. Since the use of non-orthogonal orbitals is the central philosophy in Valence Bond theory, the Fock matrix is not applicable for the calculation of Brillouin matrix elements involving excitation types $i \rightarrow t$ and $t \rightarrow u$, because the orbital to which the excitation takes place will, in many cases, be non-orthogonal to the other occupied orbitals. 
  
-For the other two types of excitation, $i \rightarrow a$ and $t \rightarrow a$, the excited orbital $\chi_a$ is a virtual orbital. These orbitals are examples where the Fock matrix might be used, because they can be chosen orthogonal to the occupied orbitals (see the Appendix of reference \cite{koos1}). In that case, the overlap of $\Psi_0$ with $\Psi_{16}$ becomes:
-\begin{equation}
-\left < \Psi_0 | \Psi_{16} \right> =
-\begin{array}{llllll}
- &  \chi_1 & \chi_2 & \chi_3 & \chi_4 & \chi_5 \\
- \chi_6 & \multicolumn{1}{|l}{ 0 } & 0 & 0 & 0 & \multicolumn{1}{l|}{ 0 } \\
- \chi_2 & \multicolumn{1}{|l}{ s_{12} } & 1 & s_{32} & s_{42} & \multicolumn{1}{l|}{ s_{52} } \\
- \chi_3 & \multicolumn{1}{|l}{ s_{13} } & s_{23} & 1 & s_{43} & \multicolumn{1}{l|}{ s_{53} } \\
- \chi_4 & \multicolumn{1}{|l}{ s_{14} } & s_{24} & s_{34} & 1 & \multicolumn{1}{l|}{ s_{54} } \\
- \chi_5 & \multicolumn{1}{|l}{ s_{15} } & s_{25} & s_{35} & s_{45} & \multicolumn{1}{l|}{ 1 }
-\end{array}.
-\label{ch2.eq.s016go}
-\end{equation}
-With this orthogonality restriction, only 5 out of 25 possible cofactors would be non-zero. The one electron integral contribution in the expression for a Fock matrix element (equation \ref{ch2.eq.lowdindeterminants}) then becomes:
-\begin{equation}
-\sum_{i} h_{i1} \cdot S^{(i,1)},
-\label{ch2.eq.lowdinwithorth}
-\end{equation}
-in which $i$ is the column index in the first order cofactors. 
+For the other two types of excitation, $i \rightarrow a$ and $t \rightarrow a$, the excited orbital $\chi_a$ is a virtual orbital. These orbitals are examples where the Fock matrix might be used, because they can be chosen orthogonal to the occupied orbitals (see the Appendix of reference \cite{koos1}).
 
 One striking difference in the one electron integral contribution between the Fock matrix element (equation \ref{ch2.eq.fock}) and the one electron integral part in equation \ref{ch2.eq.lowdinwithorth} is that in the former only a single one electron integral contributes, while in the latter a series of one electron integrals, multiplied by first order cofactors, contribute. In the following subsections, the impact of this difference on the usability of Fock matrix elements will be analyzed.
 
