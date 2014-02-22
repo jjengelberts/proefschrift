@@ -10,7 +10,6 @@ temptex: $(FIGURES)
 	echo '\setcounter{chapter}{2}' >> ../temp.tex
 	echo '\setcounter{NAT@ctr}{0}' >> ../temp.tex
 	echo '\include{dissociation/dissociation}' >> ../temp.tex
-	echo '\\bibliography{dissociation}' >> ../temp.tex
 	cat ../main/tail.txt >> ../temp.tex
 	cp ../main/natbib.sty ..
 

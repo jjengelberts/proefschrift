@@ -28,31 +28,24 @@ temptex2: $(FIGURES)
 	echo '\setcounter{chapter}{0}' >> thesis.tex
 	echo '\setcounter{NAT@ctr}{0}' >> thesis.tex
 	echo '\include{introduction/introduction}' >> thesis.tex
-	echo '\\bibliography{introduction}' >> thesis.tex
 	echo '\setcounter{chapter}{1}' >> thesis.tex
 	echo '\setcounter{NAT@ctr}{0}' >> thesis.tex
 	echo '\include{orbopt/orbopt}' >> thesis.tex
-	echo '\\bibliography{orbopt}' >> thesis.tex
 	echo '\setcounter{chapter}{2}' >> thesis.tex
 	echo '\setcounter{NAT@ctr}{0}' >> thesis.tex
 	echo '\include{dissociation/dissociation}' >> thesis.tex
-	echo '\\bibliography{dissociation}' >> thesis.tex
 	echo '\setcounter{chapter}{3}' >> thesis.tex
 	echo '\setcounter{NAT@ctr}{0}' >> thesis.tex
 	echo '\include{cyclopentadienyl/cyclopentadienyl}' >> thesis.tex
-	echo '\\bibliography{cyclopentadienyl}' >> thesis.tex
 	echo '\setcounter{chapter}{4}' >> thesis.tex
 	echo '\setcounter{NAT@ctr}{0}' >> thesis.tex
 	echo '\include{huckel/huckel}' >> thesis.tex
-	echo '\\bibliography{huckel}' >> thesis.tex
 	echo '\setcounter{chapter}{5}' >> thesis.tex
 	echo '\setcounter{NAT@ctr}{0}' >> thesis.tex
 	echo '\include{inorganic/inorganic}' >> thesis.tex
-	echo '\\bibliography{inorganic}' >> thesis.tex
 	echo '\setcounter{chapter}{6}' >> thesis.tex
 	echo '\setcounter{NAT@ctr}{0}' >> thesis.tex
 	echo '\include{indacene/indacene}' >> thesis.tex
-	echo '\\bibliography{indacene}' >> thesis.tex
 	echo '\include{lop/lop}' >> thesis.tex
 	echo '\include{summary/summary}' >> thesis.tex
 	echo '\include{samenvatting/samenvatting}' >> thesis.tex

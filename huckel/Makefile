@@ -10,7 +10,6 @@ temptex: $(FIGURES)
 	echo '\setcounter{chapter}{4}' >> ../temp.tex
 	echo '\setcounter{NAT@ctr}{0}' >> ../temp.tex
 	echo '\include{huckel/huckel}' >> ../temp.tex
-	echo '\\bibliography{huckel}' >> ../temp.tex
 	cat ../main/tail.txt >> ../temp.tex
 	cp ../main/natbib.sty ..
 

@@ -10,7 +10,6 @@ temptex: $(FIGURES)
 	echo '\setcounter{chapter}{3}' >> ../temp.tex
 	echo '\setcounter{NAT@ctr}{0}' >> ../temp.tex
 	echo '\include{cyclopentadienyl/cyclopentadienyl}' >> ../temp.tex
-	echo '\\bibliography{cyclopentadienyl}' >> ../temp.tex
 	cat ../main/tail.txt >> ../temp.tex
 	cp ../main/natbib.sty ..
 

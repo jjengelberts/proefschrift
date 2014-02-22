@@ -10,7 +10,6 @@ temptex: $(FIGURES)
 	echo '\setcounter{chapter}{6}' >> ../temp.tex
 	echo '\setcounter{NAT@ctr}{0}' >> ../temp.tex
 	echo '\include{indacene/indacene}' >> ../temp.tex
-	echo '\\bibliography{indacene}' >> ../temp.tex
 	cat ../main/tail.txt >> ../temp.tex
 	cp ../main/natbib.sty ..
 

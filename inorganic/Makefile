@@ -10,7 +10,6 @@ temptex: $(FIGURES)
 	echo '\setcounter{chapter}{5}' >> ../temp.tex
 	echo '\setcounter{NAT@ctr}{0}' >> ../temp.tex
 	echo '\include{inorganic/inorganic}' >> ../temp.tex
-	echo '\\bibliography{inorganic}' >> ../temp.tex
 	cat ../main/tail.txt >> ../temp.tex
 	cp ../main/natbib.sty ..
 
