@@ -3,7 +3,7 @@
 
 \ifthenelse{\boolean{wholethesis}}{\relax}{\begin{center}\textit{Generated on \today\ at \currenttime}\end{center}}
 
-\noindent\textbf{Abstract:} The most time consuming step in optimizing a Valence Bond (VB) wave function using the Super CI method is the construction of the matrix representation of the Hamilton operator ($\mathbf{H}$) and the corresponding overlap matrix ($\mathbf{S}$) for the wave function and the Brillouin states. In the 1990s a perturbation theory scheme, referred to as approximated Newton-Raphson (aNR), was introduced. For this scheme, not all $\mathbf{H}$ matrix elements need to be constructed. In this chapter an alternative, less time consuming method  to construct $\mathbf{H}$ matrix elements is introduced. In this method, $\mathbf{H}$ matrix elements are replaced by elements of a Fock matrix.
+\noindent\textbf{Abstract:} The most time consuming step in optimizing a Valence Bond (VB) wave function using the Super CI method is the construction of the matrix representation of the Hamilton operator ($\mathbf{H}$) and the corresponding overlap matrix ($\mathbf{S}$) for the wave function and the Brillouin states. In the 1990s a perturbation theory scheme, referred to as approximate Newton-Raphson (aNR), was introduced. For this scheme, not all $\mathbf{H}$ matrix elements need to be constructed. In this chapter an alternative, less time consuming method  to construct $\mathbf{H}$ matrix elements is introduced. In this method, $\mathbf{H}$ matrix elements are replaced by elements of a Fock matrix.
 
 \newpage
 
@@ -12,15 +12,15 @@
 \lettrine{\initial{I}}{}n 1916 Lewis suggested that atoms share electrons to form chemical bonds \cite{lewis}. Heitler and London incorporated this view a decade later into the quantum chemical description of the covalent bond in H$_2$ \cite{heitler}. In the 1930s Pauling used this description in his famous series of articles on ``The Nature Of The Chemical Bond'' \cite{pauling1,pauling2,pauling3,pauling4,pauling5,pauling6,pauling7,paulingbook}. This quantum chemical method is nowadays known as the Valence Bond theory.
 
 In contrast to other methods, like the Molecular Orbital theory \cite{hartree1,hartree2,hartree3,fock} which uses delocalized doubly occupied orbitals by default, 
-VB uses the spin-pairing of singly occupied non-orthogonal orbitals on different atoms, or molecular fragments to describe chemical bonds. The bond in H$_2$ can be described by the spin-coupling of the atomic $1s$ orbitals on both hydrogen atoms [H$\bullet$H$\bullet$]. The corresponding wave function consists of two determinants: $\Psi = |1s_{A}\overline{1s_{B}}| - |\overline{1s_{A}}1s_{B}|$. This determinant combination is called a structure. Since it describes the covalent character of the bond, it is referred to as the covalent structure. Ionic structures could be added to extend, or enhance the wave function: $|1s_{A}\overline{1s_{A}}|$ and $|1s_{B}\overline{1s_{B}}|$ (see Chapter \chintro). A VB wave function can be improved in two ways. Firstly, more structures can be added. A disadvantage in that case is that, when many structures are added, the interpretation of $\Psi$ becomes difficult. The second way to improve the wave function is the optimization of the orbitals. To maintain the interpretability, only a limited number of structures could be chosen of which the orbitals are optimized. 
+VB uses the spin-pairing of singly occupied non-orthogonal orbitals on different atoms, or molecular fragments, to describe chemical bonds. The bond in H$_2$ can be described by the spin-coupling of the atomic $1s$ orbitals on both hydrogen atoms [H$\bullet$H$\bullet$]. The corresponding approximate wave function consists of two determinants: $\Psi = |1s_{A}\overline{1s_{B}}| - |\overline{1s_{A}}1s_{B}|$. This determinant combination is called a structure. Since it describes the covalent character of the bond, it is referred to as the covalent structure. Ionic structures could be added to extend, or enhance the wave function: $|1s_{A}\overline{1s_{A}}|$ and $|1s_{B}\overline{1s_{B}}|$ (see Chapter \chintro). A VB wave function can be improved in two ways. Firstly, more structures can be added. A disadvantage in that case is that, when many structures are added, the interpretation of $\Psi$ becomes difficult. The second way to improve the wave function is the optimization of the orbitals. To maintain the interpretability, only a limited number of structures could be chosen of which the orbitals are optimized. 
 
-Besides the use of multiple determinants in VB, non-orthogonal and localized orbitals are used explicitly. Since the orbitals in MO theory can be chosen to be orthogonal, this method attracted more attention. Its implementation in computer programs is more straightforward and computations on larger molecular systems are possible. Despite its computational hurdles, progress in Valence Bond theory continued \cite{vboverv1,vboverv2,vboverv3}. The main reason is the chemical interpretation of Valence Bond wave functions in terms of structures. On the other hand several efficient methods to optimize Valence Bond wave functions, like Spin-Coupled Valence Bond (SCVB) \cite{scvb1,scvb2,scvb3} and Valence Bond Self-Consistent Field (VBSCF) \cite{vbscf1,vbscf2,koos1,zahid}, have been developed.
+Besides the use of multiple determinants in VB, non-orthogonal and localized orbitals are used explicitly. Since the orbitals in MO theory can be chosen to be orthogonal, this method attracted more attention. Its implementation in computer programs is more straightforward and computations on larger molecular systems are possible. Despite its computational hurdles, progress in Valence Bond theory continued also \cite{vboverv1,vboverv2,vboverv3}. The main reason is the chemical interpretation of Valence Bond wave functions in terms of structures. On the other hand several efficient methods to optimize Valence Bond wave functions, like Spin-Coupled Valence Bond (SCVB) \cite{scvb1,scvb2,scvb3} and Valence Bond Self-Consistent Field (VBSCF) \cite{vbscf1,vbscf2,koos1,zahid}, have been developed.
 
 The most time consuming step in the optimization of the wave function is the optimization of the orbitals. Several optimization methods that compute the gradient of the total energy with respect to orbital rotations have been developed. The most common and widely applicable method is based on the evaluation of Hamiltonian matrix elements between Slater determinants, as introduced by L\"{o}wdin \cite{lowdin}. Despite its common applicability, this method is time consuming.
 
 In another method, coined by Song \textit{et al.}, multiple Fock matrices are computed, one for each Slater determinant combination in the wave function \cite{song}. This approach is efficient and works fast for wave functions with a small number of Slater determinants. However, it is not as generally applicable as L\"{o}wdins method, because it cannot be used for wave functions containing orthogonal orbitals that are variably occupied, \textit{i.e.}, occur in some determinants, but not in all \cite{xmvb}. Although in VB non-orthogonal orbitals are used explicitly, orthogonality between the orbitals can occur.
 
-In Multi Configurational Self-Consistent Field (MCSCF) \cite{joop,mcscf,roos1,roos2}, a method with similarities to VBSCF, elements of a common Fock matrix are used instead of Hamiltonian matrix elements computed via L\"{o}wdins formula \cite{roos1}. The central question for this chapter is whether it is also possible to use a single Fock matrix for the optimization of the orbitals in VBSCF, although those can be non-orthogonal. Rather than computing Hamiltonian matrix elements via L\"{o}wdins formula \cite{koos3}, these elements might be, under conditions to be analyzed here, replaced by multiple elements from a single Fock matrix. This could save a considerable amount of computation time.
+In Multi Configurational Self-Consistent Field (MCSCF) \cite{joop,mcscf,roos1,roos2}, a method with similarities to VBSCF, elements of a common Fock matrix are used instead of Hamiltonian matrix elements computed via L\"{o}wdins formula \cite{roos1,broer}. The central question for this chapter is whether it is also possible to use a single Fock matrix for the optimization of the orbitals in VBSCF, although those can be non-orthogonal. Rather than computing Hamiltonian matrix elements via L\"{o}wdins formula \cite{koos3}, these elements might be, under conditions to be analyzed here, replaced by multiple elements from a single Fock matrix. This could save a considerable amount of computation time.
 
 At first, the usability of Fock matrix elements instead of Hamiltonian matrix is analyzed by comparing the expression for Fock matrix elements with the expression for Hamiltonian matrix elements by L\"{o}wdin. Following this analysis, the implementation of these Fock matrix elements in TURTLE \cite{turtle}, the VB module in GAMESS-UK \cite{gamess}, will be presented. After the implementation details, speed-up factors of some test calculations will be discussed and compared. The chapter is concluded with an outlook on future enhancements.  
 
@@ -98,7 +98,7 @@ With this mechanism orbital $\psi_i$ could be changed in such a way that the exp
 \frac{\partial E}{\partial b_{ia}}=\frac{\partial \frac{\left < \Psi_0 | \mathbf{H} | \Psi_0 \right >}{\left < \Psi_0 | \Psi_0 \right >}}{\partial b_{ia}}=0.
 \label{ch2.eq.foderiv}
 \end{equation}
-Using the quotient rule, using the fact that $\left < \Psi_0 | \mathbf{H} | \Psi_0 \right >$ and $\left < \Psi_0 | \Psi_0 \right >$ are symmetric and using that the first order derivative with respect to the orbital change of $\Psi_0$ in equation \ref{ch2.eq.wfchange} equals $\Psi_{ia}$ \cite{vbscf2}, the first order derivative of the energy with respect to the orbital change can be written as: 
+Using the quotient rule, using the fact that $\left < \Psi_0 | \mathbf{H} | \Psi_0 \right > (\equiv E_0)$ and $\left < \Psi_0 | \Psi_0 \right >$ are symmetric and using that the first order derivative with respect to the orbital change of $\Psi_0$ in equation \ref{ch2.eq.wfchange} equals $\Psi_{ia}$ \cite{vbscf2}, the first order derivative of the energy with respect to the orbital change can be written as: 
 \begin{equation}
 \begin{split}
 \frac{\partial E}{\partial b_{ia}} & = \frac{2 \cdot \left < \Psi_0 | \mathbf{H} | \Psi_{ia} \right > \left< \Psi_0 | \Psi_0 \right > - 2 \cdot \left < \Psi_0 | \mathbf{H} | \Psi_0  \right > \left< \Psi_0 | \Psi_{ia}\right>}{\left < \Psi_0 | \Psi_0 \right > ^2 }\\
@@ -124,7 +124,7 @@ in which $\Psi_{superci}$ is the Super CI wave function, $i$ runs over all orbit
 [\mathbf{H}-E_b\mathbf{S}] \cdot \mathbf{b} = 0,
 \label{ch2.eq.geig}
 \end{equation}
-in which $\mathbf{H}$ and $\mathbf{S}$ are the Hamiltonian and metric in the basis of $\Psi_0$ and the singly excited structures. $E_b$ is the lowest eigenvalue and $\mathbf{b}$ is the corresponding eigenvector. With the elements of $\mathbf{b}$ the orbitals are updated to make $\Psi_0$ equal to $\Psi_{superci}$ to first order:
+in which $\mathbf{H}$ and $\mathbf{S}$ are the Hamiltonian and metric in the basis of $\Psi_0$ and the singly excited structures. Please note that $\mathbf{S}$ is not necessarily equal to the unity matrix, because the structures in the wave function may not be orthogonal to each other. $E_b$ is the lowest eigenvalue and $\mathbf{b}$ is the corresponding eigenvector. With the elements of $\mathbf{b}$ the orbitals are updated to make $\Psi_0$ equal to $\Psi_{superci}$ to first order:
 \begin{equation}
 \psi_i' = \psi_i + \sum_{a} b_{ia} \psi_a.
 \label{ch2.eq.orbupd}
@@ -143,7 +143,7 @@ So, $\Psi_0$ will contain the updated orbital $\psi_i'$ which will be denoted $\
 
 Up till here, $\Psi_0$ was constructed of a single determinant, \textit{i.e.}, $|\psi_i\overline{\psi_i}\psi_j\psi_k|$. A regular VB wave function consists of multiple structures, and hence multiple determinants (see equations \ref{ch2.eq.vbwf} and \ref{ch2.eq.struct}). In that case, the contraction of equation \ref{ch2.eq.condense} will contain more determinants, all in which orbital $\psi_i$ has been replaced by $\psi_a$.
 
-To solve the generalized eigenvalue problem of equation \ref{ch2.eq.geig}, both the Hamiltonian ($\mathbf{H}$) and the overlap ($\mathbf{S}$) are expressed in matrix form.  The Brillouin matrix is defined as the $\mathbf{H}$ matrix minus $E_0$ \cite{koos1}. Please note that for optimal orbitals, the Brillouin energy ($E_b$) in equation \ref{ch2.eq.geig} is equal to the energy of the ground state ($E_0$), because the singly excited structures do no longer mix in with the ground state. 
+To solve the generalized eigenvalue problem of equation \ref{ch2.eq.geig}, both the Hamiltonian ($\mathbf{H}$) and the overlap ($\mathbf{S}$) are expressed in matrix form.  The Brillouin matrix is defined as the $\mathbf{H}$ matrix minus $E_0$ \cite{koos1}. Please note that for optimal orbitals, the Brillouin energy ($E_b$) in equation \ref{ch2.eq.geig} is equal to $E_0$, because the singly excited structures do no longer interact with $\Psi_0$. 
 
 An example of a Brillouin matrix is:
 \begin{equation}
@@ -156,11 +156,11 @@ An example of a Brillouin matrix is:
 \end{equation}
 This Brillouin matrix is constructed for a Super CI wave function that has two singly excited structures: $\Psi_{ia}$, for the excitation from orbital $\psi_i$ to $\psi_a$ and $\Psi_{ib}$, for the excitation from orbital $\psi_i$ to $\psi_b$. Brillouin matrices have the same dimension as the $\mathbf{H}$ and $\mathbf{S}$ matrices in equation \ref{ch2.eq.geig}. The calculation of the elements in $\mathbf{H}$ is expensive because of the large number of determinants, caused by the expansion into the Super CI wave function: for each excitation a Brillouin state, containing 1 to 2 times the number of determinants of $\Psi_0$, is added. For each determinant combination the evaluation of (large amounts of) subdeterminants \cite{koos2}, or cofactors are required.
 
-To lower the computation time, Van Lenthe \textit{et al.} introduced a method, referred to as approximated Newton-Raphson (Section \ref{ch2.sec.anr}) \cite{koos1}, which requires less $\mathbf{H}$ and $\mathbf{S}$ matrix elements than regular Super CI \cite{koos1}, because elements of the type $\left < \Psi_{ia} | \mathbf{H} - E_0 | \Psi_{ib} \right >$ are not needed. This method will be explained in the next section.
+To lower the computation time, Van Lenthe \textit{et al.} introduced a method, referred to as approximate Newton-Raphson (Section \ref{ch2.sec.anr}) \cite{koos1}, which requires less $\mathbf{H}$ and $\mathbf{S}$ matrix elements than regular Super CI \cite{koos1}, because elements of the type $\left < \Psi_{ia} | \mathbf{H} - E_0 | \Psi_{ib} \right >$ are not needed. This method will be explained in the next section.
 
-\subsection{\label{ch2.sec.anr}The Approximated Newton-Raphson Method}
+\subsection{\label{ch2.sec.anr}The Approximate Newton-Raphson Method}
 
-In the approximated Newton-Raphson technique perturbation theory is used to obtain orbital update coefficients. These coefficients are approximated by the quotient of the first column element and the diagonal element on each row of equation \ref{ch2.eq.hamilt}:
+In the approximate Newton-Raphson technique perturbation theory is used to obtain orbital update coefficients. These coefficients are approximated by the quotient of the first column element and the diagonal element on each row of equation \ref{ch2.eq.hamilt}:
 \begin{equation}
 b_{ia}= - \frac{\left< \Psi_{0} | \mathbf{H}-E_0 | \Psi_{ia} \right>}{\left< \Psi_{ia} | \mathbf{H}-E_0 | \Psi_{ia} \right>}.
 \label{ch2.eq.anr}
@@ -173,7 +173,7 @@ A further reduction of the calculation time can be achieved if the numerator and
 
 \subsection{\label{ch2.sec.fock}Fock Matrix Elements} 
 
-Roos \textit{et al.} showed that Brillouin matrix elements of the type $\left< \Psi_0 | \mathbf{H} | \Psi_{ia} \right>$ (the numerator in equation \ref{ch2.eq.anr}) can be replaced by elements of the Fock matrix ($F_{ia}$) for Complete Active Space Self-Consistent Field (CASSCF) wave functions \cite{roos1}. A CASSCF wave function is an MCSCF wave function for which all possible electron distributions in the variably occupied orbital space are included. The Fock matrix elements have the form:
+Roos \textit{et al.} showed for Complete Active Space Self-Consistent Field (CASSCF) wave functions that Brillouin matrix elements of the type $\left< \Psi_0 | \mathbf{H} | \Psi_{ia} \right>$ (the numerator in equation \ref{ch2.eq.anr}) can be replaced by elements of the Fock matrix ($F_{ia}$) \cite{roos1}. A CASSCF wave function is an MCSCF wave function for which all possible electron distributions in the variably occupied orbital space are included. The Fock matrix elements have the form:
 \begin{equation}
 F_{ia} = h_{ia} + \sum_{\sigma\nu} \left\{ \left[ \chi_i \chi_a | \chi_\sigma \chi_\nu \right] - \left[ \chi_i \chi_\nu | \chi_\sigma \chi_a \right] \right\} \cdot P^{(\sigma,\nu)},
 \label{ch2.eq.fock}
@@ -200,7 +200,7 @@ In multideterminant wave functions, three orbital classes can be distinguished. 
 \item{$t \rightarrow a$ from variably occupied to virtual orbitals}
 \item{$i \rightarrow t$ from (always) doubly to variably occupied orbitals}
 \end{itemize}
-The fourth type of excitation, $t \rightarrow u$ from variably to variably occupied orbitals, is not needed in CASSCF, because all possible electron distributions in the variably occupied orbital space are already included in $\Psi_0$. In this section the applicability of Fock matrix elements in the construction of Brillouin matrix elements in VBSCF will be analyzed with L\"{o}wdins formula, equation \ref{ch2.eq.lowdindeterminants}. The difference between the one electron parts of L\"{o}wdins formula (equation \ref{ch2.eq.lowdindeterminants}) and the expression for a Fock matrix element (equation \ref{ch2.eq.fock}) is that in the former multiple one electron integrals are multiplied by first order cofactors ($S^{(i,k)}$), while in the latter only a single one electron integral occurs without a multiplication factor. Furthermore, the two electron integral part in the former is multiplied by second order cofactors ($S^{(i,j,k,l)}$), while in the latter those are multiplied by elements of the density matrix ($P^{(\sigma,\nu)}$). To analyze in which situations Fock matrix elements are equal to Brillouin matrix elements, a comparison of the cofactors in equation \ref{ch2.eq.lowdindeterminants} and the density matrix elements in equation \ref{ch2.eq.fock} is needed.
+The fourth type of excitation, $t \rightarrow u$ from variably to variably occupied orbitals, is not needed in CASSCF, because all possible electron distributions in the variably occupied orbital space are present in $\Psi_0$ and hence these excitations are redundant. In this section the applicability of Fock matrix elements in the construction of Brillouin matrix elements in VBSCF will be analyzed with L\"{o}wdins formula, equation \ref{ch2.eq.lowdindeterminants}. The difference between the one electron parts of L\"{o}wdins formula (equation \ref{ch2.eq.lowdindeterminants}) and the expression for a Fock matrix element (equation \ref{ch2.eq.fock}) is that in the former multiple one electron integrals are multiplied by first order cofactors ($S^{(i,k)}$), while in the latter only a single one electron integral occurs without a multiplication factor. Furthermore, the two electron integral part in the former is multiplied by second order cofactors ($S^{(i,j,k,l)}$), while in the latter those are multiplied by elements of the density matrix ($P^{(\sigma,\nu)}$). To analyze in which situations Fock matrix elements are equal to Brillouin matrix elements, a comparison of the cofactors in equation \ref{ch2.eq.lowdindeterminants} and the density matrix elements in equation \ref{ch2.eq.fock} is needed.
 
 For this comparison the single determinant wave function $\Psi_0 = |\chi_1\chi_2\chi_3\chi_4\chi_5|$ is chosen. The excitation that will be examined for this wave function is from $\chi_1$ to $\chi_6$. Hence, $\Psi_{16}$ is equal to $|\chi_6\chi_2\chi_3\chi_4\chi_5|$. Numerals have been chosen as subscripts, rather than the previously specified letters: the classification of orbitals should not blur this comparison. 
 
@@ -217,9 +217,8 @@ In wave function $\Psi_0$, the orbitals $\chi$ are normalized, \textit{i.e.} $\l
 \end{array} = 1,
 \label{ch2.eq.s0g}
 \end{equation}
-in which the $s$ elements are overlaps between orbitals, for example, $s_{34} = \left< \chi_3 | \chi_4 \right>$. $N$ is the normalization constant\footnote{Throughout this chapter normalized wave functions are used. Therefore, the normalization constant $N$ is implicitly included.}. The density matrix, needed for the Fock matrix, is constructed from subdeterminants of this determinant. An example of a density matrix element is $P^{(3,4)}$:
+in which the $s$ elements are overlaps between orbitals, for example, $s_{34} = \left< \chi_3 | \chi_4 \right>$. $N$ is the normalization constant. Throughout this chapter normalized wave functions are used. Therefore, the normalization constant $N$ is implicitly included in the following equations. The density matrix, needed for the Fock matrix, is constructed from subdeterminants of this determinant. An example of a density matrix element is $P^{(3,4)}$:
 \begin{equation}
-P^{(3,4)}=
 \begin{array}{llllll}
  & \hskip 53.0 pt \hbox{\lower 93pt\hbox{\vrule height100pt width 1.0pt}}\hskip-54.0pt \chi_1 & \chi_2 & \chi_3 & \chi_4 & \chi_5 \\
  \noalign{\vskip-91pt}
@@ -231,19 +230,19 @@ P^{(3,4)}=
  \multispan6\hbox{\vrule  height 1.0 pt width140pt}\cr
  \noalign{\vskip 7pt}
  \chi_5 & \multicolumn{1}{|l}{ s_{15} } & s_{25} & s_{35} & s_{45} & \multicolumn{1}{l|}{ 1 }
-\end{array} =
+\end{array} \rightarrow
 - \begin{array}{lllll}
  &  \chi_1 & \chi_2 & \chi_4 & \chi_5 \\
  \chi_1 & \multicolumn{1}{|l}{ 1 } & s_{21} & s_{41} & \multicolumn{1}{l|}{ s_{51} } \\
  \chi_2 & \multicolumn{1}{|l}{ s_{12} } & 1 & s_{42} & \multicolumn{1}{l|}{ s_{52} } \\
  \chi_3 & \multicolumn{1}{|l}{ s_{13} } & s_{23} & s_{43} & \multicolumn{1}{l|}{s_{53}} \\
  \chi_5 & \multicolumn{1}{|l}{ s_{15} } & s_{25} & s_{45} & \multicolumn{1}{l|}{1}
-\end{array},
+\end{array} = P^{(3,4)},
 \label{ch2.eq.p0exampg}
 \end{equation}
 which is the subdeterminant of $|\mathbf{S}|$ (equation \ref{ch2.eq.s0g}), from which the third column and the fourth row are removed.
 
-First and second order cofactors that occur in equation \ref{ch2.eq.lowdindeterminants} are subdeterminants of the overlap determinant of $\Psi_0$ with $\Psi_{16}$:
+First and second order cofactors that occur in equation \ref{ch2.eq.lowdindeterminants} are signed subdeterminants of the overlap determinant of $\Psi_0$ with $\Psi_{16}$:
 \begin{equation}
 \left < \Psi_0 | \Psi_{16} \right> =
 \begin{array}{llllll}
@@ -258,7 +257,6 @@ First and second order cofactors that occur in equation \ref{ch2.eq.lowdindeterm
 \end{equation}
 An example of a first order cofactor from $\left < \Psi_0 | \Psi_{16} \right>$ is $S^{(3,4)}$:
 \begin{equation}
-S^{(3,4)}=
 \begin{array}{llllll}
  & \hskip 53.0 pt \hbox{\lower 93pt\hbox{\vrule height100pt width 1.0pt}}\hskip-54.0pt \chi_1 & \chi_2 & \chi_3 & \chi_4 & \chi_5 \\
  \noalign{\vskip-91pt}
@@ -270,14 +268,14 @@ S^{(3,4)}=
  \multispan6\hbox{\vrule  height 1.0 pt width140pt}\cr
  \noalign{\vskip 7pt}
  \chi_5 & \multicolumn{1}{|l}{ s_{15} } & s_{25} & s_{35} & s_{45} & \multicolumn{1}{l|}{ 1 }
-\end{array} =
+\end{array} \rightarrow
 - \begin{array}{lllll}
  &  \chi_1 & \chi_2 & \chi_4 & \chi_5 \\
  \chi_6 & \multicolumn{1}{|l}{ s_{16} } & s_{26} & s_{46} & \multicolumn{1}{l|}{ s_{56} } \\
  \chi_2 & \multicolumn{1}{|l}{ s_{12} } & 1 & s_{42} & \multicolumn{1}{l|}{ s_{52} } \\
  \chi_3 & \multicolumn{1}{|l}{ s_{13} } & s_{23} & s_{43} & \multicolumn{1}{l|}{s_{53}} \\
  \chi_5 & \multicolumn{1}{|l}{ s_{15} } & s_{25} & s_{45} & \multicolumn{1}{l|}{1}
-\end{array}.
+\end{array} = S^{(3,4)}.
 \label{ch2.eq.s16g}
 \end{equation}
 
@@ -349,7 +347,6 @@ To investigate the excitation type $i \rightarrow a$, the 5 electron wave functi
 
 In analogy with the example density matrix element in equation \ref{ch2.eq.p0exampg}, an example from density matrix element $P^{(t,u)}$, a cofactor of the norm in equation \ref{ch2.eq.s0}, is:
 \begin{equation}
-P^{(t,u)}=
 \begin{array}{llllll}
  & \hskip 46.0 pt \hbox{\lower 93pt\hbox{\vrule height100pt width 1.0pt}}\hskip-47.0pt \chi_i & \chi_j & \chi_t & \chi_u & \chi_v \\
  \noalign{\vskip-91pt}
@@ -361,14 +358,14 @@ P^{(t,u)}=
  \multispan6\hbox{\vrule  height 1.0 pt width130pt}\cr
  \noalign{\vskip 7pt}
  \chi_v & \multicolumn{1}{|l}{ 0 } & 0 & s_{tv} & s_{uv} & \multicolumn{1}{l|}{ 1 }
-\end{array} =
+\end{array} \rightarrow
 - \begin{array}{lllll}
  &  \chi_i & \chi_j & \chi_u & \chi_v \\
  \chi_i & \multicolumn{1}{|l}{ 1 } & 0 & 0 & \multicolumn{1}{l|}{ 0 } \\
  \chi_j & \multicolumn{1}{|l}{ 0 } & 1 & 0 & \multicolumn{1}{l|}{ 0 } \\
  \chi_t & \multicolumn{1}{|l}{ 0 } & 0 & s_{ut} & \multicolumn{1}{l|}{s_{vt}} \\
  \chi_v & \multicolumn{1}{|l}{ 0 } & 0 & s_{uv} & \multicolumn{1}{l|}{1}
-\end{array}.
+\end{array} = P^{(t,u)}.
 \label{ch2.eq.p0examp}
 \end{equation}
 
@@ -485,7 +482,7 @@ Therefore, the total Brillouin matrix element is:
 \label{ch2.eq.brilisfock}
 \end{equation}
 
-Up till here only a single determinant wave function was used. A VB wave function consists of any number of determinants and therefore the derivation above will be expanded to multiple determinants.
+So far only a single determinant wave function was used. A VB wave function consists of any number of determinants and therefore the derivation above will be expanded to multiple determinants.
 
 A new VB wave function, consisting of one doubly occupied orbital $\psi_i$, expressed in spin-orbitals $\chi_i$ and $\chi_j$, and four partly occupied orbital, $\chi_t$, $\chi_u$, $\chi_v$ and $\chi_x$, is defined:
 \begin{equation}
@@ -583,7 +580,7 @@ The overlap of $\Psi_0$ with $\Psi_{ia}$ is:
 \end{equation}
 The only one electron contribution that adds to the Brillouin matrix element is $h_{ia}$, because it is multiplied by nonzero  cofactors created by removing column $\chi_i$ and row $\chi_a$ from all four determinants in equation \ref{ch2.eq.psi0_ia2}. The sum of these four cofactors is equal to $\left< \Psi_0 | \Psi_0 \right>$ (equation \ref{ch2.eq.s02}). Since $\Psi_0$ is normalized, this is equal to one. The contribution is then, like for the one determinant case, $h_{ia}$ for $\alpha$ spin.
 
-Only those two electron integrals that contain second order cofactors in which column $\chi_i$ and row $\chi_a$ are removed occur. One such combination of a Coulomb and exchange integral that contributes is: 
+Only those two electron integrals that are combined with second order cofactors in which column $\chi_i$ and row $\chi_a$ are removed occur. One such combination of a Coulomb and exchange integral that contributes is: 
 \begin{equation}
 \left\{ [\chi_i\chi_a|\chi_t\chi_x] - [\chi_i\chi_x|\chi_t\chi_a] \right\} \cdot S_{12}^{(i,t,a,x)},
 \label{ch2.eq.twoelexamp2}
@@ -703,7 +700,7 @@ For the analysis of the two electron part, the two electron integral contributio
 \sum_{i<j,k<l} \left\{ \left[ \chi_i \chi_k | \chi_j \chi_l \right] - \left[ \chi_i \chi_l | \chi_j \chi_k \right] \right\} \cdot S^{(i,j,k,l)}.
 \label{ch2.eq.ta_1el3}
 \end{equation}
-This contribution is split into an inactive and an active part, in analogy with the split for the Fock matrix element in CASSCF. The first part contains the second order cofactors for which the first index $\sigma$ runs over the variably occupied orbitals and the second and fourth index run over $\lambda$, the index that runs over the doubly occupied space (equation \ref{ch2.eq.focki}). The third index is $a$, because second order cofactors without $a$ will be zero, because those are determinants with a row of zeroes. With the selection of an orthogonal occupied orbital for the second index, like $i$, only the selection of $i$ as fourth index will result in a non-zero second order cofactor. An example is $S^{(t,i,a,i)}$. Removing the column and row labeled $i$ results in removing a single ``1'' from the diagonal of the determinant and hence $S^{(t,i,a,i)}=S^{(t,a)}=P^{(t,t)}$:
+This contribution is split into an inactive and an active part, in analogy with the split for the Fock matrix element in CASSCF. The first part contains the second order cofactors for which the first index $\sigma$ runs over the variably occupied orbitals and the second and fourth index run over $\lambda$, the index that runs over the doubly occupied space (equation \ref{ch2.eq.focki}). The third index is $a$, because second order cofactors without $a$ will be zero, because those are determinants with a row of zeroes. With the selection of an occupied orbital, orthogonal to the other occupied orbitals, for the second index, like $i$, only the selection of $i$ as fourth index will result in a non-zero second order cofactor. An example is $S^{(t,i,a,i)}$. Removing the column and row labeled $i$ results in removing a single ``1'' from the diagonal of the determinant and hence $S^{(t,i,a,i)}=S^{(t,a)}=P^{(t,t)}$:
 \begin{equation}
 S^{(t,i,a,i)}=
 \begin{array}{llll}
@@ -759,7 +756,7 @@ The Brillouin matrix element $\left< \Psi_0 | \mathbf{H} | \Psi_{ta} \right>$ is
 \label{ch2.eq.ta_i6}
 \end{equation}
 
-Up till here, only a single determinant wave function has been used for showing the usability of multiple Fock matrix elements for a single Brillouin matrix element of the type $t \rightarrow a$. If multiple determinants would be used, it will become clear that the density matrix elements become sums of contributions for each determinant combination, analogously to equations \ref{ch2.eq.wfexamp2} to \ref{ch2.eq.psi0_ia2}. Since the $P$-matrix element already contains the sums over the determinants, only the second part in equation \ref{ch2.eq.ta_i6} get an extra summation over the Slater determinants in $\Psi_0$ and $\Psi_{ta}$:
+Up till here, only a single determinant wave function has been used for showing the usability of multiple Fock matrix elements for a single Brillouin matrix element of the type $t \rightarrow a$. It will become clear that, if multiple determinants would be used, the density matrix elements become sums of contributions for each determinant combination, analogously to equations \ref{ch2.eq.wfexamp2} to \ref{ch2.eq.psi0_ia2}. Since the $P$-matrix element already contains the sums over the determinants, only the second part in equation \ref{ch2.eq.ta_i6} gets an extra summation over the Slater determinants in $\Psi_0$ and $\Psi_{ta}$:
 \begin{equation}
 \left< \Psi_0 | \mathbf{H} | \Psi_{ta} \right> = \sum_{\sigma} F^{I}_{\sigma a} \cdot P^{(\sigma,t)} + \sum_{pq} C_p C_q\sum_{\sigma,\mu,\nu} \left\{ \left[ \chi_\sigma \chi_a | \chi_\mu \chi_\nu \right] - \left[ \chi_\sigma \chi_\nu | \chi_\mu \chi_a \right] \right\} \cdot S_{pq}^{(\sigma,a,\mu,\nu)},
 \label{ch2.eq.ta_i7}
@@ -774,7 +771,7 @@ In TURTLE, it is possible to restrict orbitals to certain atoms, or fragments of
 
 Sometimes, however, orbitals from different fragments can still be orthogonal due to the symmetry in the molecule (see the examples in Section \ref{ch2.sec.aromat}). In that case, the elements of the Fock matrix for type $i \rightarrow a$ can still be used instead of Brillouin matrix elements calculated via L\"{o}wdins formula.
 
-\subsubsection{\label{ch2.sec.denominator}Approximation Of The Denominator}
+\subsubsection{\label{ch2.sec.denominator}Approximation of the Denominator}
 
 So far, the numerator of equation \ref{ch2.eq.anr} has been analyzed. The denomator contains elements of the type $\left< \Psi_{ia} | \mathbf{H}-E_0 | \Psi_{ia} \right>$. These correspond to the energy of the singly excited states. This energy can be approximated as the ground state energy ($E_0$) minus the energy of the orbital from which the excitation takes place ($F_{ii}$) plus the energy of the orbital to which the excitation takes place ($F_{aa}$):
 \begin{equation}
@@ -785,13 +782,13 @@ This is an approximation, since removing an orbital will influence other orbital
 
 \section{\label{ch2.sec.implementation}Implementation}
 
-The implementation of the approximations described in the previous section consists of two parts. Firstly, the approximated Newton-Raphson method, which was already implemented in TURTLE, has been extended with extra options. Secondly, the use of a Fock matrix for excitations from doubly occupied orbitals to virtuals (equation \ref{ch2.eq.fiafinal}) has been implemented from scratch. It was decided not to implement equation \ref{ch2.eq.ta_i7} for excitations from variably occupied to virtuals, because the number of excitations from $t$ to $a$ is in most cases much lower than the number of excitations from $i$ to $a$. Moreover, Brillouin matrix elements for $t \rightarrow a$ with their series of inactive Fock matrix elements and second order cofactors are much more time consuming to construct than Brillouin matrix elements for $i \rightarrow a$, which consist only of the single Fock matrix element $F_{ia}$.
+The implementation of the approximations described in the previous section consists of two parts. Firstly, the approximate Newton-Raphson method, which was already implemented in TURTLE, has been extended with extra options. Secondly, the use of a Fock matrix for excitations from doubly occupied orbitals to virtuals (equation \ref{ch2.eq.fiafinal}) has been implemented from scratch. It was decided not to implement equation \ref{ch2.eq.ta_i7} for excitations from variably occupied to virtuals, because the number of excitations from $t$ to $a$ is in most cases much lower than the number of excitations from $i$ to $a$. Moreover, Brillouin matrix elements for $t \rightarrow a$ with their series of inactive Fock matrix elements and second order cofactors are much more time consuming to construct than Brillouin matrix elements for $i \rightarrow a$, which consist only of the single Fock matrix element $F_{ia}$.
 
 In the original aNR implementation the perturbation (equation \ref{ch2.eq.anr}) was used for excitations from the always and partly occupied orbitals to the virtuals. For all other excitations, \textit{i.e.} those from the always occupied orbitals to the partly occupied orbitals and from partly occupied to other partly occupied orbitals, an $\mathbf{H}$ and $\mathbf{S}$ matrix were constructed, for which the update coefficients were retrieved by solving the generalized eigenvalue problem (equation \ref{ch2.eq.geig}). 
 
-In the current implementation there are three optimization options per excitation. The first option is that the excitation is treated with Super CI. In that case all interaction elements will be calculated. These are the interaction element of the ground state with the singly excited state, like $\left < \Psi_{0} | \mathbf{H} - E_0 | \Psi_{ia} \right >$, the diagonal element, $\left < \Psi_{ia} | \mathbf{H} - E_0 | \Psi_{ia} \right >$, and all interaction elements with other singly excited structures, like $\left < \Psi_{ia} | \mathbf{H} - E_0 | \Psi_{ib} \right >$. Please note, that these latter elements are only calculated when both excitations ($i \rightarrow a$ and $i \rightarrow b$) are treated with Super CI.
+In the current implementation there are three optimization options per excitation. The first option is that the excitation is treated with Super CI. In that case all interaction elements will be calculated. These are the interaction elements of the ground state with the singly excited state, like $\left < \Psi_{0} | \mathbf{H} - E_0 | \Psi_{ia} \right >$, the diagonal element, $\left < \Psi_{ia} | \mathbf{H} - E_0 | \Psi_{ia} \right >$, and all interaction elements with other singly excited structures, like $\left < \Psi_{ia} | \mathbf{H} - E_0 | \Psi_{ib} \right >$. Please note, that the latter elements are only calculated when both excitations ($i \rightarrow a$ and $i \rightarrow b$) are treated with Super CI.
 
-The second option is that the excitation is treated with approximated Newton-Raphson. In that case only the two matrix elements in equation \ref{ch2.eq.anr} are calculated to obtain the update coefficient $b_{ia}$.
+The second option is that the excitation is treated with approximate Newton-Raphson. In that case only the two matrix elements in equation \ref{ch2.eq.anr} are calculated to obtain the update coefficient $b_{ia}$.
 
 In the third option the excitation is treated with the Fock operator. In that case the orbital update coefficient $b_{ia}$ is calculated by dividing the Fock matrix element of the type $F_{ia}$ by the difference between $F_{ii}$ and $F_{aa}$ (Section \ref{ch2.sec.denominator}):
 \begin{equation}
@@ -811,7 +808,7 @@ In this section results from a few test calculations will be presented. The calc
 
 \subsection{\label{ch2.sec.aromat}First Example: Cyclic Hydrocarbons}
 
-Aromaticity has been and still is widely studied using Valence Bond theory \cite{cooper1,cooper2,remcolowdin,indacene,fowler,jenneskens,cyclohexatriene,bestbenzene,benzyne}. The molecules involved are planar, having a strict separation of the $\sigma$ and $\pi$ system. For the test four planar molecules, cyclobutadiene (\textbf{1}), benzene (\textbf{2}), cyclooctatetraene (\textbf{3}) and pentalene (\textbf{4}) have been selected (Figure \ref{ch2.fig.compounds}).
+Aromaticity has been and still is widely studied using Valence Bond theory \cite{cooper1,cooper2,remcolowdin,indacene,fowler,jenneskens,cyclohexatriene,bestbenzene,benzyne}. The molecules involved are planar, having a separation of the $\sigma$ and $\pi$ system. For the test four planar molecules, cyclobutadiene (\textbf{1}), benzene (\textbf{2}), cyclooctatetraene (\textbf{3}) and pentalene (\textbf{4}) have been selected (Figure \ref{ch2.fig.compounds}).
 \begin{figure}[htdp]
 \center
 \includegraphics[scale=0.85]{orbopt/figures/compounds.eps}
@@ -819,12 +816,12 @@ Aromaticity has been and still is widely studied using Valence Bond theory \cite
 \label{ch2.fig.compounds}
 \end{figure}
 
-Prior to any VB calculation, the geometry of the compounds had been optimized in the symmetry indicated in Figure \ref{ch2.fig.compounds}, using Restricted Hartree-Fock (RHF) with the \mbox{6-31G} basis set \cite{631g1,631g2}. The Valence Bond calculations, three per molecule, using the \textit{superci}, \textit{pert} and \textit{fock} options, were performed using delocalized $\sigma$ orbitals and strictly atomic $\pi$ orbitals, generated by a RHF calculation and an atomic SCF, respectively, all in the 6-31G basis. For all VB calculations, the DIIS option was switched on from the start. TURTLE's \textit{hybrid} option was used to separate the $\pi$ orbitals from each other and the $\sigma$ core. \textit{All} excitations were treated with perturbation, both for \textit{pert} and for \textit{fock}. In this case the \textit{fock} option can be used for the doubly occupied orbitals in the $\sigma$ core, because of the orthogonality of the $\pi$ orbitals to the $\sigma$ core. 
+Prior to any VB calculation, the geometry of the compounds had been optimized in the symmetry indicated in Figure \ref{ch2.fig.compounds}, using Restricted Hartree-Fock (RHF) with the \mbox{6-31G} basis set \cite{631g1,631g2}. The Valence Bond calculations, three per molecule, using the \textit{superci}, \textit{pert} and \textit{fock} options, were performed using delocalized $\sigma$ orbitals and localized $\pi$ orbitals centred on the carbon atoms, generated by a RHF calculation and an atomic SCF, respectively, all in the 6-31G basis. For all VB calculations, the DIIS option was switched on from the start. TURTLE's \textit{hybrid} option was used to separate the $\pi$ orbitals from each other and the $\sigma$ core. In the case of the \textit{fock} option only the orbitals from the $\sigma$ core are optimized using the Fock algorithm; the $\pi$ orbitals are optimized using the \textit{pert} option in that case. \textit{All} excitations were treated with perturbation, both for \textit{pert} and for \textit{fock}. In these examples the \textit{fock} option can be used for the doubly occupied orbitals in the $\sigma$ core, because of the orthogonality of the $\pi$ orbitals to the $\sigma$ core. 
 
-In Table \ref{ch2.tab.flat1} and \ref{ch2.tab.flat2} the results are presented. The total energies, presented below the name of each compound in the tables, was equal for all optimization methods for the first eight decimal places. Beneath the energies, for all methods the number of iterations, the total timings and the speed-up factors compared to regular Super CI are presented. In the case of the \textit{fock} option only the orbitals from the $\sigma$ core are optimized using the Fock algorithm; the $\pi$ orbitals are optimized using the \textit{pert} option in that case.
+In Tables \ref{ch2.tab.flat1} and \ref{ch2.tab.flat2} the results are presented. The total energies, presented below the name of each compound in the tables, were equal for all optimization methods for the first eight decimal places. Beneath the energies, for all methods the number of iterations, the total timings and the speed-up factors compared to regular Super CI are presented. 
 
 \begin{table}[htbp]
-\caption{The total energy of both molecules ($E_{tot}$) is presented. The number of iterations, timing per iteration and speed-up factors (compared to \textit{superci}) for butadiene and benzene.}
+\caption{The total energy of both butadiene and benzene ($E_{tot}$) is presented. The number of iterations, timing per iteration and speed-up factors (compared to \textit{superci}) are also shown.}
 \begin{center}
 \begin{tabular}{l c c c c c c}
 \hline
@@ -841,7 +838,7 @@ $E_{tot}$&\multicolumn{3}{c}{-153.59682368 au}&\multicolumn{3}{c}{-230.54408700 
 \end{table}
 
 \begin{table}[htbp]
-\caption{The total energy of both molecules ($E_{tot}$) is presented. The number of iterations, timing per iteration and speed-up factors (compared to \textit{superci}) for cyclooctatetraene and pentalene.}
+\caption{The total energy of both cyclooctatetraene and pentalene ($E_{tot}$) is presented. The number of iterations, timing per iteration and speed-up factors (compared to \textit{superci}) are also shown.}
 \begin{center}
 \begin{tabular}{l c c c c c c}
 \hline
@@ -859,7 +856,7 @@ $E_{tot}$&\multicolumn{3}{c}{-307.35606250 au}&\multicolumn{3}{c}{-306.14034868 
 
 For all molecules, the Super CI calculations take 8 iterations. Both in the \textit{fock} and in the \textit{pert} calculations more iterations are necessary to reach convergence. The approximation of the diagonal matrix element (Section \ref{ch2.sec.denominator}) seems to be beneficial for the calculation, because the number of iterations for \textit{fock} is smaller than for \textit{pert} in all four situations.
 
-From the timings, it becomes clear that the \textit{fock} option is fruitful for this type of molecule, because the speed-up lies between 12 times for butadiene to 66 times for cyclooctatetraene compared to traditional Super CI. The difference between the speed-up of \textit{fock} and \textit{pert} is reasonable, but not as impressive as the difference between \textit{pert} and \textit{superci}. A drawback of the \textit{fock} option is the orthogonality condition that has to be met. 
+From the timings, it is clear that the \textit{fock} option is useful for this type of molecule, because the speed-up lies between 12 times for butadiene to 66 times for cyclooctatetraene compared to traditional Super CI. The difference between the speed-up of \textit{fock} and \textit{pert} is reasonable, albeit not as impressive as the difference between \textit{pert} and \textit{superci}. A drawback of the \textit{fock} option is the orthogonality condition that has to be met. 
 
 Delocal VBSCF calculations, for which no examples have been presented here, do not suffer from this drawback, because in those calculations the doubly occupied orbitals will be orthogonal to each other, to the variably occupied orbitals and to the virtuals. However, most VB calculations in this thesis have been run with the \textit{hybrid} option, for which the \textit{fock} option is restricted to special cases, where the different \textit{hybrids} are orthogonal by symmetry.
 
@@ -872,7 +869,7 @@ For the work described in Chapter \chcyclopentadienyl\, a number of local VBSCF 
 \caption{The $\sigma$ bound structure of Cp-SiH. Shown are the two singly occupied orbitals: the $sp$ hybridized orbital on SiH (left) and a $p$ orbital on the Cp-ring (right).}
 \label{fig.cpsih}
 \end{figure}
-The calculation on this molecule forms a useful example for testing the additions to the optimization options, because the VBSCF process changes the orbitals drastically (in this case the total energy drops 0.86 Hartree between the initial and the final iteration). This is caused by the quality of the guess orbitals of which several are generated by hand instead of by a preceding Hartree-Fock calculation.
+The calculation on this molecule forms a useful example for testing the additions to the optimization options, because the VBSCF process changes the orbitals drastically (in this case the total energy drops 0.86 Hartree between the initial and the final iteration). This is caused by the bad quality of the guess orbitals of which several are generated by hand instead of by a preceding Hartree-Fock calculation.
 
 The molecule consists of two separate fragments, or \textit{hybrids} as they are referred to in TURTLE, \textit{i.e}, the cyclopentadienyl part and the siliconhydride part. In these parts the doubly occupied orbitals are orthogonal to each other, to the variably occupied and virtual orbitals inside their \textit{hybrid}. However, the \textit{hybrids} are not necessarily orthogonal to one another. In this case the orbitals in the cyclopentadienyl \textit{hybrid} are not orthogonal to the orbitals in the siliconhydride \textit{hybrid} and therefore the \textit{fock} option cannot be used.
 
