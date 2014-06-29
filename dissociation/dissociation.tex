@@ -1,5 +1,4 @@
 \chapter{Dissociation of Polar Bonds in the Gas Phase and in Solution: A Valence Bond Approach}
-\footnotetext{Partly published as ``On the Interpretation of Valence Bond Wavefunctions'', \mbox{R. W. A. Havenith}, \mbox{J. H. van Lenthe}, \mbox{L. W. Jenneskens} and \mbox{J. J. Engelberts}, \textit{Faraday Discuss.} \textbf{2007}, \textsl{135}, 299-308.}
 \label{chap_dissociation}
 
 \ifthenelse{\boolean{wholethesis}}{\relax}{\begin{center}\textit{Generated on \today\ at \currenttime}\end{center}}
@@ -12,12 +11,12 @@ In earlier VB calculations on  \textit{tert}-butylchloride with VBPCM the resear
 
 \section{Introduction}
 
-\lettrine{\initial{C}}{}hemical bonds can be classified into several categories, like covalent (polar and apolar), ionic, and metallic bonds. An apolar covalent bond is a chemical bond, in which atoms share equally electrons in order to obtain a noble gas configuration. An example is F$_2$ (Figure \ref{ch3.fig.f_twee}), where each fluorine atom contributes one electron to the bond, resulting in a noble gas configuration for both of them.
+\lettrine{\initial{C}}{}hemical bonds can be classified into several categories, like covalent (polar and apolar), ionic, and metallic bonds. An apolar covalent bond is a chemical bond, in which atoms share equally electrons in order to obtain a noble gas configuration. An example is H$_2$ (Figure \ref{ch3.fig.h_twee}), where each hydrogen atom contributes one electron to the bond, resulting in a noble gas configuration (He) for both of them.
 \begin{figure}[ht]
 \center
-\includegraphics{dissociation/figures/f_twee.eps}
-\caption{Two fluorine atoms forming a F$_2$ molecule (Lewis structure on the right).}
-\label{ch3.fig.f_twee} 
+\includegraphics{dissociation/figures/h_twee.eps}
+\caption{Two hydrogen atoms forming a H$_2$ molecule (Lewis structure on the right).}
+\label{ch3.fig.h_twee} 
 \end{figure}
 
 If one electron is transferred from one atom to the other, which results in two oppositely charged ions, the bond is completely ionic, as in \textit{e.g.} NaCl (Figure \ref{ch3.fig.nacl}). The ions remain bound only by electrostatic interactions. 
@@ -36,7 +35,15 @@ In between these two extremes is the polar bond, which possesses mixed covalent 
 \label{ch3.fig.hf}
 \end{figure}
 
-%This chapter deals with the dissociation of polar bonds and their description in terms of covalent and ionic Valence Bond structures. 
+A more recently defined type of chemical bond is the charge shift bond \cite{cs1,cs2}.
+\begin{figure}[h]
+\center
+\includegraphics{dissociation/figures/f_twee.eps}
+\caption{Two fluorine atoms forming a F$_2$ molecule.}
+\label{ch3.fig.f_twee} 
+\end{figure}
+ An example of such a bond is found in fluorine (F$_2$)  (Figure \ref{ch3.fig.f_twee}). Although both fluorine atoms in F$_2$, like in H$_2$ (Figure \ref{ch3.fig.h_twee}), obtained a noble gas configuration, the bond exhibits fundamental differences with H$_2$, as will be discussed in the next section.
+
 The dissociation of polar bonds is studied with the Valence Bond method, in which the wave function can be expressed in covalent and ionic structures\footnote{See reference \cite{interpret} for a discussion on the assumed equivalence of Lewis and Valence Bond structures.}. The central question in this chapter is: How does the dissociation change when the parameters influencing the bond are changed? These parameters include internal factors, like the atoms taking part in the bond and the functional groups attached to them, and external factors, like the surrounding medium. 
 
 To obtain answers to this question, the dissociation pathway of several polar bonds with different polarity and in different media, \textit{viz.} vacuum and water, will be studied.  The set of molecules consists of chloromethane (\textbf{1}), which possesses a typical polar C--Cl bond, \textit{tert}-butylchloride (\textbf{3}) and their silicon analogues chlorosilane (\textbf{2}) and trimethylsilylchloride (\textbf{4}) (Figure \ref{ch3.fig.compounds}).  
@@ -49,11 +56,11 @@ To obtain answers to this question, the dissociation pathway of several polar bo
 (Si(CH$_3$)$_3$Cl, \textbf{4})}
 \label{ch3.fig.compounds}
 \end{figure} 
-The bond that will be broken is the C/Si--Cl bond.  The silicon analogues have been selected because of the large difference in electronegativity of silicon and carbon (the Pauling electronegativity is 1.90 for silicon \textit{vs} 2.55 for carbon \cite{handbook}), and the methyl-substituted compounds because of their electron donating character \cite{mcmurry}, compared to hydrogen. Furthermore, the methyl-hydrogens might exert an effect on the dissociation process through hyperconjugation \cite{march}. Orbitals on C--H bonds, which are several bond lengths separated from the central atom, still have an influence on it. 
+The bond that will be broken is the C/Si--Cl bond.  The silicon analogues have been selected because silicon has a much lower electronegativity than carbon (compare the Pauling electronegativity of 1.90 for silicon with 2.55 for carbon \cite{handbook}). The influence this difference may have on the dissociation behavior of carbon and silicon compounds is analyzed. Furthermore, the influence of the difference between hydrogen atoms and methyl-groups on the dissocation will be compared. Methyl-groups exert an electron donating character \cite{mcmurry}, compared to hydrogen. Besides, the methyl-hydrogens might exert an effect on the dissociation process through hyperconjugation \cite{march}, not present in the hydrogen substituted compounds. Orbitals on the C--H bonds of the methyl-groups, which are several bond lengths separated from the central atom, may still have an influence on the atom, and hence on the dissociation behavior. 
 
 The alteration of the dissociation behavior by different surrounding media will be investigated using calculations performed with the Polarizable Continuum Model (PCM) \cite{pcm1,pcm2} which accounts for solvation effects in its simplest form: the solvent is only represented as a homogeneous medium that is characterized by its dielectric constant without further explicit molecular interactions between the solvent molecules and the solute. 
 
-The Valence Bond wave functions used to describe the dissociation behavior of these molecules consist of the three structures presented in Figure \ref{ch3.fig.structures}.
+The Valence Bond wave functions used to describe the dissociation behavior of these molecules contain the three structures presented in Figure \ref{ch3.fig.structures}.
 \begin{figure}[htbp]
 \begin{center}
 \includegraphics{dissociation/figures/structures.eps}
@@ -63,7 +70,7 @@ The Valence Bond wave functions used to describe the dissociation behavior of th
 \end{figure}
 An indication of the polarity of the bond is given by weights attributed to the structures \cite{coulson}. 
 
-For \textbf{1}, \textbf{2} and \textbf{3} dissociation energies from prior VB calculations are available. Lauvergnat \textit{et al.} \cite{lauvergnat} performed VBSCF \cite{vbscf1,vbscf2} and BOVB \cite{bovb1,bovb2,bovb3} calculations on \textbf{1} and \textbf{3} in the gas phase. They concluded that BOVB is necessary to obtain a dissociation energy that is close to the experimental value, but that VBSCF calculations sufficed to obtain qualitatively correct results.  Song \textit{et al.} \cite{song} have performed preliminary test calculations with VB in conjunction with PCM, to which they refer as VBPCM, on \textit{tert}-butylchloride (\textbf{2}) with frozen C--H bond orbitals. The latter study confirmed the heterolytic dissociation of \textbf{2} in water as a solvent.  Our results will further extend the study of the dissociation of polar bonds; a systematic comparison of bond dissociation in the selected compounds \textbf{1}-\textbf{4} and the influences here upon will be given.
+For \textbf{1}, \textbf{2} and \textbf{3} dissociation energies from prior VB calculations are available. Lauvergnat \textit{et al.} \cite{lauvergnat} performed VBSCF \cite{vbscf1,vbscf2} and BOVB \cite{bovb1,bovb2,bovb3} calculations on \textbf{1} and \textbf{3} in the gas phase. They concluded that BOVB is necessary to obtain a dissociation energy that is close to the experimental value (334.30 kJ/mol (BOVB) \textit{vs} 365.26 kJ/mol (experimental) for \textbf{1} and 425.51 kJ/mol (BOVB) \textit{vs} 463.17 kJ/mol (experimental) for \textbf{3}), but that VBSCF calculations sufficed to obtain qualitatively correct results.  Song \textit{et al.} \cite{song} have performed test calculations with VB in conjunction with PCM, to which they refer as VBPCM, on \textit{tert}-butylchloride (\textbf{2}) with frozen C--H bond orbitals. The latter study confirmed the heterolytic dissociation of \textbf{2} in water as a solvent.  Our results will further extend the study of the dissociation of polar bonds; a systematic comparison of bond dissociation in the selected compounds \textbf{1}-\textbf{4} and the influences here upon will be given.
 
 The research is split-up in four parts.  In the first part, Valence Bond results of the dissociation of a purely covalent (H$_2$) and a purely ionic (NaCl) compound in the gas phase will be presented to illustrate the differences between the two extremes in dissociation.
 Secondly, compounds \textbf{1}-\textbf{4} are investigated in the gas phase using Valence Bond theory. Thirdly, the effect of water as a solvent on the dissociation pathways of these compounds is analyzed with PCM. Finally, it will be shown that freezing of orbitals may inadvertently affect the results of the calculation. This effect is linked to hyperconjugation.
@@ -92,7 +99,7 @@ In Figure \ref{ch3.fig.h2_c} the dissociation path for H$_2$ is shown. The total
 \end{figure}
 The total and covalent curves practically coincide over the whole range. This indicates the covalent character of the bond in H$_2$. For the covalent structure the weight is at least 0.8 over the whole dissociation range.
 
-Typical for the ionic and covalent curves is that they are easily distinguisable by their shape, at least in the curves presented here. The value of $E_\mathrm{ion}$ increases with increasing bonding distance from the minimum in energy to higher distances. On the other hand, in the covalent curves the increase in $E_\mathrm{cov}$ from the minimum in energy going to larger distances stops at distances roughly varying from 2.5 to 4.0 \AA\ in these cases. An explanation for the sustained increasing character of the ionic curves, not seen in the covalent or ``neutral'' curves, can be found in electrostatics (Coulomb attraction): when two oppositely charged bodies, in this case atoms or molecular fragments, are separated, the potential energy increases inversely proportional to the separation distance.
+Typical for the ionic and covalent curves is that they are easily distinguishable by their shape, at least in the curves presented here. The value of $E_\mathrm{ion}$ increases with increasing bonding distance from the minimum in energy to higher distances. On the other hand, in the covalent curves the increase in $E_\mathrm{cov}$ from the minimum in energy going to larger distances stops at distances roughly varying from 2.5 to 4.0 \AA\ in these cases. An explanation for the sustained increasing character of the ionic curves, not seen in the covalent or ``neutral'' curves, can be found in electrostatics (Coulomb attraction): when two oppositely charged bodies, in this case atoms or molecular fragments, are separated, the potential energy increases inversely proportional to the separation distance.
 
 In analogy with $\Psi_{\mathrm{H_2}}$, a three structure VB wave function for NaCl is constructed:
 \begin{equation}
@@ -107,7 +114,7 @@ Dissociation curves for $\Psi_{\mathrm{NaCl}}$ are presented in Figure \ref{ch3.
 \caption{The dissociation curve of NaCl. $E_\mathrm{tot}$ is the total VB energy, $E_\mathrm{cov}$  and $E_\mathrm{ion}$ are the energies of the covalent $[\mathrm{Na^\bullet Cl^\bullet}]$ and ionic $[\mathrm{Na^{+}Cl^{-}}]$ structures separately.}
 \label{ch3.fig.nacl_c}
 \end{figure}
-The curve for the $[\mathrm{Na}^{-}\mathrm{Cl}^{+}]$ structure has been omitted, because its energy is much higher than for the other two structures over the whole range. Furthermore, its contribution to the wave function is negligible ($c_3 \approx 0$). Nevertheless, it is included in $\Psi_{\mathrm{NaCl}}$ to keep the general expression of the wave functions, \textit{i.e.} built from three structures, equal for all molecules in this chapter:
+The curve for the $[\mathrm{Na}^{-}\mathrm{Cl}^{+}]$ structure has been omitted, because its energy is approximately 0.5 a.u. higher than for the other two structures over the whole range. Furthermore, its contribution to the wave function is negligible ($c_3 \approx 0$). Nevertheless, it is included in $\Psi_{\mathrm{NaCl}}$ to keep the general expression of the wave functions, \textit{i.e.} built from three structures, equal for all molecules in this chapter:
 \begin{equation}
 \nonumber
 \Psi_{\mathrm{AB}} = c_1\cdot [\mathrm{A}^\bullet \mathrm{B}^\bullet] + c_2 \cdot [\mathrm{A}^{+}\mathrm{B}^{-}] 
@@ -119,7 +126,7 @@ An important difference between the curves of H$_2$ and NaCl is that in the latt
 
 Another difference is the shape of the curves for the total energy ($E_\mathrm{tot}$): the steady increasing character for NaCl between 2.4 and 5.2 \AA, caused by the relative importance of the ionic structure, is absent in the curve for H$_2$, which rises quite rapidly to the energy level of two separate hydrogen atoms between 0.8 and roughly 2.5 \AA. So, it is expected that for bonds with ionic character, the total energy curve will exhibit more ``Coulombic character'' compared to covalent bonds. 
 
-In the following section, the shapes and positions of the curves and for \textbf{1}-\textbf{4} in the gas phase will be compared with each other and with the two examples mentioned above.
+In the following section, the shapes and positions of the curves for \textbf{1}-\textbf{4} in the gas phase will be compared with each other and with H$_2$ and NaCl (the two examples mentioned above).
 
 \section{\label{ch3.sec.gasphase}Gas Phase Dissociation of C/Si-Cl Bonds}
 
@@ -157,9 +164,9 @@ Si(CH$_3$)$_3$Cl (\textbf{4}) & 370.8 (n/a) & 2.174 \\
 \end{table}
 Our calculated dissociation energies for \textbf{1} and \textbf{3} are in good agreement with earlier reported values at the VBSCF/6-31G* level of theory \cite{lauvergnat}.  For \textit{tert}-butylchloride (\textbf{2}) the dissociation energy is 9.2 kJ/mol lower than for chloromethane (\textbf{1}). For trimethylsilylchloride (\textbf{4}) it is 36.0 kJ/mol higher than for chlorosilane (\textbf{3}). 
  
-Song \textit{et al.} \cite{song} have found the dissociation energy for \textit{tert}-butylchloride (\textbf{2}) to be \textit{ca.} 234 kJ/mol at the VBSCF/6-31G level of theory, which is about 15 kJ/mol different from our value.  A remarkable difference is found in the shape of the dissociation curve for \textbf{2} itself: their covalent and ionic curves cross twice, whereas the covalent curve presented here lies below the ionic curve over the whole range (\textit{vide infra}). This is presumably due to the fact that they have used frozen C--H bond orbitals as will be discussed later.
+Song \textit{et al.} \cite{song} have found the dissociation energy for \textit{tert}-butylchloride (\textbf{2}) to be \textit{ca.} 234 kJ/mol at the VBSCF/6-31G level of theory, which is about 15 kJ/mol different from our value. This is presumably due to the fact that they have used frozen C--H bond orbitals as will be discussed later.
 
-The dissociation curves of \textbf{1}-\textbf{4} are shown in Figures \ref{ch3.fig.ch3cl}, \ref{ch3.fig.c4h9cl}, \ref{ch3.fig.sih3cl} and \ref{ch3.fig.c3h9sicl}. All Figures consist of three curves: the total VB energy ($E_\mathrm{tot}$), the energy of the covalent structure \textbf{3a} ($E_\mathrm{cov}$) and the energy of ionic structure \textbf{3b} ($E_\mathrm{ion}$), which corresponds to R$_3$M$^{+}$ and Cl$^{-}$. The curve for R$_3$M$^{-}$ and Cl$^{+}$ (structure \textbf{3c}) has been omitted, since the energy for \textbf{3c} was much higher energy than for the other structures over the whole range. Moreover, its contribution to the wave function proved to be negligible.  
+The dissociation curves of \textbf{1}-\textbf{4} are shown in Figures \ref{ch3.fig.ch3cl}, \ref{ch3.fig.c4h9cl}, \ref{ch3.fig.sih3cl} and \ref{ch3.fig.c3h9sicl}. All Figures consist of three curves: the total VB energy ($E_\mathrm{tot}$), the energy of the covalent structure \textbf{3a} ($E_\mathrm{cov}$) and the energy of ionic structure \textbf{3b} ($E_\mathrm{ion}$), which corresponds to R$_3$M$^{+}$ and Cl$^{-}$. The curve for R$_3$M$^{-}$ and Cl$^{+}$ (the other ionic structure \textbf{3c}) has been omitted, since the energy for \textbf{3c} was \textit{ca.} 0.3 - 0.5 a.u. higher than for the other structures over the whole range. Moreover, its contribution to the wave function proved to be small.  
 
 Chloromethane (\textbf{1}; Figure \ref{ch3.fig.ch3cl}) shows covalent bond character over the whole range. 
 \begin{figure}[htbp]
@@ -195,7 +202,7 @@ In the chlorosilane (\textbf{3}) case (Figure \ref{ch3.fig.sih3cl}) the bonding 
 
 Moreover, the bond between silicon and chlorine is more ionic: at the equilibrium geometry the $E_\mathrm{cov}$ and $E_\mathrm{ion}$ values are almost equal as are the weights for the covalent and ionic structures. In contrast to both C--Cl bonds the energy minimum for the ionic structure lies close to the covalent and total minima.  
 
-For trimethylsilylchloride (\textbf{4}; Figure \ref{ch3.fig.c3h9sicl}) the ionic character is even more pronounced. From 2 to 4.1 \AA\  the ionic curve ($E_\mathrm{ion}$) lies below the covalent curve ($E_\mathrm{cov}$). The weight of the ionic structure is higher than that of the covalent structure between 2.3 and 4.1 \AA, indicating that this bond possesses highly ionic character. In that sense, the bonds in trimethylsilylchloride (\textbf{4}) and NaCl are similar, because for both molecules the ionic curves are lower in energy than the covalent curves near the equilibrium distance, whereas at large distance the situation is reversed (compare Figure \ref{ch3.fig.nacl_c} with Figure \ref{ch3.fig.c3h9sicl}). A difference between the curves of \textbf{4} and NaCl is that for NaCl there is only one crossing of the ionic and covalent curves, whereas there are two for \textbf{4}. The crossing of \textbf{4} at short distance is not accompanied by any kind of barrier, because the geometry does not change drastically. At distances below the Si--Cl equilibrium bond distance the negative charge cloud on the chlorine atom starts to overlap with the positive Si(CH$_3$)$_3$ fragment. This stabilizes the neutral covalent structure, which results in a lower values for $E_\mathrm{cov}$ than for $E_\mathrm{ion}$. 
+For trimethylsilylchloride (\textbf{4}; Figure \ref{ch3.fig.c3h9sicl}) the ionic character is even more pronounced. From 2 to 4.1 \AA\  the ionic curve ($E_\mathrm{ion}$) lies below the covalent curve ($E_\mathrm{cov}$). The weight of the ionic structure is higher than that of the covalent structure between 2.3 and 4.1 \AA, indicating that this bond possesses highly ionic character. In that sense, the bonds in trimethylsilylchloride (\textbf{4}) and NaCl are similar, because for both molecules the ionic curves are lower in energy than the covalent curves near the equilibrium distance, whereas at large distance the situation is reversed (compare Figure \ref{ch3.fig.nacl_c} with Figure \ref{ch3.fig.c3h9sicl}). A difference between the curves of \textbf{4} and NaCl is that for NaCl there is only one crossing of the ionic and covalent curves, whereas there are two for \textbf{4}. The crossing of \textbf{4} at short distance is not accompanied by any kind of barrier, because the geometry does not change drastically. At distances below the Si--Cl equilibrium bond distance the negative charge cloud on the chlorine atom starts to overlap with the positive Si(CH$_3$)$_3$ fragment. This stabilizes the neutral covalent structure, which results in a lower value for $E_\mathrm{cov}$ than for $E_\mathrm{ion}$. 
 
 Regarding the shape, the total energy for \textbf{4} increases more steadily than for \textbf{2}, showing more Coulombic character. This is because from the equilibrium distance to the crossing, the ionic curve lies below the covalent curve as in the case of NaCl. In the other cases the covalent curve lies below the ionic curve over the whole range.
 
@@ -210,11 +217,14 @@ The total energy curve ($E_\mathrm{tot}$) does not show any irregularities.  The
 
 A comparison of the hydrogen and methyl substituted molecules suggests that methyl substitution has an energy lowering effect on the $E_\mathrm{ion}$ with respect to $E_\mathrm{cov}$. In the silicon case (\textbf{4}), the ionic curve even lies below the covalent curve between 2.3 and 4.1 \AA. The reason for this lowering might be the effect of hyperconjugation, as will be discussed later.
 
+%Uitgecommentarieerd
+%A remarkable difference is found in the shape of the dissociation curve for \textbf{2} itself: their covalent and ionic curves cross twice, whereas the covalent curve presented here lies below the ionic curve over the whole range (\textit{vide infra}).
+
 \section{\label{ch3.sec.solv}Solvation Effects}
 
 \subsection{Methods}
 
-In the Polarizable Continuum Model (PCM) the solvent is, as already stated in the introduction, only represented as a homogeneous medium that is characterized by its dielectric constant. No further explicit molecular interactions between the solvent molecules and the solute are taken into account. For example, hydrogen-bond formation is absent. Preliminary tests show that VB can readily be extended with PCM \cite{song}. For the research presented here, the VB module TURTLE and the PCM algorithm in GAMESS-UK were linked. 
+In the Polarizable Continuum Model (PCM) the solvent is, as already stated in the introduction, only represented as a homogeneous medium that is characterized by its dielectric constant. No further explicit molecular interactions between the solvent molecules and the solute are taken into account. For example, hydrogen-bond formation is absent. The test calculations of Song \textit{et al.} show that VB can readily be extended with PCM \cite{song}. For the research presented here, the VB module TURTLE and the PCM algorithm in GAMESS-UK were linked. 
 
 The PCM model requires a number of parameters. First of all, a dielectric constant, for which the value of water ($\epsilon$=78.5) was chosen. The second parameter is the interspacing of the point charges, which was set to 30.0\degrees. The last set of parameters contains the dimensions of the spheres around the atoms. For these the van der Waals radii \cite{bondi} were taken, scaled by 1.20 (being the average of the optimal 1.15 for ions and 1.25 for neutral atoms \cite{scaling}) resulting in 1.44 \AA\  for hydrogen, 2.16 \AA\  for carbon, 2.69 \AA\ for silicon and 2.10 \AA\ for chlorine and chloride.
 
