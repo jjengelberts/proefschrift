@@ -149,14 +149,15 @@ The optimal M--Cl bond lengths and the corresponding dissociation energies are s
 \begin{table}[htp]
 \center
 \caption{The VB dissociation energy (literature data \cite{lauvergnat,song} between parentheses) and optimal M--Cl bond lengths.$^a$}
-\begin{tabular}{ l l c} 
+\begin{tabular}{|l|l|c|} 
 \hline
-Compound &$E_\mathrm{dis}$ (kJ/mol)& M--Cl length(\AA)\\
+Compound &$E_\mathrm{dis}$ (kJ/mol)& M--Cl length ($R_\mathrm{eq}$; in \AA)\\
 \hline
 CH$_3$Cl (\textbf{1})& 260.6 (255.4) & 1.893 \\
 C(CH$_3$)$_3$Cl (\textbf{2}) & 251.4 ($\approx$ 234) & 1.935 \\
 SiH$_3$Cl (\textbf{3})& 334.8 (330.6)& 2.154 \\
 Si(CH$_3$)$_3$Cl (\textbf{4}) & 370.8 (n/a) & 2.174 \\
+\hline
 \multicolumn{3}{l}{\small{$^a$ The lowest VB energy and the optimal VB M--Cl bond}}\\
 \multicolumn{3}{l}{\small{lengths are obtained by a three-point fit.}}\\
 \end{tabular}
@@ -236,7 +237,7 @@ In Table \ref{ch3.tab.solution} the VBPCM values are presented for the equilibri
 \begin{table}[htp]
 \center
 \caption{The VBPCM energy at equilibrium distance ($E_\mathrm{R_{3}M-Cl}^\mathrm{solv}$), the VBPCM energies on the neutrally ($E_\mathrm{R_{3}M^\bullet Cl^\bullet}^\mathrm{solv}$) and ionically ($E_\mathrm{R_{3}M^{+} Cl^{-}}^\mathrm{solv}$) optimized geometries at long distance (10 \AA), and the dissociation energy ($E_\mathrm{dis}^\mathrm{solv}$), being the difference between the most stable long distance geometry (\textit{italics}) and the energy at equilibrium distance ($R_\mathrm{eq}$). The last column contains the dissociation energies from Table \ref{ch3.tab.optimal}. Energy values are in atomic units, except $E_\mathrm{dis}^\mathrm{solv}$ and $E_\mathrm{dis}$, which are in kJ/mol.}
-\begin{tabular}{ l c c c c c}
+\begin{tabular}{|l|c|c|c|c|c|}
 \hline
 \textbf{Compound} & $E_\mathrm{R_{3}M-Cl}^\mathrm{solv}$ ($E_{\mathrm{h}}$) & $E_\mathrm{R_{3}M^\bullet Cl^\bullet}^\mathrm{solv}$ ($E_{\mathrm{h}}$) & $E_\mathrm{R_{3}M^{+} Cl^{-}}^\mathrm{solv}$ ($E_{\mathrm{h}}$) & $E_\mathrm{dis}^\mathrm{solv}$&
 $E_\mathrm{dis}$\\
@@ -245,6 +246,7 @@ CH$_3$Cl (\textbf{1})& --499.102825 & \textit{--499.000733} & --498.984704 & 267
 C(CH$_3$)$_3$Cl (\textbf{2})& --616.215745 & --616.104359 & \textit{--616.169955} & 120.1 & 251.4 \\
 SiH$_3$Cl (\textbf{3})& --750.179421& --750.049131 & \textit{--750.065094} &  299.9 & 334.8 \\
 Si(CH$_3$)$_3$Cl (\textbf{4})& --867.333737 & --867.187192 & \textit{--867.251939} & 214.6 & 370.8 \\
+\hline
 \end{tabular}
 \label{ch3.tab.solution}
 \end{table} 
@@ -255,33 +257,34 @@ The ionic structures are more stabilized by the polar solvent than the covalent 
 
 The crossing of the ionic and covalent curves for \textit{tert}-butylchloride (\textbf{2}) in the calculation of Song \textit{et al.} \cite{song}, which is not found in the curves in Figure \ref{ch3.fig.c4h9cl} suggests there is a vital difference between their calculations and ours. One difference, which might be the reason for the crossing, is that Song used frozen orbitals for the C--H bonds, while we have optimized them. Therefore, the impact of the freezing of orbitals will be investigated here for \textbf{2}.
 
- \subsection{Methods}
+\subsection{Methods}
 
 Two points on the C--Cl reaction coordinate were taken, one at equilibrium distance and one at \mbox{10 \AA}. The start-up orbitals for both fragments were generated with a RHF wave function with the 6-31G* basis set. For each point two sets of RHF start-up orbitals were generated: \textbf{I}) for the neutral fragments (CH$_3$)$_3$C$^\bullet$ and Cl$^\bullet$ (homolytic dissociation) and \textbf{II}) for the ions, (CH$_3$)$_3$C$^{+}$ and Cl$^{-}$ (heterolytic dissociation). Subsequently, the orbitals on the (CH$_3$)$_3$C$^\bullet$ and (CH$_3$)$_3$C$^{+}$ fragments were localized using the Pipek-Mezey algorithm \cite{pipek}. The localized orbitals describing the inner-shells and C--H bonds were frozen during the subsequent VB calculations, as were the core orbitals of chlorine.  For the PCM solvation model the same parameters as in Section \ref{ch3.sec.solv} were used.
 
 \subsection{\label{ch3.sec.res.freez}Results and Discussion}
 
 The total VB energies for calculations with start-up sets \textbf{I} and \textbf{II}, together with the total VB energies from Section \ref{ch3.sec.solv} ($E_\mathrm{free}$) are given in Table \ref{ch3.tab.frozen}. 
-\begin{table}[hbp]
+\begin{table}[htp]
 \center
 \caption{VB energies without frozen C--H bonds ($E_\mathrm{free}$), with frozen C--H bonds based on
 start-up set \textbf{I} ($E_\mathrm{froz-\textbf{I}}$) and with frozen C--H bonds based on start-up set \textbf{II}
 ($E_\mathrm{froz-\textbf{II}}$) at equilibrium distance ($R_\mathrm{eq}$) and at 10.0 \AA\ ($R_{10.0 \AA}$),
 both in the gas phase and in solution (in $E_\mathrm{h}$). The dissociation energy in gas phase ($E_\mathrm{dis}$) and in solution ($E_\mathrm{dis}^\mathrm{solv}$) both in kJ/mol.}
 \center
-\begin{tabular}{ l c c c c c c }
+\begin{tabular}{|c|cc|cc|c|c|}
 \hline
-&\multicolumn{2}{c}{$R_\mathrm{eq}$}&\multicolumn{2}{c}{$R_{10.0 \AA}$} & $E_\mathrm{dis}$ & $E_\mathrm{dis}^\mathrm{solv}$ \\
+&\multicolumn{2}{c|}{$R_\mathrm{eq}$}&\multicolumn{2}{c|}{$R_{10.0 \AA}$} & $E_\mathrm{dis}$ & $E_\mathrm{dis}^\mathrm{solv}$ \\
 \textbf{Energy} & gas & solv & gas & solv &&\\
 \hline
 $E_\mathrm{free}$      & -616.209427 & -616.214050 & -616.114690 & -616.148968 & 248.5 & 170.7 \\
 $E_\mathrm{froz-\textbf{I}}$& -616.207858 & -616.212034 & -616.114690 & -616.116371 & 244.4 & 250.9 \\
 $E_\mathrm{froz-\textbf{II}}$& -616.005794 & -616.033277 & -616.063704 & -616.148858 & -151.9 & -303.2 \\
+\hline
 \end{tabular}
 \label{ch3.tab.frozen}
 \end{table}
 
-The frozen orbital set $E_{\mathrm{froz}-\textbf{I}}$ gives a qualitatively correct description of the dissociation process, both in the gas phase and in solution, although the dissociation energy calculated for solution is overestimated.  However, the orbital set $E_{\mathrm{froz}-\textbf{II}}$ incorrectly predicts that dissociation is an exothermic process.  In particular, the energy of the equilibrium structure is too high.  Remarkably, the total energy of the dissociated products in solution is in good agreement with the value found for $E_{\mathrm{free}}$.  This suggests that the C--H bonds resemble the radical-fragment C--H bonds at the equilibrium geometry and at the dissociated gas phase geometry, while they change considerably upon heterolytic dissociation in solution, and resemble the cationic C--H bonds in that case.
+The frozen orbital set $E_{\mathrm{froz}-\textbf{I}}$ gives a qualitatively correct description of the dissociation process, both in the gas phase and in solution, although the dissociation energy calculated for solution is overestimated.  However, the orbital set $E_{\mathrm{froz}-\textbf{II}}$ incorrectly predicts that dissociation is an exothermic process, \mbox{-151.9} kJ/mol for the gas phase and \mbox{-303.2} kJ/mol in solution.  In particular, the energy of the equilibrium structure is too high, \mbox{-616.005794} Hartree for the gas phase and \mbox{-616.063704} Hartree in solution.  Remarkably, the total energy of the dissociated products in solution, \mbox{-616.148858} Hartree, is in good agreement with the value found for $E_{\mathrm{free}}$, \mbox{-616.148968} Hartree. This suggests that the C--H bonds resemble the radical-fragment C--H bonds at the equilibrium geometry and at the dissociated gas phase geometry, while they change considerably upon heterolytic dissociation in solution, and resemble the cationic C--H bonds in that case.
 
 The fact that freezing the C--H bonds has a rather large impact on the total energy, which even leads to a qualitative wrong picture for the dissociation calculated with start-up orbital set \textbf{II}, indicates that they are not mere spectators: they play a vital role in the dissociation process. In the next section, the interaction of the C--H bonds with the central carbon atom, linked to hyperconjugation \cite{march,mcmurry}, is investigated in more detail.
  
@@ -306,9 +309,9 @@ Comparison of the energy obtained with this constrained wave function with that 
 
 \begin{table}[htp]
 \center
-\caption{Energies of the cation and radical of \textit{tert}-butyl and of the cation and the radical of trimethylsilyl obtained using a constrained VB wave function with a strictly atomic $p$ orbital ($E_\mathrm{VB-res}$), the Hartree-Fock energies ($E_\mathrm{HF}$), and their difference $\Delta E$ (in kJ/mol).}
+\caption{Energies of the cation and radical of \textit{tert}-butyl and of the cation and the radical of trimethylsilyl obtained using a constrained VB wave function with a strictly atomic $p$ orbital ($E_\mathrm{VB-res}$) in the first column. The second column shows the Hartree-Fock energies ($E_\mathrm{HF}$) and the third column contains their difference $\Delta E$ (in kJ/mol).}
 \label{ch3.tab.hyp}
-\begin{tabular}{l c c c}
+\begin{tabular}{|c|c|c|c|}
 \hline
 \textbf{Compound} & $E_\mathrm{VB-res}$ ($E_{\mathrm{h}}$) &$E_\mathrm{HF}$ ($E_{\mathrm{h}}$)& $\Delta E$ (kJ/mol)  \\
 \hline
@@ -316,6 +319,7 @@ Comparison of the energy obtained with this constrained wave function with that 
 \textit{tert}-butyl radical & -156.630889 &-156.661317&79.9 \\
 trimethylsilyl cation & -407.509449&-407.526979&46.0 \\
 trimethylsilyl radical &-407.687692&-407.704949&45.3 \\
+\hline
 \end{tabular}
 \end{table}
 
