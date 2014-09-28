@@ -58,13 +58,13 @@
 %Symbol for degrees (angles and temperature)
 \newcommand{\degrees}{$^{\mathrm{o}}$}
 %Easy reference to chapters
-\newcommand{\chintro}{1}
-\newcommand{\chorbopt}{2}
-\newcommand{\chdissociation}{3}
-\newcommand{\chcyclopentadienyl}{4}
-\newcommand{\chhuckel}{5}
-\newcommand{\chinorganic}{6}
-\newcommand{\chindacene}{7}
+\newcommand{\chintro}{\ifthenelse{\boolean{wholethesis}}{\ref{chap_intro}}{1}}
+\newcommand{\chorbopt}{\ifthenelse{\boolean{wholethesis}}{\ref{chap_orbopt}}{2}}
+\newcommand{\chdissociation}{\ifthenelse{\boolean{wholethesis}}{\ref{chap_dissociation}}{3}}
+\newcommand{\chcyclopentadienyl}{\ifthenelse{\boolean{wholethesis}}{\ref{chap_cyclopentadienyl}}{4}}
+\newcommand{\chhuckel}{\ifthenelse{\boolean{wholethesis}}{\ref{chap_huckel}}{5}}
+\newcommand{\chinorganic}{\ifthenelse{\boolean{wholethesis}}{\ref{chap_inorganic}}{6}}
+\newcommand{\chindacene}{\ifthenelse{\boolean{wholethesis}}{\ref{chap_indacene}}{7}}
 %Nice letter in each chapter (see http://www.tug.dk/FontCatalogue/otherfonts.html#initials)
 \input RoyalIn.fd
 \newcommand*\initial{\usefont{U}{RoyalIn}{xl}{n}\selectfont}
