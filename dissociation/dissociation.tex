@@ -245,7 +245,7 @@ In Table \ref{ch3.tab.solution} the VBPCM values are presented for the equilibri
 $E_\mathrm{dis}^\mathrm{gas}$\\
 \hline
 CH$_3$Cl (\textbf{1})& --499.102825 & \textit{--499.000733} & --498.984704 & 267.8 & 260.6 \\
-C(CH$_3$)$_3$Cl (\textbf{2})& --616.215745 & --616.090103 & \textit{--616.169955} & 120.1 & 251.4 \\
+C(CH$_3$)$_3$Cl (\textbf{2})& --616.215080 & --616.090103 & \textit{--616.169910} & 118.5 & 251.4 \\
 SiH$_3$Cl (\textbf{3})& --750.179421& --750.049131 & \textit{--750.065094} &  299.9 & 334.8 \\
 Si(CH$_3$)$_3$Cl (\textbf{4})& --867.333737 & --867.187192 & \textit{--867.251939} & 214.6 & 370.8 \\
 \hline
@@ -261,7 +261,7 @@ Upon comparing the ionic and covalent curves for \textit{tert}-butylchloride (\t
 
 \subsection{Methods}
 
-Two points on the C--Cl reaction coordinate were taken, one near the equilibrium distance at \mbox{1.9 \AA} and one at \mbox{10 \AA}. The start-up orbitals for both fragments were generated with a RHF wave function with the 6-31G* basis set. For each point two sets of RHF start-up orbitals were generated: \textbf{I}) for the neutral fragments (CH$_3$)$_3$C$^\bullet$ and Cl$^\bullet$ (homolytic dissociation) and \textbf{II}) for the ions, (CH$_3$)$_3$C$^{+}$ and Cl$^{-}$ (heterolytic dissociation). Subsequently, the orbitals on the (CH$_3$)$_3$C$^\bullet$ and (CH$_3$)$_3$C$^{+}$ fragments were localized using the Foster-Boys algorithm \cite{foster}. The localized orbitals describing the inner-shells and C--H bonds were frozen during the subsequent VB calculations, as were the core orbitals of chlorine and carbon.  For the PCM solvation model the same parameters as in Section \ref{ch3.sec.solv} were used.
+Two points on the C--Cl reaction coordinate were taken, one at equilibrium distance and one at \mbox{10 \AA}. The start-up orbitals for both fragments were generated with a RHF wave function with the 6-31G* basis set. For each point two sets of RHF start-up orbitals were generated: \textbf{I}) for the neutral fragments (CH$_3$)$_3$C$^\bullet$ and Cl$^\bullet$ (homolytic dissociation) and \textbf{II}) for the ions, (CH$_3$)$_3$C$^{+}$ and Cl$^{-}$ (heterolytic dissociation). Subsequently, the orbitals on the (CH$_3$)$_3$C$^\bullet$ and (CH$_3$)$_3$C$^{+}$ fragments were localized using the Foster-Boys algorithm \cite{foster}. The localized orbitals describing the inner-shells and C--H bonds were frozen during the subsequent VB calculations, as were the core orbitals of chlorine and carbon.  For the PCM solvation model the same parameters as in Section \ref{ch3.sec.solv} were used.
 
 \subsection{\label{ch3.sec.res.freez}Results and Discussion}
 
@@ -270,12 +270,12 @@ The total VB energies for calculations with start-up sets \textbf{I} and \textbf
 \center
 \caption{VB energies without frozen C--H bonds ($E_\mathrm{free}$), with frozen C--H bonds based on
 start-up set \textbf{I} ($E_\mathrm{froz-\textbf{I}}$) and with frozen C--H bonds based on start-up set \textbf{II}
-($E_\mathrm{froz-\textbf{II}}$) at 1.9 \AA\ ($R_{1.9 \text{\AA}}$) and at 10.0 \AA\ ($R_{10.0 \text{\AA}}$),
+($E_\mathrm{froz-\textbf{II}}$) at equilibrium distance ($R_{eq}$) and at 10.0 \AA\ ($R_{10.0 \text{\AA}}$),
 both in the gas phase and in solution (in $E_\mathrm{h}$).}
 \center
 \begin{tabular}{|c|cc|cc|}
 \hline
-&\multicolumn{2}{c|}{$R_{1.9 \text{\AA}}$}&\multicolumn{2}{c|}{$R_{10.0 \text{\AA}}$} \\
+&\multicolumn{2}{c|}{$R_{eq}$}&\multicolumn{2}{c|}{$R_{10.0 \text{\AA}}$} \\
 \textbf{Energy} & gas & solv & gas & solv \\
 \hline
 $E_\mathrm{free}$ & {--616.210148} & {--616.215080} & {--616.114616} & {--616.169910} \\
@@ -286,7 +286,7 @@ $E_\mathrm{froz-\textbf{II}}$& {--616.185782} & {--616.193609} & {--616.083764} 
 \label{ch3.tab.frozen}
 \end{table}
 
-The frozen orbital set \textbf{I} gives almost the same total energy as the free orbital set for the molecule at 1.9 \AA\ in both the gas phase and in solution ($E_{\mathrm{froz}-\textbf{I}}$=--616.210148 a.u. \textit{vs} $E_\mathrm{free}$=--616.208572 a.u. and $E_{\mathrm{froz}-\textbf{I}}$=--616.215080 a.u. \textit{vs} $E_\mathrm{free}$=--616.213089 a.u., respectively). The difference in total energy between the other frozen orbital set \textbf{II} and the free orbital set is about ten times larger ($E_{\mathrm{froz}-\textbf{II}}$=--616.210148 a.u. \textit{vs} $E_\mathrm{free}$=--616.185782 for the gas phase and $E_{\mathrm{froz}-\textbf{II}}$=--616.213089 a.u \textit{vs} $E_\mathrm{free}$=--616.193609 a.u in solution).
+The frozen orbital set \textbf{I} gives almost the same total energy as the free orbital set for the molecule at equilibrium distance in both the gas phase and in solution ($E_{\mathrm{froz}-\textbf{I}}$=--616.210148 a.u. \textit{vs} $E_\mathrm{free}$=--616.208572 a.u. and $E_{\mathrm{froz}-\textbf{I}}$=--616.215080 a.u. \textit{vs} $E_\mathrm{free}$=--616.213089 a.u., respectively). The difference in total energy between the other frozen orbital set \textbf{II} and the free orbital set is around 0.03 a.u. larger ($E_{\mathrm{froz}-\textbf{II}}$=--616.210148 a.u. \textit{vs} $E_\mathrm{free}$=--616.185782 for the gas phase and $E_{\mathrm{froz}-\textbf{II}}$=--616.213089 a.u \textit{vs} $E_\mathrm{free}$=--616.193609 a.u in solution).
 
 At 10.0 \AA, the situation is different for the gas phase and in solution. While the frozen orbital set \textbf{I} gives the same total energy in the gas phase as the free orbital set ($E_{\mathrm{froz}-\textbf{I}}$=$E_\mathrm{free}$=--616.114616 a.u.), the total energy computed with frozen orbital set \textbf{II} is $\approx$ 0.03 a.u. higher for the gas phase ($E_{\mathrm{froz}-\textbf{II}}$=--616.083764 a.u.). The opposite is true in solution. In that situation the total energy with the frozen orbitals from set \textbf{II}, optimized for the \textit{tert}-butyl cation, is almost equal to the total energy with free orbitals ($E_{\mathrm{froz}-\textbf{II}}$=--616.169693 a.u. \textit{vs} $E_\mathrm{free}$=--616.169910 a.u.). Here, the difference between the total energy of frozen orbital set \textbf{I} and the free orbitals is around 0.03 a.u. ($E_{\mathrm{froz}-\textbf{I}}$=--616.137351 a.u. \textit{vs} $E_\mathrm{free}$=--616.169910 a.u.).
 
