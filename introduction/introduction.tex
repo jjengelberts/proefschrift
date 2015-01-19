@@ -59,8 +59,11 @@ E_\mathrm{tot} = \frac{\mathbf{H}_n \Psi_n(\mathrm{X})}{\Psi_n(\mathrm{X})} + \f
 Several types of approximations for the wave functions ($\Psi$) have been defined to describe chemical systems (\textit{cf.} Section \ref{ch1.sec.wavefunctions}). All these wave functions have in common that they are expressed in molecular orbitals ($\psi$), which are linear combinations of atomic orbitals (AOs) $\phi$, or basis functions (LCAO MOs):
 \begin{equation}
 \psi = c_1 \phi_1 + c_2 \phi_2 + \cdots + c_n \phi_n = \sum_n c_n \phi_n.
+\label{ch1.eq.lcaomo}
 \end{equation}
 The molecular orbitals (MOs) are functions of the coordinates of the electrons (spatial orbitals), or of the coordinates \textit{and} the spins of the electrons (spin orbitals). The spin of an electron can be one of two states. Commonly, these states are referred to as $\alpha$ and $\beta$ spin. The term ``doubly occupied molecular orbital'' indicates that there are two electrons with the same spatial orbital, but with opposite spins.
+
+\subsection{Hartree Products, Slater Determinants and the H\"{u}ckel Method}
 
 Multi-electron wave functions are either written as Hartree products \cite{hartree1,hartree2,hartree3} or as Slater determinants \cite{slater}. In a Hartree product the wave function is written as a product:
 \begin{equation}
@@ -87,8 +90,146 @@ while in a determinant, referred to as Slater determinant in quantum chemistry, 
 = \psi_1(\mathbf{\tau_2})\psi_2(\mathbf{\tau_1}) - \psi_1(\mathbf{\tau_1})\psi_2(\mathbf{\tau_2}), \\
 \Psi_1 &= - \Psi_2
 \end{split}
+\label{ch1.eq.slater}
 \end{equation}
 Another nice aspect of writing the wave function as a determinant is that it automatically becomes zero in the case of the occurence of two orbitals with the same spatial \textit{and} spin coordinates. This effect is linked to the Pauli exclusion principle, which practically translates into the rule that no two electrons can occupy the same spin orbital. In that case, the determinant contains two identical columns and hence becomes zero.
+
+Throughout the years, many quantum chemical methods have been developed based on Slater determinants and molecular orbitals (MOs). These methods are described in quantum chemical textbooks \cite{szabo}. Here, the methods used throughout this thesis will be introduced briefly.
+
+\subsection{The Hartree-Fock (HF) Method}
+The simplest way to solve the Schr\"{o}dinger equation (equation \ref{ch1.eq.hpsi}) is with the help of a function where the N-electron wave function is approximated by a single Slater determinant (equation \ref{ch1.eq.slater}). This is called the Hartree-Fock method \cite{hartree1,hartree2,hartree3,fock}. For a normalized wave function ($\left< \Psi_\mathrm{HF} | \Psi_\mathrm{HF} \right> = 1$), the energy ($E$) is calculated as an expectation value of the Hamiltonian ($\mathbf{H}$):
+\begin{equation}
+E=\left< \Psi_\mathrm{HF} | \mathbf{H} | \Psi_\mathrm{HF} \right>,
+\label{ch1.eq.hfexp}
+\end{equation}
+where $\Psi_\mathrm{HF}$ is the single deteminant Hartree-Fock wave function constructed from orthonormal orbitals $\psi_i$.
+
+With the Hamiltonian of equation \ref{ch1.eq.htotal}, the expression for the energy ($E$) becomes:
+\begin{equation}
+E=\sum_i h_{ii} + \frac{1}{2} \sum_i\sum_j (J_{ij} - K_{ij}) + \mathbf{V}_{nn},
+\label{ch1.eq.hfexp_detailed}
+\end{equation}
+where $h_{ii}$:
+\begin{equation}
+h_{ii} = \left< \psi_i(\tau_1) | \mathbf{T}_{e} + \mathbf{V}_{en} | \psi_i(\tau_1)\right>,
+\end{equation}
+describes the kinetic energy of electron $\tau_1$ and its attraction to the nuclei.
+
+The second term on the right hand side of equation \ref{ch1.eq.hfexp_detailed} contains the so-called Coulomb ($J_{ij}$) and exchange ($K_{ij}$) interactions. These arise from the electron-electron repulsion term $\mathbf{V}_{ee}$ in the Hamilton operator (equation \ref{ch1.eq.htotal}). The exchange interaction is present because Slater determinants are used. This is exemplified with the help of the Slater determinant ($\Psi_1$) of equation \ref{ch1.eq.slater}:
+\begin{equation}
+\begin{split}
+\left< \Psi_1 | \mathbf{V}_{ee} | \Psi_1 \right> = & \left< \psi_i(\mathbf{\tau_1})\psi_j(\mathbf{\tau_2}) | \frac{1}{r_{12}} | \psi_i(\mathbf{\tau_1})\psi_j(\mathbf{\tau_2}) \right> - \\
+& \left< \psi_i(\mathbf{\tau_1})\psi_j(\mathbf{\tau_2}) | \frac{1}{r_{12}} | \psi_j(\mathbf{\tau_1})\psi_i(\mathbf{\tau_2}) \right> \\
+= & J_{ij} - K_{ij}, \\
+\end{split}
+\end{equation}
+where $\frac{1}{r_{12}}$ is the electron-electron repulsion operator.
+
+Of two operators in the Hamiltonian (equation \ref{ch1.eq.htotal}) that apply to nuclei alone, \textit{i.e.} $\mathbf{T}_{n}$ and $\mathbf{V}_{nn}$, the kinetic operator ($\mathbf{T}_{n}$) is absent in equation \ref{ch1.eq.hfexp_detailed} because the atoms are considered motionless. The nuclei-nuclei repulsion ($\mathbf{V}_{nn}$) adds a constant contribution to the energy ($E$) in equation \ref{ch1.eq.hfexp_detailed} for fixed molecular geometries.
+
+After setting up $\Psi_\mathrm{HF}$ with initial guess orbitals, the wave function is optimized. During this process the minimum, or at least a stationary point, is sought for the expectation value $E$ in equation \ref{ch1.eq.hfexp}. For this purpose, the variation principle is applied \cite{varia}. During the optimization the orbitals are modified, but are kept orthonormal. The minimization of the energy with respect to change in the orbitals leads to the following Hartree-Fock equations:
+\begin{equation}
+\hat{F}(i)\psi_j(i)=\epsilon_j \psi_j(i),
+\label{ch1.eq.fock1}
+\end{equation}
+in which $\hat{F}(i)$ is the so called one electron Fock operator, which is written as:
+\begin{equation}
+\hat{F}(i)=\hat{h}(i) + \sum_j (\hat{J_j}(i) - \hat{K_j}(i)).
+\label{ch1.eq.fock2}
+\end{equation}
+Since the Fock operator depends on the orbitals it operates on, the Hartree-Fock equations (\ref{ch1.eq.fock1} and \ref{ch1.eq.fock2}) are solved in an iterative manner, referred to as the self consistent Field (SCF) method.
+
+The optimization is performed by modifying the coefficients $c_n$ for the atomic orbitals in equation \ref{ch1.eq.lcaomo}. The Fock operator, expressed in atomic orbitals (AOs), becomes:
+\begin{equation}
+\hat{F}(i)\sum_n c_n \phi_n = \epsilon_j \sum_n c_n \phi_n.
+\label{ch1.eq.fockao}
+\end{equation}
+
+Equation \ref{ch1.eq.fockao} can be written in matrix form by multiplying from the left with an atomic orbital and integrating:
+\begin{equation}
+\mathbf{F}\mathbf{C} = \mathbf{S}\mathbf{C}\mathbf{\epsilon},
+\label{ch1.eq.fockmatrixs}
+\end{equation}
+in which $\mathbf{F}$ is the Fock matrix, $\mathbf{S}$ the orbital overlap matrix and $\mathbf{\epsilon}$ the matrix of orbital energies. The $\mathbf{S}$ matrix is present, because the basis functions $\phi_n$ are not orthogonal. However, linear combinations can be chosen in such a way that the basis becomes orthogonal. With such a transformation $\mathbf{S}$ becomes a unity matrix and equation \ref{ch1.eq.fockmatrixs} becomes:
+\begin{equation}
+\mathbf{F'}\mathbf{C'} = \mathbf{C'}\mathbf{\epsilon}.
+\end{equation}
+
+In the Hartree-Fock method the most commonly used type of wave function is a single determinant with doubly occupied orbitals, \textit{i.e.} two electrons per orbital with paired spins. This is referred to as closed-shell and the wave function is called restricted Hartree-Fock (RHF). If not all orbitals are doubly occupied, \textit{i.e.} not all electrons are paired, the wave function is referred to as restricted open-shell Hartree-Fock (ROHF). It is also possible to use different spatial orbitals for unpaired electrons. In that case, the method is referred to as unrestricted Hartree-Fock (UHF). An advantage of UHF over ROHF is that it gives a correct description of the dissociation of molecules into atoms or molecular fragments, for example. A disadvantage of UHF, however, is that the wave function is not a proper eigenfunction of the total spin operator $\hat{\mathbf{S}}^2$.
+
+A feature of the single determinant in the Hartree-Fock method is that each electron moves in the average electric field created by the other electrons, \textit{i.e.} there is no electron correlation. For a more accurate expression, the instantaneous interaction between the electrons must be taken into account. Electronic structure methods that take care of electron-electron interaction are called electron correlation methods. The difference between the Hartee-Fock energy ($E_\mathrm{HF}$) and the exact energy is called the \textit{correlation energy}. Three of these methods, the Configuration Interaction Method (CI) \cite{shavitt1,shavitt2}, Multi Configuration Self Consistent Field Method (MCSCF) \cite{daswahl,wahldasbook,mcscf,roos1,roos2} and the Coupled Cluster Method (CC) \cite{cc1,cc2}, will be introduced here.
+
+\subsection{The Configuration Interaction (CI) Method}
+
+A Configuration Interaction (CI) wave function is created from a reference function ($\Phi_0$), quite often a Hartree-Fock wave function ($\Phi_0 = \Psi_\mathrm{HF}$), with the help of an excitation operator $\mathbf{T}$:
+\begin{equation}
+\mathbf{T}=\mathbf{T}_1 + \mathbf{T}_2 + \mathbf{T}_3 + ... + \mathbf{T}_{N_{\mathrm{elec}}},
+\label{ch1.eq.ciexcitation}
+\end{equation}
+in which $\mathbf{T}_1$ is a single excitation operator, $\mathbf{T}_2$ a double excitation operator and $\mathbf{T}_{N_{\mathrm{elec}}}$ the operator that excites \textit{all} $N_{\mathrm{elec}}$ electrons in the molecule. The excitation results in excited Configuration State Functions (CSFs) \cite{shavitt1,shavitt2}. A CSF ($\Phi_k$) is constructed from one or more Slater determinants in such a way that it is an eigenfunction of the N-electrons' spin operators $\mathbf{\hat{S}}^2$ and $\mathbf{\hat{S}}_z$. Single and double excited CSF are created by $\mathbf{T}_1$ and $\mathbf{T}_2$, respectively:
+\begin{equation}
+\begin{split}
+\mathbf{T}_1 \Phi_0 & = \sum_i^{occ} \sum_a^{vir} c_i^a \Phi_i^a \\
+\mathbf{T}_2 \Phi_0 & = \sum_{i<j}^{occ} \sum_{a<b}^{vir} c_{ij}^{ab} \Phi_{ij}^{ab},
+\end{split}
+\label{ch1.eq.ciexcited}
+\end{equation}
+in which $\Phi_i^a$ and $\Phi_{ij}^{ab}$ are singly and doubly excited CSFs, respectively. The total CI wave function ($\Psi_{\mathrm{CI}}$) is constructed from a linear combination of these excited CSFs:
+\begin{equation}
+\Psi_{\mathrm{CI}} = \sum_{k}^{N_{\mathrm{CSF}}} c_k \Phi_k,
+\label{ch1.eq.ci}
+\end{equation}
+in which $k$ runs over all CSFs. The coefficients $c_k$ are determined by the variational principle \cite{varia}, while the orbitals inside $\Phi_k$ are kept fixed. A wave function containing all possible CSFs in equation \ref{ch1.eq.ci} for a given basis set is called a full CI wave function. Solving the Schr\"{o}dinger equation \ref{ch1.eq.hpsi} gives the ``exact'' energy for that given basis set. In Full CI, the number of CSFs is accompanied by a factorial increase with the number of electrons and the size of the basis set \cite{weyl}. Therefore, a full CI wave function is only feasible for very small molecular systems. In practice, the CI expansion is truncated and only a subset of the possible CSFs is included in the wave function. These truncations are labeled with capitals S, D, T, Q to indicate that only singly, doubly, triply, or quarterly excited configurations are included in the expansion. For example, in a CISD wave function only singly and doubly excited CSFs are included in the expansion.
+
+A disadvantage of such a truncation is that the wave function is no longer size consistent, \textit{i.e.} the wave function for a combination of molecules at large distance from each other has a higher energy than the sum of the individual energies. For example, a CISD expanded wave function for a single H$_2$ molecule contains the CSF describing the doubly excited state. Although, for a combination of two H$_2$ molecules at large distance, double excitations do occur within each molecule, the CSF in which \textit{both} H$_2$ molecules are doubly excited at the \textit{same} time does not occur, since this would be a quadruple excitation.
+
+Although CI wave functions have not been used for the calculations described in this thesis, in the Valence Bond Configuration Interaction method, described later in this chapter, the same principle of optimizing the CSF, or structure, coefficients with fixed orbitals, is applied.
+
+\subsection{The Multi Configuration Self Consistent Field (MCSCF) Method}
+Like in CI, Multi Configuration Self Consistent Field (MCSCF) wave function are expressed in Configuration State Functions (CSFs) \cite{wahldasbook,daswahl}. In contrast with CI, both the orbital \textit{and} the expansion coefficients are optimized in MCSCF.
+
+In MCSCF the Super CI method \cite{superci1,superci2}, in which the wave function is expanded with singly excited structures, is used. For this expanded wave function the CI (or Brillouin) vector $\mathbf{b}$ is determined by solving the generalized eigenvalue problem:
+\begin{equation}
+[\mathbf{H}-E_b] \cdot \mathbf{b} = 0,
+\label{ch1.eq.geig}
+\end{equation}
+in which $\mathbf{H}$ is the Hamiltonian and in the basis of the ground state and the singly excited states ($\Phi_0$ and the $\Phi_{i}^{a}$s). $E_b$ is the lowest eigenvalue and $\mathbf{b}$ is the corresponding eigenvector. With the elements of $\mathbf{b}$ the orbitals are updated. This procedure is repeated until the Brillouin theorem \cite{brillouin}, which states that for optimal orbitals the singly excited Brillouin states do not interact or mix with the ground (or reference) state, is fulfilled:
+\begin{equation}
+\left < \Phi_0 | \mathbf{H} - E_0 | \Phi_{i}^{a} \right > = 0.
+\label{ch1.eq.brillouin}
+\end{equation}
+
+In a special form of MCSCF wave functions the orbitals are divided over two sets. One set contains the orbitals that are doubly occupied in all CSFs (inacative) and the other set contains the variably occupied orbitals (active). In the active space the CSFs are generated by distributing active electrons over the active orbitals in all possible ways. This can be considered as a full CI in the active space. In literature, two designations for this type of method are found. It is referred to as the Fully Optimized Reaction Space (FORS) method \cite{fors1,fors2,fors3} and as Complete Active Space SCF (CASSCF) \cite{roos1,roos2}.
+
+Although MCSCF is not used for calculations described in this thesis, in the Valence Bond Self Consistent field method, described later in this chapter, the same mechanism, \textit{i.e.} the Brillouin theorem, to optimize the wave function is used (\textit{cf.} Chapter \chorbopt).
+
+\subsection{The Coupled Cluster (CC) Method}
+In the coupled cluster method, the wave function is written as an exponential \textit{ansatz} \cite{cc1,cc2}:
+\begin{equation}
+\Ket{\Psi_{\mathrm{CC}}}  = e^{\mathbf{T}}\Ket{\Phi_{0}},
+\end{equation}
+in which $e^\mathbf{T}$ contains the excitation operator $\mathbf{T}$ described for CI wave functions (equation \ref{ch1.eq.ciexcitation}). In analogy with CI, a series of excited CSFs is created (equation \ref{ch1.eq.ciexcited}).  The operator $e^{\mathbf{T}}$ can be expanded as a Taylor series:
+\begin{equation}
+e^{\mathbf{T}} = 1 + \mathbf{T} + \frac{1}{2!}\mathbf{T}^2 + \frac{1}{3!}\mathbf{T}^3 + ... = \sum_{k=0}^{\infty} \frac{\mathbf{T}^k}{k!}
+\label{ch1.eq.taylor}
+\end{equation}
+From equations \ref{ch1.eq.ciexcitation} and \ref{ch1.eq.taylor} the exponential operator (up till $\mathbf{T}_4$) may be written as:
+\begin{equation}
+\begin{split}
+e^{\mathbf{T}} = & 1 + \mathbf{T}_1 + (\mathbf{T}_2 + \frac{1}{2}\mathbf{T}_1^2) + (\mathbf{T}_3 + \mathbf{T}_2\mathbf{T}_1 + \frac{1}{6}\mathbf{T}_1^3) + \\
+& (\mathbf{T}_4 + \mathbf{T}_3\mathbf{T}_1 + \frac{1}{2}\mathbf{T}_2^2 + \frac{1}{2}\mathbf{T}_2\mathbf{T}_1^2 + \frac{1}{24} \mathbf{T}_1^4) + ...
+\end{split}
+\end{equation}
+The first term on the right hand side generates the reference $\Phi_0$ and the second term ($\mathbf{T}_1$) all singly excited states. The third term (the first between brackets) generates all doubly excited states, which may be considered as connected ($\mathbf{T}_2$) or disconnected ($\mathbf{T}_1^2$). The fourth term  generates all triply excited states and the last term the quadruples. Physically, a connected type such as $\mathbf{T}_4$ corresponds to four electrons interacting simultaneous, while a disconnected term such as $\mathbf{T}_2^2$ corresponds to two non-interacting pairs of interacting electrons. By comparison with the CI wave function, it is seen that the CC wave function at each excitation level contains additional terms arising from products of excitations \cite{jensen}. The coupled cluster method is size consistent, if the reference wave function ($\Phi_0$) is.
+
+Like in CI, the excitation level is truncated in practice. Commonly used levels of coupled cluster are single, double and triple, CCS, CCSD and CCSDT, respectively. CCSDT gives good correlation energies and is accurate. However, the inclusion of the triple excitations makes this method very compute intensive. The designation CCSD(T), with the T between brackets, indicates that the triple excitations are approximated rather than computed, making it less compute intensive.
+
+\subsection{Density Functional Theory (DFT)}
+The central goal of all methods described so far is to solve the time independent Schr\"{o}dinger equation (equation \ref{ch1.eq.hpsi}). It is also the goal of the Density Functional Theory (DFT) \cite{jensen}, but the approach is different. The most copmute intensive operator in the Hamiltonian is the electron-electron repulsion term ($\mathbf{V}_{ee}$). The idea of DFT is to solve the Schr\"{o}dinger equation by replacing the electon-electron repulsion term by a density function. This, in principle, reduces the Hamilton operator (and hence the computational effort) to a one electron operator.
+
+[straks]
+
+\section{Applications of the Valence Bond Method}
 
 Shortly after the birth of quantum mechanics the idea that a chemical bond is made up of a pair of shared electrons between two atoms, as proposed by Lewis, was substantiated. In 1927, Heitler and London wrote that a system containing two neutrally charged hydrogen atoms at close distance is more stable (has a lower energy $E$ (equation \ref{ch1.eq.hpsi})) than a system built from two atoms at infinite distance \cite{heitler}. Later, this mathematical representation of the chemical bond by Heitler and London became known as the Valence Bond (VB) theory. 
 
@@ -96,11 +237,7 @@ In the following decades Linus Pauling incorporated both the postulates of Lewis
 
 A short time after the introduction of the Valence Bond theory, Hund and Mulliken, amongst others, developed another method, which is now known as the Molecular Orbital theory \cite{hund,mulliken}. A difference with the VB theory is that the molecular orbitals (MOs) are commonly chosen to be orthogonal. The most simple MO wave function consists of a single determinant describing a closed-shell molecule. In such a wave function each molecular orbital (MO) is doubly occupied, which is a so-called Restricted Hartree-Fock \cite{fock} wave function. Because of the relative easiness to implement the HF model (lower mathematical complexity due to a single determinant wave function with orthogonal molecular orbitals/vectors) and the lower computational efforts compared to VB, the MO method became very popular in the computer era.
 
-In the following years several methods were developed that overcame an essential shortcoming of the single determinant Hartree-Fock wave function, \textit{i.e.} the lack of electron correlation. With the expression of the wave function in just a single determinant, the electron-electron interaction is treated in an average way. For a more accurate expression, the instantaneous interaction between the electrons must be taken into account. Electronic structure methods that take care of electron-electron interaction are called electron correlation methods. Two of these methods, the Configuration Interaction Method (CI) \cite{shavitt1,shavitt2} and the Multi-Configurational Self-Consistent Field Method (MCSCF) \cite{daswahl,wahldasbook,mcscf,roos1,roos2}, will be introduced in Section \ref{ch1.sec.wavefunctions}, together with their VB analogues. 
-
 Although the interest in VB theory diminished, it was not completely abandoned \cite{vboverv1,vboverv2,vboverv3}. In the following sections it will be made clear that Valence Bond theory must be applied to areas, where it is suited for: the understanding of molecules and chemical behavior in terms of Lewis, or resonance structures, \textit{e.g.} the description of (complex) bond situations.
-
-\section{Applications of the Valence Bond Method}
 
 As mentioned earlier, the first application of the VB method was for the description of the hydrogen molecule by Heitler and London \cite{heitler}. They used the wave function:
 \begin{equation}
@@ -128,7 +265,7 @@ in which the third determinant corresponds to the Lewis structure $\mathrm{[H^{+
 \caption{Graphical representation of the VB wave function for $\mathrm{H_2}$ with a covalent and two ionic structures. The two bonding electrons are equally shared in the first structure. Both electrons are on the left hydrogen in the second structure and on the right hydrogen in the third structure.}
 \label{ch1.fig.heitlerplus}   
 \end{figure}
-The coefficients $c_1$, $c_2$ and $c_3$ are variationally determined \cite{writz}. The total energy ($E$) calculated with equation \ref{ch1.eq.hlplus} proved to be lower than the energy calculated with equation \ref{ch1.eq.hl}. In general, for covalent bonds, like H--H, the coefficients $c_2$ and $c_3$ will be non-zero, indicating that they are not merely covalent in nature, but that they also contain some ionic character. This ionic character is caused by the freedom for the electrons to move towards the other atom. For the bond description in VB it is vital that the orbitals are non-orthogonal. The overlap of two singly occupied orbitals on separate atoms or fragments, like the hydrogen atoms mentioned above, can be used as measure for the bond strength. When the two atoms are brought together from infinity to equilibrium distance, the total energy of the molecule decreases as the orbital overlap increases. This suggests that for bonds with ``high overlap'' more energy is required to break it than for bonds with ``low overlap''. This has to be used with caution, though, because at distances below the equilibrium distance, the nuclear repulsion increases so rapidly that this effect overshadows the still increasing orbital overlap.
+The coefficients $c_1$, $c_2$ and $c_3$ are variationally determined \cite{varia}. The total energy ($E$) calculated with equation \ref{ch1.eq.hlplus} proved to be lower than the energy calculated with equation \ref{ch1.eq.hl}. In general, for covalent bonds, like H--H, the coefficients $c_2$ and $c_3$ will be non-zero, indicating that they are not merely covalent in nature, but that they also contain some ionic character. This ionic character is caused by the freedom for the electrons to move towards the other atom. For the bond description in VB it is vital that the orbitals are non-orthogonal. The overlap of two singly occupied orbitals on separate atoms or fragments, like the hydrogen atoms mentioned above, can be used as measure for the bond strength. When the two atoms are brought together from infinity to equilibrium distance, the total energy of the molecule decreases as the orbital overlap increases. This suggests that for bonds with ``high overlap'' more energy is required to break it than for bonds with ``low overlap''. This has to be used with caution, though, because at distances below the equilibrium distance, the nuclear repulsion increases so rapidly that this effect overshadows the still increasing orbital overlap.
 
 The importance (or contribution) of each VB structure to the wave function can be obtained by using the formula of Chirgwin and Coulson \cite{chirgwin}. With their formula weights ($W_j$) can be assigned to the VB structures:
 \begin{equation}
@@ -195,16 +332,16 @@ In modern type Valence Bond wave functions atomic and molecular orbital models c
 \end{equation}
 in which $\mathcal{A}$ is an anti-symmetrizer. The separation of the core-$\sigma$ and $\pi$ systems does not mean that the two are independent, because the electrons in the core-$\pi$ system will ``feel'' the Coulomb repulsion from the electrons in the $\sigma$ system ($\sigma$-$\pi$ interaction).
 
-In the remainder of this Section the two types of Valence Bond wave functions supported by TURTLE \cite{turtle}, the VB module in GAMESS-UK \cite{gamess}, are discussed. These are 1) the Valence Bond Configuration Interaction (VBCI) and 2) the Valence Bond Self-Consistent Field (VBSCF \cite{vbscf1,vbscf2}) models. Both types of models are compared to their orthogonal analogues and exemplified with a calculation on benzene. For VBSCF both the delocalized as well as the localized orbital models and the Breathing Orbital Valence Bond (BOVB \cite{bovb1,bovb2,bovb3}) method extension are described. 
+In the remainder of this Section the two types of Valence Bond wave functions supported by TURTLE \cite{turtle}, the VB module in GAMESS-UK \cite{gamess}, are discussed. These are 1) the Valence Bond Configuration Interaction (VBCI) and 2) the Valence Bond Self Consistent Field (VBSCF \cite{vbscf1,vbscf2}) models. Both types of models are compared to their orthogonal analogues and exemplified with a calculation on benzene. For VBSCF both the delocalized as well as the localized orbital models and the Breathing Orbital Valence Bond (BOVB \cite{bovb1,bovb2,bovb3}) method extension are described. 
 
 \subsection{Valence Bond Configuration Interaction}
 
-A VBCI wave function is constructed from multiple, quite often many, structures. In this sense, this type of wave function resembles a Configuration Interaction (CI) wave function \cite{shavitt1,shavitt2}. A CI wave function is constructed from a linear combination of Configuration State Functions (CSFs):
-\begin{equation}
-\Psi_{\mathrm{CI}} = \sum_i c_i \Phi_i.
-\label{ch1.eq.ci}
-\end{equation}
-A CSF ($\Phi_i$) is constructed from one or more Slater determinants in such a way that it is an eigenfunction of the N-electrons' spin operators $\mathbf{\hat{S}}^2$ and $\mathbf{\hat{S}}_z$. The coefficients ($c_i$) of the linear expansion are determined by the variational principle \cite{writz} while the orbitals contained in the Slater determinants are kept fixed. A wave function containing all possible CSFs in equation \ref{ch1.eq.ci} for a given basis set is called a full CI wave function. Solving the Schr\"{o}dinger equation \ref{ch1.eq.hpsi} gives the ``exact'' energy for that given basis set. In Full CI, the number of CSFs grows factorially with the number of electrons and the size of the basis set \cite{weyl}. Therefore, a full CI wave function is only feasible for very small molecular systems. In practice, the CI expansion is truncated and only a subset of the possible CSFs is included in the wave function. These truncations are labeled with capitals S, D, T, Q to indicate that only singly, doubly, triply, or quarterly excited configurations are included in the expansion. For example, in a CISD wave function only singly and doubly excited CSFs are included in the expansion.
+%A VBCI wave function is constructed from multiple, quite often many, structures. In this sense, this type of wave function resembles a Configuration Interaction (CI) wave function \cite{shavitt1,shavitt2}. A CI wave function is constructed from a linear combination of Configuration State Functions (CSFs):
+%\begin{equation}
+%\Psi_{\mathrm{CI}} = \sum_i c_i \Phi_i.
+%\label{ch1.eq.ci}
+%\end{equation}
+%A CSF ($\Phi_i$) is constructed from one or more Slater determinants in such a way that it is an eigenfunction of the N-electrons' spin operators $\mathbf{\hat{S}}^2$ and $\mathbf{\hat{S}}_z$. The coefficients ($c_i$) of the linear expansion are determined by the variational principle \cite{varia} while the orbitals contained in the Slater determinants are kept fixed. A wave function containing all possible CSFs in equation \ref{ch1.eq.ci} for a given basis set is called a full CI wave function. Solving the Schr\"{o}dinger equation \ref{ch1.eq.hpsi} gives the ``exact'' energy for that given basis set. In Full CI, the number of CSFs grows factorially with the number of electrons and the size of the basis set \cite{weyl}. Therefore, a full CI wave function is only feasible for very small molecular systems. In practice, the CI expansion is truncated and only a subset of the possible CSFs is included in the wave function. These truncations are labeled with capitals S, D, T, Q to indicate that only singly, doubly, triply, or quarterly excited configurations are included in the expansion. For example, in a CISD wave function only singly and doubly excited CSFs are included in the expansion.
 
 The analogy between Valence Bond Configuration Interaction (VBCI) and Configuration Interaction, just described, is that in both cases the orbitals are not optimized in the expansion, but rather only the structure (VB) or CSF (CI) coefficients. A difference between the two is that in the VB case, there is no orthogonality restriction between the orbitals, while in CI the orbitals are orthogonal.
 
@@ -229,18 +366,18 @@ In general, an advantage of VBCI is that it can deliver quantitative good result
 
 \subsection{\label{ch1.sec.vbscf}Valence Bond Self Consistent Field}
 
-In contrast with VBCI, both the orbital \textit{and} the expansion coefficients are optimized. This is analogous to the Multi Configuration Self Consistent Field method (MCSCF) \cite{wahldasbook,daswahl}. An MCSCF wave function is expressed in Configuration State Functions (CSFs), while a VBSCF wave function is expressed in structures: the CSFs are comparable to VB structures in the sense that both are constructed from fixed combinations of determinants. Two major differences are that both bonding \textit{and} anti-bonding orbitals occur in CSFs and that the molecular orbitals (MOs) are chosen orthogonal in MCSCF.
+%In contrast with VBCI, both the orbital \textit{and} the expansion coefficients are optimized. This is analogous to the Multi Configuration Self Consistent Field method (MCSCF) \cite{wahldasbook,daswahl}. An MCSCF wave function is expressed in Configuration State Functions (CSFs), while a VBSCF wave function is expressed in structures: the CSFs are comparable to VB structures in the sense that both are constructed from fixed combinations of determinants. Two major differences are that both bonding \textit{and} anti-bonding orbitals occur in CSFs and that the molecular orbitals (MOs) are chosen orthogonal in MCSCF.
 
-In MCSCF and VBSCF the Super CI method \cite{superci1,superci2}, in which the wave function is expanded with singly excited structures, is used. For this expanded wave function the CI (or Brillouin) vector is determined by solving the generalized eigenvalue problem:
-\begin{equation}
-[\mathbf{H}-E_b\mathbf{S}] \cdot \mathbf{b} = 0,
-\label{ch1.eq.geig}
-\end{equation}
-in which $\mathbf{H}$ and $\mathbf{S}$ are the Hamiltonian and metric in the basis of the ground state and the singly excited states ($\Psi_0$ and the $\Psi_{ia}$'s). $E_b$ is the lowest eigenvalue and $\mathbf{b}$ is the corresponding eigenvector. With the elements of $\mathbf{b}$ the orbitals are updated (for details  \textit{cf.} Chapter \chorbopt). This procedure is repeated until the Brillouin theorem \cite{brillouin}, which states that for optimal orbitals the singly excited Brillouin states do not interact or mix with the ground (or reference) state, is fulfilled:
-\begin{equation}
-\left < \Psi_0 | \mathbf{H} - E_0 | \Psi_{ia} \right > = 0.
-\label{ch1.eq.brillouin}
-\end{equation}
+%In MCSCF and VBSCF the Super CI method \cite{superci1,superci2}, in which the wave function is expanded with singly excited structures, is used. For this expanded wave function the CI (or Brillouin) vector is determined by solving the generalized eigenvalue problem:
+%\begin{equation}
+%[\mathbf{H}-E_b\mathbf{S}] \cdot \mathbf{b} = 0,
+%\label{ch1.eq.geig}
+%\end{equation}
+%in which $\mathbf{H}$ and $\mathbf{S}$ are the Hamiltonian and metric in the basis of the ground state and the singly excited states ($\Psi_0$ and the $\Psi_{ia}$'s). $E_b$ is the lowest eigenvalue and $\mathbf{b}$ is the corresponding eigenvector. With the elements of $\mathbf{b}$ the orbitals are updated (for details  \textit{cf.} Chapter \chorbopt). This procedure is repeated until the Brillouin theorem \cite{brillouin}, which states that for optimal orbitals the singly excited Brillouin states do not interact or mix with the ground (or reference) state, is fulfilled:
+%\begin{equation}
+%\left < \Psi_0 | \mathbf{H} - E_0 | \Psi_{ia} \right > = 0.
+%\label{ch1.eq.brillouin}
+%\end{equation}
 
 Another method in which the orbitals in a VB wave function are optimized is the Spin-Coupled Valence Bond (SCVB) method of Cooper, Gerratt and Raimondi \cite{scvb1,scvb2,scvb3}. An SCVB wave function contains a single reference configuration consisting of a number of doubly and singly occupied orbitals. For the singly occupied orbitals all spin-couplings are taken into account. For benzene, for example, 5 spin-couplings can be made for the $\pi$ system when all 6 $2p_z$ orbitals are occupied by a single electron, \textit{i.e.} the two Kekul\'e and the three Dewar structures. At first a Complete Active Space Self Consistent Field (CASSCF) wave function is constructed for which the orbitals are optimized \cite{thor1,thor2,thor3,thor4}. Subsequently, this wave function is transformed to an SCVB, or CASVB, wave function. In this way, the orbital optimization process is performed with orthogonal orbitals. Since the final goal of both SCVB and VBSCF is the same, \textit{i.e.} the total energy ($E_\mathrm{tot}$) is minimal with respect to orbital changes, both methods are intrinsically equivalent when the conditions, the basis set and structures used, are equal.
 
