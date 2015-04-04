@@ -25,8 +25,8 @@ clean:
 	echo '\\begin{equation*}' >> formula.tex
 	echo '% Put equation here' >> formula.tex
 	echo 'a^2 + b^2 = c^2' >> formula.tex
-	echo '\end{equation*}' >> formula.tex
-	echo '\end{document}' >> formula.tex
+	echo '\\end{equation*}' >> formula.tex
+	echo '\\end{document}' >> formula.tex
 
 realclean: clean
 	rm -rf figures/*.pdf

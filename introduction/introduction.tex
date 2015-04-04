@@ -49,7 +49,7 @@ The first approximation considered is the Born-Oppenheimer approximation \cite{b
 \end{equation}
 $\Psi$ can then be approximated by a product of a wave function for the nuclei and one for the electrons. Because of the term $\mathbf{V}_{en}$ $\Psi_{e}$ also depends on the coordinates of the nuclei:
 \begin{equation}
-\Psi = \Psi_{n}(\mathrm{X}) \Psi_{e}(\mathrm{q,X}).
+\Psi \approx \Psi_{n}(\mathrm{X}) \Psi_{e}(\mathrm{q,X}).
 \end{equation}
 One assumption in the Born-Oppenheimer approximation is that the electronic wave function $\Psi_{e}$ does not change much for small variations in the positions of the nuclei ($\mathrm{X}$) \cite{born}. On the other hand, it is assumed that the motion of the nuclei, which are much heavier than the electrons, does depend on the electron density, rather than on the positions of the individual electrons. With those approximations, the total energy ($E_\mathrm{tot}$) can be written as the sum of a contribution of the nuclei and one of the electrons:
 \begin{equation}
@@ -63,17 +63,13 @@ Several types of approximations for the wave functions ($\Psi$) have been define
 \end{equation}
 The molecular orbitals (MOs) are functions of the coordinates of the electrons (spatial orbitals), or of the coordinates \textit{and} the spins of the electrons (spin orbitals). The spin of an electron can be one of two states. Commonly, these states are referred to as $\alpha$ and $\beta$ spin. The term ``doubly occupied molecular orbital'' indicates that there are two electrons with the same spatial orbital, but with opposite spins.
 
-\subsection{Hartree Products, Slater Determinants and the H\"{u}ckel Method}
+\subsection{Hartree Products and Slater Determinants}
 
 Multi-electron wave functions are either written as Hartree products \cite{hartree1,hartree2,hartree3} or as Slater determinants \cite{slater}. In a Hartree product the wave function is written as a product:
 \begin{equation}
 \Psi=\prod_i \psi_i(\mathbf{\tau}_i),
 \end{equation}
-in which the parameters $\mathbf{\tau}_i$ contain the spatial and spin coordinates of the electrons. This type of wave function is used in the H\"uckel method \cite{huckel1,huckel2,huckel3}, with which the energy levels (and hence the relative position) of molecular orbitals (MOs) of $\pi$ electrons in conjugated molecules, such as benzene, can be obtained (\textit{cf.} Chapter \chhuckel). A shortcoming of the H\"uckel method is that the wave function does not fulfil the antisymmetry principle \cite{atkins}. This principle states that the total wave function must change sign when the spatial and spin coordinates of two electrons are interchanged, which is the case when the wave function is written as a determinant. For example, in this two electron Hartree product the sign of the wave function does not change when the two molecular orbitals (MOs) are interchanged:
-\begin{equation}
-\Psi=\psi_1(\mathbf{\tau_1})\psi_2(\mathbf{\tau_2}) = \psi_1(\mathbf{\tau_2})\psi_2(\mathbf{\tau_1}),
-\end{equation}
-while in a determinant, referred to as Slater determinant in quantum chemistry, the sign of the wave function does change:
+in which the parameters $\mathbf{\tau}_i$ contain the spatial and spin coordinates of the electrons. This type of wave function is used in the H\"uckel method \cite{huckel1,huckel2,huckel3} (see section \ref{ch1.sec.huckel}). Characteristic for Hartree product wave functions is that they do not fulfil the antisymmetry principle \cite{atkins}. This principle states that the total wave function must change sign when the spatial and spin coordinates of two electrons are interchanged, which is the case when the wave function is written as a determinant. In such a determinant, referred to as Slater determinant in quantum chemistry, the sign of the wave function changes:
 \begin{equation}
 \begin{split}
 \Psi_1 &=
@@ -92,7 +88,7 @@ while in a determinant, referred to as Slater determinant in quantum chemistry, 
 \end{split}
 \label{ch1.eq.slater}
 \end{equation}
-Another nice aspect of writing the wave function as a determinant is that it automatically becomes zero in the case of the occurence of two orbitals with the same spatial \textit{and} spin coordinates. This effect is linked to the Pauli exclusion principle, which practically translates into the rule that no two electrons can occupy the same spin orbital. In that case, the determinant contains two identical columns and hence becomes zero.
+A nice aspect of writing the wave function as a determinant is that it automatically becomes zero in the case of the occurence of two orbitals with the same spatial \textit{and} spin coordinates. This effect is linked to the Pauli exclusion principle, which practically translates into the rule that no two electrons can occupy the same spin orbital. In that case, the determinant contains two identical columns and hence becomes zero.
 
 Throughout the years, many quantum chemical methods have been developed based on Slater determinants and molecular orbitals (MOs). These methods are described in quantum chemical textbooks \cite{szabo}. Here, the methods used throughout this thesis will be introduced briefly.
 
@@ -111,7 +107,7 @@ E=\sum_i h_{ii} + \frac{1}{2} \sum_i\sum_j (J_{ij} - K_{ij}) + \mathbf{V}_{nn},
 \end{equation}
 where $h_{ii}$:
 \begin{equation}
-h_{ii} = \left< \psi_i(\tau_1) | \mathbf{T}_{e} + \mathbf{V}_{en} | \psi_i(\tau_1)\right>,
+h_{ii} = \left< \psi_i(\tau_1) | \mathbf{T}_{e}(\tau_1) + \mathbf{V}_{en}(\tau1) | \psi_i(\tau_1)\right>,
 \end{equation}
 describes the kinetic energy of electron $\tau_1$ and its attraction to the nuclei.
 
@@ -125,9 +121,9 @@ The second term on the right hand side of equation \ref{ch1.eq.hfexp_detailed} c
 \end{equation}
 where $\frac{1}{r_{12}}$ is the electron-electron repulsion operator.
 
-Of two operators in the Hamiltonian (equation \ref{ch1.eq.htotal}) that apply to nuclei alone, \textit{i.e.} $\mathbf{T}_{n}$ and $\mathbf{V}_{nn}$, the kinetic operator ($\mathbf{T}_{n}$) is absent in equation \ref{ch1.eq.hfexp_detailed} because the atoms are considered motionless. The nuclei-nuclei repulsion ($\mathbf{V}_{nn}$) adds a constant contribution to the energy ($E$) in equation \ref{ch1.eq.hfexp_detailed} for fixed molecular geometries.
+Because the Born-Oppenheimer approximation (the motions of nuclei and electrons are split) is applied, the kinetic operator ($\mathbf{T}_{n}$) is absent in equation \ref{ch1.eq.hfexp_detailed}. The nuclei-nuclei repulsion ($\mathbf{V}_{nn}$) adds a constant contribution to the energy ($E$) in equation \ref{ch1.eq.hfexp_detailed} for fixed molecular geometries.
 
-After setting up $\Psi_\mathrm{HF}$ with initial guess orbitals, the wave function is optimized. During this process the minimum, or at least a stationary point, is sought for the expectation value $E$ in equation \ref{ch1.eq.hfexp}. For this purpose, the variation principle is applied \cite{varia}. During the optimization the orbitals are modified, but are kept orthonormal. The minimization of the energy with respect to change in the orbitals leads to the following Hartree-Fock equations:
+After setting up $\Psi_\mathrm{HF}$ with start-up orbitals, the wave function is optimized in an iterative way. During this process the minimum, or at least a stationary point, is sought for the expectation value $E$ in equation \ref{ch1.eq.hfexp}. For this purpose, the variation principle is applied \cite{varia}. During the optimization the orbitals are modified, but are kept orthonormal. The minimization of the energy with respect to change in the orbitals leads to the following Hartree-Fock equations:
 \begin{equation}
 \mathbf{F}(i)\psi_j(i)=\epsilon_j \psi_j(i),
 \label{ch1.eq.fock1}
@@ -155,9 +151,16 @@ in which $\mathbf{F}$ is the Fock matrix, $\mathbf{S}$ the orbital overlap matri
 \mathbf{F'}\mathbf{C'} = \mathbf{C'}\mathbf{\epsilon}.
 \end{equation}
 
-In the Hartree-Fock method the most commonly used type of wave function is a single determinant with doubly occupied orbitals, \textit{i.e.} two electrons per orbital with paired spins. This is referred to as closed-shell and the wave function is called restricted Hartree-Fock (RHF). If not all orbitals are doubly occupied, \textit{i.e.} not all electrons are paired, the wave function is referred to as restricted open-shell Hartree-Fock (ROHF). It is also possible to use different spatial orbitals for unpaired electrons. In that case, the method is referred to as unrestricted Hartree-Fock (UHF). An advantage of UHF over ROHF is that it gives a correct description of the dissociation of molecules into atoms or molecular fragments, for example. A disadvantage of UHF, however, is that the wave function is not a proper eigenfunction of the total spin operator $\mathbf{S}^2$.
+In the Hartree-Fock method the most commonly used type of wave function is a single determinant with doubly occupied orbitals, \textit{i.e.} two electrons per orbital with paired spins. This is referred to as closed-shell and the wave function is called restricted Hartree-Fock (RHF). If not all orbitals are doubly occupied, \textit{i.e.} not all electrons are paired, the wave function is referred to as restricted open-shell Hartree-Fock (ROHF). When different spatial orbitals are used for electrons with $\alpha$ and $\beta$ spin, the method is referred to as unrestricted Hartree-Fock (UHF). An advantage of UHF over ROHF is that it gives a correct description of the dissociation of molecules into atoms or molecular fragments, for example. A disadvantage of UHF, however, is that the wave function is not a proper eigenfunction of the total spin operator $\mathbf{S}^2$.
 
 A property of the single determinant in the Hartree-Fock method is that each electron moves in the average electric field created by the other electrons, \textit{i.e.} there is no electron correlation. For a more accurate expression, the instantaneous interaction between the electrons must be taken into account. Electronic structure methods that take care of electron-electron interaction are called electron correlation methods. The difference between the Hartee-Fock energy ($E_\mathrm{HF}$) and the exact energy is called the \textit{correlation energy}. Three of these methods, the Configuration Interaction Method (CI) \cite{shavitt1,shavitt2}, Multi Configuration Self Consistent Field Method (MCSCF) \cite{daswahl,wahldasbook,mcscf,roos1,roos2} and the Coupled Cluster Method (CC) \cite{cc1,cc2}, will be introduced here.
+
+\subsection{\label{ch1.sec.huckel}The H\"{u}ckel Method}
+
+The H\"uckel method, based on Hartree products, is well suited for the qualitative analysis of $\pi$ electrons in conjugated molecules, such as benzene (\textit{cf.} Chapter \chhuckel). 
+
+, it , with which the energy levels (and hence the relative position) of molecular orbitals (MOs) of $\pi$ electrons in conjugated molecules, such as benzene, can be obtained .
+
 
 \subsection{\label{ch1.sec.ci}The Configuration Interaction (CI) Method}
 
@@ -179,7 +182,7 @@ in which $\Phi_i^a$ and $\Phi_{ij}^{ab}$ are singly and doubly excited CSFs, res
 \Psi_{\mathrm{CI}} = \sum_{k}^{N_{\mathrm{CSF}}} c_k \Phi_k,
 \label{ch1.eq.ci}
 \end{equation}
-in which $k$ runs over all CSFs. The coefficients $c_k$ are determined by the variational principle \cite{varia}, while the orbitals inside $\Phi_k$ are kept fixed. A wave function containing all possible CSFs in equation \ref{ch1.eq.ci} for a given basis set is called a full CI wave function. Solving the Schr\"{o}dinger equation \ref{ch1.eq.hpsi} gives the ``exact'' energy for that given basis set. In full CI, the number of CSFs is accompanied by a factorial increase with the number of electrons and the size of the basis set \cite{weyl}. Therefore, a full CI wave function is only feasible for very small molecular systems. In practice, the CI expansion is truncated and only a subset of the possible CSFs is included in the wave function. These truncations are labeled with capitals S, D, T, Q to indicate that only singly, doubly, triply, or quarterly excited configurations are included in the expansion. For example, in a CISD wave function only singly and doubly excited CSFs are included in the expansion.
+in which $k$ runs over all CSFs. The coefficients $c_k$ are determined by the variational principle \cite{varia}, while the orbitals inside $\Phi_k$ are kept fixed. A wave function containing all possible CSFs in equation \ref{ch1.eq.ci} for a given basis set is called a full CI wave function. Solving the Schr\"{o}dinger equation \ref{ch1.eq.hpsi} gives the ``exact'' energy for that given basis set. In full CI, the number of CSFs is accompanied by a factorial increase with the number of electrons and the size of the basis set \cite{weyl}. Therefore, a full CI wave function is only feasible for very small molecular systems. In practice, the CI expansion is truncated and only a subset of the possible CSFs is included in the wave function. These truncations are labeled with capitals S, D, T, Q to indicate that only singly, doubly, triple, or quadruple excited configurations are included in the expansion. For example, in a CISD wave function only singly and doubly excited CSFs are included in the expansion.
 
 A disadvantage of such a truncation is that the wave function is no longer size consistent, \textit{i.e.} the wave function for a combination of molecules at large distance from each other has a higher energy than the sum of the individual energies. For example, a CISD expanded wave function for a single H$_2$ molecule contains the CSF describing the doubly excited state. Although, for a combination of two H$_2$ molecules at large distance, double excitations do occur within each molecule, the CSF in which \textit{both} H$_2$ molecules are doubly excited at the \textit{same} time does not occur, since this would be a quadruple excitation.
 
@@ -222,7 +225,7 @@ e^{\mathbf{T}} = & 1 + \mathbf{T}_1 + (\mathbf{T}_2 + \frac{1}{2}\mathbf{T}_1^2)
 \end{equation}
 The first term on the right hand side generates the reference $\Phi_0$ and the second term ($\mathbf{T}_1$) all singly excited states. The third term (the first between brackets) generates all doubly excited states, which may be considered as connected ($\mathbf{T}_2$) or disconnected ($\mathbf{T}_1^2$). The fourth term  generates all triply excited states and the last term the quadruples. Physically, a connected type such as $\mathbf{T}_4$ corresponds to four electrons interacting simultaneous, while a disconnected term such as $\mathbf{T}_2^2$ corresponds to two non-interacting pairs of interacting electrons. By comparison with the CI wave function, it is seen that the CC wave function at each excitation level contains additional terms arising from products of excitations \cite{jensen}. The coupled cluster method is size consistent, if the reference wave function ($\Phi_0$) is.
 
-Like in CI, the excitation level is truncated in practice. Commonly used levels of coupled cluster are single, double and triple, CCS, CCSD and CCSDT, respectively. CCSDT gives good correlation energies and is accurate. However, the inclusion of the triple excitations makes this method very compute intensive. The designation CCSD(T), with the T between brackets, indicates that the triple excitations are approximated rather than computed, making it less compute intensive.
+Like in CI, the excitation level is truncated in practice. Commonly used levels of coupled cluster are single, double and triple, CCS, CCSD and CCSDT, respectively. CCSDT gives good correlation energies and is accurate. However, the inclusion of the triple excitations makes this method very compute intensive. The designation CCSD(T), with the T between brackets, indicates that the triple excitations are approximated by perturbation theory rather than computed, making it less compute intensive.
 
 \subsection{Density Functional Theory (DFT)}
 The central goal of all methods described so far is to solve the time independent Schr\"{o}dinger equation (equation \ref{ch1.eq.hpsi}). This is also the goal of the Density Functional Theory (DFT) \cite{jensen, hohenberg, kohnsham}, but the approach is different. The most compute intensive operator in the Hamiltonian is the electron-electron repulsion term ($\mathbf{V}_{ee}$). The idea of DFT is to solve the Schr\"{o}dinger equation by means of a density function instead of the electon-electron repulsion operator.
