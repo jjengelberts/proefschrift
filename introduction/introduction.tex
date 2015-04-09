@@ -157,10 +157,13 @@ A property of the single determinant in the Hartree-Fock method is that each ele
 
 \subsection{\label{ch1.sec.huckel}The H\"{u}ckel Method}
 
-The H\"uckel method, based on Hartree products, is well suited for the qualitative analysis of $\pi$ electrons in conjugated molecules, such as benzene (\textit{cf.} Chapter \chhuckel). 
+The H\"uckel method, based on Hartree products, is well suited for the qualitative analysis of $\pi$ electrons in conjugated molecules. Although this method is often used in Chemistry textbooks, it has been actually used as part of the research described in Chapter \chhuckel. Here, the H\"{u}ckel rule, or 4$n$+2 rule for aromatics \cite{bruice}, will be verified with the H\"{u}ckel method.
 
-, it , with which the energy levels (and hence the relative position) of molecular orbitals (MOs) of $\pi$ electrons in conjugated molecules, such as benzene, can be obtained .
-
+The $\pi$ orbitals in planar conjugated molecules lie perpendicular to the molecular plane. These orbitals can be expressed as LCAOs of the $2p$ orbitals on the carbon atoms. For ethane this would lead to the molecular orbital $\psi$:
+\begin{equation}
+\psi=c_A \phi_{A_{2p}} + c_B \phi_{B_{2p}},
+\end{equation}
+where $\phi_{A_{2p}}$ and $\phi_{B_{2p}}$ are the $2p$ orbitals on carbon atoms A and B, respectively.
 
 \subsection{\label{ch1.sec.ci}The Configuration Interaction (CI) Method}
 
@@ -478,7 +481,7 @@ In the last three chapters, the resonance energy calculated with VB will be comp
 The strength of these ring currents can be computed with the ipsocentric CTOCD-DZ (Continuous Transformation
 Of Current Density-\textit{Diamagnetic Zero}) method \cite{ctocd1,ctocd2,ctocd3,ctocd4}. With this method an external magnetic field is applied to the molecule and its response to it computed. An advantage of this CTOCD-DZ is that it does not depend on the position of the source of the external magnetic field (gauge independence). For aromatic molecules a diamagnetic ring current will be discernible. The size of the current is expressed in the $j_{max}$ value. For the calculation of the ring currents SYSMO \cite{sysmo} was used.
 
-Benzene fulfills the 4$n$+2 H\"{u}ckel rule for aromatics, while cyclobutadiene and cyclooctatetraene satisfy the 4$n$ rule for anti-aromatics. In Chapter \chhuckel\ the applicability of these rules are tested on the azabora-analogues of these three molecules, which are iso-electronic with their carbon counterparts. Results from a simple H\"{u}ckel model \cite{huckel1,huckel2,huckel3}, \textit{ab initio} ring current maps \cite{london,ctocd1,ctocd2,ctocd3,ctocd4}, and the Valence Bond method are compared. A ring current map shows the induced current, caused by a magnetic field, in the electronic system of planar molecules. For aromatic molecules a strong ring current in the $\pi$ system is discernible, whereas for non aromatic molecules only weak currents are visible. Ring current maps are the result of sensitive probing the molecule to assess aromatic character \cite{huckel}.
+Benzene fulfills the 4$n$+2 H\"{u}ckel rule for aromatics, while cyclobutadiene and cyclooctatetraene satisfy the 4$n$ rule for anti-aromatics. In Chapter \chhuckel\ the applicability of these rules are tested on the azabora-analogues of these three molecules, which are iso-electronic with their carbon counterparts. Results from a simple H\"{u}ckel model \cite{huckel1,huckel2,huckel3,huckel4}, \textit{ab initio} ring current maps \cite{london,ctocd1,ctocd2,ctocd3,ctocd4}, and the Valence Bond method are compared. A ring current map shows the induced current, caused by a magnetic field, in the electronic system of planar molecules. For aromatic molecules a strong ring current in the $\pi$ system is discernible, whereas for non aromatic molecules only weak currents are visible. Ring current maps are the result of sensitive probing the molecule to assess aromatic character \cite{huckel}.
 
 In Chapter \chinorganic\ the aromaticity of a series of ``inorganic benzenes'', like B$_3$N$_3$H$_6$, B$_3$P$_3$H$_6$ and N$_6$, is investigated. The results of ring current calculations are compared to VB. It is shown that amongst the alleged inorganic benzenes only B$_3$P$_3$H$_6$ (Figure \ref{ch1.fig.b3p3h6}) can be considered as ``aromatic''.
  \begin{figure}[ht]
