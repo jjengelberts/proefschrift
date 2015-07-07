@@ -1,23 +1,53 @@
 # Grace project file
 #
-@version 50114
+@version 50123
 @page size 842, 595
 @page scroll 5%
 @page inout 5%
 @link page off
-@map font 0 to "Times-Roman", "Times-Roman"
-@map font 1 to "Times-Italic", "Times-Italic"
-@map font 2 to "Times-Bold", "Times-Bold"
-@map font 3 to "Times-BoldItalic", "Times-BoldItalic"
-@map font 4 to "Helvetica", "Helvetica"
-@map font 5 to "Helvetica-Oblique", "Helvetica-Oblique"
-@map font 6 to "Helvetica-Bold", "Helvetica-Bold"
-@map font 7 to "Helvetica-BoldOblique", "Helvetica-BoldOblique"
 @map font 8 to "Courier", "Courier"
-@map font 9 to "Courier-Oblique", "Courier-Oblique"
 @map font 10 to "Courier-Bold", "Courier-Bold"
 @map font 11 to "Courier-BoldOblique", "Courier-BoldOblique"
+@map font 9 to "Courier-Oblique", "Courier-Oblique"
+@map font 4 to "Helvetica", "Helvetica"
+@map font 6 to "Helvetica-Bold", "Helvetica-Bold"
+@map font 7 to "Helvetica-BoldOblique", "Helvetica-BoldOblique"
+@map font 5 to "Helvetica-Oblique", "Helvetica-Oblique"
+@map font 14 to "NimbusMonoL-BoldOblique", "NimbusMonoL-BoldOblique"
+@map font 15 to "NimbusMonoL-Regular", "NimbusMonoL-Regular"
+@map font 16 to "NimbusMonoL-RegularOblique", "NimbusMonoL-RegularOblique"
+@map font 17 to "NimbusRomanNo9L-Medium", "NimbusRomanNo9L-Medium"
+@map font 18 to "NimbusRomanNo9L-MediumItalic", "NimbusRomanNo9L-MediumItalic"
+@map font 19 to "NimbusRomanNo9L-Regular", "NimbusRomanNo9L-Regular"
+@map font 20 to "NimbusRomanNo9L-RegularItalic", "NimbusRomanNo9L-RegularItalic"
+@map font 21 to "NimbusSansL-Bold", "NimbusSansL-Bold"
+@map font 22 to "NimbusSansL-BoldCondensed", "NimbusSansL-BoldCondensed"
+@map font 23 to "NimbusSansL-BoldCondensedItalic", "NimbusSansL-BoldCondensedItalic"
+@map font 24 to "NimbusSansL-BoldItalic", "NimbusSansL-BoldItalic"
+@map font 25 to "NimbusSansL-Regular", "NimbusSansL-Regular"
+@map font 26 to "NimbusSansL-RegularCondensed", "NimbusSansL-RegularCondensed"
+@map font 27 to "NimbusSansL-RegularCondensedItalic", "NimbusSansL-RegularCondensedItalic"
+@map font 28 to "NimbusSansL-RegularItalic", "NimbusSansL-RegularItalic"
+@map font 29 to "StandardSymbolsL-Regular", "StandardSymbolsL-Regular"
 @map font 12 to "Symbol", "Symbol"
+@map font 31 to "Symbol-Regular", "Symbol-Regular"
+@map font 2 to "Times-Bold", "Times-Bold"
+@map font 3 to "Times-BoldItalic", "Times-BoldItalic"
+@map font 1 to "Times-Italic", "Times-Italic"
+@map font 0 to "Times-Roman", "Times-Roman"
+@map font 36 to "URWBookmanL-DemiBold", "URWBookmanL-DemiBold"
+@map font 37 to "URWBookmanL-DemiBoldItalic", "URWBookmanL-DemiBoldItalic"
+@map font 38 to "URWBookmanL-Light", "URWBookmanL-Light"
+@map font 39 to "URWBookmanL-LightItalic", "URWBookmanL-LightItalic"
+@map font 40 to "URWChanceryL-MediumItalic", "URWChanceryL-MediumItalic"
+@map font 41 to "URWGothicL-Book", "URWGothicL-Book"
+@map font 42 to "URWGothicL-BookOblique", "URWGothicL-BookOblique"
+@map font 43 to "URWGothicL-Demi", "URWGothicL-Demi"
+@map font 44 to "URWGothicL-DemiOblique", "URWGothicL-DemiOblique"
+@map font 45 to "URWPalladioL-Bold", "URWPalladioL-Bold"
+@map font 46 to "URWPalladioL-BoldItalic", "URWPalladioL-BoldItalic"
+@map font 47 to "URWPalladioL-Italic", "URWPalladioL-Italic"
+@map font 48 to "URWPalladioL-Roman", "URWPalladioL-Roman"
 @map font 13 to "ZapfDingbats", "ZapfDingbats"
 @map color 0 to (255, 255, 255), "white"
 @map color 1 to (0, 0, 0), "black"
@@ -54,7 +84,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Sat Jun  2 10:21:35 2007"
+@timestamp def "Tue Jul  7 09:32:57 2015"
 @r0 off
 @link r0 to g0
 @r0 type above
@@ -101,16 +131,10 @@
 @g0 fixedpoint format general general
 @g0 fixedpoint prec 6, 6
 @with g0
-@    world xmin 1
-@    world xmax 10
-@    world ymin -499.15
-@    world ymax -498.65
+@    world 1, -499.15, 10, -498.65
 @    stack world 0, 0, 0, 0
 @    znorm 1
-@    view xmin 0.150000
-@    view xmax 1.150000
-@    view ymin 0.150000
-@    view ymax 0.850000
+@    view 0.150000, 0.150000, 1.150000, 0.850000
 @    title ""
 @    title font 0
 @    title size 1.500000
@@ -297,8 +321,8 @@
 @    s1 errorbar riser linestyle 1
 @    s1 errorbar riser clip off
 @    s1 errorbar riser clip length 0.100000
-@    s1 comment "/Users/jeroene/results/dissociation/dissociation_2/chloromethane/table"
-@    s1 legend  "\l{0.3}E\l{-0.3}\stot\N\h{-0.65}\Sgas\N (min. 1.9 Å, -499.09824 a.u.)"
+@    s1 comment "/home/jeroene/Documents/proefschrift/dissociation/grace/ch3cl.dat"
+@    s1 legend  "\l{0.3}E\l{-0.3}\stot\N\h{-0.65}\Sgas\N (min. 1.9 Å, -499.09814 a.u.)"
 @    s2 hidden false
 @    s2 type xy
 @    s2 symbol 0
@@ -346,8 +370,8 @@
 @    s2 errorbar riser linestyle 1
 @    s2 errorbar riser clip off
 @    s2 errorbar riser clip length 0.100000
-@    s2 comment "/Users/jeroene/results/dissociation/dissociation_2/chloromethane/table"
-@    s2 legend  "\l{0.3}E\l{-0.3}\scov\N\h{-0.9}\Sgas\N (min. 1.9 Å, -499.04620 a.u.)"
+@    s2 comment "/home/jeroene/Documents/proefschrift/dissociation/grace/ch3cl.dat"
+@    s2 legend  "\l{0.3}E\l{-0.3}\scov\N\h{-0.9}\Sgas\N (min. 2.0 Å, -499.03280 a.u.)"
 @    s3 hidden false
 @    s3 type xy
 @    s3 symbol 0
@@ -395,80 +419,275 @@
 @    s3 errorbar riser linestyle 1
 @    s3 errorbar riser clip off
 @    s3 errorbar riser clip length 0.100000
-@    s3 comment "/Users/jeroene/results/dissociation/dissociation_2/chloromethane/table"
-@    s3 legend  "\l{0.3}E\l{-0.3}\sion\N\h{-0.8}\Sgas\N (min. 2.4 Å, -498.94396 a.u.)"
+@    s3 comment "/home/jeroene/Documents/proefschrift/dissociation/grace/ch3cl.dat"
+@    s3 legend  "\l{0.3}E\l{-0.3}\sion\N\h{-0.8}\Sgas\N (min. 2.5 Å, -498.88013 a.u.)"
 @target G0.S1
 @type xy
-1.4 -498.91571
-1.5 -499.00513
-1.6 -499.05666
-1.7 -499.08389
-1.8 -499.09579
-1.9 -499.09824
-2 -499.09506
-2.1 -499.08866
-2.2 -499.08054
-2.3 -499.07158
-2.4 -499.06234
-2.5 -499.05322
-2.6 -499.04452
-2.7 -499.03647
-2.8 -499.02925
-2.9 -499.02301
-3 -499.01776
-3.2 -499.01007
-3.5 -499.0038
-4 -499.00018
-5 -498.99909
-10 -498.9989
+1.4 -498.91553
+1.5 -499.00493
+1.6 -499.05647
+1.7 -499.08374
+1.8 -499.09567
+1.9 -499.09814
+2 -499.09497
+2.1 -499.08859
+2.2 -499.08047
+2.3 -499.07151
+2.4 -499.06228
+2.5 -499.05316
+2.6 -499.04445
+2.7 -499.0364
+2.8 -499.02919
+2.9 -499.02293
+3 -499.01768
+3.1 -499.0134
+3.2 -499.00999
+3.3 -499.00733
+3.4 -499.00527
+3.5 -499.00371
+3.6 -499.00252
+3.7 -499.00163
+3.8 -499.00096
+3.9 -499.00046
+4 -499.00009
+4.1 -498.99981
+4.2 -498.9996
+4.3 -498.99944
+4.4 -498.99932
+4.5 -498.99923
+4.6 -498.99916
+4.7 -498.99911
+4.8 -498.99906
+4.9 -498.99903
+5 -498.999
+5.1 -498.99898
+5.2 -498.99896
+5.3 -498.99894
+5.4 -498.99893
+5.5 -498.99892
+5.6 -498.99891
+5.7 -498.9989
+5.8 -498.99889
+5.9 -498.99888
+6 -498.99888
+6.1 -498.99887
+6.2 -498.99887
+6.3 -498.99886
+6.4 -498.99886
+6.5 -498.99885
+6.6 -498.99885
+6.7 -498.99885
+6.8 -498.99884
+6.9 -498.99884
+7 -498.99884
+7.1 -498.99884
+7.2 -498.99883
+7.3 -498.99883
+7.4 -498.99883
+7.5 -498.99883
+7.6 -498.99883
+7.7 -498.99882
+7.8 -498.99882
+7.9 -498.99882
+8 -498.99882
+8.1 -498.99882
+8.2 -498.99882
+8.3 -498.99882
+8.4 -498.99882
+8.5 -498.99881
+8.6 -498.99881
+8.7 -498.99881
+8.8 -498.99881
+8.9 -498.99881
+9 -498.99881
+9.1 -498.99881
+9.2 -498.99881
+9.3 -498.99881
+9.4 -498.99881
+9.5 -498.99881
+9.6 -498.99881
+9.7 -498.99881
+9.8 -498.99881
+9.9 -498.99881
+10 -498.99881
 &
 @target G0.S2
 @type xy
-1.4 -498.88353
-1.5 -498.96246
-1.6 -499.00682
-1.7 -499.03054
-1.8 -499.04205
-1.9 -499.0462
-2 -499.04592
-2.1 -499.04296
-2.2 -499.03852
-2.3 -499.03342
-2.4 -499.02823
-2.5 -499.02329
-2.6 -499.01885
-2.7 -499.015
-2.8 -499.01174
-2.9 -499.00905
-3 -499.00684
-3.2 -499.00371
-3.5 -499.00115
-4 -498.99963
-5 -498.99908
-10 -498.9989
+1.4 -498.86897
+1.5 -498.9438
+1.6 -498.98612
+1.7 -499.00985
+1.8 -499.02301
+1.9 -499.02993
+2 -499.03279
+2.1 -499.03278
+2.2 -499.03073
+2.3 -499.02736
+2.4 -499.02336
+2.5 -499.01928
+2.6 -499.01553
+2.7 -499.01231
+2.8 -499.00968
+2.9 -499.00753
+3 -499.00581
+3.1 -499.0044
+3.2 -499.00325
+3.3 -499.00232
+3.4 -499.00158
+3.5 -499.00099
+3.6 -499.00053
+3.7 -499.00018
+3.8 -498.99991
+3.9 -498.9997
+4 -498.99953
+4.1 -498.99941
+4.2 -498.99931
+4.3 -498.99924
+4.4 -498.99918
+4.5 -498.99913
+4.6 -498.99909
+4.7 -498.99906
+4.8 -498.99903
+4.9 -498.999
+5 -498.99899
+5.1 -498.99897
+5.2 -498.99895
+5.3 -498.99894
+5.4 -498.99893
+5.5 -498.99892
+5.6 -498.99891
+5.7 -498.9989
+5.8 -498.99889
+5.9 -498.99888
+6 -498.99888
+6.1 -498.99887
+6.2 -498.99887
+6.3 -498.99886
+6.4 -498.99886
+6.5 -498.99885
+6.6 -498.99885
+6.7 -498.99885
+6.8 -498.99884
+6.9 -498.99884
+7 -498.99884
+7.1 -498.99884
+7.2 -498.99883
+7.3 -498.99883
+7.4 -498.99883
+7.5 -498.99883
+7.6 -498.99883
+7.7 -498.99882
+7.8 -498.99882
+7.9 -498.99882
+8 -498.99882
+8.1 -498.99882
+8.2 -498.99882
+8.3 -498.99882
+8.4 -498.99882
+8.5 -498.99881
+8.6 -498.99881
+8.7 -498.99881
+8.8 -498.99881
+8.9 -498.99881
+9 -498.99881
+9.1 -498.99881
+9.2 -498.99881
+9.3 -498.99881
+9.4 -498.99881
+9.5 -498.99881
+9.6 -498.99881
+9.7 -498.99881
+9.8 -498.99881
+9.9 -498.99881
+10 -498.99881
 &
 @target G0.S3
 @type xy
-1.4 -498.63499
-1.5 -498.72456
-1.6 -498.78888
-1.7 -498.83659
-1.8 -498.87216
-1.9 -498.89846
-2 -498.91726
-2.1 -498.93011
-2.2 -498.9382
-2.3 -498.94254
-2.4 -498.94396
-2.5 -498.94344
-2.6 -498.94123
-2.7 -498.93788
-2.8 -498.93375
-2.9 -498.92912
-3 -498.92457
-3.2 -498.9149
-3.5 -498.90157
-4 -498.88272
-5 -498.8564
-10 -498.80396
+1.4 -498.52747
+1.5 -498.6108
+1.6 -498.67225
+1.7 -498.72179
+1.8 -498.76358
+1.9 -498.79885
+2 -498.82761
+2.1 -498.84964
+2.2 -498.86506
+2.3 -498.87476
+2.4 -498.87949
+2.5 -498.88013
+2.6 -498.87736
+2.7 -498.87181
+2.8 -498.86416
+2.9 -498.85536
+3 -498.84584
+3.1 -498.83639
+3.2 -498.82745
+3.3 -498.81922
+3.4 -498.81177
+3.5 -498.80542
+3.6 -498.79947
+3.7 -498.7941
+3.8 -498.78922
+3.9 -498.78475
+4 -498.78065
+4.1 -498.77685
+4.2 -498.77331
+4.3 -498.7703
+4.4 -498.76722
+4.5 -498.76432
+4.6 -498.76157
+4.7 -498.75896
+4.8 -498.75649
+4.9 -498.75413
+5 -498.75187
+5.1 -498.74972
+5.2 -498.74765
+5.3 -498.74567
+5.4 -498.74377
+5.5 -498.74194
+5.6 -498.74018
+5.7 -498.73848
+5.8 -498.73684
+5.9 -498.73526
+6 -498.73374
+6.1 -498.73226
+6.2 -498.73084
+6.3 -498.72946
+6.4 -498.72812
+6.5 -498.72682
+6.6 -498.72557
+6.7 -498.72435
+6.8 -498.72317
+6.9 -498.72203
+7 -498.72091
+7.1 -498.71983
+7.2 -498.71878
+7.3 -498.71776
+7.4 -498.71677
+7.5 -498.7158
+7.6 -498.71486
+7.7 -498.71394
+7.8 -498.71305
+7.9 -498.71218
+8 -498.71133
+8.1 -498.7105
+8.2 -498.70969
+8.3 -498.7089
+8.4 -498.70814
+8.5 -498.70739
+8.6 -498.70665
+8.7 -498.70594
+8.8 -498.70524
+8.9 -498.70456
+9 -498.70389
+9.1 -498.70324
+9.2 -498.7026
+9.3 -498.70197
+9.4 -498.70136
+9.5 -498.70076
+9.6 -498.70018
+9.7 -498.6996
+9.8 -498.69904
+9.9 -498.69849
+10 -498.69795
 &

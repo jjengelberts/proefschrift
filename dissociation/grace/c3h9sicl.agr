@@ -1,23 +1,53 @@
 # Grace project file
 #
-@version 50114
+@version 50123
 @page size 842, 595
 @page scroll 5%
 @page inout 5%
 @link page off
-@map font 0 to "Times-Roman", "Times-Roman"
-@map font 1 to "Times-Italic", "Times-Italic"
-@map font 2 to "Times-Bold", "Times-Bold"
-@map font 3 to "Times-BoldItalic", "Times-BoldItalic"
-@map font 4 to "Helvetica", "Helvetica"
-@map font 5 to "Helvetica-Oblique", "Helvetica-Oblique"
-@map font 6 to "Helvetica-Bold", "Helvetica-Bold"
-@map font 7 to "Helvetica-BoldOblique", "Helvetica-BoldOblique"
 @map font 8 to "Courier", "Courier"
-@map font 9 to "Courier-Oblique", "Courier-Oblique"
 @map font 10 to "Courier-Bold", "Courier-Bold"
 @map font 11 to "Courier-BoldOblique", "Courier-BoldOblique"
+@map font 9 to "Courier-Oblique", "Courier-Oblique"
+@map font 4 to "Helvetica", "Helvetica"
+@map font 6 to "Helvetica-Bold", "Helvetica-Bold"
+@map font 7 to "Helvetica-BoldOblique", "Helvetica-BoldOblique"
+@map font 5 to "Helvetica-Oblique", "Helvetica-Oblique"
+@map font 14 to "NimbusMonoL-BoldOblique", "NimbusMonoL-BoldOblique"
+@map font 15 to "NimbusMonoL-Regular", "NimbusMonoL-Regular"
+@map font 16 to "NimbusMonoL-RegularOblique", "NimbusMonoL-RegularOblique"
+@map font 17 to "NimbusRomanNo9L-Medium", "NimbusRomanNo9L-Medium"
+@map font 18 to "NimbusRomanNo9L-MediumItalic", "NimbusRomanNo9L-MediumItalic"
+@map font 19 to "NimbusRomanNo9L-Regular", "NimbusRomanNo9L-Regular"
+@map font 20 to "NimbusRomanNo9L-RegularItalic", "NimbusRomanNo9L-RegularItalic"
+@map font 21 to "NimbusSansL-Bold", "NimbusSansL-Bold"
+@map font 22 to "NimbusSansL-BoldCondensed", "NimbusSansL-BoldCondensed"
+@map font 23 to "NimbusSansL-BoldCondensedItalic", "NimbusSansL-BoldCondensedItalic"
+@map font 24 to "NimbusSansL-BoldItalic", "NimbusSansL-BoldItalic"
+@map font 25 to "NimbusSansL-Regular", "NimbusSansL-Regular"
+@map font 26 to "NimbusSansL-RegularCondensed", "NimbusSansL-RegularCondensed"
+@map font 27 to "NimbusSansL-RegularCondensedItalic", "NimbusSansL-RegularCondensedItalic"
+@map font 28 to "NimbusSansL-RegularItalic", "NimbusSansL-RegularItalic"
+@map font 29 to "StandardSymbolsL-Regular", "StandardSymbolsL-Regular"
 @map font 12 to "Symbol", "Symbol"
+@map font 31 to "Symbol-Regular", "Symbol-Regular"
+@map font 2 to "Times-Bold", "Times-Bold"
+@map font 3 to "Times-BoldItalic", "Times-BoldItalic"
+@map font 1 to "Times-Italic", "Times-Italic"
+@map font 0 to "Times-Roman", "Times-Roman"
+@map font 36 to "URWBookmanL-DemiBold", "URWBookmanL-DemiBold"
+@map font 37 to "URWBookmanL-DemiBoldItalic", "URWBookmanL-DemiBoldItalic"
+@map font 38 to "URWBookmanL-Light", "URWBookmanL-Light"
+@map font 39 to "URWBookmanL-LightItalic", "URWBookmanL-LightItalic"
+@map font 40 to "URWChanceryL-MediumItalic", "URWChanceryL-MediumItalic"
+@map font 41 to "URWGothicL-Book", "URWGothicL-Book"
+@map font 42 to "URWGothicL-BookOblique", "URWGothicL-BookOblique"
+@map font 43 to "URWGothicL-Demi", "URWGothicL-Demi"
+@map font 44 to "URWGothicL-DemiOblique", "URWGothicL-DemiOblique"
+@map font 45 to "URWPalladioL-Bold", "URWPalladioL-Bold"
+@map font 46 to "URWPalladioL-BoldItalic", "URWPalladioL-BoldItalic"
+@map font 47 to "URWPalladioL-Italic", "URWPalladioL-Italic"
+@map font 48 to "URWPalladioL-Roman", "URWPalladioL-Roman"
 @map font 13 to "ZapfDingbats", "ZapfDingbats"
 @map color 0 to (255, 255, 255), "white"
 @map color 1 to (0, 0, 0), "black"
@@ -54,7 +84,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Sat Jun  2 10:16:51 2007"
+@timestamp def "Tue Jul  7 10:47:56 2015"
 @r0 off
 @link r0 to g0
 @r0 type above
@@ -101,16 +131,10 @@
 @g0 fixedpoint format general general
 @g0 fixedpoint prec 6, 6
 @with g0
-@    world xmin 1
-@    world xmax 10
-@    world ymin -867.35
-@    world ymax -866.85
+@    world 1, -867.35, 10, -866.85
 @    stack world 0, 0, 0, 0
 @    znorm 1
-@    view xmin 0.150000
-@    view xmax 1.150000
-@    view ymin 0.150000
-@    view ymax 0.850000
+@    view 0.150000, 0.150000, 1.150000, 0.850000
 @    title ""
 @    title font 0
 @    title size 1.500000
@@ -189,7 +213,7 @@
 @    yaxis  label color 1
 @    yaxis  label place normal
 @    yaxis  tick on
-@    yaxis  tick major 0.1
+@    yaxis  tick major 0.2
 @    yaxis  tick minor ticks 1
 @    yaxis  tick default 6
 @    yaxis  tick place rounded true
@@ -297,8 +321,8 @@
 @    s0 errorbar riser linestyle 1
 @    s0 errorbar riser clip off
 @    s0 errorbar riser clip length 0.100000
-@    s0 comment "/Users/jeroene/results/dissociation/extra_trimethyl/table"
-@    s0 legend  "\l{0.3}E\l{-0.3}\stot\N\h{-0.65}\Sgas\N (min. 2.2 Å, -867.3267 a.u.)"
+@    s0 comment "/home/jeroene/Documents/proefschrift/dissociation/grace/c3h9sicl.dat"
+@    s0 legend  "\l{0.3}E\l{-0.3}\stot\N\h{-0.65}\Sgas\N (min. 2.2 Å, -867.32665 a.u.)"
 @    s1 hidden false
 @    s1 type xy
 @    s1 symbol 0
@@ -346,8 +370,8 @@
 @    s1 errorbar riser linestyle 1
 @    s1 errorbar riser clip off
 @    s1 errorbar riser clip length 0.100000
-@    s1 comment "/Users/jeroene/results/dissociation/extra_trimethyl/table"
-@    s1 legend  "\l{0.3}E\l{-0.3}\scov\N\h{-0.9}\Sgas\N (min. 2.1 Å, -867.24132 a.u.)"
+@    s1 comment "/home/jeroene/Documents/proefschrift/dissociation/grace/c3h9sicl.dat"
+@    s1 legend  "\l{0.3}E\l{-0.3}\scov\N\h{-0.9}\Sgas\N (min. 2.0 Å, -867.21743 a.u.)"
 @    s2 hidden false
 @    s2 type xy
 @    s2 symbol 0
@@ -395,104 +419,272 @@
 @    s2 errorbar riser linestyle 1
 @    s2 errorbar riser clip off
 @    s2 errorbar riser clip length 0.100000
-@    s2 comment "/Users/jeroene/results/dissociation/extra_trimethyl/table"
-@    s2 legend  "\l{0.3}E\l{-0.3}\sion\N\h{-0.8}\Sgas\N (min. 2.4 Å, -867.24335 a.u.)"
+@    s2 comment "/home/jeroene/Documents/proefschrift/dissociation/grace/c3h9sicl.dat"
+@    s2 legend  "\l{0.3}E\l{-0.3}\sion\N\h{-0.8}\Sgas\N (min. 2.5 Å, -867.21142 a.u.)"
 @target G0.S0
 @type xy
-1.5 -866.96271
-1.6 -867.10625
-1.7 -867.20049
-1.8 -867.26054
-1.9 -867.29687
-2 -867.3168
-2.1 -867.32551
-2.2 -867.3267
-2.3 -867.32302
-2.4 -867.3164
-2.5 -867.30815
-2.6 -867.29911
-2.7 -867.28985
-2.8 -867.28066
-2.9 -867.27171
-3 -867.26308
-3.2 -867.24689
-3.5 -867.2252
+1.5 -866.96233
+1.6 -867.10597
+1.7 -867.20031
+1.8 -867.26042
+1.9 -867.29679
+2 -867.31674
+2.1 -867.32546
+2.2 -867.32665
+2.3 -867.32298
+2.4 -867.31636
+2.5 -867.3081
+2.6 -867.29907
+2.7 -867.28981
+2.8 -867.28062
+2.9 -867.27168
+3 -867.26306
+3.1 -867.25478
+3.2 -867.24686
+3.3 -867.2393
+3.4 -867.23207
+3.5 -867.22519
+3.6 -867.21863
+3.7 -867.2124
+3.8 -867.2065
+3.9 -867.20089
 4 -867.1957
-4.1 -867.19293
-4.2 -867.19126
-4.3 -867.18991
+4.1 -867.19289
+4.2 -867.19125
+4.3 -867.1899
 4.4 -867.18887
 4.5 -867.18808
-4.6 -867.18747
+4.6 -867.18748
 4.7 -867.18702
 4.8 -867.18667
 4.9 -867.1864
-5 -867.18627
-10 -867.18549
+5 -867.18619
+5.1 -867.18604
+5.2 -867.18591
+5.3 -867.18582
+5.4 -867.18575
+5.5 -867.18569
+5.6 -867.18564
+5.7 -867.18561
+5.8 -867.18558
+5.9 -867.18555
+6 -867.18553
+6.1 -867.18552
+6.2 -867.1855
+6.3 -867.18549
+6.4 -867.18548
+6.5 -867.18547
+6.6 -867.18547
+6.7 -867.18546
+6.8 -867.18546
+6.9 -867.18545
+7 -867.18545
+7.1 -867.18544
+7.2 -867.18544
+7.3 -867.18543
+7.4 -867.18543
+7.5 -867.18543
+7.6 -867.18543
+7.7 -867.18542
+7.8 -867.18542
+7.9 -867.18542
+8 -867.18542
+8.1 -867.18541
+8.2 -867.18541
+8.3 -867.18541
+8.4 -867.18541
+8.5 -867.18541
+8.6 -867.18541
+8.7 -867.18541
+8.8 -867.1854
+8.9 -867.1854
+9 -867.1854
+9.1 -867.1854
+9.2 -867.1854
+9.3 -867.1854
+9.4 -867.1854
+9.5 -867.1854
+9.6 -867.1854
+9.7 -867.1854
+9.8 -867.1854
+9.9 -867.1854
+10 -867.1854
 &
 @target G0.S1
 @type xy
-1.5 -866.94392
-1.6 -867.07861
-1.7 -867.1608
-1.8 -867.20716
-1.9 -867.23035
-2 -867.23965
-2.1 -867.24132
-2.2 -867.23922
-2.3 -867.23546
-2.4 -867.23102
-2.5 -867.22636
-2.6 -867.22162
-2.7 -867.21685
-2.8 -867.21209
-2.9 -867.20738
-3 -867.20277
-3.2 -867.19406
-3.5 -867.18271
-4 -867.16436
-4.1 -867.18625
-4.2 -867.18684
-4.3 -867.18682
-4.4 -867.18665
-4.5 -867.18647
-4.6 -867.1863
-4.7 -867.18615
-4.8 -867.18603
-4.9 -867.18593
-5 -867.18593
-10 -867.18549
+1.5 -866.93029
+1.6 -867.06758
+1.7 -867.15005
+1.8 -867.19451
+1.9 -867.21368
+2 -867.21743
+2.1 -867.2134
+2.2 -867.20709
+2.3 -867.2017
+2.4 -867.19826
+2.5 -867.19651
+2.6 -867.19551
+2.7 -867.19438
+2.8 -867.19256
+2.9 -867.18981
+3 -867.18623
+3.1 -867.18196
+3.2 -867.17708
+3.3 -867.17181
+3.4 -867.16631
+3.5 -867.16047
+3.6 -867.15425
+3.7 -867.14741
+3.8 -867.1385
+3.9 -867.1269
+4 -867.11881
+4.1 -867.18491
+4.2 -867.18635
+4.3 -867.18657
+4.4 -867.18654
+4.5 -867.18642
+4.6 -867.18627
+4.7 -867.18614
+4.8 -867.18602
+4.9 -867.18592
+5 -867.18584
+5.1 -867.18578
+5.2 -867.18572
+5.3 -867.18568
+5.4 -867.18564
+5.5 -867.18561
+5.6 -867.18559
+5.7 -867.18556
+5.8 -867.18555
+5.9 -867.18553
+6 -867.18552
+6.1 -867.18551
+6.2 -867.1855
+6.3 -867.18549
+6.4 -867.18548
+6.5 -867.18547
+6.6 -867.18547
+6.7 -867.18546
+6.8 -867.18545
+6.9 -867.18545
+7 -867.18545
+7.1 -867.18544
+7.2 -867.18544
+7.3 -867.18543
+7.4 -867.18543
+7.5 -867.18543
+7.6 -867.18543
+7.7 -867.18542
+7.8 -867.18542
+7.9 -867.18542
+8 -867.18542
+8.1 -867.18541
+8.2 -867.18541
+8.3 -867.18541
+8.4 -867.18541
+8.5 -867.18541
+8.6 -867.18541
+8.7 -867.18541
+8.8 -867.1854
+8.9 -867.1854
+9 -867.1854
+9.1 -867.1854
+9.2 -867.1854
+9.3 -867.1854
+9.4 -867.1854
+9.5 -867.1854
+9.6 -867.1854
+9.7 -867.1854
+9.8 -867.1854
+9.9 -867.1854
+10 -867.1854
 &
 @target G0.S2
 @type xy
-1.5 -866.89945
-1.6 -867.02527
-1.7 -867.10733
-1.8 -867.16113
-1.9 -867.19625
-2 -867.21873
-2.1 -867.23244
-2.2 -867.23997
-2.3 -867.24313
-2.4 -867.24335
-2.5 -867.24154
-2.6 -867.23839
-2.7 -867.23441
-2.8 -867.22993
-2.9 -867.22521
-3 -867.22041
-3.2 -867.21099
-3.5 -867.19811
-4 -867.18162
-4.1 -867.15847
-4.2 -867.15029
-4.3 -867.14414
-4.4 -867.13917
-4.5 -867.13482
-4.6 -867.13095
-4.7 -867.12744
-4.8 -867.1243
-4.9 -867.12125
-5 -867.11856
-10 -867.06232
+1.5 -866.83884
+1.6 -866.95487
+1.7 -867.03453
+1.8 -867.09119
+1.9 -867.13211
+2 -867.16161
+2.1 -867.18246
+2.2 -867.19653
+2.3 -867.20526
+2.4 -867.20991
+2.5 -867.21142
+2.6 -867.21067
+2.7 -867.20842
+2.8 -867.20529
+2.9 -867.20178
+3 -867.19814
+3.1 -867.19459
+3.2 -867.19134
+3.3 -867.18837
+3.4 -867.18566
+3.5 -867.18334
+3.6 -867.1814
+3.7 -867.17986
+3.8 -867.17915
+3.9 -867.17885
+4 -867.1771
+4.1 -867.09351
+4.2 -867.07617
+4.3 -867.06513
+4.4 -867.05642
+4.5 -867.04939
+4.6 -867.04372
+4.7 -867.03871
+4.8 -867.03429
+4.9 -867.03036
+5 -867.02681
+5.1 -867.02355
+5.2 -867.02055
+5.3 -867.01776
+5.4 -867.01515
+5.5 -867.01269
+5.6 -867.01037
+5.7 -867.00817
+5.8 -867.00607
+5.9 -867.00407
+6 -867.00216
+6.1 -867.00033
+6.2 -866.99857
+6.3 -866.99688
+6.4 -866.99525
+6.5 -866.99368
+6.6 -866.99217
+6.7 -866.99071
+6.8 -866.98929
+6.9 -866.98793
+7 -866.98661
+7.1 -866.98533
+7.2 -866.98409
+7.3 -866.98288
+7.4 -866.98172
+7.5 -866.98058
+7.6 -866.97948
+7.7 -866.97841
+7.8 -866.97738
+7.9 -866.97637
+8 -866.97538
+8.1 -866.97443
+8.2 -866.9735
+8.3 -866.97259
+8.4 -866.97171
+8.5 -866.97085
+8.6 -866.97001
+8.7 -866.96919
+8.8 -866.96839
+8.9 -866.96762
+9 -866.96686
+9.1 -866.96612
+9.2 -866.96539
+9.3 -866.96469
+9.4 -866.964
+9.5 -866.96332
+9.6 -866.96266
+9.7 -866.96201
+9.8 -866.96138
+9.9 -866.96076
+10 -866.96016
 &
