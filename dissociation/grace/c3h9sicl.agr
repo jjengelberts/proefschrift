@@ -322,7 +322,7 @@
 @    s0 errorbar riser clip off
 @    s0 errorbar riser clip length 0.100000
 @    s0 comment "/home/jeroene/Documents/proefschrift/dissociation/grace/c3h9sicl.dat"
-@    s0 legend  "\l{0.3}E\l{-0.3}\stot\N\h{-0.65}\Sgas\N (min. 2.2 Å, -867.32665 a.u.)"
+@    s0 legend  "\l{0.3}E\l{-0.3}\stot\N\h{-0.65}\Sgas\N (min. 2.175 Å, -867.32689 a.u.)"
 @    s1 hidden false
 @    s1 type xy
 @    s1 symbol 0
@@ -371,7 +371,7 @@
 @    s1 errorbar riser clip off
 @    s1 errorbar riser clip length 0.100000
 @    s1 comment "/home/jeroene/Documents/proefschrift/dissociation/grace/c3h9sicl.dat"
-@    s1 legend  "\l{0.3}E\l{-0.3}\scov\N\h{-0.9}\Sgas\N (min. 2.0 Å, -867.21743 a.u.)"
+@    s1 legend  "\l{0.3}E\l{-0.3}\scov\N\h{-0.9}\Sgas\N (min. 2.000 Å, -867.21743 a.u.)"
 @    s2 hidden false
 @    s2 type xy
 @    s2 symbol 0
@@ -420,7 +420,7 @@
 @    s2 errorbar riser clip off
 @    s2 errorbar riser clip length 0.100000
 @    s2 comment "/home/jeroene/Documents/proefschrift/dissociation/grace/c3h9sicl.dat"
-@    s2 legend  "\l{0.3}E\l{-0.3}\sion\N\h{-0.8}\Sgas\N (min. 2.5 Å, -867.21142 a.u.)"
+@    s2 legend  "\l{0.3}E\l{-0.3}\sion\N\h{-0.8}\Sgas\N (min. 2.500 Å, -867.21142 a.u.)"
 @target G0.S0
 @type xy
 1.5 -866.96233
