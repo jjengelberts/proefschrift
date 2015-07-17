@@ -69,7 +69,7 @@ Multi-electron wave functions are either written as Hartree products \cite{hartr
 \begin{equation}
 \Psi=\prod_i \psi_i(\mathbf{\tau}_i),
 \end{equation}
-in which the parameters $\mathbf{\tau}_i$ contain the spatial and spin coordinates of the electrons. This type of wave function is used in the H\"uckel method \cite{huckel1,huckel2,huckel3} (see section \ref{ch1.sec.huckel}). Characteristic for Hartree product wave functions is that they do not fulfil the antisymmetry principle \cite{atkins}. This principle states that the total wave function must change sign when the spatial and spin coordinates of two electrons are interchanged, which is the case when the wave function is written as a determinant. In such a determinant, referred to as Slater determinant in quantum chemistry, the sign of the wave function changes:
+in which the parameters $\mathbf{\tau}_i$ contain the spatial and spin coordinates of the electrons. This type of wave function is used in the H\"uckel method \cite{huckel1,huckel2,huckel3}. Characteristic for Hartree product wave functions is that they do not fulfil the antisymmetry principle \cite{atkins}. This principle states that the total wave function must change sign when the spatial and spin coordinates of two electrons are interchanged, which is the case when the wave function is written as a determinant. In such a determinant, referred to as Slater determinant in quantum chemistry, the sign of the wave function changes:
 \begin{equation}
 \begin{split}
 \Psi_1 &=
@@ -154,16 +154,6 @@ in which $\mathbf{F}$ is the Fock matrix, $\mathbf{S}$ the orbital overlap matri
 In the Hartree-Fock method the most commonly used type of wave function is a single determinant with doubly occupied orbitals, \textit{i.e.} two electrons per orbital with paired spins. This is referred to as closed-shell and the wave function is called restricted Hartree-Fock (RHF). If not all orbitals are doubly occupied, \textit{i.e.} not all electrons are paired, the wave function is referred to as restricted open-shell Hartree-Fock (ROHF). When different spatial orbitals are used for electrons with $\alpha$ and $\beta$ spin, the method is referred to as unrestricted Hartree-Fock (UHF). An advantage of UHF over ROHF is that it gives a correct description of the dissociation of molecules into atoms or molecular fragments, for example. A disadvantage of UHF, however, is that the wave function is not a proper eigenfunction of the total spin operator $\mathbf{S}^2$.
 
 A property of the single determinant in the Hartree-Fock method is that each electron moves in the average electric field created by the other electrons, \textit{i.e.} there is no electron correlation. For a more accurate expression, the instantaneous interaction between the electrons must be taken into account. Electronic structure methods that take care of electron-electron interaction are called electron correlation methods. The difference between the Hartee-Fock energy ($E_\mathrm{HF}$) and the exact energy is called the \textit{correlation energy}. Three of these methods, the Configuration Interaction Method (CI) \cite{shavitt1,shavitt2}, Multi Configuration Self Consistent Field Method (MCSCF) \cite{daswahl,wahldasbook,mcscf,roos1,roos2} and the Coupled Cluster Method (CC) \cite{cc1,cc2}, will be introduced here.
-
-\subsection{\label{ch1.sec.huckel}The H\"{u}ckel Method}
-
-The H\"uckel method, based on Hartree products, is well suited for the qualitative analysis of $\pi$ electrons in conjugated molecules. Although this method is often used in Chemistry textbooks, it has been actually used as part of the research described in Chapter \chhuckel. Here, the H\"{u}ckel rule, or 4$n$+2 rule for aromatics \cite{bruice}, will be verified with the H\"{u}ckel method.
-
-The $\pi$ orbitals in planar conjugated molecules lie perpendicular to the molecular plane. These orbitals can be expressed as LCAOs of the $2p$ orbitals on the carbon atoms. For ethane this would lead to the molecular orbital $\psi$:
-\begin{equation}
-\psi=c_A \phi_{A_{2p}} + c_B \phi_{B_{2p}},
-\end{equation}
-where $\phi_{A_{2p}}$ and $\phi_{B_{2p}}$ are the $2p$ orbitals on carbon atoms A and B, respectively.
 
 \subsection{\label{ch1.sec.ci}The Configuration Interaction (CI) Method}
 
