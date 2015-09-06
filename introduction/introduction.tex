@@ -107,7 +107,7 @@ E=\sum_i h_{ii} + \frac{1}{2} \sum_i\sum_j (J_{ij} - K_{ij}) + \mathbf{V}_{nn},
 \end{equation}
 where $h_{ii}$:
 \begin{equation}
-h_{ii} = \left< \psi_i(\tau_1) | \mathbf{T}_{e}(\tau_1) + \mathbf{V}_{en}(\tau1) | \psi_i(\tau_1)\right>,
+h_{ii} = \left< \psi_i(\tau_1) | \mathbf{T}_{e}(\tau_1) + \mathbf{V}_{en}(\tau_1) | \psi_i(\tau_1)\right>,
 \end{equation}
 describes the kinetic energy of electron $\tau_1$ and its attraction to the nuclei.
 
@@ -137,7 +137,7 @@ Since the Fock operator depends on the orbitals it operates on, the Hartree-Fock
 
 The optimization is performed by modifying the coefficients $c_n$ for the atomic orbitals in equation \ref{ch1.eq.lcaomo}. The Fock operator, expressed in atomic orbitals (AOs), becomes:
 \begin{equation}
-\mathbf{F}(i)\sum_n c_n \phi_n = \epsilon_j \sum_n c_n \phi_n.
+\mathbf{F}\sum_n c_n \phi_n (i) = \epsilon_j \sum_n c_n \phi_n (i).
 \label{ch1.eq.fockao}
 \end{equation}
 
@@ -184,7 +184,7 @@ Although CI wave functions have not been used for the calculations described in 
 \subsection{\label{ch1.sec.mcscf}The Multi Configuration Self Consistent Field (MCSCF) Method}
 Like in CI, Multi Configuration Self Consistent Field (MCSCF) wave function are expressed in Configuration State Functions (CSFs) \cite{wahldasbook,daswahl}. In contrast with CI, both the orbital \textit{and} the expansion coefficients are optimized in MCSCF.
 
-In MCSCF the Super CI method \cite{superci1,superci2}, in which the wave function is expanded with singly excited structures, is used. For this expanded wave function the CI (or Brillouin) vector $\mathbf{b}$ is determined by solving the generalized eigenvalue problem:
+One of the methods to optimize MCSCF wave functions is the Super CI method \cite{superci1,superci2}, in which the wave function is expanded with singly excited structures. For this expanded wave function the CI (or Brillouin) vector $\mathbf{b}$ is determined by solving the generalized eigenvalue problem:
 \begin{equation}
 [\mathbf{H}-E_b] \cdot \mathbf{b} = 0,
 \label{ch1.eq.geig}
@@ -321,7 +321,7 @@ Resonance energy is often used in discussions on aromaticity. In the 19$^\mathrm
 \end{figure}
 The stability of benzene was ascribed to the delocalization of the 6 $\pi$ electrons, expressed in the resonance between the two Kekul\'e structures.
 
-The Valence Bond wave functions described so far (equations \ref{ch1.eq.hl},\ref{ch1.eq.hlplus} and \ref{ch1.eq.nacl}) are of the classical type. Modern Valence Bond wave functions do not necessarily describe the bonding between separate atoms, but can also describe the bonding between molecular fragments. On these molecular fragments the orbitals can be expressed as linear combinations of atomic orbitals (AOs) available for that fragment. It is more appropriate to denote these functions as molecular orbitals (MOs), since they can spread over several atoms. 
+The Valence Bond wave functions described so far (equations \ref{ch1.eq.hl}, \ref{ch1.eq.hlplus} and \ref{ch1.eq.nacl}) are of the classical type. Modern Valence Bond wave functions do not necessarily describe the bonding between separate atoms, but can also describe the bonding between molecular fragments. On these molecular fragments the orbitals can be expressed as linear combinations of atomic orbitals (AOs) available for that fragment. It is more appropriate to denote these functions as molecular orbitals (MOs), since they can spread over several atoms. 
 
 In modern type Valence Bond wave functions atomic and molecular orbital models can also be mixed. For example, a commonly used VB wave function for benzene consists of complete MO description containing the core (the inner shell AOs, \textit{i.e.} the $1s$ orbitals on carbon) and the $\sigma$ system (the valence shell AOs in the plane of the molecule (X-Y), \textit{i.e.} the $2s$, $2p_x$, $2p_y$ orbitals on carbon and the $1s$ orbitals on hydrogen), while the $\pi$ system is described by atomic $2p_z$ orbitals. The total wave function $\Psi_{tot}$ then becomes an antisymmetrized product of an MO wave function for the core-$\sigma$ system and a VB wave function for the $\pi$ system:
 \begin{equation}
@@ -340,11 +340,11 @@ This type of Valence Bond wave function is used in Chapter \chdissociation\ to g
 
 \subsection{Valence Bond Configuration Interaction (VBCI)}
 
-As the name suggests, there is a strong analogy between the Valence Bond Configuration Interaction Method (VBCI) and Configuration Interaction (section \ref{ch1.sec.ci}). In both cases the orbitals are not optimized in the expansion, but rather only the structure (VB) or CSF (CI) coefficients. A difference between the two is that in the VB case, there is no orthogonality restriction between the orbitals, while in CI the orbitals are orthogonal.
+As the name suggests, there is a strong analogy between the Valence Bond Configuration Interaction Method (VBCI) and Configuration Interaction (section \ref{ch1.sec.ci}). In both cases the orbitals are not optimized in the expansion, but rather only the structure (VB) or CSF (CI) coefficients. A difference between the two is that in the VB case, there is no orthogonality restriction between the orbitals, while in CI the orbitals are orthogonal, leading to more complex calculations in the VB case.
 
 A typical VBCI wave function used in TURTLE consists of several VB structures representing distinctive Lewis structures like the wave function in equation \ref{ch1.eq.hlplus}. Although the bond in H$_2$ is typically covalent in nature, the two ionic structures are included. The effect of the inclusion of the two ionic structures is that the electron on one hydrogen atom gets more freedom to move towards the other hydrogen atom. Even for the covalent bond in H$_2$ this results in a total weight for the ionic structures of 14\% and a lower total energy (\textit{vide supra}) indicating that including these structures improves the wave function.
 
-In the last few years Wu \textit{et al.} have published some articles on VBCI \cite{vbci_wu1,vbci_wu2}. A difference between the implementation in TURTLE and Xiamen \cite{xiamen} is that in TURTLE \textit{any} selection of structures in the expansion and of the orbitals is allowed, while in Xiamen the possibilities for selection are predefined. To start with the latter difference, Wu \textit{et al.} take the orbitals from a preceding VBSCF (\textit{vide infra}) calculation as starting point, while in TURTLE any orbital set may be chosen. For the expansion of the structures any imaginable structure may be included in TURTLE, while the expansion in Xiamen are created by external excitations from a reference structure. In a structure with external excitations one or more occupied orbitals are replaced by empty, or virtual, orbitals. Internal excitations are excitations to orbitals which are vacant in some structures. An example of such an excitation is from $\mathrm{[H^\bullet H^\bullet]}$ to $\mathrm{[H^{+} H^{-}]}$, \textit{i.e.} from $1s_A$ to $1s_B$ once for $\alpha$ and once for $\beta$ spin. Wu defines three levels of expansion: in VBCI(S,S) only singly excited structures are involved. In VBCI(D,S) the active shell, \textit{e.g.} the orbitals in $\Psi_{\pi}$ in benzene (equation \ref{ch1.eq.prodbenzene}), is treated by single and double excitations, whereas the inactive shell, \textit{e.g.} $\Psi_{\mathrm{core}-\sigma}$, is expanded with single excitations only. Also included in this level are double excitations which consist of a single excitation from each shell. In VBCI(D,D) single and double excitations are involved for both active and inactive electrons.
+In the last few years Wu \textit{et al.} have published some articles on VBCI \cite{vbci_wu1,vbci_wu2}. Although they use the same acronym, their interpretation and implentation in Xiamen \cite{xiamen} is different than ours. In their VBCI the ground state wave function, optimized with VBSCF (see Section \ref{ch1.sec.vbscf}), is expanded with singly (S) and doubly (D) excited states. In our case, \textit{any} selection of structures in the expansion is allowed. Besides, the orbitals in our case may be created in any imaginable way. In a structure with external excitations one or more occupied orbitals are replaced by empty, or virtual, orbitals. Internal excitations are excitations to orbitals which are vacant in some structures. An example of such an excitation is from $\mathrm{[H^\bullet H^\bullet]}$ to $\mathrm{[H^{+} H^{-}]}$, \textit{i.e.} from $1s_A$ to $1s_B$ once for $\alpha$ and once for $\beta$ spin. Wu defines three levels of expansion: in VBCI(S,S) only singly excited structures are involved. In VBCI(D,S) the active shell, \textit{e.g.} the orbitals in $\Psi_{\pi}$ in benzene (equation \ref{ch1.eq.prodbenzene}), is treated by single and double excitations, whereas the inactive shell, \textit{e.g.} $\Psi_{\mathrm{core}-\sigma}$, is expanded with single excitations only. Also included in this level are double excitations which consist of a single excitation from each shell. In VBCI(D,D) single and double excitations are involved for both active and inactive electrons.
 
 An example of a VBCI wave function is the wave function for benzene, C$_6$H$_6$, in which the $\pi$ system ($\Psi_{\pi}$) is constructed of atomic $2p_z$ orbitals and the core-$\sigma$ system of 18 doubly occupied orbitals. With 6 $\pi$ electrons, 6 $2p_z$ orbitals and all possible bonding arrangements a wave function consisting of 175 structures can be defined (Figure \ref{ch1.fig.structures2}). 
 \begin{figure}[htbp]
@@ -363,9 +363,9 @@ In general, an advantage of VBCI is that it can deliver quantitative good result
 
 \subsection{\label{ch1.sec.vbscf}Valence Bond Self Consistent Field (VBSCF)}
 
-In contrast with VBCI, both the orbital \textit{and} the expansion coefficients are optimized. This is analogous to the Multi Configuration Self Consistent Field method (MCSCF) (section \ref{ch1.sec.mcscf}). A VBSCF wave function is  expressed in structures, which are the non-orthogonal equivalent of the Configuration State Functions (CSFs) in MCSCF.  Two major differences are that both bonding \textit{and} anti-bonding orbitals occur in CSFs and that the molecular orbitals (MOs) are chosen orthogonal in MCSCF.
+Like in VBCI, the wave function in VBSCF is expressed in VB structures. However, in contrast to VBCI, both the orbitals \textit{and} the expansion coefficients are optimized. This is analogous to the Multi Configuration Self Consistent Field method (MCSCF) (section \ref{ch1.sec.mcscf}). A VBSCF wave function is  expressed in structures, which are the non-orthogonal equivalent of the Configuration State Functions (CSFs) in MCSCF.  Two major differences are that both bonding \textit{and} anti-bonding orbitals occur in CSFs and that the molecular orbitals (MOs) are chosen orthogonal in MCSCF.
 
-Like in MCSCF, in VBSCF the Super CI method \cite{superci1,superci2}, in which the wave function is expanded with singly excited structures, is used. For VBSCF, however, the overlap matrix between the structures ($\mathbf{S}$) enter the equation (compare with MCSCF in equation \ref{ch1.eq.geig}). Likewise, the  Brillouin vector is determined by solving the generalized eigenvalue problem:
+In analogy with MCSCF, in VBSCF the Super CI method \cite{superci1,superci2}, in which the wave function is expanded with singly excited structures, can be used. For VBSCF, however, the overlap matrix between the structures ($\mathbf{S}$) enter the equation (compare with MCSCF in equation \ref{ch1.eq.geig}). Likewise, the  Brillouin vector is determined by solving the generalized eigenvalue problem:
 \begin{equation}
 [\mathbf{H}-E_b\mathbf{S}] \cdot \mathbf{b} = 0,
 \label{ch1.eq.geigvb}
@@ -379,7 +379,7 @@ Cooper, Gerratt and Raimondi investigated benzene with a VB wave function in whi
 \caption{A set of singly occupied $p$ orbitals on benzene (top) and on borazine (bottom). In these orbital plots the boron atoms are dark colored and the nitrogen atoms light.}
 \label{ch1.fig6}
 \end{figure}
-The orbitals in these plots, made with Molden \cite{molden}, are taken from a VBSCF calculation (\textit{cf.} Chapter \chinorganic). They are, however, equivalent with the contour plots of the SCVB orbitals as published by Cooper \textit{et al.} in Nature \cite{nature}.
+The orbitals in these plots, made with Molden \cite{molden}, are taken from a VBSCF calculation (\textit{cf.} Chapter \chinorganic). They are, however, equivalent with the contour plots of the orbitals as published with SCVB (see Section \ref{ch1.sec.scvb}) by Cooper \textit{et al.} in Nature \cite{nature}.
 
 A molecule which is iso-electronic with benzene and which also has a planar hexagonal structure is borazine (see the structural formulae on the right hand side in Figure \ref{ch1.fig6}: top - benzene; bottom - borazine). Although both molecules have 6 $\pi$ electrons, their electron contribution is rather different. In benzene, each carbon atom contributes one $p$ electron, while in borazine only the nitrogen atoms contribute two $p$ electrons each. VBSCF calculations with initial atomic $p$ orbitals on each atom of both hexagonal molecules show that the $p$ orbitals remain more or less centered on the initial carbon atom in the case of benzene,  while in the case of borazine an atomic $p$ orbital, which originated on a boron atom, migrated to a neighboring nitrogen atom (with tails remaining on the boron atoms), forming a (localized) lone-pair description with the $p$ orbital already present there (Figure \ref{ch1.fig6}, bottom).
 
@@ -405,10 +405,10 @@ From H\"{u}ckel's rule \cite{huckel2,huckel4}, it is expected that planar hydroc
 
 In the VB wave functions described so far there is only \textit{one} set of orbitals. In the previous benzene examples (Figure \ref{ch1.fig.structures2}) all structures used the same 6 $2p_z$ orbitals. In the 1990s Hiberty \textit{et al.} introduced the Breathing Orbital Valence Bond method (BOVB). In a BOVB wave function \textit{each structure} has its \textit{own set of orbitals}. For F$_2$, with the structures $\mathrm{[F^\bullet F^\bullet]}$, $\mathrm{[F^{+} F^{-}]}$ and $\mathrm{[F^{-} F^{+}]}$, this means that F$^\bullet$, F$^{-}$ and F$^{+}$ have different orbitals. So, the covalent structure has orbitals optimized for neutral atoms, while the ionic structure has orbitals optimized for charged atoms, which, from an electrostatic point of view, corresponds more to reality than both structures having the same, mostly an average between the two extremes, set of orbitals. The higher versatility of the BOVB method compared to plain VBSCF is reflected in the lower expectation values of the energy, although at cost. Because orbitals in different structures might resemble each other much, \textit{i.e.} have a large overlap, dependencies in the orbital basis can occur, which leads to difficult convergence or no convergence at all.
 
-\subsection{Spin-Coupled Valence Bond (SCVB)}
+\subsection{\label{ch1.sec.scvb}Spin-Coupled Valence Bond (SCVB)}
 Cooper, Gerratt and Raimondi have developed the Spin-Coupled Valence Bond (SCVB) method that uses a single reference configuration \cite{scvb1,scvb2,scvb3}. This reference configuration contains doubly and singly occupied orbitals. For the singly occupied orbitals \textit{all} spin-couplings are taken into account. A special form of SCVB is the Complete Active Space Valence Bond (CASVB). As the name of the latter suggests, in CASVB all possible excited structures are generated in the active space. This corresponds to a full CI in the active space. Wave functions of the CAS type are invariant to general transformations and hence the CASVB wave function can be transformed to an (orthogonal) CASSCF wave function. This wave function is optimized (see section \ref{ch1.sec.mcscf}) and transformed back into the CASVB wave function \cite{thor1,thor2,thor3,thor4}.
 
-This method is equivalent with the VBSCF method described in the previous subsection. That is, if in the VBSCF all possible spin-couplings are taken into account. In that case, the expectation value for the total energy ($E_\mathrm{tot}$) will be the same for the same basis set.
+This SCVB method is equivalent with the VBSCF method described in the previous subsection. That is, if in the VBSCF all possible spin-couplings are taken into account. In that case, the expectation value for the total energy ($E_\mathrm{tot}$) will be the same for the same basis set.
 
 \section{Overview of this Thesis}
 
