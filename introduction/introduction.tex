@@ -221,31 +221,20 @@ The first term on the right hand side generates the reference $\Phi_0$ and the s
 Like in CI, the excitation level is truncated in practice. Commonly used levels of coupled cluster are single, double and triple, CCS, CCSD and CCSDT, respectively. CCSDT gives good correlation energies and is accurate. However, the inclusion of the triple excitations makes this method very compute intensive. The designation CCSD(T), with the T between brackets, indicates that the triple excitations are approximated by perturbation theory rather than computed, making it less compute intensive.
 
 \subsection{Density Functional Theory (DFT)}
-The central goal of all methods described so far is to solve the time independent Schr\"{o}dinger equation (equation \ref{ch1.eq.hpsi}). This is also the goal of the Density Functional Theory (DFT) \cite{jensen, hohenberg, kohnsham}, but the approach is different. The most compute intensive operator in the Hamiltonian is the electron-electron repulsion term ($\mathbf{V}_{ee}$). The idea of DFT is to solve the Schr\"{o}dinger equation by means of a density function instead of the electon-electron repulsion operator.
+The central goal of all methods described so far is to solve the time independent Schr\"{o}dinger equation (equation \ref{ch1.eq.hpsi}). This is also the goal of the Density Functional Theory (DFT) \cite{jensen, hohenberg, kohnsham}, but the approach is different. 
 
-The density function is defined as:
-\begin{equation}
-\rho(r_1)=n \int ds_1dr_2ds_2 ... dr_nds_n | \Psi(r_1,s_1,r_2,s_2, ... r_n,s_n)|^2,
-\end{equation}
-where $r_1$ and $s_1$ stand for the spatial and spin coordinates of electron one, respectively. The first Hohenberg-Kohn theorem, central to DFT, states that a bijection relation of the external potential and the ground state density function exits. This means that the ground state density function is uniquely set by the external potential and
-that the external potential is unambiguously determined by the ground state density function:
-\begin{equation}
-\rho^0(\mathbf{r}) \Leftrightarrow v^{ext}(\mathbf{r}).
-\end{equation}
+The basis for DFT is the proof by Hohenberg and Kohn \cite{hohenberg} that the ground state electronic energy is determined completely by the electron density $\rho$ (for a derivation see Appendix B in Chapter 16 of reference \cite{jensen}): a one-to-one correspondence between the electron density of a system and the energy exists.
 
-Like in wave function methods, described before, Kohn and Sham introduced orbitals into DFT. These orbitals are describing an external N-electron system that has the same density function as the real N-electron system, without the electron-electron repulsion. The corresponding density function is:
-\begin{equation}
-\rho(\mathbf{r}) = \sum_i | \psi_i(\mathbf{r})|^2.
-\label{ch1.eq.kohnsham1}
-\end{equation}
-The one electron Hamilton operator per orbital $i$ then becomes:
-\begin{equation}
-\left( -\frac{1}{2} \sum_i \nabla^2_i + v_s (\mathbf{r}) \right) \psi_i(\mathbf{r}) = \epsilon_i\psi_i(\mathbf{r}),
-\label{ch1.eq.kohnsham2}
-\end{equation}
-where the first term is the kinetic energy operator and $v_s(\mathbf{r})$ the external effective potential. In practice, finding an appropriate $v_s(\mathbf{r})$ is a challenge. The equations \ref{ch1.eq.kohnsham1} and \ref{ch1.eq.kohnsham2} are solved iteratively with the variational principle \cite{varia}.
+A wave function describing an $N$ electron system contains $4N$ variables, three spatial and one spin coordinate per electron. The electron density is the square of the wave function, integrated over $N - 1$ electron coordinates, and each spin density, separately for $\alpha$ and $\beta$, only depends on three spatial coordinates, independent of the number of electrons. While the complexity of a wave function increases exponentially with the number of electrons, the electron density has the same number of variables, independent of the system size.
 
-Throughout this thesis, DFT calculations are mainly used to find optimal equilibrium geometries. On top of these geometries, other types of (Valence Bond) wave functions are constructed for analyzing properties of the molecules at hand.
+The challenge in DFT is that, although it has been proven that each different density yields a different ground state energy, the functional connecting the ground state energy with the electron density is not known. Currently, several methods to construct functionals connecting the electron density with the energy have been developed.
+
+Modern DFT methods are based on the idea that the kinetic energy of the electrons should be calculated from an auxiliary
+set of orbitals used for representing the electron density \cite{kohnsham}. These orbitals are referred to as Kohn-Sham orbitals. The exchange correlation energy, a small part of the total energy, is then the only unknown functional. The simplest functional for the exchange correlation energy is the local density approximation (LDA), where the electron density is assumed to be slowly varying, such that the exchange correlation energy can be calculated using formulas derived for a uniform electron density.
+
+An improvement towards non-uniform electron densities, often found in molecules, is to make the exchange and correlation energies dependent not only on the electron density but also on derivatives of the density. These methods are referred to as Generalized Gradient Approximations (GGA).
+
+To enhance the versatility further, so-called hybrid methods have been developed. These methods use a combination of several functionals of the LDA and GGA type. The hybrid functional used throughout this thesis is B3LYP \cite{b3lyp1,b3lyp2,b3lyp3}, which is a combination of LDA and GGA type functionals. These functionals are parametrized, \textit{i.e.} they are weighted in the total functional. These parameters have been fitted to experimental data. Within the quantum chemical society this has given rise to discussions whether DFT with the B3LYP functional should still be considered as an \textit{ab initio} method or as a semi-empirical one \cite{jensen}. Independent of the principle discussion, this method has been considered fast and accurate and is used throughout this thesis to find optimal equilibrium geometries. On top of these geometries, other types of (Valence Bond) wave functions are constructed for analyzing properties of the molecules at hand.
 
 \section{The Valence Bond Method}
 
