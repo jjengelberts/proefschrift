@@ -809,7 +809,7 @@ In this section results from a few test calculations will be presented. The calc
 \subsection{\label{ch2.sec.aromat}First Example: Cyclic Hydrocarbons}
 
 Aromaticity has been and still is widely studied using Valence Bond theory \cite{cooper1,cooper2,remcolowdin,indacene,fowler,jenneskens,cyclohexatriene,bestbenzene,benzyne}. The molecules involved are planar, having a separation of the $\sigma$ and $\pi$ system. For the test four planar molecules, cyclobutadiene (\textbf{1}), benzene (\textbf{2}), cyclooctatetraene (\textbf{3}) and pentalene (\textbf{4}) have been selected (Figure \ref{ch2.fig.compounds}).
-\begin{figure}[htdp]
+\begin{figure}[htp]
 \center
 \includegraphics[scale=0.85]{orbopt/figures/compounds.eps}
 \caption{Cyclobutadiene (\textbf{1}), benzene (\textbf{2}), cyclooctatetraene (\textbf{3}) and pentalene (\textbf{4}). Underneath the compound numbers the symmetry used for the respective compounds has been printed.}
@@ -863,7 +863,7 @@ Delocal VBSCF calculations, for which no examples have been presented here, do n
 \subsection{\label{ch2.sec.cyclopent}Second Example: The Cp-SiH Molecule}
 
 For the work described in Chapter \chcyclopentadienyl\, a number of local VBSCF calculations have been performed to investigate the bonding mechanism of main group metal hydrides to cyclopentadienyl moieties. For details on the geometry optimization and the basis sets used, see Chapter \chcyclopentadienyl\ and reference \cite{budzelaar}. One of the molecules from that research is taken, the $\sigma$ bound \mbox{Cp-SiH} structure (Figure \ref{fig.cpsih}).
-\begin{figure}[htdp]
+\begin{figure}[htp]
 \center
 \includegraphics[scale=0.6]{orbopt/figures/sigma_sih.eps}
 \caption{The $\sigma$ bound structure of Cp-SiH. Shown are the two singly occupied orbitals: the $sp$ hybridized orbital on SiH (left) and a $p$ orbital on the Cp-ring (right).}
@@ -878,7 +878,7 @@ For the original calculations TURTLE's \textit{super} option, which ensures that
 Besides the effect of the \textit{pert} option, the effect of the convergence helpers DIIS \cite{diis1,diis2} and level shifting \cite{level1,level2} was analyzed. In DIIS a successive set of iterations, of which each has an associated set of new orbitals and a gradient vector ($\mathbf{b}$), are used to guess the new orbitals. For more details and its use in TURTLE, see appendix III in \cite{koos1}. With the level shifter in TURTLE, the value of $\left < \Psi_0 | \mathbf{H} - E_0 | \Psi_0 \right >$ is lowered by a user specified amount during the diagonalization step. A useful value for the shifter, if any, is found by trial and error. DIIS, when applied, was used from the first iteration on. For the level shifter, when applied, only the value 1 was used. This means that 1 au is subtracted from the upper left corner element in the Brillouin matrix, $\left< \Psi_0 | \mathbf{H} - E_0 | \Psi_0 \right>$. Furthermore, the convergence criterion was set to 1*10$^{-4}$ as maximum value for any of the Brillouin coefficients ($b_{ia}$, equation \ref{ch2.eq.superci}). This resulted in a total VB-energy which was, up to 5 decimal places, the same for all (converged) calculations: -481.44177 Hartree.
 
 The results of the calculations are presented in Table \ref{ch2.tab.budzelaar}.
-\begin{table}[htdp]
+\begin{table}[htp]
 \caption{Timings in seconds of the VBSCF calculations on Cp-SiH (with the number of iterations between parenthesis). Three different optimization types were tested, regular Super CI, \textit{pert} doc-uoc and \textit{pert} doc-uoc/voc-uoc. With these different optimization types a combination of two convergence aids, DIIS and a level shifter (only for the \textit{pert} calculations) have been applied.}
 \begin{center}
 \begin{tabular}{l c c}
