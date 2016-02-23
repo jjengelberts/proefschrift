@@ -410,25 +410,12 @@ Cooper, Gerratt and Raimondi have developed the Spin-Coupled Valence Bond (SCVB)
 
 This SCVB method is equivalent with the VBSCF method described in the previous subsection. That is, if in the VBSCF all possible spin-couplings are taken into account. In that case, the expectation value for the total energy ($E_\mathrm{tot}$) will be the same for the same basis set.
 
-\section{Overview of this Thesis}
+\section{Properties of Molecules}
+In this thesis, the molecules described are not only studied by solving the Schr\"{o}dinger equation (equation \ref{ch1.eq.hpsi}) with the standard Hamilton operator (equation \ref{ch1.eq.htotal}), but with extended, or perturbated, Hamiltonians as well. With these operators, additional properties, like solvability (Chapter \chdissociation) and magnetizability (Chapters \chhuckel, \chinorganic\  and \chindacene), can be studied. 
 
-This thesis consists of three parts: methodology (Chapter \chorbopt), assessment of complex chemical bonding, such as bond making and breaking of dative bonds and bonds with different $\eta$-hapticities (Chapters \chdissociation\ and \chcyclopentadienyl), and aromaticity (Chapters \chhuckel, \chinorganic\ and~\chindacene).
-
-As mentioned earlier, the orbitals in a VB wave function can be optimized with \mbox{VBSCF}. One of the optimization methods is Super CI. Within this method, the VB wave function is extended with all possible singly excited structures. These singly excited structures contain 1-2 times the number of determinants in the ground state wave function. Besides, due to the non-orthogonality, first and second order cofactors, which are signed subdeterminants with orbital overlaps, need to be evaluated.
-
-In Chapter \chorbopt\ the possibilities to bypass these singly excited structures and cofactors are analyzed. In MCSCF, Fock matrices have been used for the optimization of doubly occupied orbitals \cite{roos1,roos2}. The analogy between MCSCF and VBSCF, as explained in Section \ref{ch1.sec.vbscf}, justifies a close look at the possible use of a Fock operator in VBSCF. In this chapter the applicability of Fock matrices for the optimization of orbitals in VBSCF is analyzed. Besides, several improvements on the earlier implemented approximated Newton-Raphson technique \cite{koos1} will be presented. The chapter is concluded with some test calculations for which the speed-up factors are compared.
-
-The dissociation behavior of molecules is influenced by the surrounding medium. In Chapter \chdissociation\ this influence is analyzed by comparing the dissociation behavior of four chlorine containing compounds in the gas-phase with in solution. The molecules are chloromethane, \textit{tert}-butylchloride, chlorosilane and trimethylsilylchloride (Figure \ref{ch1.fig.structures1} in which M=C or Si and R=H or CH$_3$).
-\begin{figure}[htbp]
-\center
-\includegraphics{introduction/figures/structures.eps}
-\caption{The total wave function is a combination of three Lewis structures \textbf{a}, \textbf{b} and \textbf{c}, in which M=C or Si and R=H or CH$_3$.}
-\label{ch1.fig.structures1}
-\end{figure}
-The M-Cl bond  is stretched and for several bond lengths the total VB energy and the energy of the separate covalent and ionic structures is calculated. At large distances only the covalent structure (Figure \ref{ch1.fig.structures1}, structure \textbf{a}) contributes to the wave function for the gas-phase. 
- 
+\subsection{\label{ch1.sec.solv}Solvation}
 In computational chemistry, the methods for evaluating solvent effects can be divided into two types: those describing the individual solvent molecules and those that treat the solvent as a continuous medium \cite{jensen}. In continuum models, like the Polarizable Continuum Model (PCM) \cite{pcm1,pcm2}, the solvent is considered to be a uniform polarizable medium with a dielectric constant of $\epsilon$. The solute \textbf{M} is placed in a suitably shaped hole in the medium (figure \ref{ch1.fig.continuum}).
-\begin{figure}
+\begin{figure}[hb]
 \center
 \includegraphics[scale=0.6]{introduction/figures/continuum.eps}
 \caption{The solute (\textbf{M}) placed in a suitably shaped hole (white circle), placed in a medium (gray area).}
@@ -448,7 +435,44 @@ In SCRF, the Hamiltonian is extended with the potential $\phi_\sigma$ from the s
 \end{equation}
 in which $\mathbf{H}$ is the total Hamiltonian, $\mathbf{H}_0$ the Hamiltonian for the free molecule \textbf{M} and $\phi_\sigma(\mathbf{r})$ the surface charge being the integral over the charges $\sigma(\mathbf{r}_\mathrm{s})$ at points $\mathbf{r}_\mathrm{s}$. Since the change in the wave function results in an updated $\phi_\sigma$, the optimization of the system is iterative in nature.
 
-With PCM switched on \textit{tert}-butylchloride, chlorosilane and trimethylsilylchloride dissociate in ions, \textit{i.e.} at large distances only the ionic structure (Figure \ref{ch1.fig.structures1}, structure \textbf{b}) contributes to the wave function.  Chloromethane is hardly influenced by the solvating medium. At large distances the covalent structure remains the most important for this molecule.  
+\subsection{\label{ch1.sec.magnet}Magnetizability}
+Molecules react differently to an external magnetic field. In benzene, for example, the center of the ring is shielded, while the edges of the molecule are deshielded. This phenomenon is measurable with the nucleus-independent chemical shift (NICS) \cite{schleyer}. With this method the absolute magnetic shieldings at the center of the molecular ring are calculated. If a magnetic field is directed perpendicular to the plane of an aromatic system, like benzene, a ring current is induced in the delocalized $\pi$ electrons of the aromatic ring, since these $\pi$ electrons are free to circulate, and hence obey Amp\`{e}re's Law (see Figure \ref{ch1.fig.ringcurrent}).
+\begin{figure}[htp]
+\center
+\includegraphics{introduction/figures/ringcurrent.eps}
+\caption{A diagram of an aromatic ring current. $\mathrm{B_0}$ is the applied magnetic field, the up-arrow indicating its direction. The arrows in the plane of the atoms shows the direction of the ring current, and the two rings with arrows perpendicular to the C$_6$ ring show the direction of the induced magnetic field. Note that the direction of the current is the opposite of the direction of movement of the ($\pi$) electrons.}
+\label{ch1.fig.ringcurrent}
+\end{figure}
+
+The total ring current is independent of the choice of the gauge, \textit{i.e.} the formal center of rotation. However, this is not true for individual orbital contributions \cite{ipso1}. In the ipsocentric model of Continuous Transformation of Origin of Current-Density Diamagnetic Zero (CTOCD-DZ) the induced current density is calculated at each point with the gauge origin at that point \cite{ipso1,ipso2}. With this method the induced ring current per orbital can be calculated.
+
+In this ipsocentric formulation, the current densities are expressed as sums over states and may be analyzed in terms of the accessibility of excited states via translational and rotational transitions. For two example molecules, benzene (aromatic) and planar cyclooctatetraene (anti-aromatic), the orbital scheme with these transitions is shown for the $\pi$ system in Figure \ref{ch1.fig.orbital_scheme}. 
+\begin{figure}[hb]
+\center
+\includegraphics[scale=0.32]{introduction/figures/orbital_scheme.eps}
+\caption{Orbital energy scheme for (a) benzene ($D_\mathrm{6h}$) and (b) planar cyclooctatetraene ($D_\mathrm{4h}$), showing symmetries, nodal characteristics, occupancies and \textit{k} values. Possible transitions are indicated by straight (translational) and bent (rotational) arrows (Figure taken from reference \cite{ipso2}). On the right hand side the ring current plots for the HOMO-LUMO transitions (bold arrows) are given for both molecules.}
+\label{ch1.fig.orbital_scheme}
+\end{figure}
+The HOMO-LUMO transitions are shown by bold arrows. A straight arrow indicates a translational transition (in the case of benzene, (a)), while a bent arrow indicates a rotational transition (in the case of cyclooctatetraene (b)). On the right hand side in the figure, the induced ring current plots are shown for the HOMO-LUMO transitions in both molecules. While for benzene a diatropic (counter clockwise) induced ring current is descernible, a paratropic (clockwise) induced ring current is visible in the plot for (planar) cyclooctatetraene. This clear distinction between aromatic and anti-aromatic molecules is used throughout the last three chapters of this thesis.
+
+\section{Overview of this Thesis}
+
+This thesis consists of three parts: methodology (Chapter \chorbopt), assessment of complex chemical bonding, such as bond making and breaking of dative bonds and bonds with different $\eta$-hapticities (Chapters \chdissociation\ and \chcyclopentadienyl), and aromaticity (Chapters \chhuckel, \chinorganic\ and~\chindacene).
+
+As mentioned earlier, the orbitals in a VB wave function can be optimized with \mbox{VBSCF}. One of the optimization methods is Super CI. Within this method, the VB wave function is extended with all possible singly excited structures. These singly excited structures contain 1-2 times the number of determinants in the ground state wave function. Besides, due to the non-orthogonality, first and second order cofactors, which are signed subdeterminants with orbital overlaps, need to be evaluated.
+
+In Chapter \chorbopt\ the possibilities to bypass these singly excited structures and cofactors are analyzed. In MCSCF, Fock matrices have been used for the optimization of doubly occupied orbitals \cite{roos1,roos2}. The analogy between MCSCF and VBSCF, as explained in Section \ref{ch1.sec.vbscf}, justifies a close look at the possible use of a Fock operator in VBSCF. In this chapter the applicability of Fock matrices for the optimization of orbitals in VBSCF is analyzed. Besides, several improvements on the earlier implemented approximated Newton-Raphson technique \cite{koos1} will be presented. The chapter is concluded with some test calculations for which the speed-up factors are compared.
+
+The dissociation behavior of molecules is influenced by the surrounding medium. In Chapter \chdissociation\ this influence is analyzed by comparing the dissociation behavior of four chlorine containing compounds in the gas-phase with in solution. The molecules are chloromethane, \textit{tert}-butylchloride, chlorosilane and trimethylsilylchloride (Figure \ref{ch1.fig.structures1} in which M=C or Si and R=H or CH$_3$).
+\begin{figure}[htbp]
+\center
+\includegraphics{introduction/figures/structures.eps}
+\caption{The total wave function is a combination of three Lewis structures \textbf{a}, \textbf{b} and \textbf{c}, in which M=C or Si and R=H or CH$_3$.}
+\label{ch1.fig.structures1}
+\end{figure}
+The M-Cl bond  is stretched and for several bond lengths the total VB energy and the energy of the separate covalent and ionic structures is calculated. At large distances only the covalent structure (Figure \ref{ch1.fig.structures1}, structure \textbf{a}) contributes to the wave function for the gas-phase.
+
+With PCM switched on (see Section \ref{ch1.sec.solv}), \textit{tert}-butylchloride, chlorosilane and trimethylsilylchloride dissociate in ions, \textit{i.e.} at large distances only the ionic structure (Figure \ref{ch1.fig.structures1}, structure \textbf{b}) contributes to the wave function.  Chloromethane is hardly influenced by the solvating medium. At large distances the covalent structure remains the most important for this molecule.  
 
 The cyclopentadienyl anion has 6 $\pi$ electrons and fulfills the 4$n$+2 H\"{u}ckel rule. Although the cyclopentadienyl moiety is frequently used as a ligand in organometallic chemistry (\textit{cf.} ferrocene) details about the actual bond between the metal atom and the ligands are scarce \cite{budzelaar}. In Chapter \chcyclopentadienyl\ the bonding of main-group metal hydrides to a cyclopentadienyl ring is, for which the covalent structures were already shown in Figure \ref{ch1.fig7}, investigated in terms of contributions of VB structures, describing $\sigma$, $\pi$ and ionic bonding (Figure \ref{ch1.fig.mhydride}).
 \begin{figure}[ht]
@@ -460,25 +484,9 @@ The cyclopentadienyl anion has 6 $\pi$ electrons and fulfills the 4$n$+2 H\"{u}c
 
 In the last three chapters the aromaticity phenomenon is considered from different perspectives. Since the discovery of benzene in 1825 by Michael Faraday, four criteria for aromaticity have been defined \cite{aromaticity}. These are chemical behavior, structural, energetic and magnetic. In chapters \chhuckel, \chinorganic\ and \chindacene, the latter three criteria have been used in the investigation. 
 
-In aromatic molecules, bond length equalization occurs. This is verified with the several geometry optimizations in the last three chapters of this thesis. Secondly, aromatic molecules have a high resonance energy. Valence Bond theory is well-suited to study this aromatic stability, because a Valence Bond wave function containing both Kekul\'{e} structures can be defined with which the Pauling resonance energy, \textit{i.e.} the energy difference between one Kekul\'e structure and the total energy ($E_\mathrm{tot}$) can be calculated \cite{pauling5} (see figure \ref{ch1.fig.benzene}). The third property used to measure aromaticity is magnetic in nature. Molecules react differently to an external magnetic field. In benzene, for example, the center of the ring is shielded, while the edges of the molecule are deshielded. This phenomenon is measurable with the nucleus-independent chemical shift (NICS) \cite{schleyer}. With this method the absolute magnetic shieldings at the center of the molecular ring are calculated. If a magnetic field is directed perpendicular to the plane of an aromatic system, like benzene, a ring current is induced in the delocalized $\pi$ electrons of the aromatic ring, since these $\pi$ electrons are free to circulate, and hence obey Amp\`{e}re's Law (see Figure \ref{ch1.fig.ringcurrent}).
-\begin{figure}[htp]
-\center
-\includegraphics{introduction/figures/ringcurrent.eps}
-\caption{A diagram of an aromatic ring current. $\mathrm{B_0}$ is the applied magnetic field, the up-arrow indicating its direction. The arrows in the plane of the atoms shows the direction of the ring current, and the two rings with arrows perpendicular to the C$_6$ ring show the direction of the induced magnetic field. Note that the direction of the current is the opposite of the direction of movement of the ($\pi$) electrons.}
-\label{ch1.fig.ringcurrent}
-\end{figure}
+In aromatic molecules, bond length equalization occurs. This is verified with the several geometry optimizations in the last three chapters of this thesis. Secondly, aromatic molecules have a high resonance energy. Valence Bond theory is well-suited to study this aromatic stability, because a Valence Bond wave function containing both Kekul\'{e} structures can be defined with which the Pauling resonance energy, \textit{i.e.} the energy difference between one Kekul\'e structure and the total energy ($E_\mathrm{tot}$) can be calculated \cite{pauling5} (see figure \ref{ch1.fig.benzene}). The third property used to measure aromaticity is magnetic in nature (see Section \ref{ch1.sec.magnet}).
+
 In the last three chapters, the resonance energy calculated with VB will be compared to the ring currents ``measured'' and analyzed whether they corroborate towards the same conclusions: aromatic or anti-aromatic.
-
-The total ring current is independent of the choice of the gauge, \textit{i.e.} the formal center of rotation. However, this is not true for individual orbital contributions \cite{ipso1}. In the ipsocentric model of Continuous Transformation of Origin of Current-Density Diamagnetic Zero(CTOCD-DZ) the induced current density is calculated at each point with the gauge origin at that point \cite{ipso1,ipso2}. With this method the induced ring current per orbital can be calculated.
-
-In this ipsocentric formulation, the current densities are expressed as sums over states and may be analyzed in terms of the accessibility of excited states via translational and rotational transitions. For two example molecules, benzene (aromatic) and planar cyclooctatetraene (anti-aromatic), the orbital scheme with these transitions is shown for the $\pi$ system in Figure \ref{ch1.fig.orbital_scheme}. 
-\begin{figure}
-\center
-\includegraphics[scale=0.32]{introduction/figures/orbital_scheme.eps}
-\caption{Orbital energy scheme for (a) benzene ($D_\mathrm{6h}$) and (b) planar cyclooctatetraene ($D_\mathrm{4h}$), showing symmetries, nodal characteristics, occupancies and \textit{k} values. Possible transitions are indicated by straight (translational) and bent (rotational) arrows (Figure taken from reference \cite{ipso2}). On the right hand side the ring current plots for the HOMO-LUMO transitions (bold arrows) are given for both molecules.}
-\label{ch1.fig.orbital_scheme}
-\end{figure}
-The HOMO-LUMO transitions are shown by bold arrows. A straight arrow indicates a translational transition (in the case of benzene, (a)), while a bent arrow indicates a rotational transition (in the case of cyclooctatetraene (b)). On the right hand side in the figure, the induced ring current plots are shown for the HOMO-LUMO transitions in both molecules. While for benzene a diatropic (counter clockwise) induced ring current is descernible, a paratropic (clockwise) induced ring current is visible in the plot for (planar) cyclooctatetraene. This clear distinction between aromatic and anti-aromatic molecules is used throughout the last three chapters of this thesis.
 
 Benzene fulfills the 4$n$+2 H\"{u}ckel rule for aromatics, while cyclobutadiene and cyclooctatetraene satisfy the 4$n$ rule for anti-aromatics. In Chapter \chhuckel\ the applicability of these rules are tested on the azabora-analogues of these three molecules, which are iso-electronic with their carbon counterparts. Results from a simple H\"{u}ckel model \cite{huckel1,huckel2,huckel3,huckel4}, \textit{ab initio} ring current maps \cite{london,ctocd1,ctocd2,ctocd3,ctocd4}, and the Valence Bond method are compared. A ring current map shows the induced current, caused by a magnetic field, in the electronic system of planar molecules. For aromatic molecules a strong ring current in the $\pi$ system is discernible, whereas for non aromatic molecules only weak currents are visible. Ring current maps are the result of sensitive probing the molecule to assess aromatic character \cite{huckel}.
 
