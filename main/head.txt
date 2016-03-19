@@ -18,6 +18,7 @@
 \usepackage{yfonts}
 \usepackage[T1]{fontenc}
 \usepackage{braket}
+\usepackage{textcomp}
 \newcommand{\vbbox}[2]
 {
    \begin{minipage}{\textwidth}
