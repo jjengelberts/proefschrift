@@ -1,6 +1,8 @@
 \chapter{Introduction}
 \label{chap_intro}
 
+\hyphenation{para-mag-net-ic}
+
 \ifthenelse{\boolean{wholethesis}}{\relax}{\begin{center}\textit{Generated on \today\ at \currenttime}\end{center}}
 \newpage
 
@@ -26,7 +28,6 @@ In 1916 Lewis introduced a set of postulates still used in chemistry today \cite
 \caption{The Lewis representation of the bonds in methane and ethane \cite{lewis}.}
 \label{ch1.fig2}
 \end{figure}
-
 
 \section{Quantum Mechanics in Chemistry}
 
@@ -410,8 +411,8 @@ Cooper, Gerratt and Raimondi have developed the Spin-Coupled Valence Bond (SCVB)
 
 SCVB is equivalent with the VBSCF method described in the previous subsection. That is, if in the VBSCF all possible spin-couplings are taken into account. In that case, the expectation value for the total energy ($E_\mathrm{tot}$) will be the same for the same basis set.
 
-\section{Properties of Molecules}
-In this thesis, the molecules described are not only studied by solving the Schr\"{o}dinger equation (equation \ref{ch1.eq.hpsi}) with the standard Hamilton operator (equation \ref{ch1.eq.htotal}), but with extended, or perturbated, Hamiltonians as well. With these operators, additional properties, like solvability (Chapter \chdissociation) and magnetically induced ring currents (Chapters \chhuckel, \chinorganic\  and \chindacene), can be studied. 
+\section{Methods Using Extended, or Perturbed, Hamilton Operators}
+In this thesis, the molecules described are not only studied by solving the Schr\"{o}dinger equation (equation \ref{ch1.eq.hpsi}) with the standard Hamilton operator (equation \ref{ch1.eq.htotal}), but with extended, or perturbated, Hamiltonians as well. With these operators additional characteristics, like solvation  (Chapter \chdissociation) and  magnetically induced ring currents (Chapters \chhuckel, \chinorganic\  and \chindacene), can be studied. 
 
 \subsection{\label{ch1.sec.solv}Solvation}
 In computational chemistry, the methods for evaluating solvent effects can be divided into two types: those describing the individual solvent molecules and those that treat the solvent as a continuous medium \cite{jensen}. In continuum models, like the Polarizable Continuum Model (PCM) \cite{pcm1,pcm2}, the solvent is considered to be a uniform polarizable medium with a dielectric constant of $\epsilon$. The solute \textbf{M} is placed in a suitably shaped hole in the medium (figure \ref{ch1.fig.continuum}).
@@ -447,9 +448,31 @@ If a magnetic field is directed perpendicular to the plane of an aromatic system
 
 Schleyer \textit{et al.} have proposed the use of absolute magnetic shieldings \cite{nics1,nics2,nics3,nics4}, computed at the ring centers with quantum chemical programs, as a aromaticity/antiaromaticity criterion. To correspond to the familiar NMR chemical shift conventon, the signs of the computed values are reversed. Negative ``nuclues-independent chemical shifts'' (NICSs) denote aromaticity, while positive values indecate antiaromaticity \cite{nics1}.
 
-The total ring current is independent of the choice of the gauge, \textit{i.e.} the formal center of rotation. However, this is not true for individual orbital contributions \cite{ipso1}. In the ipsocentric model of Continuous Transformation of Origin of Current-Density Diamagnetic Zero (CTOCD-DZ) the induced current density is calculated at each point with the gauge at that point \cite{ipso1,ipso2}. With this method the induced ring current per orbital can be calculated.
+In the past, several methods have been developed to study ring currents. A reappearing question for these has been: what is the best position to choose the gauge origin, \textit{i.e.} the formal ``center of rotation''? To study the ring current in the $\pi$ system of a planar cyclic conjugated system, would that be the center of the ring? Methods that use a discrete distributions of origins, rather than a one center gauge, include the Individual Gauge Localized Orbitals (IGLO) \cite{iglo1,iglo2} and the Gauge-Including Atomic Orbitals (GIAO) methods \cite{giao}. Keith and Bader suggested that the origin distribution could be a continuous function with the induced current density at each point in space computed with respect to the origin of the of the vector potential \cite{keithbader}. This led to the development of the equivalent Continuous Set of Gauge Transformations (CSGT) \cite{keithbader} and Continuous Transformation of the Origin of the Current Density (CTOCD) \cite{ctocd} methods.
 
-In this ipsocentric formulation, the current densities may be analyzed in terms of the accessibility of excited states via translational and rotational transitions. In Figure \ref{ch1.fig.orbital_scheme} it can be seen that the diamagnetic ring current in benzene (a) is caused by translational transitions (from the linear momentum operator \cite{ipso1}), while the paramagnetic ring current in planar cyclooctatetraene (b) is caused by rotational transitions (from the angular momentum operator \cite{ipso1}).
+For a molecule in a static, uniform, magnetic field, the current density distribution does not depend on the choice of the gauge. For the contributions per orbital, the choice of the gauge does have influence. This may be the reason that for studies with one center gauge calculations orbital contributions have seldom been used. The CTOCD method does not have this restriction and the current density can be split in contributions per orbital.
+
+The first order current density distribution ($\mathbf{j}(\mathbf{r})$) consists of a diamagnetic and a paramagnetic contribution and is the sum of current density contributions for each orbital ($\mathbf{j}_n(\mathbf{r})$) \cite{ipso1}:
+\begin{equation}
+\begin{split}
+\mathbf{j}(\mathbf{r}) &= \mathbf{j}^{(\mathrm{d})}(\mathbf{r}) +\mathbf{j}^{(\mathrm{p})}(\mathbf{r}) \\
+&= \sum_n \mathbf{j}_n(\mathbf{r}),
+\label{ch1.eq.jtot}
+\end{split}
+\end{equation}
+in which $n$ runs over all orbitals.  $\mathbf{j}^{(\mathrm{d})}(\mathbf{r})$ and $\mathbf{j}^{(\mathrm{p})}(\mathbf{r})$ are the diamagnetic and a paramagnetic contributions. $\mathbf{j}(\mathbf{r})$ can be expressed in magnetic field, charge density and ground and excited states:
+\begin{equation}
+\mathbf{j}(\mathbf{r}) = \frac{e}{2m_e} \mathbf{B} \times (\mathbf{r}-\mathbf{d}) \rho_0 (\mathbf{r}) + \frac{ie{\hbar}N}{m_e} \int [ \Psi_0 \nabla \Psi^{(1)}_0 - \Psi^{(1)}_0 \nabla \Psi_0 ] d\tau',
+\label{ch1.eq.jtotlong}
+\end{equation}
+in which $\mathbf{B}$ is the magnetic field, $\mathbf{r}$ the coordinates, $\mathbf{d}$ the origin of the vector potential, and $\rho_0$ the charge density. $\Psi_0$  and $\Psi^{(1)}_0$ are the wave functions describing the ground state and the singly excited states, respectively. The integral on the right indicates a sum over these states. For the derivation of equation \ref{ch1.eq.jtotlong}, see reference \cite{ipso1}.
+
+In the CTOCD-\textit{DZ} formalism, $\mathbf{j}^{(\mathrm{d})}(\mathbf{r})$ is set to zero by choosing each point $\mathbf{r}$ as its own origin ($\mathbf{r}$ is then equal to $\mathbf{d}$). This reduces equation \ref{ch1.eq.jtotlong} to:
+\begin{equation}
+\mathbf{j}(\mathbf{r}) = \frac{ie{\hbar}N}{m_e} \int [ \Psi_0 \nabla \Psi^{(1)}_0 - \Psi^{(1)}_0 \nabla \Psi_0 ] d\tau',
+\label{ch1.eq.jtotdz}
+\end{equation}
+a sum over states. With this equation, a classical diamagnetic response has been included into a single description in which diamagnatic \textit{and} paramagnetic effects can be interpreted in terms of the accessibility of excited states. As is explained in detail in reference\cite{ipso1}, the translational excitations (from the linear momentum operator) give rise to diamagnetic ring current contributions, while the rotational excitations (from the angular momentum operator) give rise to paramagnetic ring current contributions. A first striking observation with the CTOCD-\textit{DZ} method was that only 4 $\pi$ electrons are responsible for the diatropic ring current of aromatic ($4n+2$)-electron monocycles \cite{ipso1}. In Figure \ref{ch1.fig.orbital_scheme} it can be seen that the diamagnetic ring current in benzene (a) is caused by translational excitations, while the paramagnetic ring current in planar cyclooctatetraene (b) is caused by rotational excitations.
 \begin{figure}[hb]
 \center
 \includegraphics[scale=0.32]{introduction/figures/orbital_scheme.eps}
@@ -491,7 +514,7 @@ In aromatic molecules, bond length equalization occurs. This is verified with th
 
 In the last three chapters, the resonance energy calculated with VB will be compared to the ring currents ``measured'' and analyzed whether they corroborate towards the same conclusions: aromatic or anti-aromatic.
 
-Benzene fulfills the 4$n$+2 $\pi$ electrons H\"{u}ckel rule for aromatics, while cyclobutadiene and cyclooctatetraene satisfy the H\"{u}ckel 4$n$ $\pi$ electron rule for anti-aromatics. In Chapter \chhuckel\ the applicability of these rules are tested on the azabora-analogues of these three molecules, which are iso-electronic with their carbon counterparts. Results from a simple H\"{u}ckel model \cite{huckel1,huckel2,huckel3,huckel4}, \textit{ab initio} ring current maps \cite{london,ctocd1,ctocd2,ctocd3,ctocd4}, and the Valence Bond method are compared. A ring current map shows the induced current, caused by a magnetic field, in the electronic system of planar molecules. For aromatic molecules a strong ring current in the $\pi$ system is discernible, whereas for non aromatic molecules only weak currents are visible. Ring current maps are the result of sensitive probing the molecule to assess aromatic character \cite{huckel}.
+Benzene fulfills the 4$n$+2 $\pi$ electrons H\"{u}ckel rule for aromatics, while cyclobutadiene and cyclooctatetraene satisfy the H\"{u}ckel 4$n$ $\pi$ electron rule for anti-aromatics. In Chapter \chhuckel\ the applicability of these rules are tested on the azabora-analogues of these three molecules, which are iso-electronic with their carbon counterparts. Results from a simple H\"{u}ckel model \cite{huckel1,huckel2,huckel3,huckel4}, \textit{ab initio} ring current maps \cite{london,ctocd}, and the Valence Bond method are compared. A ring current map shows the induced current, caused by a magnetic field, in the electronic system of planar molecules. For aromatic molecules a strong ring current in the $\pi$ system is discernible, whereas for non aromatic molecules only weak currents are visible. Ring current maps are the result of sensitive probing the molecule to assess aromatic character \cite{huckel}.
 
 In Chapter \chinorganic\ the aromaticity of a series of ``inorganic benzenes'', like B$_3$N$_3$H$_6$, B$_3$P$_3$H$_6$ and N$_6$, is investigated. The results of ring current calculations are compared to VB. It is shown that amongst the alleged inorganic benzenes only B$_3$P$_3$H$_6$ (Figure \ref{ch1.fig.b3p3h6}) can be considered as ``aromatic''.
 \begin{figure}[ht]
