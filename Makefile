@@ -63,6 +63,7 @@ temptex2: $(FIGURES)
 	cd indacene; bibtex indacene
 	pdflatex thesis
 	pdflatex thesis
+	pdflatex thesis
 	rm -f natbib.sty
 
 makea4:
