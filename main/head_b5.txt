@@ -21,7 +21,7 @@
 \DeclareGraphicsRule{.eps}{pdf}{.pdf}{`epstopdf #1}
 \usepackage{chapterbib}
 \usepackage{ifthen}
-\usepackage[pdftex,bookmarks=true,hidelinks,pdfauthor={Jeroen Engelberts},pdftitle={Valence Bond Theory: A Toolkit For The Analysis Of Chemical Bonding},pdfsubject={Valence Bond Theory}]{hyperref}
+\usepackage[pdftex,bookmarks=true,hidelinks,pdfauthor={Jeroen Engelberts},pdftitle={Analysis Of Chemical Bonding Using Ab Initio Valence Bond Theory},pdfsubject={Valence Bond Theory}]{hyperref}
 \usepackage{lettrine}
 \usepackage{yfonts}
 \usepackage[T1]{fontenc}
