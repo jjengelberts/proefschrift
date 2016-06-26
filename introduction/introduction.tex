@@ -36,7 +36,7 @@ In the 1920s the physicists Heisenberg and Schr\"{o}dinger, amongst others, deve
 \mathbf{H} \Psi=E \Psi.
 \label{ch1.eq.hpsi}
 \end{equation}
-For each (chemical) system a Hamiltonian ($\mathbf{H}$) can be defined. This Hamiltonian contains terms to obtain the kinetic energy of the nuclei and electrons ($\mathbf{T}_n$ and $\mathbf{T}_e$) and the potential energy of the nuclei and electrons, \textit{i.e.} Coulomb repulsion between nuclei ($\mathbf{V}_{nn}$), Coulomb repulsion between electrons ($\mathbf{V}_{ee}$), and Coulomb attraction between nuclei and electrons ($\mathbf{V}_{en}$):
+For each (chemical) system a Hamilton operator ($\mathbf{H}$) can be defined. This Hamiltonian contains terms to obtain the kinetic energy of the nuclei and electrons ($\mathbf{T}_n$ and $\mathbf{T}_e$) and the potential energy of the nuclei and electrons, \textit{i.e.} Coulomb repulsion between nuclei ($\mathbf{V}_{nn}$), Coulomb repulsion between electrons ($\mathbf{V}_{ee}$), and Coulomb attraction between nuclei and electrons ($\mathbf{V}_{en}$):
 \begin{equation}
 \mathbf{H} = \mathbf{T}_n + \mathbf{T}_e + \mathbf{V}_{nn} + \mathbf{V}_{ee} + \mathbf{V}_{en}.
 \label{ch1.eq.htotal}
@@ -99,7 +99,7 @@ The simplest way to find approximate solutions for the Schr\"{o}dinger equation 
 E=\left< \Psi_\mathrm{HF} | \mathbf{H} | \Psi_\mathrm{HF} \right>,
 \label{ch1.eq.hfexp}
 \end{equation}
-where $\Psi_\mathrm{HF}$ is the single deteminant Hartree-Fock wave function constructed from orthonormal orbitals $\psi_i$.
+where $\Psi_\mathrm{HF}$ is the single determinant Hartree-Fock wave function constructed from orthonormal orbitals $\psi_i$.
 
 With the Hamiltonian of equation \ref{ch1.eq.htotal}, the expression for the energy ($E$) becomes:
 \begin{equation}
@@ -134,7 +134,7 @@ in which $\mathbf{F}(i)$ is the so called one electron Fock operator, which is w
 \mathbf{F}(i)=\mathbf{h}(i) + \sum_j (\mathbf{J_j}(i) - \mathbf{K_j}(i)).
 \label{ch1.eq.fock2}
 \end{equation}
-Since the Fock operator depends on the orbitals it operates on, the Hartree-Fock equations (\ref{ch1.eq.fock1} and \ref{ch1.eq.fock2}) are solved in an iterative manner, referred to as the self consistent Field (SCF) method.
+Since the Fock operator depends on the orbitals it operates on, the Hartree-Fock equations (\ref{ch1.eq.fock1} and \ref{ch1.eq.fock2}) are solved in an iterative manner, referred to as the Self Consistent Field (SCF) method.
 
 The optimization is performed by modifying the coefficients $c_n$ for the atomic orbitals in equation \ref{ch1.eq.lcaomo}. With the Fock operator, applied to the atomic orbitals (AOs), the orbital energies ($\epsilon_j$) are obtained:
 \begin{equation}
@@ -154,7 +154,7 @@ in which $\mathbf{F}$ is the Fock matrix, $\mathbf{S}$ the orbital overlap matri
 
 In the Hartree-Fock method the most commonly used type of wave function is a single determinant with doubly occupied orbitals, \textit{i.e.} two electrons per orbital with paired spins. This is referred to as closed-shell and the wave function is called restricted Hartree-Fock (RHF). If not all orbitals are doubly occupied, \textit{i.e.} not all electrons are paired, the wave function is referred to as restricted open-shell Hartree-Fock (ROHF). When different spatial orbitals are used for electrons with $\alpha$ and $\beta$ spin, the method is referred to as unrestricted Hartree-Fock (UHF). An advantage of UHF over ROHF is that it gives a correct description of the dissociation of molecules into atoms or molecular fragments, for example. A disadvantage of UHF, however, is that the wave function is not a proper eigenfunction of the total spin operator $\mathbf{S}^2$.
 
-A property of the single determinant in the Hartree-Fock method is that each electron moves in the average electric field created by the other electrons, \textit{i.e.} there is no electron correlation. For a more accurate expression, the instantaneous interaction between the electrons must be taken into account. Electronic structure methods that take care of electron-electron interaction are called electron correlation methods. The difference between the Hartee-Fock energy ($E_\mathrm{HF}$) and the exact energy is called the \textit{correlation energy}. Three of these methods, the Configuration Interaction Method (CI) \cite{shavitt1,shavitt2}, Multi Configuration Self Consistent Field Method (MCSCF) \cite{daswahl,wahldasbook,mcscf,roos1,roos2} and the Coupled Cluster Method (CC) \cite{cc1,cc2}, will be introduced here.
+A property of the single determinant in the Hartree-Fock method is that each electron moves in the average electric field created by the other electrons, \textit{i.e.} there is no electron correlation. For a more accurate expression, the instantaneous interaction between the electrons must be taken into account. Electronic structure methods that take care of electron-electron interaction are called electron correlation methods. The difference between the Hartree-Fock energy ($E_\mathrm{HF}$) and the exact energy is called the \textit{correlation energy}. Three of these methods, the Configuration Interaction Method (CI) \cite{shavitt1,shavitt2}, Multi Configuration Self Consistent Field Method (MCSCF) \cite{daswahl,wahldasbook,mcscf,roos1,roos2} and the Coupled Cluster Method (CC) \cite{cc1,cc2}, will be introduced here.
 
 \subsection{\label{ch1.sec.ci}The Configuration Interaction (CI) Method}
 
@@ -176,7 +176,7 @@ in which $\Phi_i^a$ and $\Phi_{ij}^{ab}$ are singly and doubly excited CSFs, res
 \Psi_{\mathrm{CI}} = \sum_{k}^{N_{\mathrm{CSF}}} c_k \Phi_k,
 \label{ch1.eq.ci}
 \end{equation}
-in which $k$ runs over all CSFs. The coefficients $c_k$ are determined by the variational principle \cite{varia}, while the orbitals inside $\Phi_k$ are kept fixed. A wave function containing all possible CSFs in equation \ref{ch1.eq.ci} for a given basis set is called a full CI wave function. Solving the Schr\"{o}dinger equation \ref{ch1.eq.hpsi} gives the ``exact'' energy for that given basis set. In full CI, the number of CSFs is accompanied by a factorial increase with the number of electrons and the size of the basis set \cite{weyl}. Therefore, a full CI wave function is only feasible for very small molecular systems. In practice, the CI expansion is truncated and only a subset of the possible CSFs is included in the wave function. These truncations are labeled with capitals S, D, T, Q to indicate that only singly, doubly, triple, or quadruple excited configurations are included in the expansion. For example, in a CISD wave function only singly and doubly excited CSFs are included in the expansion.
+in which $k$ runs over all CSFs. The coefficients $c_k$ are determined by the variational principle \cite{varia}, while the orbitals inside $\Phi_k$ are kept fixed. A wave function containing all possible CSFs in equation \ref{ch1.eq.ci} for a given basis set is called a full CI wave function. Solving the Schr\"{o}dinger equation \ref{ch1.eq.hpsi} with full CI gives the ``exact'' energy for that given basis set. In full CI, the number of CSFs is accompanied by a factorial increase with the number of electrons and the size of the basis set \cite{weyl}. Therefore, a full CI wave function is only feasible for very small molecular systems. In practice, the CI expansion is truncated and only a subset of the possible CSFs is included in the wave function. These truncations are labeled with capitals S, D, T, Q to indicate that only singly, doubly, triple, or quadruple excited configurations are included in the expansion. For example, in a CISD wave function only singly and doubly excited CSFs are included in the expansion.
 
 A disadvantage of such a truncation is that the wave function is no longer size consistent, \textit{i.e.} the wave function for two molecules at large distance from each other has a higher energy than the sum of the individual energies. For example, a CISD expanded wave function for a single H$_2$ molecule contains the CSF describing the doubly excited state. Although, for a combination of two H$_2$ molecules at large distance, double excitations do occur within each molecule, the CSF in which \textit{both} H$_2$ molecules are doubly excited at the \textit{same} time does not occur, since this would be a quadruple excitation.
 
@@ -187,14 +187,14 @@ Like in CI, Multi Configuration Self Consistent Field (MCSCF) wave function are 
 
 In an MCSCF wave functions the orbitals are divided over two sets. One set contains the orbitals that are doubly occupied in all CSFs (inactive) and the other set contains the variably occupied orbitals (active). In the active space the CSFs are generated by distributing active electrons over the active orbitals in all possible ways. This can be considered as a full CI in the active space. In literature, two designations for this type of method are found. It is referred to as the Fully Optimized Reaction Space (FORS) method \cite{fors1,fors2,fors3} and as Complete Active Space SCF (CASSCF) \cite{roos1,roos2}.
 
-Although MCSCF is not used for calculations described in this thesis, it has much in common with the Valence Bond Self Consistent field method, described later in this chapter. For example, it is expressed in structures, comparable to CSFs, for which both the orbitals coefficients and the expansion coefficients are optimized. 
+Although MCSCF is not used for calculations described in this thesis, it has much in common with the Valence Bond Self Consistent field method, described later in this chapter. For example, the latter is expressed in structures, comparable to CSFs, for which both the orbitals coefficients and the expansion coefficients are optimized. 
 
-One mechanism that can be used for this optimization is the so called Super CI \cite{superci1,superci2} method (\textit{cf.} Chapter \chorbopt). Within this method the wave function is expanded with singly excited structures. For this expanded wave function the CI (or Brillouin) vector $\mathbf{b}$ is determined by solving the generalized eigenvalue problem:
+One mechanism that can be used for this optimization is the so called Super CI \cite{superci1,superci2} method (\textit{cf.} Chapter \chorbopt). Within this method the wave function is expanded with singly excited CSFs. For this expanded wave function the CI (or Brillouin) vector $\mathbf{b}$ is determined by solving the generalized eigenvalue problem:
 \begin{equation}
 [\mathbf{H}-E_b] \cdot \mathbf{b} = 0,
 \label{ch1.eq.geig}
 \end{equation}
-in which $\mathbf{H}$ is the Hamiltonian and in the basis of the ground state and the singly excited states ($\Phi_0$ and the $\Phi_{i}^{a}$s). $E_b$ is the lowest eigenvalue and $\mathbf{b}$ is the corresponding eigenvector. With the elements of $\mathbf{b}$ the orbitals are updated. This procedure is repeated until the Brillouin theorem \cite{brillouin}, which states that for optimal orbitals the singly excited Brillouin states do not interact or mix with the ground (or reference) state, is fulfilled:
+in which $\mathbf{H}$ is the Hamiltonian in the basis of the ground state and the singly excited states ($\Phi_0$ and the $\Phi_{i}^{a}$s). $E_b$ is the lowest eigenvalue and $\mathbf{b}$ is the corresponding eigenvector. With the elements of $\mathbf{b}$ the orbitals are updated. This procedure is repeated until the Brillouin theorem \cite{brillouin}, which states that for optimal orbitals the singly excited Brillouin states do not interact or mix with the ground (or reference) state, is fulfilled:
 \begin{equation}
 \left < \Phi_0 | \mathbf{H} - E_0 | \Phi_{i}^{a} \right > = 0.
 \label{ch1.eq.brillouin}
@@ -217,9 +217,9 @@ e^{\mathbf{T}} = & 1 + \mathbf{T}_1 + (\mathbf{T}_2 + \frac{1}{2}\mathbf{T}_1^2)
 & (\mathbf{T}_4 + \mathbf{T}_3\mathbf{T}_1 + \frac{1}{2}\mathbf{T}_2^2 + \frac{1}{2}\mathbf{T}_2\mathbf{T}_1^2 + \frac{1}{24} \mathbf{T}_1^4) + ...
 \end{split}
 \end{equation}
-The first term on the right hand side generates the reference $\Phi_0$ and the second term ($\mathbf{T}_1$) all singly excited states. The third term (the first between brackets) generates all doubly excited states, which may be considered as connected ($\mathbf{T}_2$) or disconnected ($\mathbf{T}_1^2$). The fourth term  generates all triply excited states and the last term the quadruples. Physically, a connected type such as $\mathbf{T}_4$ corresponds to four electrons interacting simultaneous, while a disconnected term such as $\mathbf{T}_2^2$ corresponds to two non-interacting pairs of interacting electrons. By comparison with the CI wave function, it is seen that the CC wave function at each excitation level contains additional terms arising from products of excitations \cite{jensen}. The coupled cluster method is size consistent, if the reference wave function ($\Phi_0$) is.
+The first term on the right hand side generates the reference $\Phi_0$ and the second term ($\mathbf{T}_1$) all singly excited states. The third term (the first between brackets) generates all doubly excited states, which may be considered as connected ($\mathbf{T}_2$) or disconnected ($\mathbf{T}_1^2$). The fourth term  generates all triply excited states and the last term the quadruples. Physically, a connected type such as $\mathbf{T}_4$ corresponds to four electrons interacting simultaneously, while a disconnected term such as $\mathbf{T}_2^2$ corresponds to two non-interacting pairs of interacting electrons. By comparison with the CI wave function, it is seen that the CC wave function at each excitation level contains additional terms arising from products of excitations \cite{jensen}. The coupled cluster method is size consistent, if the reference wave function ($\Phi_0$) is.
 
-Like in CI, the excitation level is truncated in practice. Commonly used levels of coupled cluster are single, double and triple, CCS, CCSD and CCSDT, respectively. CCSDT gives good correlation energies and is accurate. However, the inclusion of the triple excitations makes this method very compute intensive. The designation CCSD(T), with the T between brackets, indicates that the triple excitations are approximated by perturbation theory rather than computed, making it less compute intensive.
+Like in CI, the excitation level is truncated in practice. Commonly used levels of coupled cluster are single, double and triple, CCS, CCSD and CCSDT, respectively. CCSDT gives good correlation energies and is accurate. However, the inclusion of the triple excitations makes this method very compute intensive. The designation CCSD(T), with the T between brackets, indicates that the triple excitations are approximated by perturbation theory, making it less compute intensive.
 
 \subsection{Density Functional Theory (DFT)}
 The central goal of all methods described so far is to solve the time independent Schr\"{o}dinger equation (equation \ref{ch1.eq.hpsi}). This is also the goal of the Density Functional Theory (DFT) \cite{jensen, hohenberg, kohnsham}, but the approach is different. 
@@ -298,28 +298,28 @@ in which determinants comparable to those in equations \ref{ch1.eq.hl} and \ref{
 In the $\mathrm{[Na^{+} Cl^{-}]}$ structure, both sodium and chlorine fulfill Lewis' octet rule. The weights of these structures (equation \ref{ch1.eq.weight}) indicate the bond character or polarity of the bond. At equilibrium distance the weight for the $\mathrm{[Na^{+} Cl^{-}]}$ structure is the highest, being 0.75. The covalent $\mathrm{[Na^\bullet Cl^\bullet]}$ structure has a weight of 0.25, while the other ionic structure $\mathrm{[Na^{-} Cl^{+}]}$ does not contribute to the wave function at all. This VB result corresponds to an electrostatic bond. At infinite distance however, the weight for \mbox{$\mathrm{[Na^\bullet Cl^\bullet]}$} equals one, while the weights for the other two structures will be equal to zero. This corresponds to the description of separate neutral atoms.
 
 Another application area is the study of stability in terms of resonance and aromaticity. Resonance is a long known chemical concept, which accounts for stability in molecules, or molecular fragments \cite{whelandbook}. An everyday example is acetic acid (``vinegar'', p$K_\mathrm{a}$~=~4.76 \cite{bruice}). The reason for the acidity of acetic acid is ascribed to the stability of the acetate anion, \textit{viz.} its conjugated base (Figure \ref{ch1.fig.acetic}).
-\begin{figure}[htp]
+\begin{figure}[ht]
 \center
 \includegraphics{introduction/figures/acetic.eps}
 \caption{The two Lewis resonance structures of the acetate anion, \textit{viz.} the conjugated base of acetic acid.}
 \label{ch1.fig.acetic}
 \end{figure}
-When a proton is abstracted from acetic acid in aqueous environment, the negative charge has to be divided over the acetate anion. After inspection of the Lewis structures in Figure \ref{ch1.fig.acetic} it becomes evident that the negative charge can be positioned on either of the two oxygen atoms, leading to two resonance structures. In contrast, alkanols are known to be very weak acids. For alkanols there is only one resonance structure, in which the negative charge is solely concentrated on the oxygen atom (Figure \ref{ch1.fig.alcohol}).
-\begin{figure}[htp]
+When a proton is abstracted from acetic acid in aqueous environment, the negative charge has to be divided over the acetate anion. After inspection of the Lewis structures in Figure \ref{ch1.fig.acetic} it becomes evident that the negative charge can be positioned on either of the two oxygen atoms, leading to two resonance structures. In contrast, alkanols are known to be very weak acids. For alkanols there is only one resonance structure, in which the negative charge is solely concentrated on the oxygen atom (Figure \ref{ch1.fig.alcohol}). This resonance effect can be explicitly quantified with the Valence Bond method by calculating the Pauling resonance energy $E_\mathrm{res}$ \cite{paulingbook}, which is defined as the difference between the energy of the most stable structure and the energy of the total wave function. 
+\begin{figure}[hb]
 \center
 \includegraphics{introduction/figures/alcohol.eps}
 \caption{The deprotonation reaction of methanol (an alkanol; p$K_\mathrm{a}$=15.5 \cite{bruice}). On the right side is the only possible resonance structure.}
 \label{ch1.fig.alcohol}
 \end{figure}
-This resonance effect can be explicitly quantified with the Valence Bond method by calculating the Pauling resonance energy $E_\mathrm{res}$ \cite{paulingbook}, which is defined as the difference between the energy of the most stable structure and the energy of the total wave function. 
 
 Resonance energy is often used in discussions on aromaticity. In the 19$^\mathrm{th}$ century Michael Faraday discovered benzene, to which he referred to as bicarburet of hydrogen \cite{faraday,bicarburet}. The molecular weight of 78 suggested that the gross formula was (CH)$_6$. A remarkable property of (CH)$_6$ is that, in contrast to other unsaturated carbon based compounds (such as alkenes), benzene does not give addition products, but only substitution products \cite{bruice}. After several scientists suggested different structural formulae, the planar hexagonal structure of August Kekul\'e \cite{kekule} was generally accepted as the real structure (Figure \ref{ch1.fig.benzene}). 
-\begin{figure}[htp]
+\begin{figure}[hb]
 \center
 \includegraphics{introduction/figures/benzene.eps}
 \caption{The two Kekul\'e resonance structures of benzene (left) and the delocalized electron representation (right).}
 \label{ch1.fig.benzene}
 \end{figure}
+
 The stability of benzene was ascribed to the delocalization of the 6 $\pi$ electrons, expressed in the resonance between the two Kekul\'e structures.
 
 The Valence Bond wave functions described so far (equations \ref{ch1.eq.hl}, \ref{ch1.eq.hlplus} and \ref{ch1.eq.nacl}) are of the classical type. Modern Valence Bond wave functions do not necessarily describe the bonding between separate atoms, but can also describe the bonding between molecular fragments. On these molecular fragments the orbitals can be expressed as linear combinations of atomic orbitals (AOs) available for that fragment. It is more appropriate to denote these functions as molecular orbitals (MOs), since they can spread over several atoms. 
@@ -415,7 +415,7 @@ SCVB is equivalent with the VBSCF method described in the previous subsection. T
 In this thesis, the molecules described are not only studied by solving the Schr\"{o}dinger equation (equation \ref{ch1.eq.hpsi}) with the standard Hamilton operator (equation \ref{ch1.eq.htotal}), but with extended, or perturbated, Hamiltonians as well. With these operators additional characteristics, like solvation  (Chapter \chdissociation) and  magnetically induced ring currents (Chapters \chhuckel, \chinorganic\  and \chindacene), can be studied. 
 
 \subsection{\label{ch1.sec.solv}Solvation}
-In computational chemistry, the methods for evaluating solvent effects can be divided into two types: those describing the individual solvent molecules and those that treat the solvent as a continuous medium \cite{jensen}. In continuum models, like the Polarizable Continuum Model (PCM) \cite{pcm1,pcm2}, the solvent is considered to be a uniform polarizable medium with a dielectric constant of $\epsilon$. The solute \textbf{M} is placed in a suitably shaped hole in the medium (figure \ref{ch1.fig.continuum}).
+In computational chemistry, the methods for evaluating solvent effects can be divided into two types: those describing the individual solvent molecules and those that treat the solvent as a continuous medium \cite{jensen}. In continuum models, like the Polarizable Continuum Model (PCM) \cite{pcm1,pcm2}, the solvent is considered to be a uniform polarizable medium with a dielectric constant of $\epsilon$. The solute \textbf{M} is placed in a suitably shaped hole in the medium (Figure \ref{ch1.fig.continuum}).
 \begin{figure}[hb]
 \center
 \includegraphics[scale=0.6]{introduction/figures/continuum.eps}
@@ -448,9 +448,9 @@ If a magnetic field is directed perpendicular to the plane of an aromatic system
 
 Schleyer \textit{et al.} have proposed the use of absolute magnetic shieldings \cite{nics1,nics2,nics3,nics4}, computed at the ring centers with quantum chemical programs, as a aromaticity/antiaromaticity criterion. To correspond to the familiar NMR chemical shift conventon, the signs of the computed values are reversed. Negative ``nuclues-independent chemical shifts'' (NICSs) denote aromaticity, while positive values indecate antiaromaticity \cite{nics1}.
 
-In the past, several methods have been developed to study ring currents. A reappearing question for these has been: what is the best position to choose the gauge origin, \textit{i.e.} the formal ``center of rotation''? To study the ring current in the $\pi$ system of a planar cyclic conjugated system, would that be the center of the ring? Methods that use a discrete distributions of origins, rather than a one center gauge, include the Individual Gauge Localized Orbitals (IGLO) \cite{iglo1,iglo2} and the Gauge-Including Atomic Orbitals (GIAO) methods \cite{giao}. Keith and Bader suggested that the origin distribution could be a continuous function with the induced current density at each point in space computed with respect to the origin of the of the vector potential \cite{keithbader}. This led to the development of the equivalent Continuous Set of Gauge Transformations (CSGT) \cite{keithbader} and Continuous Transformation of the Origin of the Current Density (CTOCD) \cite{ctocd} methods.
+In the past, several methods have been developed to study ring currents. A reappearing question for these has been: what is the best position to choose the gauge, \textit{i.e.} the formal ``center of rotation''? To study the ring current in the $\pi$ system of a planar cyclic conjugated system, would that be the center of the ring? Methods that use a discrete distributions of origins, rather than a one center gauge, include the Individual Gauge Localized Orbitals (IGLO) \cite{iglo1,iglo2} and the Gauge-Including Atomic Orbitals (GIAO) methods \cite{giao}. Keith and Bader suggested that the origin distribution could be a continuous function with the induced current density at each point in space computed with respect to the origin of the vector potential \cite{keithbader}. This led to the development of the equivalent Continuous Set of Gauge Transformations (CSGT) \cite{keithbader} and Continuous Transformation of the Origin of the Current Density (CTOCD) \cite{ctocd} methods.
 
-For a molecule in a static, uniform, magnetic field, the current density distribution does not depend on the choice of the gauge. For the contributions per orbital, the choice of the gauge does have influence. This may be the reason that for studies with one center gauge calculations orbital contributions have seldom been used. The CTOCD method does not have this restriction and the current density can be split in contributions per orbital.
+For a molecule in a static, uniform, magnetic field, the current density distribution does not depend on the choice of the gauge \cite{ipso1}. For the contributions per orbital, the choice of the gauge does have influence. This may be the reason that for studies with one center gauge calculations orbital contributions have seldom been used. The CTOCD method does not have this restriction and the current density can be split in contributions per orbital.
 
 The first order current density distribution ($\mathbf{j}(\mathbf{r})$) consists of a diamagnetic and a paramagnetic contribution and is the sum of current density contributions for each orbital ($\mathbf{j}_n(\mathbf{r})$) \cite{ipso1}:
 \begin{equation}
@@ -460,19 +460,19 @@ The first order current density distribution ($\mathbf{j}(\mathbf{r})$) consists
 \label{ch1.eq.jtot}
 \end{split}
 \end{equation}
-in which $n$ runs over all orbitals.  $\mathbf{j}^{(\mathrm{d})}(\mathbf{r})$ and $\mathbf{j}^{(\mathrm{p})}(\mathbf{r})$ are the diamagnetic and a paramagnetic contributions. $\mathbf{j}(\mathbf{r})$ can be expressed in magnetic field, charge density and ground and excited states:
+in which $n$ runs over all orbitals.  $\mathbf{j}^{(\mathrm{d})}(\mathbf{r})$ and $\mathbf{j}^{(\mathrm{p})}(\mathbf{r})$ are the diamagnetic and paramagnetic contributions. $\mathbf{j}(\mathbf{r})$ can be expressed in magnetic field, charge density and ground and excited states:
 \begin{equation}
 \mathbf{j}(\mathbf{r}) = \frac{e}{2m_e} \mathbf{B} \times (\mathbf{r}-\mathbf{d}) \rho_0 (\mathbf{r}) + \frac{ie{\hbar}N}{m_e} \int [ \Psi_0 \nabla \Psi^{(1)}_0 - \Psi^{(1)}_0 \nabla \Psi_0 ] d\tau',
 \label{ch1.eq.jtotlong}
 \end{equation}
-in which $\mathbf{B}$ is the magnetic field, $\mathbf{r}$ the coordinates, $\mathbf{d}$ the origin of the vector potential, and $\rho_0$ the charge density. $\Psi_0$  and $\Psi^{(1)}_0$ are the wave functions describing the ground state and the singly excited states, respectively. The integral on the right indicates a sum over these states. For the derivation of equation \ref{ch1.eq.jtotlong}, see reference \cite{ipso1}.
+in which $\mathbf{B}$ is the magnetic field, $\mathbf{r}$ the coordinates, $\mathbf{d}$ the origin of the vector potential, and $\rho_0$ the charge density. $\Psi_0$ is the wave function that describes the ground state and $\Psi^{(1)}_0$ is the first order correction to the wave function. The integral on the right indicates a sum over these states. For the derivation of equation \ref{ch1.eq.jtotlong}, see reference \cite{ipso1}.
 
 In the CTOCD-\textit{DZ} formalism, $\mathbf{j}^{(\mathrm{d})}(\mathbf{r})$ is set to zero by choosing each point $\mathbf{r}$ as its own origin ($\mathbf{r}$ is then equal to $\mathbf{d}$). This reduces equation \ref{ch1.eq.jtotlong} to:
 \begin{equation}
 \mathbf{j}(\mathbf{r}) = \frac{ie{\hbar}N}{m_e} \int [ \Psi_0 \nabla \Psi^{(1)}_0 - \Psi^{(1)}_0 \nabla \Psi_0 ] d\tau',
 \label{ch1.eq.jtotdz}
 \end{equation}
-a sum over states. With this equation, a classical diamagnetic response has been included into a single description in which diamagnatic \textit{and} paramagnetic effects can be interpreted in terms of the accessibility of excited states. As is explained in detail in reference\cite{ipso1}, the translational excitations (from the linear momentum operator) give rise to diamagnetic ring current contributions, while the rotational excitations (from the angular momentum operator) give rise to paramagnetic ring current contributions. A first striking observation with the CTOCD-\textit{DZ} method was that only 4 $\pi$ electrons are responsible for the diatropic ring current of aromatic ($4n+2$)-electron monocycles \cite{ipso1}. In Figure \ref{ch1.fig.orbital_scheme} it can be seen that the diamagnetic ring current in benzene (a) is caused by translational excitations, while the paramagnetic ring current in planar cyclooctatetraene (b) is caused by rotational excitations.
+a sum over states. With this equation, a classical diamagnetic response has been included into a single description in which diamagnetic \textit{and} paramagnetic effects can be interpreted in terms of the accessibility of excited states. As is explained in detail in reference \cite{ipso1}, the translational excitations (from the linear momentum operator) give rise to diamagnetic ring current contributions, while the rotational excitations (from the angular momentum operator) give rise to paramagnetic ring current contributions. A first striking observation with the CTOCD-\textit{DZ} method was that only 4 $\pi$ electrons are responsible for the diatropic ring current of aromatic ($4n+2$)-electron monocycles \cite{ipso1}. In Figure \ref{ch1.fig.orbital_scheme} it can be seen that the diamagnetic ring current in benzene (a) is caused by translational excitations, while the paramagnetic ring current in planar cyclooctatetraene (b) is caused by rotational excitations.
 \begin{figure}[hb]
 \center
 \includegraphics[scale=0.32]{introduction/figures/orbital_scheme.eps}
