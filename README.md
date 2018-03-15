@@ -10,7 +10,7 @@ If you are planning to create a large book, like a PhD thesis, or assemble a col
 * Each article, or chapter, has its own directory, resulting in clear cut separate entities. 
 * Each of these chapters has *its own references* (yes, per chapter)
 * PDFs can be created per chapter or, as one big file.
-* The PDFs have a table of index and clickable cross references.
+* The PDFs have a table of contents and clickable cross references.
 
 ## Tools needed
 To build this thesis you need:
