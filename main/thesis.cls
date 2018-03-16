@@ -29,7 +29,7 @@
 \RequirePackage[square,comma,sort&compress]{natbib}     %% Citation package
 \RequirePackage{calc}
 \RequirePackage{array}                                  %% Extra's for formatting tables
-\RequirePackage[dutch,usenglish]{babel}                 %% US english (default) and dutch hyphenation rules
+\RequirePackage[dutch,USenglish]{babel}                 %% US english (default) and dutch hyphenation rules
 
 %% 1/2-> Pagesize commands to define a pagesize of 24x15 cm
 
