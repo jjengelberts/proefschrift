@@ -23,7 +23,7 @@ TeX Live can be downloaded from [this](http://tug.org/texlive/) website.
 
 On macOS and Linux, GNU make is installed by default. On Windows, you will also need to install a UNIX-like environment. I suggest you install the free version of [MobaXterm](https://mobaxterm.mobatek.net), which already has GNU make included. 
 
-For the conversion of the figures, you will need [Ghostscript](https://www.ghostscript.com/). Free versions can be downloaded for you operating system.
+For the conversion of the figures, you will need [Ghostscript](https://www.ghostscript.com/). Free versions can be downloaded for your operating system.
 
 **NB** Make sure that *make*, *epstopdf*, *pdflatex* and *bibtex* are in your PATH. Type *make* in the directory *proefschrift* to create the PDF of the whole thesis. Typing *make* in any of its subdirectories (excluding *main* and *cover*) will generate a PDF of that specific chapter, watermarked with the date and time of generation.
  
