@@ -1,5 +1,5 @@
 # My thesis / Mijn proefschrift
-Welcome! This is the source distribution of my PhD thesis, as written between 2004 and 2016. If you would like the have a look at the PDF version that has been printed on November 30 2016, and defended on January 18 2017, please check [the library of Utrecht University](http://dspace.library.uu.nl/handle/1874/342336).
+Welcome! This is the source distribution of my PhD thesis, as written between 2004 and 2016. If you would like to have a look at the PDF version that has been printed on November 30 2016, and defended on January 18 2017, please check [the library of Utrecht University](http://dspace.library.uu.nl/handle/1874/342336).
 
 ![Cover and inlay for my thesis](cover/cover_for_screen.png)
 
