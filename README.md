@@ -31,4 +31,4 @@ For the conversion of the figures, you will need [Ghostscript](https://www.ghost
 Inside the *orbopt* subdirectory, you will find a subdirectory called *presentation*. If you type *make* in there, an advanced PDF presentation will be created called *presentation.pdf*.
 
 ## Acknowledgement
-I would like to thank [Michiel de Dood](http://www.molphys.leidenuniv.nl/~dood/resume.html) for publishing his class file (thesis.cls) back in the early 2000s. It really helped me on my way. Furthermore, I would like to thank [Roel Savert](https://www.linkedin.com/in/roel-savert-527a9a56/) for the design of the cover.
+I would like to thank [Michiel de Dood](https://www.universiteitleiden.nl/medewerkers/michiel-de-dood) for publishing his class file (thesis.cls) back in the early 2000s. It really helped me on my way. Furthermore, I would like to thank [Roel Savert](https://www.linkedin.com/in/roel-savert-527a9a56/) for the design of the cover.
