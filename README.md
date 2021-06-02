@@ -21,7 +21,7 @@ To build this thesis you need:
  
 TeX Live can be downloaded from [this](http://tug.org/texlive/) website.
 
-On macOS and Linux, GNU make is installed by default. On Windows, you will also need to install a UNIX-like environment. I suggest you install the free version of [MobaXterm](https://mobaxterm.mobatek.net), which already has GNU make included. 
+On macOS and Linux, GNU make is installed by default. On Windows, you will also need to install a UNIX-like environment. I suggest you install Windows Subsystem for Linux, or [WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10). With it, you can install (for example) Ubuntu with TeX Live, make and ghostscript.
 
 For the conversion of the figures, you will need [Ghostscript](https://www.ghostscript.com/). Free versions can be downloaded for your operating system.
 
