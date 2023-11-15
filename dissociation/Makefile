@@ -2,8 +2,8 @@ FIGURES=figures/c3h-eps-converted-to.pdf figures/c3h9sicl_g-eps-converted-to.pdf
 
 all: dissociation.tex
 
-figures/%-eps-converted-to.pdf: figures/%.eps
-	epstopdf --outfile=$@ $<
+figures/%-eps-converted-to.pdf: figures/%.eps.gz
+	zcat $< | epstopdf --filter > $@
 
 temptex: $(FIGURES)
 	cat ../main/head.txt > ../temp.tex

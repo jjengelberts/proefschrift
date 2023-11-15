@@ -2,8 +2,8 @@ FIGURES=figures/acetic-eps-converted-to.pdf figures/alcohol-eps-converted-to.pdf
 
 all: introduction.tex
 
-figures/%-eps-converted-to.pdf: figures/%.eps
-	epstopdf --outfile=$@ $<
+figures/%-eps-converted-to.pdf: figures/%.eps.gz
+	zcat $< | epstopdf --filter > $@
 
 temptex: $(FIGURES)
 	cat ../main/head.txt > ../temp.tex

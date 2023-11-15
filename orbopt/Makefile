@@ -2,8 +2,8 @@ FIGURES=figures/compounds-eps-converted-to.pdf figures/sigma_sih-eps-converted-t
 
 all: orbopt.tex
 
-figures/%-eps-converted-to.pdf: figures/%.eps
-	epstopdf --outfile=$@ $<
+figures/%-eps-converted-to.pdf: figures/%.eps.gz
+	zcat $< | epstopdf --filter > $@
 
 temptex: $(FIGURES)
 	cat ../main/head.txt > ../temp.tex

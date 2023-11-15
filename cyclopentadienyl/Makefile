@@ -2,8 +2,8 @@ FIGURES=figures/bondarrangements-eps-converted-to.pdf figures/cp-orbitals-eps-co
 
 all: cyclopentadienyl.tex
 
-figures/%-eps-converted-to.pdf: figures/%.eps
-	epstopdf --outfile=$@ $<
+figures/%-eps-converted-to.pdf: figures/%.eps.gz
+	zcat $< | epstopdf --filter > $@
 
 temptex: $(FIGURES)
 	cat ../main/head.txt > ../temp.tex

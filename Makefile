@@ -2,26 +2,26 @@ FIGURES=cyclopentadienyl/figures/bondarrangements-eps-converted-to.pdf cyclopent
 
 all: thesis.tex
 
-introduction/figures/%-eps-converted-to.pdf: introduction/figures/%.eps
-	epstopdf --outfile=$@ $<
+introduction/figures/%-eps-converted-to.pdf: introduction/figures/%.eps.gz
+	zcat $< | epstopdf --filter > $@
 
-orbopt/figures/%-eps-converted-to.pdf: orbopt/figures/%.eps
-	epstopdf --outfile=$@ $<
+orbopt/figures/%-eps-converted-to.pdf: orbopt/figures/%.eps.gz
+	zcat $< | epstopdf --filter > $@
 
-dissociation/figures/%-eps-converted-to.pdf: dissociation/figures/%.eps
-	epstopdf --outfile=$@ $<
+dissociation/figures/%-eps-converted-to.pdf: dissociation/figures/%.eps.gz
+	zcat $< | epstopdf --filter > $@
 
-cyclopentadienyl/figures/%-eps-converted-to.pdf: cyclopentadienyl/figures/%.eps
-	epstopdf --outfile=$@ $<
+cyclopentadienyl/figures/%-eps-converted-to.pdf: cyclopentadienyl/figures/%.eps.gz
+	zcat $< | epstopdf --filter > $@
 
-huckel/figures/%-eps-converted-to.pdf: huckel/figures/%.eps
-	epstopdf --outfile=$@ $<
+huckel/figures/%-eps-converted-to.pdf: huckel/figures/%.eps.gz
+	zcat $< | epstopdf --filter > $@
 
-inorganic/figures/%-eps-converted-to.pdf: inorganic/figures/%.eps
-	epstopdf --outfile=$@ $<
+inorganic/figures/%-eps-converted-to.pdf: inorganic/figures/%.eps.gz
+	zcat $< | epstopdf --filter > $@
 
-indacene/figures/%-eps-converted-to.pdf: indacene/figures/%.eps
-	epstopdf --outfile=$@ $<
+indacene/figures/%-eps-converted-to.pdf: indacene/figures/%.eps.gz
+	zcat $< | epstopdf --filter > $@
 
 temptex2: $(FIGURES)
 	echo '\include{main/frontmatter}' >> thesis.tex

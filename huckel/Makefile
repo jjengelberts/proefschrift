@@ -2,8 +2,8 @@ FIGURES=figures/fig1-eps-converted-to.pdf figures/fig2-eps-converted-to.pdf figu
 
 all: huckel.tex
 
-figures/%-eps-converted-to.pdf: figures/%.eps
-	epstopdf --outfile=$@ $<
+figures/%-eps-converted-to.pdf: figures/%.eps.gz
+	zcat $< | epstopdf --filter > $@
 
 temptex: $(FIGURES)
 	cat ../main/head.txt > ../temp.tex

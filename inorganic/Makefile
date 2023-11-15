@@ -2,8 +2,8 @@ FIGURES=figures/figure1-eps-converted-to.pdf figures/figure2-eps-converted-to.pd
 
 all: inorganic.tex
 
-figures/%-eps-converted-to.pdf: figures/%.eps
-	epstopdf --outfile=$@ $<
+figures/%-eps-converted-to.pdf: figures/%.eps.gz
+	zcat $< | epstopdf --filter > $@
 
 temptex: $(FIGURES)
 	cat ../main/head.txt > ../temp.tex

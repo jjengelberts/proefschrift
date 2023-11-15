@@ -2,8 +2,8 @@ FIGURES=figures/chart1-eps-converted-to.pdf figures/chart2-eps-converted-to.pdf 
 
 all: indacene.tex
 
-figures/%-eps-converted-to.pdf: figures/%.eps
-	epstopdf --outfile=$@ $<
+figures/%-eps-converted-to.pdf: figures/%.eps.gz
+	zcat $< | epstopdf --filter > $@
 
 temptex: $(FIGURES)
 	cat ../main/head.txt > ../temp.tex
